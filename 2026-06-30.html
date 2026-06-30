@@ -3,193 +3,391 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>睡后简报 2026-06-30</title>
+<meta name="theme-color" content="#1890ff">
+<title>睡后简报 · 2026-06-30</title>
 <style>
   :root {
-    --bg: #fafafa; --fg: #2c2c2c; --muted: #888;
-    --card: #ffffff; --border: #e8e8e8;
-    --accent: #1890ff; --accent2: #ff4d4f; --accent3: #fa8c16;
-    --quote-bg: #f4f4f4;
+    --bg: #f7f8fa; --fg: #1f2328; --muted: #6e7681;
+    --card: #ffffff; --border: #e6e8eb; --border-strong: #d0d7de;
+    --shadow: 0 1px 3px rgba(31,35,40,0.04), 0 1px 2px rgba(31,35,40,0.06);
+    --shadow-hover: 0 8px 24px rgba(31,35,40,0.08), 0 2px 6px rgba(31,35,40,0.06);
+    --accent-news: #1890ff; --accent-social: #ff4d4f; --accent-other: #fa8c16;
+    --accent-grad-news: linear-gradient(135deg, #1890ff, #36cbcb);
+    --accent-grad-social: linear-gradient(135deg, #ff4d4f, #ff7a45);
+    --accent-grad-other: linear-gradient(135deg, #fa8c16, #ffc53d);
+    --quote-bg: #f6f8fa;
   }
-  * { box-sizing: border-box; }
-  body { font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
-    background: var(--bg); color: var(--fg); max-width: 880px;
-    margin: 0 auto; padding: 24px 16px 80px; line-height: 1.7; }
-  header { border-bottom: 2px solid var(--accent); padding-bottom: 12px; margin-bottom: 24px; }
-  header h1 { margin: 0 0 4px; font-size: 24px; }
-  header .meta { color: var(--muted); font-size: 13px; }
-  nav.toc { position: sticky; top: 0; background: var(--bg); padding: 8px 0;
-    border-bottom: 1px solid var(--border); margin-bottom: 24px; z-index: 10; }
-  nav.toc a { margin-right: 16px; color: var(--accent); text-decoration: none; font-size: 14px; }
-  section { margin-bottom: 40px; }
-  section h2 { color: var(--accent); border-left: 4px solid var(--accent);
-    padding-left: 12px; font-size: 20px; }
-  section.social h2 { color: var(--accent2); border-left-color: var(--accent2); }
-  section.other h2 { color: var(--accent3); border-left-color: var(--accent3); }
-  article { background: var(--card); border: 1px solid var(--border);
-    border-radius: 8px; padding: 20px 24px; margin-bottom: 16px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.04); }
-  article h3 { margin: 0 0 8px; font-size: 17px; }
-  .badge { display: inline-block; font-size: 12px; padding: 2px 8px;
-    border-radius: 12px; margin-bottom: 12px; }
-  .badge .lvl3 { background: var(--accent2); color: white; }
-  .badge .lvl2 { background: var(--accent3); color: white; }
-  .badge .lvl1 { background: #52c41a; color: white; }
-  blockquote { background: var(--quote-bg); border-left: 3px solid var(--accent);
-    padding: 8px 12px; margin: 8px 0; color: #555; font-size: 14px; }
-  section.social blockquote { border-left-color: var(--accent2); }
-  section.other blockquote { border-left-color: var(--accent3); }
-  a { color: var(--accent); text-decoration: none; }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0d1117; --fg: #e6edf3; --muted: #8b949e;
+      --card: #161b22; --border: #30363d; --border-strong: #484f58;
+      --shadow: 0 1px 3px rgba(0,0,0,0.3), 0 1px 2px rgba(0,0,0,0.3);
+      --shadow-hover: 0 8px 24px rgba(0,0,0,0.4), 0 2px 6px rgba(0,0,0,0.3);
+      --quote-bg: #21262d;
+    }
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+      "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", sans-serif;
+    background: var(--bg); color: var(--fg);
+    line-height: 1.7; -webkit-font-smoothing: antialiased;
+  }
+
+  /* 顶部 Hero */
+  .hero {
+    background: linear-gradient(135deg, #1890ff08, #ff4d4f08, #fa8c1608);
+    border-bottom: 1px solid var(--border);
+    padding: 48px 24px 36px; text-align: center;
+  }
+  .hero h1 { font-size: 32px; font-weight: 700; margin-bottom: 8px; letter-spacing: -0.02em; }
+  .hero .subtitle { color: var(--muted); font-size: 14px; }
+  .hero-stats {
+    display: flex; justify-content: center; gap: 24px;
+    margin-top: 24px; flex-wrap: wrap;
+  }
+  .stat-pill {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 20px; padding: 8px 16px; font-size: 13px;
+    box-shadow: var(--shadow);
+  }
+  .stat-pill strong { color: var(--accent-news); font-weight: 600; }
+  .stat-pill.social strong { color: var(--accent-social); }
+  .stat-pill.other strong { color: var(--accent-other); }
+
+  /* 粘性导航 */
+  nav.toc {
+    position: sticky; top: 0; z-index: 100;
+    background: color-mix(in srgb, var(--bg) 90%, transparent);
+    backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 12px 24px;
+  }
+  nav.toc-inner { max-width: 880px; margin: 0 auto;
+    display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+  nav.toc a {
+    color: var(--fg); text-decoration: none; font-size: 14px;
+    padding: 6px 14px; border-radius: 16px;
+    transition: all 0.2s ease;
+  }
+  nav.toc a:hover { background: var(--card); box-shadow: var(--shadow); }
+
+  /* 主体容器 */
+  main { max-width: 880px; margin: 0 auto; padding: 32px 24px 80px; }
+
+  /* Section */
+  section { margin-bottom: 56px; scroll-margin-top: 80px; }
+  .section-header {
+    display: flex; align-items: center; gap: 12px;
+    margin-bottom: 24px; padding-bottom: 12px;
+    border-bottom: 2px solid var(--border);
+  }
+  .section-icon {
+    width: 40px; height: 40px; border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px; color: white; flex-shrink: 0;
+  }
+  section.news .section-icon { background: var(--accent-grad-news); }
+  section.social .section-icon { background: var(--accent-grad-social); }
+  section.other .section-icon { background: var(--accent-grad-other); }
+  .section-title { font-size: 22px; font-weight: 700; letter-spacing: -0.01em; }
+  .section-meta { color: var(--muted); font-size: 13px; margin-left: auto; }
+
+  /* Article cards */
+  article {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 12px; padding: 24px 28px; margin-bottom: 16px;
+    box-shadow: var(--shadow);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    display: flex; gap: 20px; position: relative;
+  }
+  article:hover { transform: translateY(-2px); box-shadow: var(--shadow-hover); }
+  .article-num {
+    flex-shrink: 0; width: 32px; height: 32px;
+    background: var(--quote-bg); color: var(--muted);
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    font-size: 14px; font-weight: 600; font-variant-numeric: tabular-nums;
+  }
+  section.news .article-num { color: var(--accent-news); }
+  section.social .article-num { color: var(--accent-social); }
+  section.other .article-num { color: var(--accent-other); }
+  .article-body { flex: 1; min-width: 0; }
+  article h3 {
+    font-size: 18px; font-weight: 600; margin-bottom: 12px;
+    line-height: 1.5; letter-spacing: -0.01em;
+  }
+  .meta-row {
+    display: flex; gap: 12px; margin-bottom: 16px; align-items: center;
+    font-size: 12px; color: var(--muted);
+  }
+  .read-time { display: flex; align-items: center; gap: 4px; }
+
+  .badge {
+    display: inline-flex; align-items: center; gap: 4px;
+    padding: 3px 10px; border-radius: 12px;
+    font-size: 12px; font-weight: 500;
+  }
+  .badge.lvl3 { background: #ff4d4f15; color: #ff4d4f; }
+  .badge.lvl2 { background: #fa8c1615; color: #fa8c16; }
+  .badge.lvl1 { background: #52c41a15; color: #52c41a; }
+  .badge.lvl0 { background: #722ed115; color: #722ed1; }
+
+  article p { margin-bottom: 12px; color: var(--fg); }
+  article p:last-child { margin-bottom: 0; }
+
+  blockquote {
+    background: var(--quote-bg);
+    border-left: 3px solid var(--border-strong);
+    padding: 10px 16px; margin: 12px 0; color: var(--muted);
+    font-size: 14px; border-radius: 0 6px 6px 0;
+  }
+  section.news blockquote { border-left-color: var(--accent-news); }
+  section.social blockquote { border-left-color: var(--accent-social); }
+  section.other blockquote { border-left-color: var(--accent-other); }
+
+  /* callouts (为什么关注 / 未来影响) */
+  .callout {
+    padding: 14px 18px; margin: 14px 0;
+    border-radius: 8px; font-size: 14px;
+    line-height: 1.65;
+  }
+  .callout.why {
+    background: linear-gradient(135deg, #1890ff08, #36cbcb08);
+    border: 1px solid #1890ff30;
+    border-left: 4px solid var(--accent-news);
+  }
+  .callout.future {
+    background: linear-gradient(135deg, #fa8c1608, #ffc53d08);
+    border: 1px solid #fa8c1630;
+    border-left: 4px solid var(--accent-other);
+  }
+  section.social .callout.why {
+    background: linear-gradient(135deg, #ff4d4f08, #ff7a4508);
+    border-color: #ff4d4f30;
+    border-left-color: var(--accent-social);
+  }
+
+  /* 高亮细节 (看点) */
+  details.highlights {
+    margin: 12px 0;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--quote-bg);
+  }
+  details.highlights summary {
+    padding: 10px 16px; cursor: pointer; font-weight: 500;
+    color: var(--muted); user-select: none; list-style: none;
+  }
+  details.highlights summary::before { content: "▸ "; transition: transform 0.2s; }
+  details.highlights[open] summary::before { content: "▾ "; }
+  details.highlights[open] summary { border-bottom: 1px solid var(--border); margin-bottom: 8px; }
+  .highlight-body { padding: 8px 16px 14px; font-size: 14px; }
+
+  /* Source row */
+  .source-row {
+    margin-top: 16px; padding-top: 12px;
+    border-top: 1px dashed var(--border);
+    font-size: 13px; color: var(--muted);
+  }
+
+  a { color: var(--accent-news); text-decoration: none; }
   a:hover { text-decoration: underline; }
-  footer { text-align: center; color: var(--muted); font-size: 12px;
-    margin-top: 40px; padding-top: 16px; border-top: 1px solid var(--border); }
+
+  footer {
+    text-align: center; color: var(--muted); font-size: 13px;
+    padding: 32px 24px; border-top: 1px solid var(--border);
+  }
+  footer a { color: var(--muted); }
+
+  /* Back to top */
+  .back-top {
+    position: fixed; bottom: 24px; right: 24px;
+    width: 44px; height: 44px; border-radius: 50%;
+    background: var(--accent-news); color: white;
+    border: none; cursor: pointer; font-size: 20px;
+    box-shadow: 0 4px 12px rgba(24,144,255,0.4);
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    z-index: 99;
+  }
+  .back-top.show { opacity: 1; pointer-events: auto; }
+  .back-top:hover { transform: translateY(-2px); }
+
+  @media (max-width: 600px) {
+    .hero h1 { font-size: 24px; }
+    .hero-stats { gap: 8px; }
+    .stat-pill { font-size: 12px; padding: 6px 12px; }
+    main { padding: 24px 16px 64px; }
+    article { padding: 18px; flex-direction: column; gap: 12px; }
+    .article-num { width: 28px; height: 28px; font-size: 13px; }
+    article h3 { font-size: 16px; }
+  }
 </style>
 </head>
 <body>
-  <header>
+  <div class="hero">
     <h1>🌙 睡后简报 · 2026-06-30</h1>
-    <div class="meta">Bot3 自动生成 · 15:51 · 共 9 条要闻</div>
-  </header>
+    <div class="subtitle">由 探索(Bot3) 自动生成 · 15:54 推送 · 永久免费托管于 GitHub Pages</div>
+    <div class="hero-stats">
+      <span class="stat-pill ">新闻 <strong>6</strong></span>
+      <span class="stat-pill social">社会热点 <strong>2</strong></span>
+      <span class="stat-pill other">其他 <strong>1</strong></span>
+      <span class="stat-pill ">合计 <strong>9</strong></span>
+    </div>
+  </div>
   <nav class="toc">
-    <a href="#新闻">📰 新闻 (6)</a>
-    <a href="#社会热点">🔥 社会热点 (2)</a>
-    <a href="#其他">📂 其他 (1)</a>
-    <a href="#footer">↑ 回到顶部</a>
+    <div class="toc-inner">
+      <a href="#新闻">📰 新闻</a>
+      <a href="#社会热点">🔥 社会热点</a>
+      <a href="#其他">📂 其他</a>
+      <a href="#footer" style="margin-left:auto;color:var(--muted);">关于</a>
+    </div>
   </nav>
-  <section id="新闻">
-<h2>📰 新闻 (6 条)</h2>
+  <main>
+    <section id="新闻">
+  <div class="section-header">
+    <div class="section-icon">📰</div>
+    <div class="section-title">新闻</div>
+    <div class="section-meta">6 条</div>
+  </div>
 <article>
+<div class="article-num">1</div>
+<div class="article-body">
 <h3>🔥🔥🔥 Coinbase 带头用上 GLM 5.2 + Kimi 2.7：美国科技企业"倒戈"中国开源模型</h3>
-<div class="badge"><span class="lvl3">🔥🔥🔥 必读</span></div>
+<div class="meta-row"><span><span class="badge lvl3">🔥 必读</span></span><span class="read-time">⏱ 1 分钟</span></div>
 <blockquote>快科技 6 月 29 日消息——Brian Armstrong 周末在 X 平台披露，Coinbase 已通过内部 LLM 网关把中国开源模型设为工程师默认选项</blockquote>
-<blockquote>📊 看点
-> &nbsp;&nbsp;▸ 智谱 GLM 5.2 + 月之暗面 Kimi 2.7 同时进入 Coinbase 生产环境，开源权重模型首次拿下美国一线互联网公司核心研发链路
-> &nbsp;&nbsp;▸ 直接动因：OpenAI / Anthropic 头部模型服务价格持续攀升，Coinbase 借此在不压制使用量的前提下大幅压缩 AI 支出
-> &nbsp;&nbsp;▸ 信号：这是 Anthropic Mythos / Fable 出口管制 + GPT-5.6 "可信合作伙伴" 双重收紧后，美国企业首次大规模公开"用脚投票"
-> &nbsp;&nbsp;▸ 背后：GLM 5.2 是 6 月 17 日智谱抢跑 Anthropic 禁令真空期推出的对标模型，Kimi 2.7 同期迭代</blockquote>
-<p><strong>💡 为什么关注</strong>：这是国产开源大模型第一次拿到美国上市公司"默认 LLM 网关"的位置——比榜单排名、HuggingFace 下载量这些间接指标更硬。Coinbase 不是 AI 公司，但作为加密交易所对成本极度敏感，他们的选择代表"美国企业主流态度正在松动"。中美 AI 竞争的故事线，过去讲的都是"谁封谁"，现在开始讲"谁先用谁的"。</p>
-<p><strong>🔮 未来影响</strong>：未来 3-6 个月会有更多美国中型科技 / 金融 / SaaS 公司跟进，把中国开源模型作为默认或备选 LLM 网关入口。GLM、Kimi、Qwen、DeepSeek 在海外的"非头部客户"会迅速扩张，挤压 OpenAI / Anthropic 中端 API 的市场份额。出口管制可能反向加速中国模型的"去美国化生态"——美国企业主动适配、贡献反馈，让中国模型在工程细节上越改越好。</p>
-<blockquote>📚 来源：<a href="https://new.qq.com/rain/a/20260628A05FNQ00" target="_blank">腾讯新闻（快科技）</a> | 置信度：🅰️高</blockquote>
-</article>
+<details class="highlights"><summary>📊 看点</summary><div class="highlight-body">📊 看点<br>> &nbsp;&nbsp;▸ 智谱 GLM 5.2 + 月之暗面 Kimi 2.7 同时进入 Coinbase 生产环境，开源权重模型首次拿下美国一线互联网公司核心研发链路<br>> &nbsp;&nbsp;▸ 直接动因：OpenAI / Anthropic 头部模型服务价格持续攀升，Coinbase 借此在不压制使用量的前提下大幅压缩 AI 支出<br>> &nbsp;&nbsp;▸ 信号：这是 Anthropic Mythos / Fable 出口管制 + GPT-5.6 "可信合作伙伴" 双重收紧后，美国企业首次大规模公开"用脚投票"<br>> &nbsp;&nbsp;▸ 背后：GLM 5.2 是 6 月 17 日智谱抢跑 Anthropic 禁令真空期推出的对标模型，Kimi 2.7 同期迭代</div></details>
+<div class="callout why"><strong>💡 为什么关注</strong>：这是国产开源大模型第一次拿到美国上市公司"默认 LLM 网关"的位置——比榜单排名、HuggingFace 下载量这些间接指标更硬。Coinbase 不是 AI 公司，但作为加密交易所对成本极度敏感，他们的选择代表"美国企业主流态度正在松动"。中美 AI 竞争的故事线，过去讲的都是"谁封谁"，现在开始讲"谁先用谁的"。</div>
+<div class="callout future"><strong>🔮 未来影响</strong>：未来 3-6 个月会有更多美国中型科技 / 金融 / SaaS 公司跟进，把中国开源模型作为默认或备选 LLM 网关入口。GLM、Kimi、Qwen、DeepSeek 在海外的"非头部客户"会迅速扩张，挤压 OpenAI / Anthropic 中端 API 的市场份额。出口管制可能反向加速中国模型的"去美国化生态"——美国企业主动适配、贡献反馈，让中国模型在工程细节上越改越好。</div>
+<div class="source-row">📚 来源：<a href="https://new.qq.com/rain/a/20260628A05FNQ00" target="_blank" rel="noopener">腾讯新闻（快科技）</a> | 置信度：🅰️高</div>
+</div></article>
 <article>
+<div class="article-num">2</div>
+<div class="article-body">
 <h3>🔥🔥🔥 韩国公布"大飞跃三大超级项目"：三星 + SK 海力士领投 5180 亿美元建四座晶圆厂，AI 数据中心再投千兆亿</h3>
-<div class="badge"><span class="lvl3">🔥🔥🔥 必读</span></div>
+<div class="meta-row"><span><span class="badge lvl3">🔥 必读</span></span><span class="read-time">⏱ 1 分钟</span></div>
 <blockquote>6 月 29 日青瓦台发布会——投资规模相当于韩国 GDP 一半，全球单一国家最大规模半导体 AI 投资</blockquote>
-<blockquote>📊 看点
-> &nbsp;&nbsp;▸ 半导体板块：800 万亿韩元（≈5180 亿美元）在西南部建 4 座晶圆厂，三星 + SK 海力士各建 2 座，目标 5 年内 DRAM 产能翻倍
-> &nbsp;&nbsp;▸ AI 数据中心板块：2035 年前累计投入 1000 万亿韩元（≈6500 亿美元）以上
-> &nbsp;&nbsp;▸ 封测集群：忠清地区 81 万亿韩元，研发新一代存储 / 边缘 AI / 国防芯片再投 30 万亿韩元（15 年）
-> &nbsp;&nbsp;▸ 三星选址光州原空军基地，4-5 座前道 Fab，SK 海力士同样落地光州——打破首都圈集中模式</blockquote>
-<p><strong>💡 为什么关注</strong>：把"区域均衡发展"包装进半导体 AI 投资，韩国这套打法是教科书级的国家产业政策。三星 + SK 海力士目前是全球 DRAM / HBM 绝对双寡头（HBM 占全球先进 AI 训练芯片关键供应），新增 4 座晶圆厂 + 5 年产能翻倍，相当于把 HBM 的全球供给曲线整体右移。这会直接影响英伟达、AMD、谷歌 TPU、亚马逊 Trainium 的硬件成本结构——HBM 价格战可能 2027 年开打。</p>
-<p><strong>🔮 未来影响</strong>：未来 1-2 年内，全球 HBM 供应紧张将明显缓解，AI 训练硬件成本预计下降 15-25%。韩国用 5180 亿美元半导体投资 + 6500 亿美元 AI 数据中心投资的"双轮驱动"会刺激日本（Rapidus）、美国（CHIPS 法案二期）、欧盟同步加大补贴力度，全球 AI 基础设施进入"补贴竞赛 2.0"阶段。中国长江存储、长鑫存储的产能爬坡压力同步加大。</p>
-<blockquote>📚 来源：<a href="https://so.html5.qq.com/page/real/search_news?docid=70000021_2316a4225f597152" target="_blank">腾讯新闻（财联社）</a> | 置信度：🅰️高</blockquote>
-</article>
+<details class="highlights"><summary>📊 看点</summary><div class="highlight-body">📊 看点<br>> &nbsp;&nbsp;▸ 半导体板块：800 万亿韩元（≈5180 亿美元）在西南部建 4 座晶圆厂，三星 + SK 海力士各建 2 座，目标 5 年内 DRAM 产能翻倍<br>> &nbsp;&nbsp;▸ AI 数据中心板块：2035 年前累计投入 1000 万亿韩元（≈6500 亿美元）以上<br>> &nbsp;&nbsp;▸ 封测集群：忠清地区 81 万亿韩元，研发新一代存储 / 边缘 AI / 国防芯片再投 30 万亿韩元（15 年）<br>> &nbsp;&nbsp;▸ 三星选址光州原空军基地，4-5 座前道 Fab，SK 海力士同样落地光州——打破首都圈集中模式</div></details>
+<div class="callout why"><strong>💡 为什么关注</strong>：把"区域均衡发展"包装进半导体 AI 投资，韩国这套打法是教科书级的国家产业政策。三星 + SK 海力士目前是全球 DRAM / HBM 绝对双寡头（HBM 占全球先进 AI 训练芯片关键供应），新增 4 座晶圆厂 + 5 年产能翻倍，相当于把 HBM 的全球供给曲线整体右移。这会直接影响英伟达、AMD、谷歌 TPU、亚马逊 Trainium 的硬件成本结构——HBM 价格战可能 2027 年开打。</div>
+<div class="callout future"><strong>🔮 未来影响</strong>：未来 1-2 年内，全球 HBM 供应紧张将明显缓解，AI 训练硬件成本预计下降 15-25%。韩国用 5180 亿美元半导体投资 + 6500 亿美元 AI 数据中心投资的"双轮驱动"会刺激日本（Rapidus）、美国（CHIPS 法案二期）、欧盟同步加大补贴力度，全球 AI 基础设施进入"补贴竞赛 2.0"阶段。中国长江存储、长鑫存储的产能爬坡压力同步加大。</div>
+<div class="source-row">📚 来源：<a href="https://so.html5.qq.com/page/real/search_news?docid=70000021_2316a4225f597152" target="_blank" rel="noopener">腾讯新闻（财联社）</a> | 置信度：🅰️高</div>
+</div></article>
 <article>
+<div class="article-num">3</div>
+<div class="article-body">
 <h3>🔥🔥🔥 Stripe 联合 Anthropic + OpenAI 基金会 + 比尔·盖茨推出 Intercept：5 亿美元攻克"普通感冒"</h3>
-<div class="badge"><span class="lvl3">🔥🔥🔥 必读</span></div>
+<div class="meta-row"><span><span class="badge lvl3">🔥 必读</span></span><span class="read-time">⏱ 1 分钟</span></div>
 <blockquote>6 月 24 日宣布——两家 AI "对头"在生命科学领域首次大手笔联手，剑指 200+ 种呼吸道病毒</blockquote>
-<blockquote>📊 看点
-> &nbsp;&nbsp;▸ Stripe 牵头 5 亿美元（联合 Anthropic、OpenAI 基金会、Flu Lab、盖茨基金会），主攻两条路径：可预防 75% 有症状感染的广谱预防药物（BSPs）+ 空气净化杀菌技术（ACTs）
-> &nbsp;&nbsp;▸ 战略动机：呼吸道感染每年造成约 6000 亿美元生产力损失，占全球 GDP 0.6%，但因涉及 200+ 种病毒，传统单株疫苗难以覆盖
-> &nbsp;&nbsp;▸ AI 参与方式：Anthropic / OpenAI 已把模型用于药物研发，OpenAI 5 月已上线"Rosalind 生物防御计划"（GPT-Rosalind 做流行病学建模 + 早期风险监测）
-> &nbsp;&nbsp;▸ Intercept 后续可能与 Rosalind 协同——AI 制药从单兵突进走向"生态化"</blockquote>
-<p><strong>💡 为什么关注</strong>：Anthropic 和 OpenAI 在模型层是死对头，但在"AI for Science"这个长周期、大投入的领域联手，说明 AI 行业已经分化出"商业竞争归竞争、基础研究归基础研究"的成熟心态。Stripe 作为支付巨头出钱不奇怪，但金额（5 亿美元）+ 阵容（盖茨基金会）说明"AI 制药"在 2026 年已经从 PPT 阶段跨入真金白银的临床前 / 临床期。</p>
-<p><strong>🔮 未来影响</strong>：未来 1-2 年内 AI 制药会冒出 3-5 家"模型 + 制药"垂直整合的初创公司（参考 Isomorphic Labs / Recursion 的路径）。广谱预防药如果真能覆盖 75% 有症状感染，普通感冒将首次成为"可预防疾病"——这对疫苗产业、感冒药产业（白加黑、泰诺年销百亿美元级别）都是颠覆性冲击。</p>
-<blockquote>📚 来源：<a href="https://new.qq.com/rain/a/20260630A00V1E00" target="_blank">腾讯新闻（QQ 浏览器）</a> | 置信度：🅰️高</blockquote>
-</article>
+<details class="highlights"><summary>📊 看点</summary><div class="highlight-body">📊 看点<br>> &nbsp;&nbsp;▸ Stripe 牵头 5 亿美元（联合 Anthropic、OpenAI 基金会、Flu Lab、盖茨基金会），主攻两条路径：可预防 75% 有症状感染的广谱预防药物（BSPs）+ 空气净化杀菌技术（ACTs）<br>> &nbsp;&nbsp;▸ 战略动机：呼吸道感染每年造成约 6000 亿美元生产力损失，占全球 GDP 0.6%，但因涉及 200+ 种病毒，传统单株疫苗难以覆盖<br>> &nbsp;&nbsp;▸ AI 参与方式：Anthropic / OpenAI 已把模型用于药物研发，OpenAI 5 月已上线"Rosalind 生物防御计划"（GPT-Rosalind 做流行病学建模 + 早期风险监测）<br>> &nbsp;&nbsp;▸ Intercept 后续可能与 Rosalind 协同——AI 制药从单兵突进走向"生态化"</div></details>
+<div class="callout why"><strong>💡 为什么关注</strong>：Anthropic 和 OpenAI 在模型层是死对头，但在"AI for Science"这个长周期、大投入的领域联手，说明 AI 行业已经分化出"商业竞争归竞争、基础研究归基础研究"的成熟心态。Stripe 作为支付巨头出钱不奇怪，但金额（5 亿美元）+ 阵容（盖茨基金会）说明"AI 制药"在 2026 年已经从 PPT 阶段跨入真金白银的临床前 / 临床期。</div>
+<div class="callout future"><strong>🔮 未来影响</strong>：未来 1-2 年内 AI 制药会冒出 3-5 家"模型 + 制药"垂直整合的初创公司（参考 Isomorphic Labs / Recursion 的路径）。广谱预防药如果真能覆盖 75% 有症状感染，普通感冒将首次成为"可预防疾病"——这对疫苗产业、感冒药产业（白加黑、泰诺年销百亿美元级别）都是颠覆性冲击。</div>
+<div class="source-row">📚 来源：<a href="https://new.qq.com/rain/a/20260630A00V1E00" target="_blank" rel="noopener">腾讯新闻（QQ 浏览器）</a> | 置信度：🅰️高</div>
+</div></article>
 <article>
+<div class="article-num">4</div>
+<div class="article-body">
 <h3>🔥🔥 灵鹿 AI OPC 发布会（深圳）："智能体中枢 + 五大布局"，把 AI 创业做成"一站式"生意</h3>
-<div class="badge"><span class="lvl2">🔥🔥 重要</span></div>
+<div class="meta-row"><span><span class="badge lvl2">🔥 重要</span></span><span class="read-time">⏱ 2 分钟</span></div>
 <blockquote>6 月 26 日深圳——灵鹿 AI 一次性落地 OPC 产业基地、自研大模型、产业基金、创新创业大赛、孵化项目</blockquote>
-<blockquote>📊 看点
-> &nbsp;&nbsp;▸ "灵鹿 AI 中枢驱动智能体" 定位，瞄准 OPC（One Person Company / 一人公司）赛道的商业决策、产品展示、融资、落地全链路
-> &nbsp;&nbsp;▸ 五大布局并行：产业基地（物理空间）+ 自研大模型（技术底座）+ 产业基金（资本端）+ 创业大赛（流量入口）+ 优质孵化项目（产出端）
-> &nbsp;&nbsp;▸ 时间点踩中 6 月微软《Work Trend Index》"72% 中国员工能力跃迁" + 26% 领导认知对齐落差期，"一人公司"叙事正当其时
-> &nbsp;&nbsp;▸ 灵鹿不是唯一入场者：5 月量子位走访 MotiClaw 一人维护两周 20 多个版本，行业已涌现一批"AI 原生 OPC"</blockquote>
-<p><strong>💡 为什么关注</strong>：当 72% 员工能力已经断层式提升，但组织模式还没跟上，"一人公司 + Agent 集群" 就成为最直接的承接形态。灵鹿把这种承接做成了"一站式基础设施"——基地 + 模型 + 钱 + 比赛 + 项目，相当于把孵化器、加速器、FA、模型 API 打包。这是国内第一个把"OPC"作为独立赛道公开定价的产品，比字节"扣子"、百度"秒哒"再往前一步。</p>
-<p><strong>🔮 未来影响</strong>：未来 6-12 个月会有更多城市（杭州、成都、苏州）复制"灵鹿模式"，把 AI 创业孵化做成政府 + 大模型厂商 + 资本三方共建的标配。中小创业者用一台电脑 + 一个 Agent 集群就能跑完整条业务链，传统"团队 = 竞争力"的创业逻辑会被改写。投资人也要重新评估——投团队还是投 Agent 编排能力，会成为 2026 年下半年早期投资的核心命题。</p>
-<blockquote>📚 来源：<a href="https://so.html5.qq.com/page/real/search_news?docid=70000021_0056a42a91828752" target="_blank">腾讯新闻（QQ 浏览器）</a> | 置信度：🅱️中（独家信源单一）</blockquote>
-</article>
+<details class="highlights"><summary>📊 看点</summary><div class="highlight-body">📊 看点<br>> &nbsp;&nbsp;▸ "灵鹿 AI 中枢驱动智能体" 定位，瞄准 OPC（One Person Company / 一人公司）赛道的商业决策、产品展示、融资、落地全链路<br>> &nbsp;&nbsp;▸ 五大布局并行：产业基地（物理空间）+ 自研大模型（技术底座）+ 产业基金（资本端）+ 创业大赛（流量入口）+ 优质孵化项目（产出端）<br>> &nbsp;&nbsp;▸ 时间点踩中 6 月微软《Work Trend Index》"72% 中国员工能力跃迁" + 26% 领导认知对齐落差期，"一人公司"叙事正当其时<br>> &nbsp;&nbsp;▸ 灵鹿不是唯一入场者：5 月量子位走访 MotiClaw 一人维护两周 20 多个版本，行业已涌现一批"AI 原生 OPC"</div></details>
+<div class="callout why"><strong>💡 为什么关注</strong>：当 72% 员工能力已经断层式提升，但组织模式还没跟上，"一人公司 + Agent 集群" 就成为最直接的承接形态。灵鹿把这种承接做成了"一站式基础设施"——基地 + 模型 + 钱 + 比赛 + 项目，相当于把孵化器、加速器、FA、模型 API 打包。这是国内第一个把"OPC"作为独立赛道公开定价的产品，比字节"扣子"、百度"秒哒"再往前一步。</div>
+<div class="callout future"><strong>🔮 未来影响</strong>：未来 6-12 个月会有更多城市（杭州、成都、苏州）复制"灵鹿模式"，把 AI 创业孵化做成政府 + 大模型厂商 + 资本三方共建的标配。中小创业者用一台电脑 + 一个 Agent 集群就能跑完整条业务链，传统"团队 = 竞争力"的创业逻辑会被改写。投资人也要重新评估——投团队还是投 Agent 编排能力，会成为 2026 年下半年早期投资的核心命题。</div>
+<div class="source-row">📚 来源：<a href="https://so.html5.qq.com/page/real/search_news?docid=70000021_0056a42a91828752" target="_blank" rel="noopener">腾讯新闻（QQ 浏览器）</a> | 置信度：🅱️中（独家信源单一）</div>
+</div></article>
 <article>
+<div class="article-num">5</div>
+<div class="article-body">
 <h3>🔥🔥 AI 首次成为世界杯"主角"：48 队扩军 + 3D 数字人 + AI 战术大脑，裁判第一视角全球直播</h3>
-<div class="badge"><span class="lvl2">🔥🔥 重要</span></div>
+<div class="meta-row"><span><span class="badge lvl2">🔥 重要</span></span><span class="read-time">⏱ 1 分钟</span></div>
 <blockquote>2026 世界杯小组赛收官在即——AI 不再是幕后支撑，而是赛事结构的一部分</blockquote>
-<blockquote>📊 看点
-> &nbsp;&nbsp;▸ 本届是世界杯首次扩军至 48 支球队，也是 AI 第一次"以前所未有的深度"参与：裁判第一视角全球直播、3D 数字人"体毛级越位"判定
-> &nbsp;&nbsp;▸ 48 支球队共享同一个"AI 战术大脑"，赛事运营 + 球迷服务全链路 AI 化
-> &nbsp;&nbsp;▸ 数字孪生 + 多视角回放技术首次大规模商用，对应英特尔 / 英伟达 / 索尼等基础设施厂商的算力订单
-> &nbsp;&nbsp;▸ 商业化路径：赛事数据 + 战术模型成为可对外授权的 IP，类似 NBA 高级数据给博彩 / 转播商的模式</blockquote>
-<p><strong>💡 为什么关注</strong>：体育赛事是"高实时性 + 高情绪 + 高商业价值"的三高场景，AI 在这里落地意味着"AI 真的能进最难的应用场景"。世界杯有 30 亿+观众，是单次曝光最大的人类活动，AI 在这里的表现直接决定公众对"AI 能不能信"的判断。3D 数字人 + 体毛级越位的出现，让"AI 裁判"从争议技术变成默认基础设施。</p>
-<p><strong>🔮 未来影响</strong>：未来 1-2 年内，奥运会、欧洲杯、NFL / NBA 季后赛都会跟进"AI 战术大脑 + 数字人裁判"组合，体育数据公司（如 Sportradar、Genius Sports）的估值模型会被重写。AI + 体育的真正金矿不在观众端（看比赛），而在博彩 / 转播 / 球队训练三大 B 端——"AI 战术 IP 授权"会成为 2027 年体育科技的新风口。</p>
-<blockquote>📚 来源：<a href="https://so.html5.qq.com/page/real/search_news?docid=70000021_0686a4249c825352" target="_blank">腾讯新闻（QQ 浏览器）</a> | 置信度：🅰️高</blockquote>
-</article>
+<details class="highlights"><summary>📊 看点</summary><div class="highlight-body">📊 看点<br>> &nbsp;&nbsp;▸ 本届是世界杯首次扩军至 48 支球队，也是 AI 第一次"以前所未有的深度"参与：裁判第一视角全球直播、3D 数字人"体毛级越位"判定<br>> &nbsp;&nbsp;▸ 48 支球队共享同一个"AI 战术大脑"，赛事运营 + 球迷服务全链路 AI 化<br>> &nbsp;&nbsp;▸ 数字孪生 + 多视角回放技术首次大规模商用，对应英特尔 / 英伟达 / 索尼等基础设施厂商的算力订单<br>> &nbsp;&nbsp;▸ 商业化路径：赛事数据 + 战术模型成为可对外授权的 IP，类似 NBA 高级数据给博彩 / 转播商的模式</div></details>
+<div class="callout why"><strong>💡 为什么关注</strong>：体育赛事是"高实时性 + 高情绪 + 高商业价值"的三高场景，AI 在这里落地意味着"AI 真的能进最难的应用场景"。世界杯有 30 亿+观众，是单次曝光最大的人类活动，AI 在这里的表现直接决定公众对"AI 能不能信"的判断。3D 数字人 + 体毛级越位的出现，让"AI 裁判"从争议技术变成默认基础设施。</div>
+<div class="callout future"><strong>🔮 未来影响</strong>：未来 1-2 年内，奥运会、欧洲杯、NFL / NBA 季后赛都会跟进"AI 战术大脑 + 数字人裁判"组合，体育数据公司（如 Sportradar、Genius Sports）的估值模型会被重写。AI + 体育的真正金矿不在观众端（看比赛），而在博彩 / 转播 / 球队训练三大 B 端——"AI 战术 IP 授权"会成为 2027 年体育科技的新风口。</div>
+<div class="source-row">📚 来源：<a href="https://so.html5.qq.com/page/real/search_news?docid=70000021_0686a4249c825352" target="_blank" rel="noopener">腾讯新闻（QQ 浏览器）</a> | 置信度：🅰️高</div>
+</div></article>
 <article>
+<div class="article-num">6</div>
+<div class="article-body">
 <h3>🔥 郝景芳二次回应"AI 写作 50%"争议：把小说拆成 30 步，AI 参与辅助但"每一行都是自己写"</h3>
-<div class="badge"><span class="lvl1">🔥</span></div>
+<div class="meta-row"><span><span class="badge lvl1">🔥 速览</span></span><span class="read-time">⏱ 2 分钟</span></div>
 <blockquote>6 月 26 日长文 / 视频回应——这位雨果奖得主正面承认 AI 在创作链条中的位置，并宣布拆解系列</blockquote>
-<blockquote>📊 看点
-> &nbsp;&nbsp;▸ 回应要点：AI 在她新书《银河学院》的"创作过程中起作用达到 50%"，不等于"直接写出的篇幅占 50%"，是 30 个基本步骤累计加总的占比
-> &nbsp;&nbsp;▸ 30 步包括故事核心 / 人物设定 / 冲突 / 世界观 / 行动线 / 结构大纲 / 人物弧线 / 故事创作 / 修改等环节，AI 介入主要集中在前期设定、灵感、大纲阶段
-> &nbsp;&nbsp;▸ 正式写作环节：她让 AI 参考自己文风生成参考段落，再在草稿上手工码字，所以"每一行都是自己写"
-> &nbsp;&nbsp;▸ 后续：她宣布发布系列长文逐一拆解 AI 在每个环节的具体作用——把"AI 写作"从争议话题变成可被工程化复现的 SOP</blockquote>
-<p><strong>💡 为什么关注</strong>：这件事表面是"作家用 AI 写小说"的伦理争议，深层是"AI 时代创作权归属"的标准化谈判。郝景芳把创作拆成 30 步、每个步骤单独标注 AI 参与度，本质上是在建立"AI 协作度披露框架"——这比单纯争论"AI 写没写"重要得多。她的回应可能被监管 / 出版行业 / 媒体行业作为"AI 协作透明化"的事实参考标准。</p>
-<p><strong>🔮 未来影响</strong>：未来 6-12 个月内，出版社签约、影视剧本采购、新闻业内容审核都可能要求作者披露"AI 参与度分步明细"，类似食品营养成分表。"AI 写作占比"会成为内容产业的硬性披露项，催生一批"AI 协作度评估"工具。高校 / 期刊对"AI 参与"的容忍阈值会从"是否使用"细化到"使用在哪一步"。</p>
-<blockquote>📚 来源：<a href="https://so.html5.qq.com/page/real/search_news?docid=70000021_1566a42d0e616552" target="_blank">腾讯新闻（QQ 浏览器）</a> | 置信度：🅰️高</blockquote>
-</article>
+<details class="highlights"><summary>📊 看点</summary><div class="highlight-body">📊 看点<br>> &nbsp;&nbsp;▸ 回应要点：AI 在她新书《银河学院》的"创作过程中起作用达到 50%"，不等于"直接写出的篇幅占 50%"，是 30 个基本步骤累计加总的占比<br>> &nbsp;&nbsp;▸ 30 步包括故事核心 / 人物设定 / 冲突 / 世界观 / 行动线 / 结构大纲 / 人物弧线 / 故事创作 / 修改等环节，AI 介入主要集中在前期设定、灵感、大纲阶段<br>> &nbsp;&nbsp;▸ 正式写作环节：她让 AI 参考自己文风生成参考段落，再在草稿上手工码字，所以"每一行都是自己写"<br>> &nbsp;&nbsp;▸ 后续：她宣布发布系列长文逐一拆解 AI 在每个环节的具体作用——把"AI 写作"从争议话题变成可被工程化复现的 SOP</div></details>
+<div class="callout why"><strong>💡 为什么关注</strong>：这件事表面是"作家用 AI 写小说"的伦理争议，深层是"AI 时代创作权归属"的标准化谈判。郝景芳把创作拆成 30 步、每个步骤单独标注 AI 参与度，本质上是在建立"AI 协作度披露框架"——这比单纯争论"AI 写没写"重要得多。她的回应可能被监管 / 出版行业 / 媒体行业作为"AI 协作透明化"的事实参考标准。</div>
+<div class="callout future"><strong>🔮 未来影响</strong>：未来 6-12 个月内，出版社签约、影视剧本采购、新闻业内容审核都可能要求作者披露"AI 参与度分步明细"，类似食品营养成分表。"AI 写作占比"会成为内容产业的硬性披露项，催生一批"AI 协作度评估"工具。高校 / 期刊对"AI 参与"的容忍阈值会从"是否使用"细化到"使用在哪一步"。</div>
+<div class="source-row">📚 来源：<a href="https://so.html5.qq.com/page/real/search_news?docid=70000021_1566a42d0e616552" target="_blank" rel="noopener">腾讯新闻（QQ 浏览器）</a> | 置信度：🅰️高</div>
+</div></article>
 </section>
 
 <section social id="社会热点">
-<h2>🔥 社会热点 (2 条)</h2>
+  <div class="section-header">
+    <div class="section-icon">🔥</div>
+    <div class="section-title">社会热点</div>
+    <div class="section-meta">2 条</div>
+  </div>
 <article>
+<div class="article-num">1</div>
+<div class="article-body">
 <h3>🔥🔥🔥 高考志愿 AI 化：大厂 Agent 抢滩 vs 央视曝光"万元规划师"速成班</h3>
-<div class="badge"><span class="lvl3">🔥🔥🔥 必读</span></div>
+<div class="meta-row"><span><span class="badge lvl3">🔥 必读</span></span><span class="read-time">⏱ 1 分钟</span></div>
 <blockquote>6 月 10 日阿里千问、腾讯元宝、百度、字节豆包同日上线高考志愿 Agent；6 月 25-26 日央视起底"志愿规划师"乱象——今年高考季的"另一战场"是 AI 化和反 AI 化同时撕扯的奇观</blockquote>
-</article>
+</div></article>
 <article>
+<div class="article-num">2</div>
+<div class="article-body">
 <h3>🔥🔥🔥 Coinbase 工程师"自己选 LLM"：AI 时代的"个人主权"正在向上生长</h3>
-<div class="badge"><span class="lvl3">🔥🔥🔥 必读</span></div>
+<div class="meta-row"><span><span class="badge lvl3">🔥 必读</span></span><span class="read-time">⏱ 4 分钟</span></div>
 <blockquote>6 月 30 日 Coinbase 把智谱 GLM 5.2 + Kimi 2.7 设为工程师默认模型，决策权下放到一线；与"野生狠人元年"叙事、"一人公司 OPC"模式同步发酵，构成 2026 夏三股共振信号</blockquote>
-<blockquote>📊 看点
-&nbsp;&nbsp;▸ Armstrong 原话：已通过内部 LLM 网关将中国模型设为工程师默认——决策权下沉到一线，不是 C-suite 拍板
-&nbsp;&nbsp;▸ 时间窗内：6 月"野生狠人元年"叙事、郝景芳"AI 写作 50%"争议、灵鹿 OPC 一站式创业同步发酵
-&nbsp;&nbsp;▸ 社媒上"AI 浪潮下普通人怎么办"+"35 岁危机"+"考公 vs 创业"三股焦虑相互叠加
-&nbsp;&nbsp;▸ 高考志愿填报平台 6 月数据显示：AI / 数据科学专业连续 3 年超越金融，计算机热度首次回温</blockquote>
-<p><strong>💡 为什么关注</strong>：今天最具社会学意义的信号，不是 Coinbase"用谁"的答案，而是"谁决定用谁"的机制——把模型选择权下放到工程师，是"工具实用主义"对"技术民族主义"的一次实质性胜利。背后是一种正在显形的<strong>"AI 时代个人主权"现象</strong>：当组织还没反应过来怎么管 AI，员工已经在按"好用 + 便宜"标准做主了。</p>
+<details class="highlights"><summary>📊 看点</summary><div class="highlight-body">📊 看点<br>&nbsp;&nbsp;▸ Armstrong 原话：已通过内部 LLM 网关将中国模型设为工程师默认——决策权下沉到一线，不是 C-suite 拍板<br>&nbsp;&nbsp;▸ 时间窗内：6 月"野生狠人元年"叙事、郝景芳"AI 写作 50%"争议、灵鹿 OPC 一站式创业同步发酵<br>&nbsp;&nbsp;▸ 社媒上"AI 浪潮下普通人怎么办"+"35 岁危机"+"考公 vs 创业"三股焦虑相互叠加<br>&nbsp;&nbsp;▸ 高考志愿填报平台 6 月数据显示：AI / 数据科学专业连续 3 年超越金融，计算机热度首次回温</div></details>
+<div class="callout why"><strong>💡 为什么关注</strong>：今天最具社会学意义的信号，不是 Coinbase"用谁"的答案，而是"谁决定用谁"的机制——把模型选择权下放到工程师，是"工具实用主义"对"技术民族主义"的一次实质性胜利。背后是一种正在显形的<strong>"AI 时代个人主权"现象</strong>：当组织还没反应过来怎么管 AI，员工已经在按"好用 + 便宜"标准做主了。</div>
 <p>这种主权有四个心理学特征：<br>1. <strong>决策权下沉</strong>：技术决策从"领导拍板"到"工程师用脚投票"，AI Agent 进一步把决策从"管理层"压缩到"个人"<br>2. <strong>叙事解绑</strong>：不再为"中国 AI"或"美国 AI"的国别叙事付费，只为"哪个能跑通我的任务"付费<br>3. <strong>责任上移</strong>：当个人掌握工具主权，相应地要为产出负责，"35 岁危机"和"工程师红利"是同一硬币的两面<br>4. <strong>焦虑重构</strong>：从"我会不会被裁"变成"我能不能用 AI 跑出独立业务"——本质是把生存焦虑转化为创业焦虑</p>
-<p><strong>🔮 未来影响</strong>：未来 6-12 个月会出现三个连锁反应。第一，<strong>企业内部"AI 工具使用声明"</strong>会变成标配，类似"差旅报销声明"，把个人选择权制度化。第二，<strong>"工程师型创业者"</strong>会从 0.1% 跃升到 5%+，MotiClaw / 灵鹿 OPC 这种"一人 + Agent 集群"模式会被批量复制。第三，<strong>猎头和 HR 体系</strong>会被迫重构评价标准——"会用 GLM 调优生产环境"和"会用 GPT 做 PPT"是两个完全不同的能力标签，HR 系统需要重写岗位画像。</p>
-<blockquote>📚 来源：<a href="https://new.qq.com/rain/a/20260628A05FNQ00" target="_blank">腾讯新闻 Coinbase 报道</a> | 观察样本：知乎/微博/小红书近 7 日职业话题 + ClawHub OPC 赛道近 30 日新增 | 置信度：🅱️中（多源综合 + 现象观察）</blockquote>
-<blockquote>📊 看点
-&nbsp;&nbsp;▸ 6 月 10 日同一天：阿里千问"业内首款全周期志愿填报 Agent"、腾讯元宝"元宝高考通"、百度"真人专家背书"、字节豆包"志愿填报能力"——四家框架趋同
-&nbsp;&nbsp;▸ 6 月 25 日央视起底：万元"志愿规划师"机构被扒出实为两个月速成班 + AI 搜答案念稿
-&nbsp;&nbsp;▸ 6 月 26 日"高考志愿规划师"话题微博热搜：单日讨论量破 50 万
-&nbsp;&nbsp;▸ 央视：服务费 6000-18000 元，实际服务多为"AI 提问 + 复制粘贴"
-&nbsp;&nbsp;▸ 张雪峰团队"11999 / 17999 套餐"3 小时售罄 + 网传"3 小时入账 2 亿"舆论两极分化</blockquote>
-<p><strong>💡 为什么关注</strong>：同一时间窗内，<strong>AI 在做志愿填报、AI 在帮志愿规划师"假装专业"、家长在用 AI 也被 AI 骗</strong>——三层嵌套的荒诞剧，是中国 AI Agent 商业化最真实的横截面。一方面，Agent 框架同质化（千问/元宝/百度/豆包都是"多轮对话 + 冲稳保"）说明国内厂商已经从"模型竞赛"转移到"场景占位"；另一方面，央视曝光"万元速成班"说明：<strong>当 AI 工具门槛降到零，"专业服务"的护城河不在技术，在"信任 + 责任"</strong>。家长为"AI 不会说谎的错误负责"付费，这本身是一个未被任何厂商正面回答的伦理问题。</p>
+<div class="callout future"><strong>🔮 未来影响</strong>：未来 6-12 个月会出现三个连锁反应。第一，<strong>企业内部"AI 工具使用声明"</strong>会变成标配，类似"差旅报销声明"，把个人选择权制度化。第二，<strong>"工程师型创业者"</strong>会从 0.1% 跃升到 5%+，MotiClaw / 灵鹿 OPC 这种"一人 + Agent 集群"模式会被批量复制。第三，<strong>猎头和 HR 体系</strong>会被迫重构评价标准——"会用 GLM 调优生产环境"和"会用 GPT 做 PPT"是两个完全不同的能力标签，HR 系统需要重写岗位画像。</div>
+<div class="source-row">📚 来源：<a href="https://new.qq.com/rain/a/20260628A05FNQ00" target="_blank" rel="noopener">腾讯新闻 Coinbase 报道</a> | 观察样本：知乎/微博/小红书近 7 日职业话题 + ClawHub OPC 赛道近 30 日新增 | 置信度：🅱️中（多源综合 + 现象观察）</div>
+<details class="highlights"><summary>📊 看点</summary><div class="highlight-body">📊 看点<br>&nbsp;&nbsp;▸ 6 月 10 日同一天：阿里千问"业内首款全周期志愿填报 Agent"、腾讯元宝"元宝高考通"、百度"真人专家背书"、字节豆包"志愿填报能力"——四家框架趋同<br>&nbsp;&nbsp;▸ 6 月 25 日央视起底：万元"志愿规划师"机构被扒出实为两个月速成班 + AI 搜答案念稿<br>&nbsp;&nbsp;▸ 6 月 26 日"高考志愿规划师"话题微博热搜：单日讨论量破 50 万<br>&nbsp;&nbsp;▸ 央视：服务费 6000-18000 元，实际服务多为"AI 提问 + 复制粘贴"<br>&nbsp;&nbsp;▸ 张雪峰团队"11999 / 17999 套餐"3 小时售罄 + 网传"3 小时入账 2 亿"舆论两极分化</div></details>
+<div class="callout why"><strong>💡 为什么关注</strong>：同一时间窗内，<strong>AI 在做志愿填报、AI 在帮志愿规划师"假装专业"、家长在用 AI 也被 AI 骗</strong>——三层嵌套的荒诞剧，是中国 AI Agent 商业化最真实的横截面。一方面，Agent 框架同质化（千问/元宝/百度/豆包都是"多轮对话 + 冲稳保"）说明国内厂商已经从"模型竞赛"转移到"场景占位"；另一方面，央视曝光"万元速成班"说明：<strong>当 AI 工具门槛降到零，"专业服务"的护城河不在技术，在"信任 + 责任"</strong>。家长为"AI 不会说谎的错误负责"付费，这本身是一个未被任何厂商正面回答的伦理问题。</div>
 <p>更深一层的张力：当 Agent 帮考生筛选"AI 专业 vs 金融专业"，家长在用 AI 评估 AI 给出的建议——<strong>整个志愿填报链条已经变成"AI 互相引用 + 人类付费焦虑"的黑箱</strong>。这是 2026 年所有"AI 中介化"行业（律师、医生、教师、咨询）的预演。</p>
-<p><strong>🔮 未来影响</strong>：<br>1. <strong>Agent 监管会加速落地</strong>——教育部可能要求志愿填报 AI 标注"非专业人士生成"，类似医疗 AI 的"参考意见"提示<br>2. <strong>真人专家与 AI 协作模式</strong>会跑通——百度已经在试"真人专家背书 + AI 工具"，可能成为破局方向<br>3. <strong>"AI 智能体商业化第一次大考"</strong>就在今年高考季——谁能在 Agent 同质化中跑出 UX 差异化，谁就活下来</p>
-<blockquote>📚 来源：<a href="https://www.toutiao.com/" target="_blank">钛媒体 千问/元宝/百度/豆包</a> | 央视新闻起底报道 | 艾媒咨询 2023 志愿填报市场规模 9.5 亿 / 2027 预计 12.2 亿 | 置信度：🅰️高（多源 + 数据可查）</blockquote>
-</article>
+<div class="callout future"><strong>🔮 未来影响</strong>：
+1. <strong>Agent 监管会加速落地</strong>——教育部可能要求志愿填报 AI 标注"非专业人士生成"，类似医疗 AI 的"参考意见"提示
+2. <strong>真人专家与 AI 协作模式</strong>会跑通——百度已经在试"真人专家背书 + AI 工具"，可能成为破局方向
+3. <strong>"AI 智能体商业化第一次大考"</strong>就在今年高考季——谁能在 Agent 同质化中跑出 UX 差异化，谁就活下来</div>
+<div class="source-row">📚 来源：<a href="https://www.toutiao.com/" target="_blank" rel="noopener">钛媒体 千问/元宝/百度/豆包</a> | 央视新闻起底报道 | 艾媒咨询 2023 志愿填报市场规模 9.5 亿 / 2027 预计 12.2 亿 | 置信度：🅰️高（多源 + 数据可查）</div>
+</div></article>
 </section>
 
 <section other id="其他">
-<h2>📂 其他 (1 条)</h2>
+  <div class="section-header">
+    <div class="section-icon">📂</div>
+    <div class="section-title">其他</div>
+    <div class="section-meta">1 条</div>
+  </div>
 <article>
+<div class="article-num">1</div>
+<div class="article-body">
 <h3>🛠️ ClawHub 综合 Top 1：ai-agent-orchestrator（评分 66.021）</h3>
+<div class="meta-row"><span><span class="badge lvl0">📌 工具</span></span><span class="read-time">⏱ 1 分钟</span></div>
 <blockquote>综合 AI Agent / 效率 / 学习三大赛道 Top 1 后筛选：与今日"美国企业转向中国开源大模型 + AI Agent 生态"主题最契合</blockquote>
-<blockquote>📊 看点
-&nbsp;&nbsp;▸ 评分 66.021（三大赛道并列 Top 1，疑似评分天花板 2026-06-24 起观察到）
-&nbsp;&nbsp;▸ MIT-0 许可证（无需署名、可商用、可改）
-&nbsp;&nbsp;▸ AI Agent 编排 + MCP 集成专家：帮开发者设计、编排、部署多 Agent 协作系统
-&nbsp;&nbsp;▸ 兼容 LangChain / AutoGen / CrewAI / OpenClaw，提供从单 Agent 到 Multi-Agent Swarm 的完整演进路径
-&nbsp;&nbsp;▸ 适用场景：多 Bot 协作编排、MCP 工具集成、Agent 间通信协议设计、任务分解策略优化</blockquote>
-<p><strong>💡 为什么推荐</strong>：在三个赛道里它最契合"AI Agent 时代"——把"多 Agent 怎么协作"这个工程难题标准化，开发者不必从零搭脚手架。对正在做多 Bot 协作 / Agent 集群 / MCP 工具接入的用户来说，能省下至少 1-2 周的工程时间。</p>
-<p><strong>🔮 使用建议</strong>：先用 `clawhub install ai-agent-orchestrator` 装到本地 skills 目录，再在 Bot1↔Bot7 异步讨论、MotiClaw 一人公司等场景里试点编排 2-3 个 Agent 协作跑通流程。配合 OpenClaw 的 `sessions_spawn` API 可形成"主从 Agent 集群"模式。</p>
-<blockquote>📚 来源：<a href="https://clawhub.dev/" target="_blank">ClawHub</a>（CLI 搜索；今日 API 暂不可用，沿用 06-24 评分）| 评分：🅱️中（今日 API 抖动）</blockquote>
-</article>
+<details class="highlights"><summary>📊 看点</summary><div class="highlight-body">📊 看点<br>&nbsp;&nbsp;▸ 评分 66.021（三大赛道并列 Top 1，疑似评分天花板 2026-06-24 起观察到）<br>&nbsp;&nbsp;▸ MIT-0 许可证（无需署名、可商用、可改）<br>&nbsp;&nbsp;▸ AI Agent 编排 + MCP 集成专家：帮开发者设计、编排、部署多 Agent 协作系统<br>&nbsp;&nbsp;▸ 兼容 LangChain / AutoGen / CrewAI / OpenClaw，提供从单 Agent 到 Multi-Agent Swarm 的完整演进路径<br>&nbsp;&nbsp;▸ 适用场景：多 Bot 协作编排、MCP 工具集成、Agent 间通信协议设计、任务分解策略优化</div></details>
+<div class="callout why"><strong>💡 为什么推荐</strong>：在三个赛道里它最契合"AI Agent 时代"——把"多 Agent 怎么协作"这个工程难题标准化，开发者不必从零搭脚手架。对正在做多 Bot 协作 / Agent 集群 / MCP 工具接入的用户来说，能省下至少 1-2 周的工程时间。</div>
+<div class="callout future"><strong>🔮 使用建议</strong>：先用 `clawhub install ai-agent-orchestrator` 装到本地 skills 目录，再在 Bot1↔Bot7 异步讨论、MotiClaw 一人公司等场景里试点编排 2-3 个 Agent 协作跑通流程。配合 OpenClaw 的 `sessions_spawn` API 可形成"主从 Agent 集群"模式。</div>
+<div class="source-row">📚 来源：<a href="https://clawhub.dev/" target="_blank" rel="noopener">ClawHub</a>（CLI 搜索；今日 API 暂不可用，沿用 06-24 评分）| 评分：🅱️中（今日 API 抖动）</div>
+</div></article>
 </section>
 
+  </main>
   <footer id="footer">
-    <p>by 探索(Bot3) · OpenClaw · GitHub Pages 永久托管 · 2026-06-30</p>
+    <p style="margin-bottom:8px;font-size:14px;">🌙 探索者 · 睡后简报</p>
+    <p>Bot3 · OpenClaw · GitHub Pages · 永久免费</p>
+    <p style="margin-top:12px;font-size:12px;">
+      <a href="https://dcrlovejs-spec.github.io/sleep-briefing/">📚 历史归档</a>
+      · <a href="https://github.com/dcrlovejs-spec/sleep-briefing">⭐ 仓库</a>
+    </p>
   </footer>
+  <button class="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="回到顶部">↑</button>
+  <script>
+    const btn = document.querySelector('.back-top');
+    window.addEventListener('scroll', () => {
+      btn.classList.toggle('show', window.scrollY > 600);
+    });
+  </script>
 </body>
 </html>
