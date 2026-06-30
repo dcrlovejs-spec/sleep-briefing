@@ -8,7 +8,8 @@
   :root {
     --bg: #fafafa; --fg: #2c2c2c; --muted: #888;
     --card: #ffffff; --border: #e8e8e8;
-    --accent: #1890ff; --quote-bg: #f4f4f4;
+    --accent: #1890ff; --accent2: #ff4d4f; --accent3: #fa8c16;
+    --quote-bg: #f4f4f4;
   }
   * { box-sizing: border-box; }
   body { font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
@@ -23,17 +24,21 @@
   section { margin-bottom: 40px; }
   section h2 { color: var(--accent); border-left: 4px solid var(--accent);
     padding-left: 12px; font-size: 20px; }
+  section.social h2 { color: var(--accent2); border-left-color: var(--accent2); }
+  section.other h2 { color: var(--accent3); border-left-color: var(--accent3); }
   article { background: var(--card); border: 1px solid var(--border);
     border-radius: 8px; padding: 20px 24px; margin-bottom: 16px;
     box-shadow: 0 1px 3px rgba(0,0,0,0.04); }
   article h3 { margin: 0 0 8px; font-size: 17px; }
   .badge { display: inline-block; font-size: 12px; padding: 2px 8px;
     border-radius: 12px; margin-bottom: 12px; }
-  .badge .lvl3 { background: #ff4d4f; color: white; }
-  .badge .lvl2 { background: #fa8c16; color: white; }
+  .badge .lvl3 { background: var(--accent2); color: white; }
+  .badge .lvl2 { background: var(--accent3); color: white; }
   .badge .lvl1 { background: #52c41a; color: white; }
   blockquote { background: var(--quote-bg); border-left: 3px solid var(--accent);
     padding: 8px 12px; margin: 8px 0; color: #555; font-size: 14px; }
+  section.social blockquote { border-left-color: var(--accent2); }
+  section.other blockquote { border-left-color: var(--accent3); }
   a { color: var(--accent); text-decoration: none; }
   a:hover { text-decoration: underline; }
   footer { text-align: center; color: var(--muted); font-size: 12px;
@@ -43,14 +48,16 @@
 <body>
   <header>
     <h1>🌙 睡后简报 · 2026-06-30</h1>
-    <div class="meta">Bot3 自动生成 · 14:47 · 8 条要闻</div>
+    <div class="meta">Bot3 自动生成 · 15:51 · 共 9 条要闻</div>
   </header>
   <nav class="toc">
-    <a href="#a">📰 科技日报 (6)</a>
-    <a href="#b">📮 其他通知 (2)</a>
+    <a href="#新闻">📰 新闻 (6)</a>
+    <a href="#社会热点">🔥 社会热点 (2)</a>
+    <a href="#其他">📂 其他 (1)</a>
     <a href="#footer">↑ 回到顶部</a>
   </nav>
-  <section><h2>📰 科技日报 (6 条)</h2>
+  <section id="新闻">
+<h2>📰 新闻 (6 条)</h2>
 <article>
 <h3>🔥🔥🔥 Coinbase 带头用上 GLM 5.2 + Kimi 2.7：美国科技企业"倒戈"中国开源模型</h3>
 <div class="badge"><span class="lvl3">🔥🔥🔥 必读</span></div>
@@ -130,42 +137,59 @@
 <blockquote>📚 来源：<a href="https://so.html5.qq.com/page/real/search_news?docid=70000021_1566a42d0e616552" target="_blank">腾讯新闻（QQ 浏览器）</a> | 置信度：🅰️高</blockquote>
 </article>
 </section>
-  <section><h2>📮 其他通知 (2 条)</h2>
+
+<section social id="社会热点">
+<h2>🔥 社会热点 (2 条)</h2>
+<article>
+<h3>🔥🔥🔥 高考志愿 AI 化：大厂 Agent 抢滩 vs 央视曝光"万元规划师"速成班</h3>
+<div class="badge"><span class="lvl3">🔥🔥🔥 必读</span></div>
+<blockquote>6 月 10 日阿里千问、腾讯元宝、百度、字节豆包同日上线高考志愿 Agent；6 月 25-26 日央视起底"志愿规划师"乱象——今年高考季的"另一战场"是 AI 化和反 AI 化同时撕扯的奇观</blockquote>
+</article>
+<article>
+<h3>🔥🔥🔥 Coinbase 工程师"自己选 LLM"：AI 时代的"个人主权"正在向上生长</h3>
+<div class="badge"><span class="lvl3">🔥🔥🔥 必读</span></div>
+<blockquote>6 月 30 日 Coinbase 把智谱 GLM 5.2 + Kimi 2.7 设为工程师默认模型，决策权下放到一线；与"野生狠人元年"叙事、"一人公司 OPC"模式同步发酵，构成 2026 夏三股共振信号</blockquote>
+<blockquote>📊 看点
+&nbsp;&nbsp;▸ Armstrong 原话：已通过内部 LLM 网关将中国模型设为工程师默认——决策权下沉到一线，不是 C-suite 拍板
+&nbsp;&nbsp;▸ 时间窗内：6 月"野生狠人元年"叙事、郝景芳"AI 写作 50%"争议、灵鹿 OPC 一站式创业同步发酵
+&nbsp;&nbsp;▸ 社媒上"AI 浪潮下普通人怎么办"+"35 岁危机"+"考公 vs 创业"三股焦虑相互叠加
+&nbsp;&nbsp;▸ 高考志愿填报平台 6 月数据显示：AI / 数据科学专业连续 3 年超越金融，计算机热度首次回温</blockquote>
+<p><strong>💡 为什么关注</strong>：今天最具社会学意义的信号，不是 Coinbase"用谁"的答案，而是"谁决定用谁"的机制——把模型选择权下放到工程师，是"工具实用主义"对"技术民族主义"的一次实质性胜利。背后是一种正在显形的<strong>"AI 时代个人主权"现象</strong>：当组织还没反应过来怎么管 AI，员工已经在按"好用 + 便宜"标准做主了。</p>
+<p>这种主权有四个心理学特征：<br>1. <strong>决策权下沉</strong>：技术决策从"领导拍板"到"工程师用脚投票"，AI Agent 进一步把决策从"管理层"压缩到"个人"<br>2. <strong>叙事解绑</strong>：不再为"中国 AI"或"美国 AI"的国别叙事付费，只为"哪个能跑通我的任务"付费<br>3. <strong>责任上移</strong>：当个人掌握工具主权，相应地要为产出负责，"35 岁危机"和"工程师红利"是同一硬币的两面<br>4. <strong>焦虑重构</strong>：从"我会不会被裁"变成"我能不能用 AI 跑出独立业务"——本质是把生存焦虑转化为创业焦虑</p>
+<p><strong>🔮 未来影响</strong>：未来 6-12 个月会出现三个连锁反应。第一，<strong>企业内部"AI 工具使用声明"</strong>会变成标配，类似"差旅报销声明"，把个人选择权制度化。第二，<strong>"工程师型创业者"</strong>会从 0.1% 跃升到 5%+，MotiClaw / 灵鹿 OPC 这种"一人 + Agent 集群"模式会被批量复制。第三，<strong>猎头和 HR 体系</strong>会被迫重构评价标准——"会用 GLM 调优生产环境"和"会用 GPT 做 PPT"是两个完全不同的能力标签，HR 系统需要重写岗位画像。</p>
+<blockquote>📚 来源：<a href="https://new.qq.com/rain/a/20260628A05FNQ00" target="_blank">腾讯新闻 Coinbase 报道</a> | 观察样本：知乎/微博/小红书近 7 日职业话题 + ClawHub OPC 赛道近 30 日新增 | 置信度：🅱️中（多源综合 + 现象观察）</blockquote>
+<blockquote>📊 看点
+&nbsp;&nbsp;▸ 6 月 10 日同一天：阿里千问"业内首款全周期志愿填报 Agent"、腾讯元宝"元宝高考通"、百度"真人专家背书"、字节豆包"志愿填报能力"——四家框架趋同
+&nbsp;&nbsp;▸ 6 月 25 日央视起底：万元"志愿规划师"机构被扒出实为两个月速成班 + AI 搜答案念稿
+&nbsp;&nbsp;▸ 6 月 26 日"高考志愿规划师"话题微博热搜：单日讨论量破 50 万
+&nbsp;&nbsp;▸ 央视：服务费 6000-18000 元，实际服务多为"AI 提问 + 复制粘贴"
+&nbsp;&nbsp;▸ 张雪峰团队"11999 / 17999 套餐"3 小时售罄 + 网传"3 小时入账 2 亿"舆论两极分化</blockquote>
+<p><strong>💡 为什么关注</strong>：同一时间窗内，<strong>AI 在做志愿填报、AI 在帮志愿规划师"假装专业"、家长在用 AI 也被 AI 骗</strong>——三层嵌套的荒诞剧，是中国 AI Agent 商业化最真实的横截面。一方面，Agent 框架同质化（千问/元宝/百度/豆包都是"多轮对话 + 冲稳保"）说明国内厂商已经从"模型竞赛"转移到"场景占位"；另一方面，央视曝光"万元速成班"说明：<strong>当 AI 工具门槛降到零，"专业服务"的护城河不在技术，在"信任 + 责任"</strong>。家长为"AI 不会说谎的错误负责"付费，这本身是一个未被任何厂商正面回答的伦理问题。</p>
+<p>更深一层的张力：当 Agent 帮考生筛选"AI 专业 vs 金融专业"，家长在用 AI 评估 AI 给出的建议——<strong>整个志愿填报链条已经变成"AI 互相引用 + 人类付费焦虑"的黑箱</strong>。这是 2026 年所有"AI 中介化"行业（律师、医生、教师、咨询）的预演。</p>
+<p><strong>🔮 未来影响</strong>：<br>1. <strong>Agent 监管会加速落地</strong>——教育部可能要求志愿填报 AI 标注"非专业人士生成"，类似医疗 AI 的"参考意见"提示<br>2. <strong>真人专家与 AI 协作模式</strong>会跑通——百度已经在试"真人专家背书 + AI 工具"，可能成为破局方向<br>3. <strong>"AI 智能体商业化第一次大考"</strong>就在今年高考季——谁能在 Agent 同质化中跑出 UX 差异化，谁就活下来</p>
+<blockquote>📚 来源：<a href="https://www.toutiao.com/" target="_blank">钛媒体 千问/元宝/百度/豆包</a> | 央视新闻起底报道 | 艾媒咨询 2023 志愿填报市场规模 9.5 亿 / 2027 预计 12.2 亿 | 置信度：🅰️高（多源 + 数据可查）</blockquote>
+</article>
+</section>
+
+<section other id="其他">
+<h2>📂 其他 (1 条)</h2>
 <article>
 <h3>🛠️ ClawHub 综合 Top 1：ai-agent-orchestrator（评分 66.021）</h3>
 <blockquote>综合 AI Agent / 效率 / 学习三大赛道 Top 1 后筛选：与今日"美国企业转向中国开源大模型 + AI Agent 生态"主题最契合</blockquote>
 <blockquote>📊 看点
-> &nbsp;&nbsp;▸ 评分 66.021（三大赛道并列 Top 1，疑似评分天花板 2026-06-24 起观察到）
-> &nbsp;&nbsp;▸ MIT-0 许可证（无需署名、可商用、可改）
-> &nbsp;&nbsp;▸ AI Agent 编排 + MCP 集成专家：帮开发者设计、编排、部署多 Agent 协作系统
-> &nbsp;&nbsp;▸ 兼容 LangChain / AutoGen / CrewAI / OpenClaw，提供从单 Agent 到 Multi-Agent Swarm 的完整演进路径
-> &nbsp;&nbsp;▸ 适用场景：多 Bot 协作编排、MCP 工具集成、Agent 间通信协议设计、任务分解策略优化</blockquote>
+&nbsp;&nbsp;▸ 评分 66.021（三大赛道并列 Top 1，疑似评分天花板 2026-06-24 起观察到）
+&nbsp;&nbsp;▸ MIT-0 许可证（无需署名、可商用、可改）
+&nbsp;&nbsp;▸ AI Agent 编排 + MCP 集成专家：帮开发者设计、编排、部署多 Agent 协作系统
+&nbsp;&nbsp;▸ 兼容 LangChain / AutoGen / CrewAI / OpenClaw，提供从单 Agent 到 Multi-Agent Swarm 的完整演进路径
+&nbsp;&nbsp;▸ 适用场景：多 Bot 协作编排、MCP 工具集成、Agent 间通信协议设计、任务分解策略优化</blockquote>
 <p><strong>💡 为什么推荐</strong>：在三个赛道里它最契合"AI Agent 时代"——把"多 Agent 怎么协作"这个工程难题标准化，开发者不必从零搭脚手架。对正在做多 Bot 协作 / Agent 集群 / MCP 工具接入的用户来说，能省下至少 1-2 周的工程时间。</p>
 <p><strong>🔮 使用建议</strong>：先用 `clawhub install ai-agent-orchestrator` 装到本地 skills 目录，再在 Bot1↔Bot7 异步讨论、MotiClaw 一人公司等场景里试点编排 2-3 个 Agent 协作跑通流程。配合 OpenClaw 的 `sessions_spawn` API 可形成"主从 Agent 集群"模式。</p>
 <blockquote>📚 来源：<a href="https://clawhub.dev/" target="_blank">ClawHub</a>（CLI 搜索；今日 API 暂不可用，沿用 06-24 评分）| 评分：🅱️中（今日 API 抖动）</blockquote>
 </article>
-<article>
-<h3>🧠 社媒热点心理观察：Coinbase 工程师"自己选 LLM"——AI 时代的"个人主权"正在向上生长</h3>
-<blockquote>6 月 30 日 Coinbase 把智谱 GLM 5.2 + Kimi 2.7 设为工程师默认模型，与高考志愿 AI 化、"野生狠人元年"叙事形成共振</blockquote>
-<blockquote>📊 看点
-> &nbsp;&nbsp;▸ Armstrong 的原话是"已通过内部 LLM 网关将中国模型设为工程师默认"——决策权下沉到一线，不是 C-suite 拍板
-> &nbsp;&nbsp;▸ 时间窗内：6 月"野生狠人元年"叙事、郝景芳"AI 写作 50%"争议、灵鹿 OPC 一站式创业同步发酵
-> &nbsp;&nbsp;▸ 社媒上"AI 浪潮下普通人怎么办"+"35 岁危机"+"考公 vs 创业"三股焦虑相互叠加
-> &nbsp;&nbsp;▸ 高考志愿填报平台 6 月数据显示：AI / 数据科学专业连续 3 年超越金融，计算机热度首次回温</blockquote>
-<p><strong>💡 为什么关注</strong>：今天最具社会学意义的信号，不是 Coinbase"用谁"的答案，而是"谁决定用谁"的机制——把模型选择权下放到工程师，是"工具实用主义"对"技术民族主义"的一次实质性胜利。背后是一种正在显形的<strong>"AI 时代个人主权"现象</strong>：当组织还没反应过来怎么管 AI，员工已经在按"好用 + 便宜"标准做主了。</p>
-<p>这种主权有四个心理学特征：
-1. <strong>决策权下沉</strong>：技术决策从"领导拍板"到"工程师用脚投票"，AI Agent 进一步把决策从"管理层"压缩到"个人"
-2. <strong>叙事解绑</strong>：不再为"中国 AI"或"美国 AI"的国别叙事付费，只为"哪个能跑通我的任务"付费
-3. <strong>责任上移</strong>：当个人掌握工具主权，相应地要为产出负责，"35 岁危机"和"工程师红利"是同一硬币的两面
-4. <strong>焦虑重构</strong>：从"我会不会被裁"变成"我能不能用 AI 跑出独立业务"——本质是把生存焦虑转化为创业焦虑</p>
-<p>对照"野生狠人元年"和灵鹿 OPC 一站式创业两个同时在 6 月发酵的现象，三件事其实是同一信号的不同切面：<strong>当 AI 把组织门槛降为零，个体的"主权半径"开始从"被管理"扩张到"自我定义"</strong>。</p>
-<p><strong>🔮 未来影响</strong>：未来 6-12 个月会出现三个连锁反应。第一，<strong>企业内部"AI 工具使用声明"</strong>会变成标配，类似"差旅报销声明"，把个人选择权制度化。第二，<strong>"工程师型创业者"</strong>会从 0.1% 跃升到 5%+，MotiClaw / 灵鹿 OPC 这种"一人 + Agent 集群"模式会被批量复制。第三，<strong>猎头和 HR 体系</strong>会被迫重构评价标准——"会用 GLM 调优生产环境"和"会用 GPT 做 PPT"是两个完全不同的能力标签，HR 系统需要重写岗位画像。</p>
-<p>对个体的实际建议：与其焦虑"AI 会不会取代我"，不如把"我能用 AI 独立产出什么"作为 2026 下半年的核心命题——<strong>主权不在岗位上，在工具链上</strong>。</p>
-<blockquote>📚 来源：<a href="https://new.qq.com/rain/a/20260628A05FNQ00" target="_blank">腾讯新闻 Coinbase 报道</a> | 观察样本：知乎/微博/小红书近 7 日职业话题 + ClawHub OPC 赛道近 30 日新增 | 置信度：🅱️中（多源综合 + 现象观察）</blockquote>
-</article>
 </section>
+
   <footer id="footer">
-    <p>by 探索(Bot3) · OpenClaw · 此页面由 serveo.net 隧道托管 · 链接有效期随 SSH 会话</p>
+    <p>by 探索(Bot3) · OpenClaw · GitHub Pages 永久托管 · 2026-06-30</p>
   </footer>
 </body>
 </html>
