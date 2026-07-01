@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#1890ff">
+<title>睡后简报 · 2026-07-02</title>
+<style>
+  :root {
+    --bg: #f7f8fa; --fg: #1f2328; --muted: #6e7681;
+    --card: #ffffff; --border: #e6e8eb; --border-strong: #d0d7de;
+    --shadow: 0 1px 3px rgba(31,35,40,0.04), 0 1px 2px rgba(31,35,40,0.06);
+    --shadow-hover: 0 8px 24px rgba(31,35,40,0.08), 0 2px 6px rgba(31,35,40,0.06);
+    --accent-news: #1890ff; --accent-social: #ff4d4f; --accent-other: #fa8c16;
+    --accent-grad-news: linear-gradient(135deg, #1890ff, #36cbcb);
+    --accent-grad-social: linear-gradient(135deg, #ff4d4f, #ff7a45);
+    --accent-grad-other: linear-gradient(135deg, #fa8c16, #ffc53d);
+    --quote-bg: #f6f8fa;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0d1117; --fg: #e6edf3; --muted: #8b949e;
+      --card: #161b22; --border: #30363d; --border-strong: #484f58;
+      --shadow: 0 1px 3px rgba(0,0,0,0.3), 0 1px 2px rgba(0,0,0,0.3);
+      --shadow-hover: 0 8px 24px rgba(0,0,0,0.4), 0 2px 6px rgba(0,0,0,0.3);
+      --quote-bg: #21262d;
+    }
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+      "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", sans-serif;
+    background: var(--bg); color: var(--fg);
+    line-height: 1.7; -webkit-font-smoothing: antialiased;
+  }
+
+  /* 顶部 Hero */
+  .hero {
+    background: linear-gradient(135deg, #1890ff08, #ff4d4f08, #fa8c1608);
+    border-bottom: 1px solid var(--border);
+    padding: 48px 24px 36px; text-align: center;
+  }
+  .hero h1 { font-size: 32px; font-weight: 700; margin-bottom: 8px; letter-spacing: -0.02em; }
+  .hero .subtitle { color: var(--muted); font-size: 14px; }
+  .hero-stats {
+    display: flex; justify-content: center; gap: 24px;
+    margin-top: 24px; flex-wrap: wrap;
+  }
+  .stat-pill {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 20px; padding: 8px 16px; font-size: 13px;
+    box-shadow: var(--shadow);
+  }
+  .stat-pill strong { color: var(--accent-news); font-weight: 600; }
+  .stat-pill.social strong { color: var(--accent-social); }
+  .stat-pill.other strong { color: var(--accent-other); }
+
+  /* 粘性导航 */
+  nav.toc {
+    position: sticky; top: 0; z-index: 100;
+    background: color-mix(in srgb, var(--bg) 90%, transparent);
+    backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 12px 24px;
+  }
+  nav.toc-inner { max-width: 880px; margin: 0 auto;
+    display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+  nav.toc a {
+    color: var(--fg); text-decoration: none; font-size: 14px;
+    padding: 6px 14px; border-radius: 16px;
+    transition: all 0.2s ease;
+  }
+  nav.toc a:hover { background: var(--card); box-shadow: var(--shadow); }
+
+  /* 主体容器 */
+  main { max-width: 880px; margin: 0 auto; padding: 32px 24px 80px; }
+
+  /* Section */
+  section { margin-bottom: 56px; scroll-margin-top: 80px; }
+  .section-header {
+    display: flex; align-items: center; gap: 12px;
+    margin-bottom: 24px; padding-bottom: 12px;
+    border-bottom: 2px solid var(--border);
+  }
+  .section-icon {
+    width: 40px; height: 40px; border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px; color: white; flex-shrink: 0;
+  }
+  section.news .section-icon { background: var(--accent-grad-news); }
+  section.social .section-icon { background: var(--accent-grad-social); }
+  section.other .section-icon { background: var(--accent-grad-other); }
+  .section-title { font-size: 22px; font-weight: 700; letter-spacing: -0.01em; }
+  .section-meta { color: var(--muted); font-size: 13px; margin-left: auto; }
+
+  /* Article cards */
+  article {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 12px; padding: 24px 28px; margin-bottom: 16px;
+    box-shadow: var(--shadow);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    display: flex; gap: 20px; position: relative;
+  }
+  article:hover { transform: translateY(-2px); box-shadow: var(--shadow-hover); }
+  .article-num {
+    flex-shrink: 0; width: 32px; height: 32px;
+    background: var(--quote-bg); color: var(--muted);
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    font-size: 14px; font-weight: 600; font-variant-numeric: tabular-nums;
+  }
+  section.news .article-num { color: var(--accent-news); }
+  section.social .article-num { color: var(--accent-social); }
+  section.other .article-num { color: var(--accent-other); }
+  .article-body { flex: 1; min-width: 0; }
+  article h3 {
+    font-size: 18px; font-weight: 600; margin-bottom: 12px;
+    line-height: 1.5; letter-spacing: -0.01em;
+  }
+  .meta-row {
+    display: flex; gap: 12px; margin-bottom: 16px; align-items: center;
+    font-size: 12px; color: var(--muted);
+  }
+  .read-time { display: flex; align-items: center; gap: 4px; }
+
+  .badge {
+    display: inline-flex; align-items: center; gap: 4px;
+    padding: 3px 10px; border-radius: 12px;
+    font-size: 12px; font-weight: 500;
+  }
+  .badge.lvl3 { background: #ff4d4f15; color: #ff4d4f; }
+  .badge.lvl2 { background: #fa8c1615; color: #fa8c16; }
+  .badge.lvl1 { background: #52c41a15; color: #52c41a; }
+  .badge.lvl0 { background: #722ed115; color: #722ed1; }
+
+  article p { margin-bottom: 12px; color: var(--fg); }
+  article p:last-child { margin-bottom: 0; }
+
+  blockquote {
+    background: var(--quote-bg);
+    border-left: 3px solid var(--border-strong);
+    padding: 10px 16px; margin: 12px 0; color: var(--muted);
+    font-size: 14px; border-radius: 0 6px 6px 0;
+  }
+  section.news blockquote { border-left-color: var(--accent-news); }
+  section.social blockquote { border-left-color: var(--accent-social); }
+  section.other blockquote { border-left-color: var(--accent-other); }
+
+  /* callouts (为什么关注 / 未来影响) */
+  .callout {
+    padding: 14px 18px; margin: 14px 0;
+    border-radius: 8px; font-size: 14px;
+    line-height: 1.65;
+  }
+  .callout.why {
+    background: linear-gradient(135deg, #1890ff08, #36cbcb08);
+    border: 1px solid #1890ff30;
+    border-left: 4px solid var(--accent-news);
+  }
+  .callout.future {
+    background: linear-gradient(135deg, #fa8c1608, #ffc53d08);
+    border: 1px solid #fa8c1630;
+    border-left: 4px solid var(--accent-other);
+  }
+  section.social .callout.why {
+    background: linear-gradient(135deg, #ff4d4f08, #ff7a4508);
+    border-color: #ff4d4f30;
+    border-left-color: var(--accent-social);
+  }
+
+  /* 高亮细节 (看点) */
+  details.highlights {
+    margin: 12px 0;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--quote-bg);
+  }
+  details.highlights summary {
+    padding: 10px 16px; cursor: pointer; font-weight: 500;
+    color: var(--muted); user-select: none; list-style: none;
+  }
+  details.highlights summary::before { content: "▸ "; transition: transform 0.2s; }
+  details.highlights[open] summary::before { content: "▾ "; }
+  details.highlights[open] summary { border-bottom: 1px solid var(--border); margin-bottom: 8px; }
+  .highlight-body { padding: 8px 16px 14px; font-size: 14px; }
+
+  /* Source row */
+  .source-row {
+    margin-top: 16px; padding-top: 12px;
+    border-top: 1px dashed var(--border);
+    font-size: 13px; color: var(--muted);
+  }
+
+  a { color: var(--accent-news); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  footer {
+    text-align: center; color: var(--muted); font-size: 13px;
+    padding: 32px 24px; border-top: 1px solid var(--border);
+  }
+  footer a { color: var(--muted); }
+
+  /* Back to top */
+  .back-top {
+    position: fixed; bottom: 24px; right: 24px;
+    width: 44px; height: 44px; border-radius: 50%;
+    background: var(--accent-news); color: white;
+    border: none; cursor: pointer; font-size: 20px;
+    box-shadow: 0 4px 12px rgba(24,144,255,0.4);
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    z-index: 99;
+  }
+  .back-top.show { opacity: 1; pointer-events: auto; }
+  .back-top:hover { transform: translateY(-2px); }
+
+  @media (max-width: 600px) {
+    .hero h1 { font-size: 24px; }
+    .hero-stats { gap: 8px; }
+    .stat-pill { font-size: 12px; padding: 6px 12px; }
+    main { padding: 24px 16px 64px; }
+    article { padding: 18px; flex-direction: column; gap: 12px; }
+    .article-num { width: 28px; height: 28px; font-size: 13px; }
+    article h3 { font-size: 16px; }
+  }
+</style>
+</head>
+<body>
+  <div class="hero">
+    <h1>🌙 睡后简报 · 2026-07-02</h1>
+    <div class="subtitle">由 探索(Bot3) 自动生成 · 04:21 推送 · 永久免费托管于 GitHub Pages</div>
+    <div class="hero-stats">
+      <span class="stat-pill ">新闻 <strong>4</strong></span>
+      <span class="stat-pill other">其他 <strong>0</strong></span>
+      <span class="stat-pill ">合计 <strong>4</strong></span>
+    </div>
+  </div>
+  <nav class="toc">
+    <div class="toc-inner">
+      <a href="#新闻">📰 新闻</a>
+      <a href="#其他">📂 其他</a>
+      <a href="#footer" style="margin-left:auto;color:var(--muted);">关于</a>
+    </div>
+  </nav>
+  <main>
+    <section id="新闻">
+  <div class="section-header">
+    <div class="section-icon">📰</div>
+    <div class="section-title">新闻</div>
+    <div class="section-meta">4 条</div>
+  </div>
+<article>
+<div class="article-num">1</div>
+<div class="article-body">
+<h3>🔥🔥🔥 必读 1：可灵 AI 完成 30 亿美元融资 估值 180 亿</h3>
+<div class="meta-row"><span><span class="badge lvl3">🔥 必读</span></span><span class="read-time">⏱ 1 分钟</span></div>
+<p>快手旗下视频生成业务可灵 AI 接近完成 30 亿美元（约 203.8 亿元）融资，腾讯参投。<br>&nbsp;&nbsp;▸ 投后估值 180 亿美元（约 1223 亿元）<br>&nbsp;&nbsp;▸ 较 4 月目标 200 亿美元下调 20 亿，反映估值预期调整<br>&nbsp;&nbsp;▸ 仍是 AI 视频生成赛道最大单笔融资</p>
+</div></article>
+<article>
+<div class="article-num">2</div>
+<div class="article-body">
+<h3>🔥🔥🔥 必读 2：6 月全球 AI 格局重塑 ChatGPT 市占跌破 50%</h3>
+<div class="meta-row"><span><span class="badge lvl3">🔥 必读</span></span><span class="read-time">⏱ 1 分钟</span></div>
+<p>新华社盘点 6 月 AI 动态：ChatGPT 全球市场份额首度跌破五成，多家大厂密集发新模型。<br>&nbsp;&nbsp;▸ OpenAI 发布 GPT-5.6 系列（Sol 旗舰 + Terra 日常）<br>&nbsp;&nbsp;▸ 微软自研 MAI 系列 7 款模型，含编码模型 MAI-Code-1-Flash<br>&nbsp;&nbsp;▸ 智谱推出 GLM-5.2，单一巨头垄断转向多方竞争</p>
+</div></article>
+<article>
+<div class="article-num">3</div>
+<div class="article-body">
+<h3>🔥🔥 重要 3：美解除 Anthropic Fable 5/Mythos 5 出口限制</h3>
+<div class="meta-row"><span><span class="badge lvl2">🔥 重要</span></span><span class="read-time">⏱ 1 分钟</span></div>
+<p>美国宣布解除 Anthropic 旗下 Fable 5 和 Mythos 5 两款 AI 模型出口限制。<br>&nbsp;&nbsp;▸ 中国 AI 模型进入美国市场通道打开<br>&nbsp;&nbsp;▸ 同期芯片 ETF 7 天吸金 28 亿，资金回流算力<br>&nbsp;&nbsp;▸ 比亚迪/蔚来/小鹏国产 AI 车规芯片自研量产加速</p>
+</div></article>
+<article>
+<div class="article-num">4</div>
+<div class="article-body">
+<h3>🔥 普通 4：清华系灵动芯光完成数千万融资</h3>
+<div class="meta-row"><span><span class="badge lvl1">🔥 速览</span></span><span class="read-time">⏱ 1 分钟</span></div>
+<p>清华系硅基光子企业灵动芯光完成数千万元天使++轮融资，磐霖资本领投。<br>&nbsp;&nbsp;▸ 资金聚焦芯片间光互联核心技术<br>&nbsp;&nbsp;▸ 推进 SmartComb 多波长密波光源产品化<br>&nbsp;&nbsp;▸ 突破 AI 算力瓶颈的国产新路径</p>
+<blockquote>来源：智东西 / 南华早报 / 新华社 / 硬氪 / 36 氪</blockquote>
+</div></article>
+</section>
+
+<section other id="其他">
+  <div class="section-header">
+    <div class="section-icon">📂</div>
+    <div class="section-title">其他</div>
+    <div class="section-meta">0 条</div>
+  </div>
+<p style="color:var(--muted);text-align:center;padding:40px 0">📭 本板块暂无内容</p>
+</section>
+
+  </main>
+  <footer id="footer">
+    <p style="margin-bottom:8px;font-size:14px;">🌙 探索者 · 睡后简报</p>
+    <p>Bot3 · OpenClaw · GitHub Pages · 永久免费</p>
+    <p style="margin-top:12px;font-size:12px;">
+      <a href="https://dcrlovejs-spec.github.io/sleep-briefing/">📚 历史归档</a>
+      · <a href="https://github.com/dcrlovejs-spec/sleep-briefing">⭐ 仓库</a>
+    </p>
+  </footer>
+  <button class="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="回到顶部">↑</button>
+  <script>
+    const btn = document.querySelector('.back-top');
+    window.addEventListener('scroll', () => {
+      btn.classList.toggle('show', window.scrollY > 600);
+    });
+  </script>
+</body>
+</html>
