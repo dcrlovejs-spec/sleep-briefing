@@ -169,28 +169,50 @@ body{
   .b-head{font-size:14px}
 }
 
-/* ===== 今日快讯·豆腐块 ===== */
-.newsflash{margin:22px 0 18px;padding:14px 16px;background:var(--paper);border:2px solid var(--ink-1);box-shadow:0 2px 8px rgba(0,0,0,.04)}
-.newsflash .nf-head{font-size:16px;font-weight:700;color:var(--hot);letter-spacing:.25em;margin-bottom:12px;text-align:center;border-bottom:1px solid var(--ink-3);padding-bottom:8px}
-.newsflash .nf-list{display:grid;grid-template-columns:1fr 1fr;gap:8px 18px}
-.newsflash .nf-item{font-size:14px;color:var(--ink-2);display:flex;gap:8px;align-items:baseline;border-bottom:1px dotted var(--ink-3);padding:5px 0}
-.newsflash .nf-tag{flex:0 0 auto;font-weight:700;color:var(--ink-1);background:var(--paper-2);padding:1px 7px;border:1px solid var(--ink-1);font-size:13px;letter-spacing:.08em;line-height:1.5}
-.newsflash .nf-content{flex:1 1 auto;color:var(--ink-1);font-style:normal}
+/* ===== 今日快讯·豆腐块（横竖交错密集网格） ===== */
+.newsflash{margin:22px 0 18px;padding:12px 14px;background:var(--paper);border:2px solid var(--ink-1);box-shadow:0 2px 8px rgba(0,0,0,.04)}
+.newsflash .nf-head{font-size:16px;font-weight:700;color:var(--hot);letter-spacing:.25em;margin:0 0 10px;text-align:center;border-bottom:2px solid var(--ink-1);padding-bottom:8px}
+.newsflash .nf-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;grid-auto-rows:auto;gap:6px;border-top:1px solid var(--ink-3);padding-top:8px}
+.newsflash .nf-box{background:var(--paper-2);padding:7px 9px;border:1px solid var(--ink-3);border-left:3px solid var(--hot);font-size:13px;color:var(--ink-1);display:flex;flex-direction:column;gap:3px;line-height:1.5;min-height:54px}
+.newsflash .nf-box:nth-child(4n+1){grid-column:span 2}
+.newsflash .nf-box:nth-child(4n+2){background:var(--paper-2)}
+.newsflash .nf-box .nf-k{font-weight:700;color:var(--hot);font-size:12px;letter-spacing:.15em;border-bottom:1px dotted var(--ink-3);padding-bottom:3px;margin-bottom:2px}
+.newsflash .nf-box .nf-v{flex:1;color:var(--ink-1);font-style:italic;font-size:13px}
+.newsflash .nf-box .nf-by{color:var(--ink-3);font-size:11px;text-align:right;font-style:italic}
 
-/* ===== 副头条 ===== */
-.subhead{margin:18px 0 22px;padding:16px 20px;border:1px solid var(--ink-1);background:var(--paper);position:relative}
+/* ===== 副头条（左侧配图框） ===== */
+.subhead{margin:18px 0 22px;padding:14px 16px;border:1px solid var(--ink-1);background:var(--paper);position:relative;display:grid;grid-template-columns:1fr 1.4fr;gap:14px}
 .subhead::before{content:"副 头 条";position:absolute;top:-10px;left:18px;background:var(--paper-2);padding:0 10px;font-size:12px;letter-spacing:.3em;color:var(--hot);font-weight:700}
-.subhead .sh-h{font-size:24px;font-weight:800;letter-spacing:.1em;margin:6px 0 8px;text-align:center}
-.subhead .sh-dek{font-size:15px;color:var(--ink-2);font-style:italic;text-align:center;margin:4px 0 10px;line-height:1.7}
-.subhead .sh-by{font-size:12px;color:var(--ink-3);text-align:center;font-style:italic;letter-spacing:.05em}
+.subhead .sh-img{background:var(--paper-2);border:1px solid var(--ink-1);display:flex;align-items:center;justify-content:center;flex-direction:column;color:var(--ink-3);font-size:12px;font-style:italic;padding:14px;text-align:center;min-height:90px}
+.subhead .sh-img .ico{font-size:36px;margin-bottom:6px;color:var(--hot);letter-spacing:0}
+.subhead .sh-body{display:flex;flex-direction:column;justify-content:center}
+.subhead .sh-h{font-size:22px;font-weight:800;letter-spacing:.08em;margin:0 0 6px;line-height:1.25}
+.subhead .sh-dek{font-size:14px;color:var(--ink-2);font-style:italic;margin:0 0 8px;line-height:1.65}
+.subhead .sh-by{font-size:12px;color:var(--ink-3);font-style:italic;letter-spacing:.05em;text-align:right}
+
+/* ===== 豆腐块小专栏 ===== */
+.mix{margin:18px 0 22px;display:grid;grid-template-columns:1fr 1.2fr 1fr;gap:10px}
+.mix .mb{background:var(--paper);border:1px solid var(--ink-1);padding:10px 12px;display:flex;flex-direction:column;gap:4px}
+.mix .mb.dark{background:var(--paper-2)}
+.mix .mb .mb-h{font-size:14px;font-weight:700;color:var(--hot);letter-spacing:.18em;border-bottom:1px solid var(--ink-3);padding-bottom:4px;margin-bottom:2px}
+.mix .mb .mb-v{font-size:13px;color:var(--ink-1);line-height:1.65;font-style:italic;flex:1}
+.mix .mb .mb-by{font-size:11px;color:var(--ink-3);text-align:right;font-style:italic}
 
 /* ===== 导读 ===== */
-.lede{font-size:13px;color:var(--ink-3);text-align:center;font-style:italic;letter-spacing:.15em;margin:-6px 0 18px}
+.lede{font-size:13px;color:var(--ink-3);text-align:center;font-style:italic;letter-spacing:.15em;margin:-6px 0 14px}
+
+/* ===== 报眉下方小标签 ===== */
+.tape{margin:-6px 0 16px;padding:6px 10px;background:var(--paper-2);border-top:1px solid var(--ink-3);border-bottom:1px solid var(--ink-3);display:flex;justify-content:space-between;align-items:center;font-size:12px;color:var(--ink-2);letter-spacing:.1em}
+.tape .tk{font-weight:700;color:var(--hot)}
+.tape .ti{font-style:italic}
 
 /* ===== 响应式 ===== */
 @media (max-width:560px){
-  .newsflash .nf-list{grid-template-columns:1fr}
+  .newsflash .nf-grid{grid-template-columns:1fr 1fr}
+  .newsflash .nf-box:nth-child(4n+1){grid-column:span 2}
+  .subhead{grid-template-columns:1fr}
   .subhead .sh-h{font-size:20px}
+  .mix{grid-template-columns:1fr}
 }
 </style>
 </head>
@@ -221,48 +243,40 @@ body{
   <figcaption>▲ 一桌亲手做的兰州家常菜 · 摄影：戴先生 &amp; 戴太太 ·（左下角那杯是啤酒，别看成茶）</figcaption>
 </figure>
 
+<div class="tape"><span class="tk">第 001 期 · 兰州分刊</span><span class="ti">本期内容：主头条 / 今日快讯 / 副头条 / 菜评三栏 / 公报</span><span class="tk">2026.07.04</span></div>
+
 <section class="newsflash">
   <div class="nf-head">▍ 今 日 快 讯 · 兰 州 分 刊 ▍</div>
-  <div class="nf-list">
-    <div class="nf-item"><span class="nf-tag">主 食</span><span class="nf-content">浆水面（唯一指定，不可挑战）</span></div>
-    <div class="nf-item"><span class="nf-tag">副 菜</span><span class="nf-content">虎皮椒 + 土豆丝，双双入选</span></div>
-    <div class="nf-item"><span class="nf-tag">点 睛</span><span class="nf-content">驴肉熬得酱色浓郁，一致好评</span></div>
-    <div class="nf-item"><span class="nf-tag">饮 品</span><span class="nf-content">兰州黄河啤酒（家庭装），席间清瓶</span></div>
-    <div class="nf-item"><span class="nf-tag">荣 誉</span><span class="nf-content">新方授予兰方"再来一碗"</span></div>
-    <div class="nf-item"><span class="nf-tag">机 制</span><span class="nf-content">双主轮值，每周至少召开一次</span></div>
+  <div class="nf-grid">
+    <div class="nf-box"><div class="nf-k">主 食 决 议</div><div class="nf-v">浆水面（唯一指定，不可挑战）</div><div class="nf-by">—— 全桌确认</div></div>
+    <div class="nf-box"><div class="nf-k">副 菜</div><div class="nf-v">虎皮椒 + 土豆丝</div><div class="nf-by">双双入选</div></div>
+    <div class="nf-box"><div class="nf-k">点 睛</div><div class="nf-v">驴肉熬得酱色浓郁</div><div class="nf-by">一致好评</div></div>
+    <div class="nf-box"><div class="nf-k">唯 一 饮 品</div><div class="nf-v">兰州黄河啤酒家庭装</div><div class="nf-by">席间清瓶</div></div>
+    <div class="nf-box"><div class="nf-k">最 高 荣 誉</div><div class="nf-v">"再来一碗"</div><div class="nf-by">—— 新方授予兰方</div></div>
+    <div class="nf-box"><div class="nf-k">合 作 机 制</div><div class="nf-v">双主轮值</div><div class="nf-by">每周至少一次</div></div>
   </div>
 </section>
 
 <div class="lede">— 副 头 条 · 二 条 —</div>
 
 <section class="subhead">
-  <div class="sh-h">从 "谁洗碗" 到 "双主轮值"</div>
-  <div class="sh-dek">兰方承担采购切菜洗碗 · 新方掌握火候调味样品偷吃<br>双方就翻锅铲顺序达成长期合作机制</div>
-  <div class="sh-by">—— 摘自《家庭外交通讯》第一号</div>
+  <div class="sh-img"><div class="ico">🤝</div>双主轮值<br>签约现场</div>
+  <div class="sh-body">
+    <div class="sh-h">从 "谁洗碗" 到 "双主轮值"</div>
+    <div class="sh-dek">兰方承担采购切菜洗碗 · 新方掌握火候调味样品偷吃 · 双方就翻锅铲顺序达成长期合作机制</div>
+    <div class="sh-by">—— 摘自《家庭外交通讯》第一号</div>
+  </div>
 </section>
 
-<section class="cols">
-  <div class="col">
-    <h3>▎ 虎 皮 椒</h3>
-    <p>差点以为拍糊了</p>
-    <p>结果最香最脆</p>
-    <p class="hot">—— 老婆未熟先偷吃</p>
-  </div>
-  <div class="col">
-    <h3>▎ 驴 肉</h3>
-    <p>颜色深得邻居敲门问：</p>
-    <p>"是不是炖糊了？"</p>
-    <p class="hot">—— 其实自家酱色</p>
-    <p class="hot">—— 兰州人的方子</p>
-  </div>
-  <div class="col">
-    <h3>▎ 浆 水 面</h3>
-    <p>天热一碗酸汤</p>
-    <p>配啤酒——绝配</p>
-    <p class="hot">—— 老婆：「再来一碗」</p>
-    <p class="hot">—— 当晚清盘</p>
-  </div>
+<div class="lede">— 本 期 三 栏 · 菜 评 —</div>
+
+<section class="mix">
+  <div class="mb"><div class="mb-h">▎ 虎 皮 椒</div><div class="mb-v">差点以为拍糊了 · 结果最香最脆 · 老婆未熟先偷吃</div><div class="mb-by">—— 厨房快讯</div></div>
+  <div class="mb dark"><div class="mb-h">▎ 驴 肉</div><div class="mb-v">颜色深得邻居敲门问："是不是炖糊了？" · 其实自家酱色 · 兰州人的方子</div><div class="mb-by">—— 民间验方</div></div>
+  <div class="mb"><div class="mb-h">▎ 浆 水 面</div><div class="mb-v">天热一碗酸汤 · 配啤酒——绝配 · 老婆："再来一碗" · 当晚清盘</div><div class="mb-by">—— 主厨的话</div></div>
 </section>
+
+
 
 <aside class="alert">
   <div class="head">📢 今 日 饭 桌 紧 急 告 示</div>
@@ -367,3 +381,4 @@ body{
 </div>
 </body>
 </html>
+
