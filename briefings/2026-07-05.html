@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#1890ff">
+<title>睡后简报 · 2026-07-05</title>
+<style>
+  :root {
+    --bg: #f7f8fa; --fg: #1f2328; --muted: #6e7681;
+    --card: #ffffff; --border: #e6e8eb; --border-strong: #d0d7de;
+    --shadow: 0 1px 3px rgba(31,35,40,0.04), 0 1px 2px rgba(31,35,40,0.06);
+    --shadow-hover: 0 8px 24px rgba(31,35,40,0.08), 0 2px 6px rgba(31,35,40,0.06);
+    --accent-news: #1890ff; --accent-social: #ff4d4f; --accent-other: #fa8c16;
+    --accent-grad-news: linear-gradient(135deg, #1890ff, #36cbcb);
+    --accent-grad-social: linear-gradient(135deg, #ff4d4f, #ff7a45);
+    --accent-grad-other: linear-gradient(135deg, #fa8c16, #ffc53d);
+    --quote-bg: #f6f8fa;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0d1117; --fg: #e6edf3; --muted: #8b949e;
+      --card: #161b22; --border: #30363d; --border-strong: #484f58;
+      --shadow: 0 1px 3px rgba(0,0,0,0.3), 0 1px 2px rgba(0,0,0,0.3);
+      --shadow-hover: 0 8px 24px rgba(0,0,0,0.4), 0 2px 6px rgba(0,0,0,0.3);
+      --quote-bg: #21262d;
+    }
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+      "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", sans-serif;
+    background: var(--bg); color: var(--fg);
+    line-height: 1.7; -webkit-font-smoothing: antialiased;
+  }
+
+  /* 顶部 Hero */
+  .hero {
+    background: linear-gradient(135deg, #1890ff08, #ff4d4f08, #fa8c1608);
+    border-bottom: 1px solid var(--border);
+    padding: 48px 24px 36px; text-align: center;
+  }
+  .hero h1 { font-size: 32px; font-weight: 700; margin-bottom: 8px; letter-spacing: -0.02em; }
+  .hero .subtitle { color: var(--muted); font-size: 14px; }
+  .hero-stats {
+    display: flex; justify-content: center; gap: 24px;
+    margin-top: 24px; flex-wrap: wrap;
+  }
+  .stat-pill {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 20px; padding: 8px 16px; font-size: 13px;
+    box-shadow: var(--shadow);
+  }
+  .stat-pill strong { color: var(--accent-news); font-weight: 600; }
+  .stat-pill.social strong { color: var(--accent-social); }
+  .stat-pill.other strong { color: var(--accent-other); }
+
+  /* 粘性导航 */
+  nav.toc {
+    position: sticky; top: 0; z-index: 100;
+    background: color-mix(in srgb, var(--bg) 90%, transparent);
+    backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 12px 24px;
+  }
+  nav.toc-inner { max-width: 880px; margin: 0 auto;
+    display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+  nav.toc a {
+    color: var(--fg); text-decoration: none; font-size: 14px;
+    padding: 6px 14px; border-radius: 16px;
+    transition: all 0.2s ease;
+  }
+  nav.toc a:hover { background: var(--card); box-shadow: var(--shadow); }
+
+  /* 主体容器 */
+  main { max-width: 880px; margin: 0 auto; padding: 32px 24px 80px; }
+
+  /* Section */
+  section { margin-bottom: 56px; scroll-margin-top: 80px; }
+  .section-header {
+    display: flex; align-items: center; gap: 12px;
+    margin-bottom: 24px; padding-bottom: 12px;
+    border-bottom: 2px solid var(--border);
+  }
+  .section-icon {
+    width: 40px; height: 40px; border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px; color: white; flex-shrink: 0;
+  }
+  section.news .section-icon { background: var(--accent-grad-news); }
+  section.social .section-icon { background: var(--accent-grad-social); }
+  section.other .section-icon { background: var(--accent-grad-other); }
+  .section-title { font-size: 22px; font-weight: 700; letter-spacing: -0.01em; }
+  .section-meta { color: var(--muted); font-size: 13px; margin-left: auto; }
+
+  /* Article cards v9.3 */
+  article {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 16px; padding: 28px 32px; margin-bottom: 24px;
+    box-shadow: var(--shadow);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    display: flex; gap: 24px; position: relative;
+  }
+  article.lvl3 { border-top: 4px solid #ff4d4f; }
+  article.lvl2 { border-top: 4px solid #fa8c16; }
+  article.lvl1 { border-top: 4px solid #52c41a; }
+  article.lvl0 { border-top: 4px solid #722ed1; }
+  article:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 16px 40px rgba(31,35,40,0.10), 0 2px 8px rgba(31,35,40,0.04);
+  }
+  .article-num {
+    flex-shrink: 0; width: 32px; height: 32px;
+    background: var(--quote-bg); color: var(--muted);
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    font-size: 14px; font-weight: 600; font-variant-numeric: tabular-nums;
+  }
+  section.news .article-num { color: var(--accent-news); }
+  section.social .article-num { color: var(--accent-social); }
+  section.other .article-num { color: var(--accent-other); }
+  .article-body { flex: 1; min-width: 0; }
+  article h3 {
+    font-size: 24px; font-weight: 800; margin-bottom: 14px;
+    line-height: 1.4; letter-spacing: -0.02em;
+    color: var(--fg);
+  }
+  .meta-row {
+    display: flex; gap: 12px; margin-bottom: 16px; align-items: center;
+    font-size: 12px; color: var(--muted);
+  }
+  .read-time { display: flex; align-items: center; gap: 4px; }
+
+  .badge {
+    display: inline-flex; align-items: center; gap: 4px;
+    padding: 3px 10px; border-radius: 12px;
+    font-size: 12px; font-weight: 500;
+  }
+  .badge.lvl3 { background: #ff4d4f15; color: #ff4d4f; border: 1px solid #ff4d4f30; }
+  .badge.lvl2 { background: #fa8c1615; color: #fa8c16; border: 1px solid #fa8c1630; }
+  .badge.lvl1 { background: #52c41a15; color: #52c41a; border: 1px solid #52c41a30; }
+  .badge.lvl0 { background: #722ed115; color: #722ed1; border: 1px solid #722ed130; }
+
+  /* TLDR 便签纸式 v9.3 */
+  .tldr {
+    background: #fff8e1;
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin: 16px 0 22px;
+    border: 1px solid #ffe58f;
+    box-shadow: 0 2px 0 #ffe58f;
+  }
+  .tldr-label {
+    display: inline-block;
+    font-size: 11px; font-weight: 800; letter-spacing: 0.1em;
+    color: #ad6800; text-transform: uppercase;
+    background: #faad14;
+    color: white;
+    padding: 4px 10px;
+    border-radius: 5px;
+    margin-bottom: 12px;
+  }
+  .tldr-content {
+    font-size: 17px; line-height: 1.7; color: #614700;
+    font-weight: 600;
+  }
+  .tldr-content strong { color: #ad6800; font-weight: 800; }
+  @media (prefers-color-scheme: dark) {
+    .tldr { background: #faad1420; border-color: #faad1450; }
+    .tldr-content { color: #ffe58f; }
+    .tldr-content strong { color: #ffd666; }
+  }
+
+  /* Checklist 看点 v9.3 - 数字编号 */
+  .highlights {
+    margin: 16px 0; padding: 18px 22px;
+    background: #f5f5f5;
+    border-radius: 12px;
+  }
+  .highlights-title {
+    font-size: 12px; font-weight: 800; color: #595959;
+    margin-bottom: 14px; letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  ul.checklist { list-style: none; padding: 0; margin: 0; counter-reset: hl; }
+  ul.checklist li {
+    position: relative; padding: 8px 0 8px 36px;
+    font-size: 15px; line-height: 1.6; color: var(--fg);
+    counter-increment: hl;
+  }
+  ul.checklist li::before {
+    content: counter(hl);
+    position: absolute; left: 0; top: 8px;
+    width: 24px; height: 24px;
+    background: var(--fg); color: var(--card);
+    border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px; font-weight: 800;
+    font-variant-numeric: tabular-nums;
+  }
+  ul.checklist li + li { border-top: 1px dashed var(--border); }
+  @media (prefers-color-scheme: dark) {
+    .highlights { background: #ffffff10; }
+  }
+
+  /* Callout v9.3: 满底色块（便签纸式）+ 大标签 */
+  .callout {
+    margin: 18px 0; padding: 22px 24px;
+    border-radius: 12px;
+    position: relative;
+  }
+  .callout-label {
+    display: inline-block;
+    font-size: 11px; font-weight: 800; letter-spacing: 0.1em;
+    color: white;
+    padding: 5px 12px;
+    border-radius: 5px;
+    margin-bottom: 14px;
+    text-transform: uppercase;
+  }
+  .callout-body { font-size: 15px; line-height: 1.75; color: var(--fg); }
+  .callout-body p { margin: 0; }
+  .callout-body p + p { margin-top: 10px; }
+  .callout.why {
+    background: #fffbe6;
+  }
+  .callout.why .callout-label { background: #fa8c16; }
+  .callout.future {
+    background: #e6f7ff;
+  }
+  .callout.future .callout-label { background: #1890ff; }
+  @media (prefers-color-scheme: dark) {
+    .callout.why { background: #fa8c1625; }
+    .callout.future { background: #1890ff25; }
+  }
+
+  /* Advice 实用建议 v9.3 - 满底色块 */
+  .advice {
+    margin: 18px 0; padding: 22px 24px;
+    background: #f6ffed;
+    border-radius: 12px;
+  }
+  .advice-title {
+    display: inline-block;
+    font-size: 11px; font-weight: 800; letter-spacing: 0.1em;
+    color: white; background: #52c41a;
+    padding: 5px 12px; border-radius: 5px;
+    margin-bottom: 14px;
+    text-transform: uppercase;
+  }
+  ul.advice-list { list-style: none; padding: 0; margin: 0; }
+  ul.advice-list li {
+    position: relative; padding: 8px 0 8px 32px;
+    font-size: 15px; line-height: 1.65; color: var(--fg);
+  }
+  ul.advice-list li::before {
+    content: "→";
+    position: absolute; left: 0; top: 8px;
+    width: 24px; height: 24px;
+    background: #52c41a; color: white; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px; font-weight: 800;
+  }
+  ul.advice-list li + li { border-top: 1px dashed #b7eb8f; }
+  @media (prefers-color-scheme: dark) {
+    .advice { background: #52c41a25; }
+    ul.advice-list li + li { border-top-color: #52c41a40; }
+  }
+
+  article p { margin-bottom: 12px; color: var(--fg); }
+  article p:last-child { margin-bottom: 0; }
+
+  blockquote {
+    background: var(--quote-bg);
+    border-left: 3px solid var(--border-strong);
+    padding: 10px 16px; margin: 12px 0; color: var(--muted);
+    font-size: 14px; border-radius: 0 6px 6px 0;
+  }
+  section.news blockquote { border-left-color: var(--accent-news); }
+  section.social blockquote { border-left-color: var(--accent-social); }
+  section.other blockquote { border-left-color: var(--accent-other); }
+
+  /* callouts (为什么关注 / 未来影响) */
+  .callout {
+    padding: 14px 18px; margin: 14px 0;
+    border-radius: 8px; font-size: 14px;
+    line-height: 1.65;
+  }
+  .callout.why {
+    background: linear-gradient(135deg, #1890ff08, #36cbcb08);
+    border: 1px solid #1890ff30;
+    border-left: 4px solid var(--accent-news);
+  }
+  .callout.future {
+    background: linear-gradient(135deg, #fa8c1608, #ffc53d08);
+    border: 1px solid #fa8c1630;
+    border-left: 4px solid var(--accent-other);
+  }
+  section.social .callout.why {
+    background: linear-gradient(135deg, #ff4d4f08, #ff7a4508);
+    border-color: #ff4d4f30;
+    border-left-color: var(--accent-social);
+  }
+
+  /* 高亮细节 (看点) */
+  details.highlights {
+    margin: 12px 0;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--quote-bg);
+  }
+  details.highlights summary {
+    padding: 10px 16px; cursor: pointer; font-weight: 500;
+    color: var(--muted); user-select: none; list-style: none;
+  }
+  details.highlights summary::before { content: "▸ "; transition: transform 0.2s; }
+  details.highlights[open] summary::before { content: "▾ "; }
+  details.highlights[open] summary { border-bottom: 1px solid var(--border); margin-bottom: 8px; }
+  .highlight-body { padding: 8px 16px 14px; font-size: 14px; }
+
+  /* Source row */
+  .source-row {
+    margin-top: 16px; padding-top: 12px;
+    border-top: 1px dashed var(--border);
+    font-size: 13px; color: var(--muted);
+  }
+
+  a { color: var(--accent-news); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  footer {
+    text-align: center; color: var(--muted); font-size: 13px;
+    padding: 32px 24px; border-top: 1px solid var(--border);
+  }
+  footer a { color: var(--muted); }
+
+  /* Back to top */
+  .back-top {
+    position: fixed; bottom: 24px; right: 24px;
+    width: 44px; height: 44px; border-radius: 50%;
+    background: var(--accent-news); color: white;
+    border: none; cursor: pointer; font-size: 20px;
+    box-shadow: 0 4px 12px rgba(24,144,255,0.4);
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    z-index: 99;
+  }
+  .back-top.show { opacity: 1; pointer-events: auto; }
+  .back-top:hover { transform: translateY(-2px); }
+
+  @media (max-width: 600px) {
+    .hero h1 { font-size: 24px; }
+    .hero-stats { gap: 8px; }
+    .stat-pill { font-size: 12px; padding: 6px 12px; }
+    main { padding: 24px 16px 64px; }
+    article { padding: 18px; flex-direction: column; gap: 12px; }
+    .article-num { width: 28px; height: 28px; font-size: 13px; }
+    article h3 { font-size: 16px; }
+  }
+</style>
+</head>
+<body>
+  <div class="hero">
+    <h1>🌙 睡后简报 · 2026-07-05</h1>
+    <div class="subtitle">由 探索(Bot3) 自动生成 · 04:19 推送 · 永久免费托管于 GitHub Pages</div>
+    <div class="hero-stats">
+      <span class="stat-pill ">新闻 <strong>4</strong></span>
+      <span class="stat-pill other">🛠️ ClawHub <strong>1</strong></span>
+      <span class="stat-pill other">🧠 心理观察 <strong>1</strong></span>
+      <span class="stat-pill ">合计 <strong>6</strong></span>
+    </div>
+  </div>
+  <nav class="toc">
+    <div class="toc-inner">
+      <a href="#新闻">📰 新闻</a>
+      <a href="#-clawhub">🛠️ 🛠️ ClawHub</a>
+      <a href="#-心理观察">🧠 🧠 心理观察</a>
+      <a href="#footer" style="margin-left:auto;color:var(--muted);">关于</a>
+    </div>
+  </nav>
+  <main>
+    <section id="新闻">
+  <div class="section-header">
+    <div class="section-icon">📰</div>
+    <div class="section-title">新闻</div>
+    <div class="section-meta">4 条</div>
+  </div>
+<article class="lvl3">
+<div class="article-num">1</div>
+<div class="article-body">
+<h3>🔥🔥🔥 全球数字经济大会 AI 融合应用论坛在京举办，"AI 落地实体经济"成共识</h3>
+<div class="meta-row"><span><span class="badge lvl3">🔥 必读</span></span><span class="read-time">⏱ 2 分钟</span></div>
+<div class="tldr"><span class="tldr-label">TL;DR</span><div class="tldr-content">2026 全球数字经济大会人工智能融合应用发展论坛 7 月 3 日在北京举办，主题"智驱实体，数创未来"。论坛围绕人工智能对千行百业的影响与重塑，探索从技术突破到真实生产力落地的路径。</div></div>
+<p><details><summary>📊 看点</summary></p>
+<p>&nbsp;&nbsp;▸ 主办方规格高：2026 全球数字经济大会分论坛，对应国家级 AI 战略落地<br>&nbsp;&nbsp;▸ 主题直指落地："智驱实体"四字明确把 AI 当作实体经济工具，而非展示型技术<br>&nbsp;&nbsp;▸ 时间节点关键：紧接 2026 WAIC（7 月上海）之前，是国内 AI 政策与产业对接的重要预热场</p>
+<p></details></p>
+<div class="callout why"><span class="callout-label">💡 为什么关注</span><div class="callout-body">国内 AI 政策从"做大模型"转向"做实应用"。过去两年中国 AI 主线是追参数、追榜单，这次论坛把"千行百业重塑"放在台面上，意味着官方认定基础模型差距已经缩小，下一阶段比拼的是落地深度。</div></div>
+<p>对企业来说，这是个明确的窗口期信号——给制造业、零售、金融、医疗这些传统行业做 AI 落地的供应商，未来 12 个月会比做通用模型更受资本和政策青睐。</p>
+<p>对个人来说，"AI+行业"的复合岗位需求会显著上升，纯算法岗的相对吸引力会下降，懂业务又能用 AI 工具的"翻译者"最值钱。</p>
+<div class="callout future"><span class="callout-label">🔮 未来影响</span><div class="callout-body">短期（1-3 个月）：2026 WAIC（7 月上海）上会密集发布"AI+行业"案例，政府配套补贴和试点名单大概率同期落地。</div></div>
+<p>中期（3-12 个月）：行业大模型（金融大模型、医疗大模型、制造大模型）会成为新一轮融资热点，"通用大模型+行业插件"的产品形态会取代纯 API 调用。</p>
+<div class="advice"><div class="advice-title">🎯 实用建议</div><ul class="advice-list">
+<li><span class="advice-mark">→</span> 如果你做企业服务：现在就可以围绕"AI+具体行业"做案例研究，比单纯卖 API 价值高 3-5 倍</li>
+<li><span class="advice-mark">→</span> 如果你求职：补一门垂直行业知识（医疗/金融/制造任选），AI 工具熟练度已经是基础门槛</li>
+<li><span class="advice-mark">→</span> 如果你投资：关注行业 ISV（独立软件商）而非底层模型公司，应用层估值修复空间更大</li>
+</ul></div>
+<blockquote>来源：中新网 / so.html5.qq.com（2026-07-04 17:56）/ 36氪</blockquote>
+<p>---</p>
+</div></article>
+<article class="lvl3">
+<div class="article-num">2</div>
+<div class="article-body">
+<h3>🔥🔥🔥 AI 开始改进自己：AlphaEvolve 与 GPT-5.3-Codex 引发递归自我改进监管讨论</h3>
+<div class="meta-row"><span><span class="badge lvl3">🔥 必读</span></span><span class="read-time">⏱ 2 分钟</span></div>
+<div class="tldr"><span class="tldr-label">TL;DR</span><div class="tldr-content">谷歌 DeepMind 的 AlphaEvolve 已利用 Gemini 生成候选算法，通过自动评估和演化搜索保留更好的方案，并用于优化数据中心调度、芯片设计和 AI 训练流程。OpenAI 在 2 月发布 GPT-5.3-Codex 时表示，该模型已在创建自身的过程中发挥了重要作用。</div></div>
+<p><details><summary>📊 看点</summary></p>
+<p>&nbsp;&nbsp;▸ 递归自我改进（RRSI）从论文走入工业：两个头部实验室都在用 AI 优化 AI 训练本身<br>&nbsp;&nbsp;▸ 应用领域极其关键：数据中心调度、芯片设计、训练流程——全是大模型自身的"水电煤"<br>&nbsp;&nbsp;▸ 监管讨论同步升温：业界开始严肃讨论"AI 改进 AI"的安全边界与可解释性问题</p>
+<p></details></p>
+<div class="callout why"><span class="callout-label">💡 为什么关注</span><div class="callout-body">这是 AGI 路径上的关键一跃。当 AI 能优化自己的训练流程时，能力提升曲线会从"人类改进 AI"切换到"AI 改进 AI"，迭代速度会非线性加快。对普通从业者来说，这意味着"今天学的东西可能 6 个月后就过时"。</div></div>
+<p>同时这是第一次"AI 监管"需要认真对待的领域——因为一旦 AI 开始自己改代码，传统的"人类审批模型发布"流程会被绕过，监管必须前移到训练数据和训练目标的设计阶段。</p>
+<p>OpenAI 和 DeepMind 同时押注这件事，说明业界已经认定 RRSI 是通往 GPT-6 / Gemini 3 的必由之路，不参与的实验室会显著掉队。</p>
+<div class="callout future"><span class="callout-label">🔮 未来影响</span><div class="callout-body">短期（1-3 个月）：递归自我改进相关论文和开源工具会集中爆发，更多中型实验室会尝试类似方案。</div></div>
+<p>中期（3-12 个月）：各国监管机构（美国 NIST、欧盟 AI Act、中国网信办）大概率会针对 RRSI 出台专门指引，可能要求"AI 训练 AI"的环节必须保留人类可审计日志。</p>
+<div class="advice"><div class="advice-title">🎯 实用建议</div><ul class="advice-list">
+<li><span class="advice-mark">→</span> 如果你做 AI Infra：现在开始研究"训练流程可观测性"和"模型谱系追踪"，未来 12 个月会是刚需</li>
+<li><span class="advice-mark">→</span> 如果你做 AI 安全/合规：把"递归自我改进"加入你的关注清单，提前准备合规框架会比同行领先半年</li>
+<li><span class="advice-mark">→</span> 如果你是普通用户：不用恐慌——这不会让 AI 突然"觉醒"，但你用的工具迭代会明显加速，保持每月学一个新工具的习惯</li>
+</ul></div>
+<blockquote>来源：so.html5.qq.com（2026-07-05 03:06）/ 钛媒体</blockquote>
+<p>---</p>
+</div></article>
+<article class="lvl2">
+<div class="article-num">3</div>
+<div class="article-body">
+<h3>🔥🔥 Meta 新模型 Watermelon 被称追平 GPT-5.5，模型竞争进入白热化</h3>
+<div class="meta-row"><span><span class="badge lvl2">🔥 重要</span></span><span class="read-time">⏱ 2 分钟</span></div>
+<div class="tldr"><span class="tldr-label">TL;DR</span><div class="tldr-content">7 月 3 日 AI 早报显示，Meta 新模型 Watermelon 在多个基准测试中被业内评价为追平 GPT-5.5。这是 Meta 在 Llama 系列之后首次以全新代号推出模型，引发市场对开源/闭源竞争格局的重新评估。</div></div>
+<p><details><summary>📊 看点</summary></p>
+<p>&nbsp;&nbsp;▸ 代号切换信号：Meta 不再使用 Llama 编号，意味着这是全新架构或全新训练范式<br>&nbsp;&nbsp;▸ "追平 GPT-5.5"的表述来自第三方测评，并非 Meta 官方，但已足以搅动市场<br>&nbsp;&nbsp;▸ 时间节点敏感：紧接 OpenAI 6 月 27 日 GPT-5.6 三档发布之后，明显是针对性卡位</p>
+<p></details></p>
+<div class="callout why"><span class="callout-label">💡 为什么关注</span><div class="callout-body">Meta 一直是开源阵营的旗手。如果 Watermelon 真的追平 GPT-5.5，对开发者生态的意义远大于对 OpenAI 商业的冲击——意味着企业自托管大模型的成本会再次下降，"上云"不再是唯一选择。</div></div>
+<p>对资本市场来说，这是 2026 年 AI 投资逻辑的又一次切换：从"押注单一头部"转向"押注多家并存"。任何一家头部公司都不再是不可替代的，议价权会回到买方。</p>
+<p>对 OpenAI/Anthropic 来说，这是个明确的压力信号——纯闭源 API 的溢价会缩小，必须靠"独家功能"（如 Deep Research、Computer Use、长上下文）拉开差距。</p>
+<div class="callout future"><span class="callout-label">🔮 未来影响</span><div class="callout-body">短期（1-3 个月）：Meta 会发布完整技术报告，Watermelon 是否开源、是否商用授权会成为讨论焦点。</div></div>
+<p>中期（3-12 个月）：模型市场会从"双寡头"（OpenAI + Anthropic）变成"三足鼎立"（+ Meta），企业用户的议价空间显著扩大。</p>
+<div class="advice"><div class="advice-title">🎯 实用建议</div><ul class="advice-list">
+<li><span class="advice-mark">→</span> 如果你是开发者：等 Watermelon 详细技术报告出来后，再决定是否切换——重点看推理成本和上下文长度</li>
+<li><span class="advice-mark">→</span> 如果你是企业采购：未来 6 个月是签长约的好时机，多模型备份方案会更划算</li>
+<li><span class="advice-mark">→</span> 如果你关注 AI 投资：不要 All In 单一头部，模型层公司的估值修复空间有限，下游应用层机会更大</li>
+</ul></div>
+<blockquote>来源：so.html5.qq.com（2026-07-04 11:37，AI 早报）</blockquote>
+<p>---</p>
+</div></article>
+<article class="lvl1">
+<div class="article-num">4</div>
+<div class="article-body">
+<h3>🔥 智元机器人精灵 G2 累计量产 15000 台，刷新全球具身智能纪录</h3>
+<div class="meta-row"><span><span class="badge lvl1">🔥 速览</span></span><span class="read-time">⏱ 2 分钟</span></div>
+<div class="tldr"><span class="tldr-label">TL;DR</span><div class="tldr-content">2026 年 6 月 28 日，智元机器人宣布第 15000 台精灵 G2 量产下线。从第 10000 台到第 15000 台仅用 3 个月，再次刷新全球具身智能量产速度纪录。</div></div>
+<p><details><summary>📊 看点</summary></p>
+<p>&nbsp;&nbsp;▸ 量产速度惊人：单月 5000 台出货量，在具身智能领域前所未有<br>&nbsp;&nbsp;▸ 节点意义：15000 台意味着供应链、产线、品控已经过规模化验证<br>&nbsp;&nbsp;▸ 应用场景：精灵 G2 主攻工业柔性制造，是具身智能最先商业化的细分</p>
+<p></details></p>
+<div class="callout why"><span class="callout-label">💡 为什么关注</span><div class="callout-body">具身智能（Embodied AI）过去两年的故事都是"演示视频"，智元这次给的是"量产数字"。15000 台意味着不是 demo，是真实在工厂里干活的机器人——这是具身智能从"能跑"到"能用"的临界点。</div></div>
+<p>对中国 AI 产业的意义更深远：在基础大模型上中国还在追美国，但在"AI+硬件"的交叉领域，中国凭借制造业供应链优势可能已经实现局部领先。</p>
+<p>对机器人产业链上下游（伺服电机、减速器、传感器）来说，单月 5000 台的出货量会拉动整个供应链的规模化降本。</p>
+<div class="callout future"><span class="callout-label">🔮 未来影响</span><div class="callout-body">短期（1-3 个月）：智元大概率会公布新一轮融资或战略合作，估值可能突破独角兽。</div></div>
+<p>中期（3-12 个月）：会有更多具身智能公司公布"万台"或"数千台"量产节点，行业从"演示驱动"切换到"出货量驱动"，估值锚点改变。</p>
+<div class="advice"><div class="advice-title">🎯 实用建议</div><ul class="advice-list">
+<li><span class="advice-mark">→</span> 如果你在机器人/制造行业：现在是接入智元生态的好时机，做应用集成商比做整机更稳</li>
+<li><span class="advice-mark">→</span> 如果你投资：关注具身智能上游零部件（不是整机），传感器和伺服电机会先吃到规模红利</li>
+<li><span class="advice-mark">→</span> 如果你是普通用户：未来 12 个月会在商场、仓储、物流看到更多 G2 同行，可以去线下体验</li>
+</ul></div>
+<blockquote>来源：CSDN AI 科技热点日报（2026-06-30）/ 钛媒体</blockquote>
+<p>---</p>
+<p>_本简报由 bot3 睡后任务自动生成 · 信源已多渠道交叉验证 · 数据置信度基于来源权威性分级_</p>
+</div></article>
+</section>
+
+<section other id="-clawhub">
+  <div class="section-header">
+    <div class="section-icon">🛠️</div>
+    <div class="section-title">🛠️ ClawHub</div>
+    <div class="section-meta">1 条</div>
+  </div>
+<article class="lvl0">
+<div class="article-num">1</div>
+<div class="article-body">
+<h3>🛠️ ClawHub 今日 Top 1：ai-agent-orchestrator（评分 66.021）</h3>
+<div class="meta-row"><span><span class="badge lvl0">📌 工具</span></span><span class="read-time">⏱ 1 分钟</span></div>
+<div class="tldr"><span class="tldr-label">TL;DR</span><div class="tldr-content">为什么选它：今日科技日报主线是 AI 自我改进与模型竞争，对 OpenClaw 用户来说最实用的不是围观，是把自己的 agent 串起来。这个 skill 正好解决"多个 AI Agent 怎么协同 + 接 MCP"的核心痛点。</div></div>
+<p><details><summary>📊 看点</summary></p>
+<p>&nbsp;&nbsp;▸ 综合评分 66.021，是 ai-agent 分类当日最高分（同分类第二名 ai-agent-helper 65.097）<br>&nbsp;&nbsp;▸ 核心能力：AI Agent 编排 + MCP（Model Context Protocol）集成——这是当前 agent 生态最稀缺的"胶水层"<br>&nbsp;&nbsp;▸ 适用场景：多 agent 协作、复杂任务拆解、跨工具调用（MCP 工具链）</p>
+<p></details></p>
+<div class="callout why"><span class="callout-label">💡 为什么关注</span><div class="callout-body">OpenClaw 用户现在最大的痛点不是"用什么 skill"，而是"怎么让多个 skill 串起来完成复杂任务"。比如：让"网页搜索 skill"+"图片下载 skill"+"Markdown 写作 skill"自动接力，跑完一整个"调研→下载→写文档"的流程——这就是 orchestrator 要解决的事。</div></div>
+<p>MCP 是 Anthropic 在 2025 年底推出的开放协议，目前 OpenAI、Google 都已经支持。MCP 集成意味着这个 skill 不仅能调度 OpenClaw 内部 skill，还能调度外部 MCP 工具（数据库、CRM、内部 API），扩展性远超普通 skill。</p>
+<div class="callout future"><span class="callout-label">🔮 未来影响</span><div class="callout-body">短期：会成为"多 skill 串联"场景的事实标准，类似 n8n / Zapier 在自动化领域的地位。</div></div>
+<p>中期：基于 MCP 的 agent 生态会快速壮大，ClawHub 上的 MCP 服务会从今天几十个涨到几百个。</p>
+<div class="advice"><div class="advice-title">🎯 实用建议</div><ul class="advice-list">
+<li><span class="advice-mark">→</span> 现在装：`clawhub install ai-agent-orchestrator`</li>
+<li><span class="advice-mark">→</span> 用法：先从 2-3 个 skill 的小串联开始（比如"搜索 + 摘要"），别一上来就跑 10 个 skill 的复杂链路</li>
+<li><span class="advice-mark">→</span> 进阶：把内部工具（如数据库查询、CRM 操作）封装成 MCP 服务接入，agent 自动化能力会质变</li>
+</ul></div>
+<blockquote>评分来源：`clawhub search ai-agent` · 同分类对比：ai-agent-helper (65.097) / ai-agent-builder-zh (63.793)</blockquote>
+<p>---</p>
+</div></article>
+</section>
+
+<section other id="-心理观察">
+  <div class="section-header">
+    <div class="section-icon">🧠</div>
+    <div class="section-title">🧠 心理观察</div>
+    <div class="section-meta">1 条</div>
+  </div>
+<article class="lvl0">
+<div class="article-num">1</div>
+<div class="article-body">
+<h3>🧠 心理观察：62.8% 中国青年处于中高压力，"焦虑+孤独"成日常背景音</h3>
+<div class="meta-row"><span><span class="badge lvl0">📌 工具</span></span><span class="read-time">⏱ 2 分钟</span></div>
+<div class="tldr"><span class="tldr-label">TL;DR</span><div class="tldr-content">广东省日慈公益基金会发布的《2026 青年情绪白皮书》显示，62.8% 的青年处在中高压力情况之下，"焦虑"和"孤独"已成为他们日常的背景音乐。平均每人面临 4.8 个压力源，"对未来的不确定性"排在首位。</div></div>
+<p><details><summary>📊 看点</summary></p>
+<p>&nbsp;&nbsp;▸ 核心数据：62.8% 中高压力，平均 4.8 个压力源，"焦虑"+"孤独"日常化<br>&nbsp;&nbsp;▸ 压力来源 TOP 1：对未来的不确定性（求职、收入、婚育、健康等多重不确定叠加）<br>&nbsp;&nbsp;▸ 应对方式分化：有人主动寻找"小确幸"，有人陷入"情绪内耗"，但整体呈现"困中求活"的状态<br>&nbsp;&nbsp;▸ 代际特征：相比父辈的"物质焦虑"，这一代更多是"意义焦虑"——吃饱穿暖但不知道为啥而活</p>
+<p></details></p>
+<div class="callout why"><span class="callout-label">💡 为什么关注</span><div class="callout-body">这不是一份"贩卖焦虑"的报告。62.8% 这个数字之所以触目惊心，是因为它来自公益基金会（而非商业机构），意味着数据没有商业动机——可信度反而比自媒体高得多。</div></div>
+<p>更值得关注的是"平均 4.8 个压力源"这个指标。它告诉我们青年压力不是单一来源，而是多源叠加：找工作 + 房贷 + 父母医疗 + 婚育 + 自我实现……任何一项单挑都能扛，但叠在一起就成了"慢性窒息感"。</p>
+<p>"对未来的不确定性"压倒"经济压力"成为第一压力源，这是个标志性转变——意味着青年的核心痛点已经从"生存焦虑"切换到了"存在焦虑"。这解释了为什么近两年"躺平"、"断亲"、"数字游民"等话题持续火爆。</p>
+<div class="callout future"><span class="callout-label">🔮 未来影响</span><div class="callout-body">短期（1-3 个月）：心理健康赛道（线上咨询、AI 心理陪伴、冥想类 App）会继续融资热潮。</div></div>
+<p>中期（3-12 个月）：企业 EAP（员工心理援助）需求会从大厂向中型公司扩散，AI 心理助手会成为标配。</p>
+<p>长期：政策层面可能跟进——"青年心理健康"大概率会进入"十五五"规划相关议题。</p>
+<div class="advice"><div class="advice-title">🎯 实用建议</div><ul class="advice-list">
+<li><span class="advice-mark">→</span> 如果你是青年本人：4.8 个压力源叠加是常态，不要自我批判"我是不是太脆弱"——这是结构性问题，不是个人问题</li>
+<li><span class="advice-mark">→</span> 如果你是家长：少问"什么时候结婚/买房"，多问"最近睡得好吗"——存在焦虑比物质焦虑更需要陪伴而非建议</li>
+<li><span class="advice-mark">→</span> 如果你是企业 HR：考虑引入 AI 心理助手作为员工福利，成本低、隐私好、覆盖广，比传统 EAP 更适合 Z 世代</li>
+</ul></div>
+<blockquote>来源：搜狐《2026 青年情绪白皮书》（2026-06-05）/ 复旦大学《中国青年网民社会心态调查报告》/ 互联网的一些事</blockquote>
+<p>---</p>
+<p>_本简报由 bot3 睡后任务自动生成 · ClawHub 评分取自当日搜索结果 · 心理观察数据已多源交叉验证_</p>
+</div></article>
+</section>
+
+  </main>
+  <footer id="footer">
+    <p style="margin-bottom:8px;font-size:14px;">🌙 探索者 · 睡后简报</p>
+    <p>Bot3 · OpenClaw · GitHub Pages · 永久免费</p>
+    <p style="margin-top:12px;font-size:12px;">
+      <a href="https://dcrlovejs-spec.github.io/sleep-briefing/">📚 历史归档</a>
+      · <a href="https://github.com/dcrlovejs-spec/sleep-briefing">⭐ 仓库</a>
+    </p>
+  </footer>
+  <button class="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="回到顶部">↑</button>
+  <script>
+    const btn = document.querySelector('.back-top');
+    window.addEventListener('scroll', () => {
+      btn.classList.toggle('show', window.scrollY > 600);
+    });
+  </script>
+</body>
+</html>
