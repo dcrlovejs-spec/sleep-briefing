@@ -15,6 +15,7 @@
   --mint:#2d8a5f;
   --gold:#b8870a;
   --rule:rgba(0,0,0,.12);
+  --IMG-H:420px;
 }
 *{box-sizing:border-box}
 html,body{margin:0;padding:0;background:#222}
@@ -31,7 +32,7 @@ body{
   box-shadow:0 4px 32px rgba(0,0,0,.25);
 }
 
-/* ========== 报头（左右双报头） ========== */
+/* ========== 报头 ========== */
 .head-row{
   display:grid;grid-template-columns:1fr 1fr;
   border-bottom:3px double var(--ink-1);
@@ -55,7 +56,6 @@ body{
   margin-left:auto;font-size:12px;color:var(--ink-2);
   letter-spacing:.05em;font-weight:700;
 }
-
 .head-right{
   padding:14px 24px;
   display:flex;align-items:center;gap:18px;justify-content:space-between;
@@ -71,7 +71,7 @@ body{
   background:var(--paper-2);
 }
 
-/* ========== 头条大板块 ========== */
+/* ========== 头条 ========== */
 .hero{
   display:grid;grid-template-columns:1.1fr 1fr;
   border-bottom:3px solid var(--ink-1);
@@ -112,8 +112,7 @@ body{
   display:flex;align-items:center;justify-content:center;
 }
 .hero .h-img img{
-  width:100%;height:100%;object-fit:cover;display:block;
-  filter:contrast(1.05) saturate(1.05);
+  width:100%;height:var(--IMG-H);object-fit:cover;display:block;
 }
 .hero .h-img .stamp{
   position:absolute;top:18px;right:18px;z-index:2;
@@ -129,63 +128,102 @@ body{
 }
 .hero .h-img .cap em{color:#ffb3b3;font-style:normal;font-weight:700}
 
-/* ========== 板块：图+文（参考杂志风） ========== */
-.section{
-  display:grid;grid-template-columns:1fr 1.1fr;
-  border-bottom:1px solid var(--rule);
+/* ========== 板块：图+文（不同布局混排） ========== */
+/* 通用图：固定高度统一 */
+.sec-img img{
+  width:100%;height:var(--IMG-H);object-fit:cover;display:block;
 }
-.section:nth-child(even){grid-template-columns:1.1fr 1fr}
-.section:nth-child(even) .s-img{order:-1;border-right:1px solid var(--rule);border-left:none}
-.section .s-img{
-  background:#000;min-height:380px;overflow:hidden;
-  border-right:1px solid var(--rule);position:relative;
+.sec-img{
+  background:#000;position:relative;overflow:hidden;
 }
-.section .s-img img{
-  width:100%;height:100%;object-fit:cover;display:block;
-}
-.section .s-img .badge{
-  position:absolute;top:14px;left:14px;z-index:2;
+.sec-img .badge{
+  position:absolute;top:14px;z-index:2;
   background:var(--paper);color:var(--ink-1);
   padding:4px 10px;font-family:"Arial Black",sans-serif;
   font-size:11px;font-weight:900;letter-spacing:.1em;
   border:1px solid var(--ink-1);
 }
-.section .s-img .badge.red{color:var(--hot);border-color:var(--hot)}
-.section .s-img .badge.mint{color:var(--mint);border-color:var(--mint)}
-.section .s-img .badge.gold{color:var(--gold);border-color:var(--gold)}
-.section .s-img .badge.gray{color:var(--ink-3);border-color:var(--ink-3)}
+.sec-img .badge.red{color:var(--hot);border-color:var(--hot)}
+.sec-img .badge.mint{color:var(--mint);border-color:var(--mint)}
+.sec-img .badge.gold{color:var(--gold);border-color:var(--gold)}
+.sec-img .badge.gray{color:var(--ink-3);border-color:var(--ink-3)}
+.sec-img .badge.b-top-left{top:14px;left:14px}
+.sec-img .badge.b-top-right{top:14px;right:14px}
+.sec-img .badge.b-bot-left{bottom:14px;left:14px;top:auto}
+.sec-img .badge.b-bot-right{bottom:14px;right:14px;top:auto}
+.sec-img .cap-bottom{
+  position:absolute;bottom:0;left:0;right:0;z-index:2;
+  background:linear-gradient(transparent,rgba(0,0,0,.85));
+  color:#fff;padding:14px 18px 12px;font-size:12.5px;line-height:1.55;
+}
+.sec-img .cap-top{
+  position:absolute;top:0;left:0;right:0;z-index:2;
+  background:linear-gradient(rgba(0,0,0,.7),transparent);
+  color:#fff;padding:12px 18px 28px;font-size:12.5px;line-height:1.55;
+}
+.sec-img .cap-overlay-center{
+  position:absolute;top:50%;left:18px;right:18px;transform:translateY(-50%);z-index:2;
+  background:rgba(0,0,0,.7);color:#fff;
+  padding:14px 16px;font-size:13px;line-height:1.6;
+  border-left:3px solid var(--hot);
+}
 
-.section .s-text{padding:28px 32px;display:flex;flex-direction:column;justify-content:center}
-.section .s-text .no{
+/* === 布局 A：图在左，描述在右 === */
+.sec-a{display:grid;grid-template-columns:1fr 1fr}
+.sec-a .sec-img{border-right:1px solid var(--rule)}
+.sec-a .sec-text{padding:28px 32px;display:flex;flex-direction:column;justify-content:center}
+
+/* === 布局 B：图在右，描述在左 === */
+.sec-b{display:grid;grid-template-columns:1fr 1fr}
+.sec-b .sec-text{padding:28px 32px;display:flex;flex-direction:column;justify-content:center;border-right:1px solid var(--rule);order:1}
+.sec-b .sec-img{order:2}
+
+/* === 布局 C：图在上，描述在下 === */
+.sec-c{display:grid;grid-template-columns:1fr;grid-template-rows:auto auto}
+.sec-c .sec-img{border-bottom:1px solid var(--rule)}
+.sec-c .sec-text{padding:22px 32px;display:flex;flex-direction:column}
+
+/* === 布局 D：描述在上，图在下 === */
+.sec-d{display:grid;grid-template-columns:1fr;grid-template-rows:auto auto}
+.sec-d .sec-text{padding:22px 32px;display:flex;flex-direction:column;border-bottom:1px solid var(--rule)}
+.sec-d .sec-img{}
+
+/* === 布局 E：左右图，中间小描述 === */
+.sec-e{display:grid;grid-template-columns:1fr 1fr 1fr}
+.sec-e .sec-text{padding:24px 18px;display:flex;flex-direction:column;justify-content:center;border-right:1px solid var(--rule);border-left:1px solid var(--rule)}
+
+/* 文本样式 */
+.sec-text .no{
   font-family:"Arial Black",sans-serif;font-size:12px;
   color:var(--ink-3);letter-spacing:.3em;font-weight:900;
 }
-.section .s-text h2{
-  font-size:28px;font-weight:900;letter-spacing:.04em;
-  margin:8px 0 14px;color:var(--ink-1);line-height:1.15;
+.sec-text h2{
+  font-size:26px;font-weight:900;letter-spacing:.04em;
+  margin:8px 0 12px;color:var(--ink-1);line-height:1.2;
 }
-.section .s-text h2 .accent{color:var(--hot)}
-.section .s-text h2 .mint{color:var(--mint)}
-.section .s-text h2 .gold{color:var(--gold)}
-.section .s-text p{
-  font-size:14px;line-height:1.85;color:var(--ink-2);
+.sec-text h2 .accent{color:var(--hot)}
+.sec-text h2 .mint{color:var(--mint)}
+.sec-text h2 .gold{color:var(--gold)}
+.sec-text p{
+  font-size:13.5px;line-height:1.85;color:var(--ink-2);
   margin:0 0 8px;
 }
-.section .s-text p b{color:var(--ink-1);font-weight:700}
-.section .s-text p em{color:var(--hot);font-style:normal;font-weight:700}
-.section .s-text p.mint em{color:var(--mint)}
-.section .s-text p.gold em{color:var(--gold)}
-.section .s-text .quote-block{
-  border-left:3px solid var(--hot);padding-left:14px;
-  margin:10px 0;font-style:italic;color:var(--ink-2);font-size:14px;
+.sec-text p b{color:var(--ink-1);font-weight:700}
+.sec-text p em{color:var(--hot);font-style:normal;font-weight:700}
+.sec-text .quote-block{
+  border-left:3px solid var(--hot);padding-left:12px;
+  margin:10px 0;font-style:italic;color:var(--ink-2);font-size:13.5px;
 }
-.section .s-text .quote-block.mint{border-left-color:var(--mint)}
-.section .s-text .quote-block.gold{border-left-color:var(--gold)}
-.section .s-text .quote-block.gray{border-left-color:var(--ink-3)}
-.section .s-text .credit{
-  margin-top:14px;font-size:11px;color:var(--ink-3);
+.sec-text .quote-block.mint{border-left-color:var(--mint)}
+.sec-text .quote-block.gold{border-left-color:var(--gold)}
+.sec-text .quote-block.gray{border-left-color:var(--ink-3)}
+.sec-text .credit{
+  margin-top:12px;font-size:11px;color:var(--ink-3);
   letter-spacing:.15em;text-transform:uppercase;
 }
+
+/* 板块之间的分隔 */
+.sec-a,.sec-b,.sec-c,.sec-d,.sec-e{border-bottom:1px solid var(--rule)}
 
 /* ========== 政府公报 ========== */
 .bulletin{
@@ -310,7 +348,7 @@ body{
 
 /* ========== 移动端 ========== */
 @media (max-width:900px){
-  body{font-size:14px}
+  body{font-size:14px;--IMG-H:280px}
   .paper{margin:8px}
   .head-row{grid-template-columns:1fr}
   .head-left{border-right:none;border-bottom:1px solid var(--ink-1)}
@@ -319,13 +357,14 @@ body{
   .hero{grid-template-columns:1fr}
   .hero .h-text{padding:20px 18px;border-right:none;border-bottom:1px solid var(--ink-1)}
   .hero h1{font-size:36px}
-  .hero .h-img{min-height:280px}
-  .section,.section:nth-child(even){grid-template-columns:1fr}
-  .section .s-img,.section:nth-child(even) .s-img{
-    min-height:280px;border-right:none;border-bottom:1px solid var(--rule);order:0;
-  }
-  .section .s-text,.section:nth-child(even) .s-text{padding:18px 20px}
-  .section .s-text h2{font-size:22px}
+  .hero .h-img img{height:var(--IMG-H)}
+  .sec-a,.sec-b{grid-template-columns:1fr}
+  .sec-a .sec-img,.sec-b .sec-img{order:0;border-right:none;border-bottom:1px solid var(--rule)}
+  .sec-b .sec-text{order:1;border-right:none}
+  .sec-e{grid-template-columns:1fr}
+  .sec-e .sec-text{border-right:none;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+  .sec-text,.sec-a .sec-text,.sec-b .sec-text{padding:18px 20px}
+  .sec-text h2{font-size:22px}
   .bulletin{padding:20px 16px}
   .bulletin .b-grid{grid-template-columns:1fr;gap:12px}
   .quote-row{grid-template-columns:1fr}
@@ -340,7 +379,7 @@ body{
 <body>
 <div class="paper">
 
-<!-- 报头（左右双报头） -->
+<!-- 报头 -->
 <header class="head-row">
   <div class="head-left">
     <span class="title">三方家 <span class="red">友好</span>会晤</span>
@@ -353,7 +392,7 @@ body{
   </div>
 </header>
 
-<!-- 头条（6人火锅 selfie） -->
+<!-- 头条：图在右，文字在左（布局 B） -->
 <section class="hero">
   <div class="h-text">
     <div class="kicker">▌头　版　头　条 / HEADLINE</div>
@@ -369,51 +408,53 @@ body{
   </div>
 </section>
 
-<!-- 板块 1：青菜山（王小娟家主场） -->
-<section class="section">
-  <div class="s-img">
-    <span class="badge red">板块 01 · 东道主主场</span>
+<!-- 板块 01 · 布局 A：图左，文右 · 描述在下方（overlay） -->
+<section class="sec-a">
+  <div class="sec-img">
+    <span class="badge red b-top-left">板块 01 · 东道主主场</span>
     <img src="photos/2026-07-04/01-hotpot-selfie.jpg" alt="火锅全景">
+    <div class="cap-overlay-center">摄影 / 戴太太 selfie · 鸳鸯锅 · 6 人围坐</div>
   </div>
-  <div class="s-text">
+  <div class="sec-text">
     <div class="no">01 / 05</div>
     <h2>一锅<span class="accent">青菜</span>堆成了山。</h2>
     <p>这是本次会晤<b>最硬的主菜</b>——来自王小娟家。</p>
     <p>鸳鸯锅里咕嘟冒烟，<b>各式青菜铺成了一座小山</b>：绿叶、菌菇、根茎，能涮的都涮了。山顶点缀几片肥牛卷，<b>山脚沉着面条和蘸料</b>。</p>
-    <p>我和戴太太夹了 8 筷子青菜，<em>才注意到山上没有薄荷</em>。</p>
-    <p>——奇怪菜品另有其处，详见第 02 板块。</p>
+    <p>我和戴太太夹了 8 筷子青菜，<em>才注意到山上没有薄荷</em>。奇怪菜品另有其处，详见第 02 板块。</p>
     <div class="quote-block red">"山，是王小娟家堆的。肉，是戴家点的。三方家庭各司其职。"</div>
-    <div class="credit">摄影 / 戴太太 selfie · 撰文 / 戴先生 · 板块 / bot1 急就</div>
+    <div class="credit">撰文 / 戴先生 · 板块 / bot1 急就</div>
   </div>
 </section>
 
-<!-- 板块 2：吸爆松饼（我方主场） -->
-<section class="section">
-  <div class="s-img">
-    <span class="badge gold">板块 02 · 我方主场</span>
-    <img src="photos/2026-07-04/03-pancake-game.jpg" alt="吸爆松饼桌游">
-  </div>
-  <div class="s-text">
+<!-- 板块 02 · 布局 B：图右，文左 -->
+<section class="sec-b">
+  <div class="sec-text">
     <div class="no">02 / 05</div>
     <h2>桌游：<span class="gold">吸爆松饼</span>。</h2>
     <p>这是一款<b>5 人同乐的纸牌桌游</b>，来自我方家庭带来的奇怪物资清单。</p>
     <p>5 个人围一桌，<b>纸牌散一桌</b>，我们打了一下午。<b>戴太太笑得最大声</b>，朋友举牌挡住半张脸——大家都很开心。</p>
     <p>这款桌游的规则很奇怪：要把松饼<span class="gold">用嘴吸爆</span>。谁吸爆了谁赢。</p>
     <div class="quote-block gold">"奇怪的菜品 + 奇怪的桌游 = 奇怪的下午。但很合理。"</div>
-    <div class="credit">摄影 / 戴先生随手 · 板块 / bot1 急就 · 桌游提供 / 我方家庭</div>
+    <div class="credit">摄影 / 戴先生随手 · 桌游提供 / 我方家庭</div>
+  </div>
+  <div class="sec-img">
+    <span class="badge gold b-top-right">板块 02 · 我方主场</span>
+    <img src="photos/2026-07-04/03-pancake-game.jpg" alt="吸爆松饼桌游">
+    <div class="cap-bottom">▲ 戴先生随手拍 · 5 人围一桌 · 纸牌散一桌</div>
   </div>
 </section>
 
-<!-- 板块 3：逗小北鼻（全场焦点） -->
-<section class="section">
-  <div class="s-img">
-    <span class="badge mint">板块 03 · 全场焦点</span>
+<!-- 板块 03 · 布局 C：图在上，描述在下 -->
+<section class="sec-c">
+  <div class="sec-img">
+    <span class="badge mint b-top-left">板块 03 · 全场焦点</span>
     <img src="photos/2026-07-04/02-baby-play.jpg" alt="逗小北鼻">
+    <div class="cap-top">▲ 戴太太拍 · 5 个大人围着 1 个 9 个月北鼻</div>
   </div>
-  <div class="s-text">
+  <div class="sec-text">
     <div class="no">03 / 05</div>
     <h2>九个月，<span class="mint">仰面</span>躺床上。</h2>
-    <p>5 个大人围着 1 个小北鼻。<b>他是全场焦点</b>——9 个月大，仰面躺在王小娟家的大床上，穿着浅色衣服，盖着灰白条纹薄被。</p>
+    <p><b>他是全场焦点</b>——9 个月大，仰面躺在王小娟家的大床上，穿着浅色衣服，盖着灰白条纹薄被。</p>
     <p><b>戴先生弯腰弹手指</b>逗他，王小娟家把孩子抱起来，他不哭。戴太太全程拍视频——一边拍一边说"他笑了他笑了"。</p>
     <p>他最后睡了。<b>这是我们的撤退信号</b>——孩子一睡，全员撤退，自然散场。</p>
     <div class="quote-block mint">"最累的不是——是你想离开的时候，他对你笑了一下。" —— 戴太太</div>
@@ -421,31 +462,31 @@ body{
   </div>
 </section>
 
-<!-- 板块 4：戴太太手账（文艺担当） -->
-<section class="section">
-  <div class="s-img">
-    <span class="badge gold">板块 04 · 文艺担当</span>
-    <img src="photos/2026-07-04/04-sketchbook.jpg" alt="戴太太手账水彩">
-  </div>
-  <div class="s-text">
+<!-- 板块 04 · 布局 D：描述在上，图在下（翻转 C） -->
+<section class="sec-d">
+  <div class="sec-text">
     <div class="no">04 / 05</div>
     <h2>戴太太<span class="gold">手绘</span>水彩。</h2>
     <p>回家当晚，戴太太拿出水彩本，画了这次聚会。</p>
     <p>标题叫<b>「火锅人们」</b>。副标题写：<b>「完整聚会，7.04 下午」</b>。旁边贴两张自拍小图，红色彩笔画的箭头 + 星。</p>
-    <p>批注三个字：<em>又吃又玩又让人奔欢</em>。</p>
-    <p>——这就是戴太太的记录方式：照片 + 水彩 + 短句。我方家庭的<b>文艺担当</b>。</p>
+    <p>批注三个字：<em>又吃又玩又让人奔欢</em>。——这就是戴太太的记录方式：照片 + 水彩 + 短句。我方家庭的<b>文艺担当</b>。</p>
     <div class="quote-block gold">"火锅人们——又吃又玩又让人奔欢。" —— 戴太太手账原文</div>
     <div class="credit">手绘 / 戴太太 · 抄录 / bot1 · 板块 / bot1 急就</div>
   </div>
+  <div class="sec-img">
+    <span class="badge gold b-bot-right">板块 04 · 文艺担当</span>
+    <img src="photos/2026-07-04/04-sketchbook.jpg" alt="戴太太手账水彩">
+  </div>
 </section>
 
-<!-- 板块 5：结婚证相框（私人珍藏） -->
-<section class="section">
-  <div class="s-img">
-    <span class="badge gray">板块 05 · 私人珍藏</span>
+<!-- 板块 05 · 布局 A：图左，文右 · 描述在右下方 -->
+<section class="sec-a">
+  <div class="sec-img">
+    <span class="badge gray b-top-left">板块 05 · 私人珍藏</span>
     <img src="photos/2026-07-04/05-wedding-photo.jpg" alt="结婚证相框">
+    <div class="cap-bottom">▲ 戴先生书桌上的结婚证相框 · 家中静物</div>
   </div>
-  <div class="s-text">
+  <div class="sec-text">
     <div class="no">05 / 05</div>
     <h2>戴家书桌上的<span style="color:var(--ink-3)">结婚证</span>。</h2>
     <p>这不是聚会照片——这是<b>家中静物</b>。</p>
@@ -532,7 +573,7 @@ body{
 <!-- 版权 -->
 <footer class="foot">
   <span class="issue">第 002 期</span>
-  <span class="src">文案 / 戴先生&戴太太 · 出报 / bot1 小豆包 · 文体 / 外交公报（白话版）+ 杂志专题（参考 trend 杂志风格） · 主图 / 戴太太 selfie · 5 张现场照全嵌入 · 戴太太水彩手账 · 结婚证相框（私人珍藏） · v9 成品报版</span>
+  <span class="src">文案 / 戴先生&戴太太 · 出报 / bot1 小豆包 · 文体 / 外交公报（白话版）+ 杂志专题 · 主图 / 戴太太 selfie · 5 张现场照全嵌入 · 戴太太水彩手账 · 结婚证相框 · v10 图文混排</span>
   <span class="stamp">仅供家人阅读 · 谢绝外传</span>
 </footer>
 
