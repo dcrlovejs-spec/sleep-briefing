@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>《家报》2026年7月5日 · 兰州分刊 · 朋友家做客日 · 二号公报</title>
+<style>
+:root{
+  --paper:#f4ebd6;
+  --paper-2:#ebe0c5;
+  --ink-1:#2a1d10;
+  --ink-2:#6b5a44;
+  --ink-3:#9c8b75;
+  --hot:#a8412c;
+  --warm:#b87a2c;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;background:var(--paper);color:var(--ink-1);
+  font-family:"Source Han Serif SC","Noto Serif CJK SC","Songti SC","SimSun","宋体",serif;
+  font-size:16px;line-height:1.75;
+  -webkit-font-smoothing:antialiased;
+}
+.paper{
+  max-width:720px;margin:28px auto;padding:30px 28px 36px;
+  background:var(--paper-2);border:2px solid var(--ink-1);
+  box-shadow:0 4px 24px rgba(0,0,0,.08);position:relative;
+}
+.paper::before{
+  content:"";position:absolute;inset:6px;
+  border:1px solid var(--ink-1);pointer-events:none;
+}
+.mast .meta{display:flex;justify-content:space-between;font-size:14px;color:var(--ink-2)}
+.mast .meta .c{color:var(--ink-3);font-style:italic}
+.mast .rule-d{height:6px;border-top:3px double var(--ink-1);margin:14px 0 10px}
+.mast .rule-s{height:1px;background:var(--ink-1);margin:0 0 14px}
+.mast .name{text-align:center;font-size:42px;font-weight:900;letter-spacing:.35em;line-height:1;margin:6px 0 0}
+.mast .name-en{text-align:center;font-size:14px;letter-spacing:.8em;color:var(--ink-2);margin:4px 0 0}
+
+.front{text-align:center;margin:24px 0 6px}
+.front .h{font-size:52px;font-weight:900;letter-spacing:.12em;line-height:1.05;margin:8px 0 6px}
+.front .sub{font-size:22px;color:var(--ink-2);letter-spacing:.3em;margin:0 0 14px}
+.front .dek{font-style:italic;color:var(--ink-2);font-size:17px;margin:8px 0 14px}
+.front .rule{width:85%;height:1px;background:var(--ink-1);margin:0 auto}
+
+.hero{margin:18px 0 22px;border:1px solid var(--ink-1);background:var(--paper);padding:38px 18px;text-align:center}
+.hero .ico{font-size:88px;line-height:1}
+.hero .capt{font-size:14px;color:var(--ink-2);font-style:italic;margin-top:14px;letter-spacing:.05em}
+.hero .capt em{color:var(--hot);font-style:normal;font-weight:700}
+
+.cols{
+  display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px;
+  margin:20px 0;padding:18px 0;
+  border-top:2px solid var(--ink-1);border-bottom:2px solid var(--ink-1);
+}
+.cols .col h3{font-size:18px;font-weight:700;margin:0 0 8px;padding-bottom:6px;border-bottom:1px solid var(--ink-1);letter-spacing:.1em}
+.cols .col p{font-style:italic;color:var(--ink-2);font-size:15px;margin:0 0 4px;line-height:1.5}
+.cols .col .hot{font-style:normal;font-weight:700;color:var(--ink-1)}
+
+.alert{
+  margin:24px 0;padding:16px 20px;
+  background:rgba(168,65,44,.08);
+  border:1px dashed var(--hot);
+  border-left:5px solid var(--hot);
+  border-right:5px solid var(--hot);
+}
+.alert .head{font-size:16px;font-weight:700;color:var(--hot);letter-spacing:.2em;margin-bottom:10px}
+.alert ul{margin:0;padding:0 0 0 22px;list-style:none;font-size:15px;color:var(--ink-2);font-style:italic;line-height:1.8}
+.alert ul li::before{content:"▸ ";color:var(--hot);font-weight:700;font-style:normal}
+.alert ul li{margin-bottom:2px}
+
+/* === 政府公报专版 === */
+.bulletin{
+  margin:28px 0;padding:22px 22px 18px;
+  background:rgba(0,0,0,.04);
+  border:2px solid var(--ink-1);
+  position:relative;
+}
+.bulletin::before{
+  content:"政 府 公 报";position:absolute;top:-13px;left:22px;
+  background:var(--paper-2);padding:2px 12px;
+  font-size:14px;letter-spacing:.4em;color:var(--ink-1);font-weight:900;
+  border:1px solid var(--ink-1);
+}
+.b-head{
+  text-align:center;padding-bottom:10px;
+  border-bottom:2px double var(--ink-1);
+  margin-bottom:14px;font-size:17px;font-weight:900;
+  letter-spacing:.18em;line-height:1.5;
+}
+.b-head .b-no{
+  display:inline-block;background:var(--ink-1);color:var(--paper);
+  padding:3px 12px;margin-right:8px;letter-spacing:.35em;font-size:14px;
+  vertical-align:middle;
+}
+.b-line{margin:5px 0;font-size:14px;color:var(--ink-1);line-height:1.7}
+.b-line b{font-weight:700}
+.b-line .nt{color:var(--ink-3);font-style:italic}
+.b-title{
+  text-align:center;font-size:18px;font-weight:900;letter-spacing:.4em;
+  margin:16px 0 10px;color:var(--ink-1);
+}
+.b-section{
+  font-size:14px;font-weight:900;letter-spacing:.3em;
+  margin:14px 0 6px;padding-bottom:5px;
+  border-bottom:1px solid var(--ink-1);
+}
+.b-list{margin:0;padding-left:18px;font-size:13.5px;color:var(--ink-1);line-height:1.7}
+.b-list li{margin-bottom:3px}
+.b-list li b{color:var(--ink-1)}
+.b-list li .nt{color:var(--ink-3);font-style:italic;font-size:12.5px;margin-left:4px}
+.b-tag{
+  font-style:italic;color:var(--ink-2);
+  font-size:14px;margin:6px 0 14px;
+  padding:8px 12px;border-left:3px solid var(--ink-1);
+  background:rgba(255,255,255,.3);
+}
+.bulletin blockquote{
+  margin:10px 0;padding:12px 16px;
+  background:rgba(255,255,255,.4);
+  font-style:italic;font-size:15px;line-height:1.85;
+  border-left:3px solid var(--ink-1);color:var(--ink-1);
+}
+.b-foot{
+  margin-top:14px;padding-top:12px;
+  border-top:1px solid var(--ink-1);
+  font-size:12px;color:var(--ink-3);font-style:italic;
+  text-align:center;
+}
+.b-foot div{margin:4px 0}
+.b-stamp{
+  display:inline-block;border:1px solid var(--hot);color:var(--hot);
+  padding:2px 8px;font-size:11px;letter-spacing:.2em;margin:0 2px;
+}
+
+.edit{
+  margin:22px 0;padding:18px 24px;
+  background:rgba(255,255,255,.18);
+  border-left:4px solid var(--ink-1);
+  border-right:4px solid var(--ink-1);
+}
+.edit .lab{text-align:center;font-size:14px;letter-spacing:.5em;color:var(--ink-2);margin-bottom:10px}
+.edit p{text-align:center;margin:6px 0;font-size:18px}
+.edit .strong{font-weight:700;font-size:22px;letter-spacing:.1em}
+
+.pq{
+  text-align:center;margin:28px 0;padding:18px 0;
+  border-top:1px solid var(--ink-1);border-bottom:1px solid var(--ink-1);
+}
+.pq .q{font-size:24px;font-weight:700;letter-spacing:.12em;line-height:1.4}
+.pq .by{margin-top:8px;font-size:14px;color:var(--ink-3);font-style:italic}
+
+.col{text-align:center;font-size:14px;color:var(--ink-2);margin-top:30px;padding-top:14px;border-top:1px solid var(--ink-1)}
+.col .stamp{display:inline-block;border:1px solid var(--hot);color:var(--hot);padding:2px 10px;font-size:12px;margin-top:8px;letter-spacing:.3em}
+.src{text-align:center;font-size:12px;color:var(--ink-3);font-style:italic;margin:18px 0 0}
+
+@media (max-width:640px){
+  .paper{margin:8px;padding:18px 16px 26px}
+  .front .h{font-size:34px;letter-spacing:.08em}
+  .front .sub{font-size:17px}
+  .cols{grid-template-columns:1fr}
+  .mast .name{font-size:30px;letter-spacing:.2em}
+  .bulletin{padding:18px 16px 14px}
+  .b-head{font-size:14px}
+  .hero{padding:28px 14px}
+  .hero .ico{font-size:64px}
+}
+</style>
+</head>
+<body>
+<div class="paper">
+
+<header class="mast">
+  <div class="meta">
+    <span>二〇二六年七月四日 星期六</span>
+    <span class="c">· 家庭生活日报 ·</span>
+    <span>第 002 期</span>
+  </div>
+  <div class="rule-d"></div>
+  <div class="name">家报</div>
+  <div class="name-en">JIA &nbsp; BAO</div>
+  <div class="rule-s"></div>
+</header>
+
+<section class="front">
+  <h1 class="h">朋 友 家 做 客 日</h1>
+  <div class="sub">— 七 月 · 兰 州 分 刊 · B 场 ·</div>
+  <p class="dek">火锅咕嘟到半夜 / 牌桌输赢不重要 / 小婴儿咧嘴笑 / 一桌都是人</p>
+  <div class="rule"></div>
+</section>
+
+<figure class="hero">
+  <div class="ico">🍲🀄👶</div>
+  <p class="capt">▲ 朋友家·客厅·三位一体：火锅 + 牌桌 + 小婴儿<br>
+  <em>（照片待补，bot1 急就版先发，主图由戴先生后续补充）</em></p>
+</figure>
+
+<section class="cols">
+  <div class="col">
+    <h3>▎ 火 锅</h3>
+    <p>红汤咕嘟冒烟</p>
+    <p>牛肉卷 / 毛肚 / 鸭肠</p>
+    <p>鸭肠七上八下</p>
+    <p class="hot">—— 老婆评价：脆</p>
+    <p class="hot">—— 朋友老婆加汤两次</p>
+  </div>
+  <div class="col">
+    <h3>▎ 玩 牌</h3>
+    <p>输赢不重要</p>
+    <p>笑声大过算账声</p>
+    <p>朋友赢了三把</p>
+    <p class="hot">—— 我也赢了——靠运气</p>
+    <p class="hot">—— 老婆全程旁观裁判</p>
+  </div>
+  <div class="col">
+    <h3>▎ 小 婴 儿</h3>
+    <p>九个月大</p>
+    <p>逗他就咯咯笑</p>
+    <p>眼睛会盯着人看</p>
+    <p class="hot">—— 抱起来不哭</p>
+    <p class="hot">—— 朋友：「送你们一只」</p>
+    <p class="hot">—— 我们：「那不行」</p>
+  </div>
+</section>
+
+<aside class="alert">
+  <div class="head">📢 今 日 朋 友 家 紧 急 告 示</div>
+  <ul>
+    <li>鸭肠涮太久 = 罚洗下次碗</li>
+    <li>小婴儿不许喂辣锅底（虽未发生）</li>
+    <li>牌桌胜负归零——下次继续</li>
+    <li>散场时间由小婴儿决定：他先睡，我们撤</li>
+  </ul>
+</aside>
+
+<!-- ===== 政府公报专版（B 地点：朋友家·客厅） ===== -->
+<section class="bulletin">
+  <div class="b-head">
+    <span class="b-no">第 二 号</span>
+    <span>兰 州 · 友 邻 2026 年 家 庭 外 交 通 讯</span>
+  </div>
+
+  <div class="b-line">议　　题　　"朋友家做客时，如何兼顾火锅、玩牌、逗小婴儿三件大事"</div>
+  <div class="b-line">时　　间　　二〇二六年七月四日 · 星期六 · 晚间</div>
+  <div class="b-line">地　　点　　<b>友邻家 · 客厅</b>　<span class="nt">（民间正式称谓："朋友家"）</span></div>
+  <div class="b-tag">双方一致认定：火锅边打牌、牌桌旁逗娃，系当代家庭外交最高境界——忙但开心。</div>
+
+  <div class="b-line">与会代表</div>
+  <div class="b-line">　　兰州人民代表 · <b>戴先生</b>（简称"兰方"· 本次牌桌赢家之一）</div>
+  <div class="b-line">　　新区人民代表 · <b>戴太太</b>（简称"新方"· 全场裁判兼首席逗娃官）</div>
+  <div class="b-line">　　东道主代表 · <b>友邻夫妇</b>（简称"友方"· 锅底+小婴儿+场地三重供应方）</div>
+  <div class="b-line">　　特邀代表 · <b>小婴儿（9个月）</b>（简称"特邀方"· 全场焦点兼气氛担当）</div>
+
+  <div class="b-title">第 二 号 公 报</div>
+
+  <div class="b-section">一、决议事项</div>
+  <ol class="b-list">
+    <li>主　　食　　<b>家庭版麻辣火锅</b>　<span class="nt">— 友方主厨，鸳鸯锅底诚意十足</span></li>
+    <li>必涮菜品　　<b>牛肉卷 + 毛肚 + 鸭肠</b>　<span class="nt">— 三件套缺一不可</span></li>
+    <li>次要活动　　<b>打牌</b>　<span class="nt">— 输赢不记账，仅供娱乐</span></li>
+    <li>特邀项目　　<b>逗小婴儿</b>　<span class="nt">— 全员可参与，时间不设限</span></li>
+    <li>收尾机制　　<b>小婴儿先睡，全员撤退</b>　<span class="nt">— 自然散场，无须寒暄</span></li>
+  </ol>
+
+  <div class="b-section">二、协作机制</div>
+  <ul class="b-list">
+    <li><b>友方</b>：承担锅底、场地、小婴儿三重供给；</li>
+    <li><b>新方</b>：承担主要逗娃任务，并兼任牌桌裁判；</li>
+    <li><b>兰方</b>：承担牌桌战斗 + 鸭肠涮制 + 偶尔抱娃；</li>
+    <li><b>特邀方</b>（小婴儿）：承担全场笑点 + 散场时间决定权。</li>
+  </ul>
+
+  <div class="b-section">三、后续约定</div>
+  <ol class="b-list">
+    <li>友方邀请下次继续，本公报生效后 <b>30 天内</b> 自动排期；</li>
+    <li>下次聚餐<b>轮换场地</b>，新方承诺带<b>亲手做的虎皮椒</b>作为伴手礼；</li>
+    <li>兰方保留下次<b>赢回牌桌</b>之特别提议权；</li>
+    <li>特邀方（小婴儿）成长进度，按月度通报各方。</li>
+  </ol>
+
+  <div class="b-section">四、尚待磋商议题</div>
+  <ul class="b-list">
+    <li>下次谁洗碗　　→　<b>友方继续承担（主场优势）</b></li>
+    <li>下次锅底辣度　　→　<b>新方有最终决定权</b></li>
+    <li>下次是否带酒　　→　<b>兰方带啤酒，新方带红酒</b></li>
+    <li>小婴儿何时能上桌吃火锅　　→　<b>等他三岁再说</b></li>
+  </ul>
+
+  <div class="b-section">五、生效与展望</div>
+  <p style="margin:6px 0;font-size:14px">本公报自即日起生效。友邻四方代表均表示，<b>将以此次做客为契机</b>——</p>
+  <blockquote>
+    巩固邻里外交，<br>
+    推进"火锅 + 牌桌 + 小婴儿"三件套<b>常态化</b>，<br>
+    让兰州的友谊像锅底一样越熬越香，<br>
+    让笑声像火锅蒸汽一样此起彼伏，<br>
+    让小婴儿继续长大。
+  </blockquote>
+
+  <div class="b-foot">
+    <div>抄　送　bot1 小豆包（备忘存档）　·　bot7 军师（每日一句素材库）　·　小婴儿特邀方（成长纪念）</div>
+    <div style="margin-top:10px">
+      兰州代表（戴先生）<span class="b-stamp">家 庭 红 手 印</span>　
+      新区代表（戴太太）<span class="b-stamp">家 庭 红 手 印</span>　
+      友邻代表（友邻夫妇）<span class="b-stamp">友 邻 戳</span>　
+      特邀代表（小婴儿）<span class="b-stamp">口 水 印</span>
+    </div>
+    <div style="margin-top:6px;font-style:italic">二〇二六年七月四日 · 兰州·友邻联合公报 · 第 二 号</div>
+  </div>
+</section>
+
+<section class="edit">
+  <div class="lab">客 人 的 话</div>
+  <p>去朋友家做客这件事，最累的不是——</p>
+  <p class="strong">是 你 想 离 开 的 时 候 ， 小 婴 儿</p>
+  <p class="strong" style="margin-top:6px">对 你 笑 了 一 下 。</p>
+</section>
+
+<section class="pq">
+  <div class="q">「 朋友家的火锅 + 一桌的牌 + 一个会笑的小婴儿 = 这个夏天的形状。 」</div>
+  <div class="by">—— bot7 军师 · 每日一句</div>
+</section>
+
+<footer class="col">
+  <div>第 002 期  ·  二〇二六年七月四日  ·  兰州分刊 · 友邻场</div>
+  <div style="margin-top:6px">摄影 / 待补  ·  编辑 / 小豆包  ·  出版 / 家</div>
+  <div class="stamp">仅供家人阅读 · 谢绝外传</div>
+</footer>
+
+<p class="src">文案：bot1 小豆包 · 出报：bot1 统筹 · 地点 / 公报 / 幽默：bot1 急就（v4 · 按真实事件改写）</p>
+
+</div>
+</body>
+</html>
