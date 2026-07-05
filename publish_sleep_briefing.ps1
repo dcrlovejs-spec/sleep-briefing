@@ -1,4 +1,5 @@
-# publish_sleep_briefing.ps1 v1.3
+# publish_sleep_briefing.ps1 v1.4
+# v1.4: 修 Step 5c commit bug——PowerShell $x = git ... 不会把 stdout 赋给 $x，必须 | Out-String
 # v1.3: 加 Step 5 自动更新 briefings/index.html 和根 index.html
 #      根因修复: 之前每天 push 新 HTML 但忘了更新 index.html，主页一直是旧的
 # 关键修复: 所有路径用单引号(避免 PowerShell 把 \ 解释为转义字符)
@@ -189,12 +190,13 @@ Write-Host "publish: index.html updated"
 
 # 5c: 提交 + push index.html（Step 4 已经 push 过 HTML 了，index 是新增的变更）
 git add "index.html" "briefings/index.html" 2>&1 | Out-Null
-$status2 = git status --porcelain 2>&1
+# 重要: PowerShell 里 $x = git ... 这种赋值，stdout 不会赋给 $x，必须用 | Out-String
+$status2 = (git status --porcelain) | Out-String
 if (-not [string]::IsNullOrWhiteSpace($status2)) {
     git -c user.email='bot3@openclaw.local' -c user.name='bot3' commit -m "index: auto-update $Date" 2>&1 | Out-Null
     $pushOk2 = $false
     for ($i = 1; $i -le 3; $i++) {
-        git push origin main 2>&1 | Out-Null
+        $pushResult = (git push origin main) | Out-String
         if ($LASTEXITCODE -eq 0) {
             $pushOk2 = $true
             break
