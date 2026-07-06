@@ -161,19 +161,20 @@ html,body{background:#2a2a28;color:var(--ink);font-family:"Source Han Serif SC",
 .front .ft .byline b{color:var(--ink);font-weight:900}
 .front .ft .byline .src{color:var(--hot)}
 
-/* === 头条主图（左页下半）· 跨两页横铺大图 === */
+/* === 头条主图（右页大图）· v22 缩小版 === */
 .front-big-photo{
-  position:relative;background:#000;overflow:hidden;min-height:340px;
+  position:relative;background:#000;overflow:hidden;
+  max-height:280px;
   border-top:1px solid var(--ink);
 }
-.front-big-photo img{width:100%;height:100%;object-fit:cover;display:block;filter:contrast(1.05) saturate(.92)}
-.front-big-photo .corner{position:absolute;top:14px;right:14px;background:var(--paper);color:var(--ink);padding:4px 10px;font-family:"Arial Black",sans-serif;font-size:10px;letter-spacing:.25em;font-weight:900}
-.front-big-photo .cap{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(0,0,0,.85) 60%);color:#fff;padding:30px 22px 14px;font-size:12.5px;line-height:1.6}
-.front-big-photo .cap b{font-size:14px;display:block;margin-bottom:2px;letter-spacing:.05em}
+.front-big-photo img{width:100%;height:auto;max-height:280px;object-fit:cover;display:block;filter:contrast(1.05) saturate(.92)}
+.front-big-photo .corner{position:absolute;top:8px;right:10px;background:var(--paper);color:var(--ink);padding:2px 7px;font-family:"Arial Black",sans-serif;font-size:9px;letter-spacing:.25em;font-weight:900}
+.front-big-photo .cap{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(0,0,0,.85) 60%);color:#fff;padding:14px 16px 8px;font-size:10.5px;line-height:1.4}
+.front-big-photo .cap b{font-size:11.5px;display:block;margin-bottom:1px;letter-spacing:.05em}
 
-/* ================== 板块区 v19 双页布局 ==================
-   跨版头条大图（在两页中央跨过折缝）
-   其他板块分布到两页 */
+/* ================== 板块区 v22 双页布局 ==================
+   v22 在右页底部新增客人话大横幅（填补主图缩小的空白）
+   左页底部加补充内容（花絮延伸） */
 .middle{
   display:grid;
   background:var(--paper);
@@ -203,12 +204,45 @@ html,body{background:#2a2a28;color:var(--ink);font-family:"Source Han Serif SC",
 /* 跨页大图（在两页中央） */
 .spread-photo{
   grid-column:1 / span 13;grid-row:4;
-  position:relative;background:#000;overflow:hidden;min-height:380px;margin-top:8px;
+  position:relative;background:#000;overflow:hidden;min-height:280px;margin-top:8px;
 }
-.spread-photo img{width:100%;height:100%;object-fit:cover;display:block}
-.spread-photo .stamp{position:absolute;top:16px;left:30%;background:var(--paper);color:var(--ink);padding:5px 12px;font-family:"Arial Black",sans-serif;font-size:10px;letter-spacing:.25em;font-weight:900}
-.spread-photo .cap{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(0,0,0,.85) 60%);color:#fff;padding:30px 30px 14px;font-size:13px;line-height:1.6}
-.spread-photo .cap b{font-size:15px;display:block;margin-bottom:3px;letter-spacing:.05em}
+.spread-photo img{width:100%;height:auto;max-height:280px;object-fit:cover;display:block}
+.spread-photo .stamp{position:absolute;top:12px;left:30%;background:var(--paper);color:var(--ink);padding:4px 10px;font-family:"Arial Black",sans-serif;font-size:9px;letter-spacing:.25em;font-weight:900}
+.spread-photo .cap{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(0,0,0,.85) 60%);color:#fff;padding:18px 24px 10px;font-size:12px;line-height:1.5}
+.spread-photo .cap b{font-size:13px;display:block;margin-bottom:2px;letter-spacing:.05em}
+
+/* === v22 新增：右页底部客人话横幅（填空白） === */
+.right-bottom-quote{
+  grid-column:1 / span 13;grid-row:5;
+  background:var(--ink);color:var(--paper);
+  padding:14px 36px 16px;text-align:center;position:relative;
+  margin-top:10px;border-top:2px solid var(--ink);border-bottom:2px solid var(--ink);
+}
+.right-bottom-quote::before,.right-bottom-quote::after{content:"";position:absolute;left:24px;right:24px;height:1px;background:var(--paper);opacity:.4}
+.right-bottom-quote::before{top:6px}
+.right-bottom-quote::after{bottom:6px}
+.right-bottom-quote .qflag{display:inline-block;background:var(--hot);color:var(--paper);padding:3px 12px;font-family:"Arial Black",sans-serif;font-size:10px;letter-spacing:.4em;font-weight:900;margin-bottom:8px}
+.right-bottom-quote .q{font-family:"Source Han Serif SC","Songti SC",serif;font-size:18px;font-weight:700;line-height:1.4;color:var(--paper);letter-spacing:.04em;margin:0}
+.right-bottom-quote .q em{color:#ff8a82;font-style:normal;font-weight:900;border-bottom:2px solid var(--hot);padding-bottom:2px}
+.right-bottom-quote .qby{margin-top:8px;font-size:9px;color:var(--ink-4);letter-spacing:.2em;text-transform:uppercase;font-family:"Arial Black",sans-serif}
+.right-bottom-quote .qby b{color:var(--paper);font-weight:900}
+
+/* === v22 新增：左页底部花絮延伸（填左下空白） === */
+.left-bottom-extra{
+  grid-column:1 / span 13;grid-row:5;
+  padding:10px 0 0;
+  border-top:1px solid var(--rule-mid);
+  display:grid;grid-template-columns:repeat(5,1fr);gap:0;
+  margin-top:10px;
+}
+.left-bottom-extra .bx{padding:8px 14px;border-right:1px dashed var(--rule-mid);background:var(--paper)}
+.left-bottom-extra .bx:last-child{border-right:none}
+.left-bottom-extra .bx .xb{display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px solid var(--ink);padding-bottom:3px;margin-bottom:4px}
+.left-bottom-extra .bx .xb h4{font-family:"Arial Black",sans-serif;font-size:10px;letter-spacing:.25em;font-weight:900;color:var(--ink);margin:0}
+.left-bottom-extra .bx .xb .n{font-family:"Arial Black",sans-serif;font-size:10px;color:var(--hot);font-weight:900;letter-spacing:.1em}
+.left-bottom-extra .bx p{font-size:11px;line-height:1.5;color:var(--ink-2);margin:0}
+.left-bottom-extra .bx p b{color:var(--ink);font-weight:900}
+.left-bottom-extra .bx p em{color:var(--hot);font-style:normal;font-weight:700}
 
 /* === 内部横版布局 === */
 .col.row-l{display:grid;grid-template-columns:200px 1fr;gap:18px;align-items:start}
@@ -540,6 +574,30 @@ html,body{background:#2a2a28;color:var(--ink);font-family:"Source Han Serif SC",
         </div>
       </article>
 
+      <!-- v22 新增：左页底部花絮延伸（填补空白） -->
+      <div class="left-bottom-extra">
+        <div class="bx">
+          <div class="xb"><h4>花絮 01</h4><span class="n">▌ 薄荷</span></div>
+          <p>戴太太的<em>薄荷</em>涮进锅里后，戴先生夹了三次确认味道。</p>
+        </div>
+        <div class="bx">
+          <div class="xb"><h4>花絮 02</h4><span class="n">▌ 弹指</span></div>
+          <p>戴先生<em>弹手指</em>逗北鼻，被戴太太录成 <b>47 秒</b>视频。</p>
+        </div>
+        <div class="bx">
+          <div class="xb"><h4>花絮 03</h4><span class="n">▌ 规则</span></div>
+          <p>奇怪桌游的<em>规则</em>是戴太太<em>现场发明</em>的，原版不存在。</p>
+        </div>
+        <div class="bx">
+          <div class="xb"><h4>花絮 04</h4><span class="n">▌ 手账</span></div>
+          <p>「<em>火锅人们</em>」当晚画了 <b>25 分钟</b>，戴先生全程端茶。</p>
+        </div>
+        <div class="bx">
+          <div class="xb"><h4>花絮 05</h4><span class="n">▌ 回家</span></div>
+          <p>回家路上戴先生说：<em>结婚证相框摆在书桌上很久了。</em></p>
+        </div>
+      </div>
+
     </section>
 
   </div>
@@ -674,6 +732,13 @@ html,body{background:#2a2a28;color:var(--ink);font-family:"Source Han Serif SC",
           <b>▲ 5 个大人围 1 个 9 个月小北鼻</b>
           仰躺 · 浅色衣服 · 灰白条纹薄被 · 戴先生弯腰弹手指逗他，戴太太全程拍视频
         </div>
+      </div>
+
+      <!-- v22 新增：右页底部客人话横幅（填空白） -->
+      <div class="right-bottom-quote">
+        <span class="qflag">客 人 话 · 戴太太引言</span>
+        <p class="q">最累的不是——是<em>你想离开</em>的时候，<em>小北鼻</em>对你笑了一下。</p>
+        <p class="qby">—— 戴太太 · 7 月 4 日 · 兰州王小娟家 · <b>本报独家</b></p>
       </div>
 
     </section>
