@@ -254,19 +254,34 @@ html,body{background:#2a2a28;color:var(--ink);font-family:"Source Han Serif SC",
   font-family:"Courier New",monospace;
 }
 
-/* ================== 板块 SECTION ================== */
-.body{
-  display:grid;grid-template-columns:repeat(6,1fr);gap:0;
+/* ================== 板块 SECTION · 不规则网格 ==================
+   v14 改进: 报纸豆腐块大小不一 / 跨栏 / 跨行
+   12 列网格 + 各种跨栏组合 */
+.middle{
+  display:grid;
+  grid-template-columns:repeat(12,1fr);
+  grid-auto-rows:minmax(60px,auto);
   border-bottom:3px solid var(--ink);
 }
-.body .col{
-  border-right:1px solid var(--rule);
-  padding:18px 16px 16px;
+.middle .col{
+  padding:16px 16px 14px;
   background:var(--paper);
   display:flex;flex-direction:column;
+  border-right:1px solid var(--rule);
+  border-bottom:1px solid var(--rule);
+  min-width:0;overflow:hidden;
 }
-.body .col:last-child{border-right:none}
-.body .col.no-img{padding-bottom:18px}
+.middle .col.no-r{border-right:none}
+.middle .col.no-b{border-bottom:none}
+
+/* === 不规则大小 === */
+.middle .hotpot{grid-column:1 / span 5;grid-row:1 / span 2}      /* 火锅: 大块 5×2 */
+.middle .side-quote{grid-column:6 / span 3;grid-row:1}            /* 客人话侧栏: 3×1 */
+.middle .baby{grid-column:9 / span 4;grid-row:1 / span 2}          /* 北鼻: 高块 4×2 */
+.middle .pancake{grid-column:6 / span 4;grid-row:2}               /* 桌游: 4×1 */
+.middle .sketch{grid-column:1 / span 3;grid-row:3}                /* 手账: 小块 3×1 */
+.middle .wedding{grid-column:4 / span 4;grid-row:3}               /* 结婚证: 中块 4×1 */
+.middle .tip{grid-column:8 / span 5;grid-row:3}                   /* 冷知识 / 小豆腐: 5×1 */
 
 .sec-head{
   border-bottom:2px solid var(--ink);
@@ -348,13 +363,73 @@ html,body{background:#2a2a28;color:var(--ink);font-family:"Source Han Serif SC",
 .col .credit b{color:var(--ink)}
 .col .credit em{color:var(--hot);font-style:normal}
 
-/* 全场焦点专栏 */
-.col.spotlight{
-  background:var(--paper-2);
-  border-right:1px solid var(--ink);
-  border-left:1px solid var(--ink);
+/* === 内部布局变种（让豆腐块"形状"不同） === */
+
+/* 火锅（大块）: 图大文字少 */
+.hotpot h3{font-size:32px}
+.hotpot .pic{margin:8px 0 10px}
+.hotpot .pic img{height:280px;object-fit:cover}
+.hotpot p{font-size:13px;line-height:1.85}
+
+/* 桌游（中块）: 图大 + 短文 */
+.pancake .pic img{height:200px;object-fit:cover}
+.pancake h3{font-size:22px}
+
+/* 北鼻（高块）: 图在顶部 + 文字在下 */
+.baby .pic img{height:220px;object-fit:cover}
+.baby h3{font-size:24px}
+.baby{background:var(--paper-2);border-right:1px solid var(--ink) !important;border-left:1px solid var(--ink) !important}
+
+/* 手账（小块）: 小图 + 短文 */
+.sketch .pic img{height:140px;object-fit:cover}
+.sketch h3{font-size:18px}
+.sketch p{font-size:11.5px}
+
+/* 结婚证（中块·无主图）: 全文字 + 嵌入式小图 */
+.wedding{background:var(--paper-2)}
+.wedding .pic{display:none}                          /* 不显示主图框，留更多文字空间 */
+.wedding .photo-mini{
+  width:100%;height:90px;background:#000;margin:6px 0 8px;
+  background-size:cover;background-position:center;
+  border:1px solid var(--ink);position:relative;
 }
-.col.spotlight h3{font-size:24px}
+.wedding .photo-mini::after{
+  content:"▲ 家中静物";position:absolute;bottom:0;left:0;right:0;
+  background:linear-gradient(transparent,rgba(0,0,0,.8));color:#fff;
+  padding:8px 10px 5px;font-size:10px;
+}
+.wedding h3{font-size:18px}
+
+/* 客人话侧栏（3×1 横排）: 引言为主 */
+.side-quote{background:var(--ink);color:var(--paper);justify-content:center;padding:14px 18px;text-align:center}
+.side-quote h3{color:var(--paper);font-size:14px;letter-spacing:.3em;font-weight:900;margin-bottom:6px}
+.side-quote h3::before{content:"❝";color:var(--hot);font-size:20px;margin-right:6px;vertical-align:middle}
+.side-quote .q{font-size:13px;line-height:1.7;color:var(--paper);font-style:italic;text-align:left}
+.side-quote .q b{color:#ff8a82;font-weight:900}
+.side-quote .qby{margin-top:8px;font-size:10px;color:var(--ink-4);letter-spacing:.15em;text-align:left}
+
+/* 冷知识 / 小豆腐（5×1 宽块）: 横排多列短消息 */
+.tip{background:var(--paper);padding:14px 18px}
+.tip .tip-head{
+  border-bottom:2px solid var(--ink);padding-bottom:4px;margin-bottom:8px;
+  display:flex;justify-content:space-between;align-items:baseline;
+}
+.tip .tip-head h3{font-size:14px;letter-spacing:.3em;font-weight:900;color:var(--ink);margin:0}
+.tip .tip-head .t{font-size:10px;color:var(--ink-3);letter-spacing:.15em;font-family:"Arial Black",sans-serif}
+.tip .tip-list{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:0;
+  font-size:11.5px;color:var(--ink-2);line-height:1.6;
+}
+.tip .tip-list li{
+  list-style:none;padding:4px 10px;border-right:1px dashed var(--rule-mid);
+  display:flex;flex-direction:column;gap:2px;
+}
+.tip .tip-list li:last-child{border-right:none}
+.tip .tip-list li::before{
+  content:attr(data-num);font-family:"Arial Black",sans-serif;
+  font-size:9px;color:var(--hot);letter-spacing:.15em;font-weight:900;
+}
+.tip .tip-list li b{color:var(--ink);font-weight:900;font-size:12px;margin-bottom:2px;display:block}
 
 /* ================== 客人话页 ================== */
 .quote{
@@ -551,10 +626,16 @@ html,body{background:#2a2a28;color:var(--ink);font-family:"Source Han Serif SC",
   .front .ft{border-right:none;border-bottom:1px solid var(--ink)}
   .front .ft h2{font-size:36px}
   .front .fp{min-height:280px}
-  .body{grid-template-columns:repeat(2,1fr)}
-  .body .col{border-right:1px solid var(--rule);border-bottom:1px solid var(--rule)}
-  .body .col:nth-child(2n){border-right:none}
-  .col h3{font-size:18px}
+  .middle{grid-template-columns:repeat(2,1fr)}
+  .middle .hotpot,.middle .side-quote,.middle .baby,
+  .middle .pancake,.middle .sketch,.middle .wedding,.middle .tip{
+    grid-column:auto;grid-row:auto;
+  }
+  .middle .col{border-right:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+  .middle .col:nth-child(2n){border-right:none}
+  .hotpot h3,.baby h3{font-size:20px}
+  .hotpot .pic img,.baby .pic img{height:auto;max-height:240px}
+  .tip .tip-list{grid-template-columns:1fr}
   .quote{padding:22px 18px}
   .quote .q{font-size:20px}
   .bul{grid-template-columns:1fr}
@@ -662,11 +743,11 @@ html,body{background:#2a2a28;color:var(--ink);font-family:"Source Han Serif SC",
     </div>
   </section>
 
-  <!-- ============ 6 栏板块 ============ -->
-  <section class="body">
+  <!-- ============ 不规则板块区 · 大小不一 ============ -->
+  <section class="middle">
 
-    <!-- 板块 01 -->
-    <article class="col">
+    <!-- 板块 01 · 火锅 · 大块 5×2（头版要闻） -->
+    <article class="col hotpot">
       <div class="sec-head">
         <span class="num">01</span>
         <span class="label">板块 <b>01</b><br><b>东道主</b>主场<br>P.02</span>
@@ -684,34 +765,22 @@ html,body{background:#2a2a28;color:var(--ink);font-family:"Source Han Serif SC",
       <div class="credit">撰文 <b>戴先生</b> · 板块 <em>bot1</em></div>
     </article>
 
-    <!-- 板块 02 -->
-    <article class="col">
-      <div class="sec-head">
-        <span class="num">02</span>
-        <span class="label">板块 <b>02</b><br><b>我方</b>主场<br>P.03</span>
+    <!-- 客人话侧栏 · 3×1 横排小块 -->
+    <article class="col side-quote no-r no-b">
+      <h3>客人的话</h3>
+      <div class="q">
+        三组家庭的会晤，最累的不是——是你想离开的时候，<b>小北鼻对你笑了一下。</b>
       </div>
-      <h3>桌游：<span class="g">吸爆松饼</span>。</h3>
-      <div class="deck">5 人同乐的纸牌桌游，<b>来自戴家奇怪物资清单</b></div>
-      <div class="pic">
-        <span class="badge g">图 02</span>
-        <img src="https://dcrlovejs-spec.github.io/sleep-briefing/photos/2026-07-04/03-pancake-game.jpg" alt="吸爆松饼桌游">
-        <div class="cap"><b>▲ 5 人围一桌</b><br>纸牌散一桌 · 打了一下午</div>
-      </div>
-      <p>这是一款<b>5 人同乐的纸牌桌游</b>，来自我方家庭带来的奇怪物资清单。</p>
-      <p>5 个人围一桌，<b>纸牌散一桌</b>，我们打了一下午。<b>戴太太笑得最大声</b>，朋友举牌挡住半张脸——大家都很开心。</p>
-      <p>规则奇怪：要把松饼<span class="g">用嘴吸爆</span>。谁吸爆了谁赢。</p>
-      <blockquote class="b-gold">"奇怪的菜品 + 奇怪的桌游 = 奇怪的下午。"</blockquote>
-      <div class="credit">摄影 <b>戴先生随手</b> · 桌游 <em>戴家</em></div>
+      <div class="qby">—— 戴太太 · 原文 · P.05</div>
     </article>
 
-    <!-- 板块 03（焦点专栏） -->
-    <article class="col spotlight">
+    <!-- 板块 03 · 北鼻 · 高块 4×2 -->
+    <article class="col baby">
       <div class="sec-head">
         <span class="num">03</span>
-        <span class="label">板块 <b>03</b><br><b>全场</b>焦点<br>P.03</span>
+        <span class="label">板块 <b>03</b><br><b>全场</b>焦点<br>P.03 · 特邀方</span>
       </div>
       <h3>九个月，<br><span class="m">仰面</span>躺床上。</h3>
-      <div class="deck"><b>特邀方</b>· 9 个月小北鼻 · 当日最大彩蛋</div>
       <div class="pic">
         <span class="badge m">图 03</span>
         <img src="https://dcrlovejs-spec.github.io/sleep-briefing/photos/2026-07-04/02-baby-play.jpg" alt="逗小北鼻">
@@ -724,64 +793,68 @@ html,body{background:#2a2a28;color:var(--ink);font-family:"Source Han Serif SC",
       <div class="credit">摄影 <b>戴太太</b> · 撰文 <em>戴太太口述</em></div>
     </article>
 
-    <!-- 板块 04 -->
-    <article class="col">
+    <!-- 板块 02 · 桌游 · 中块 4×1 -->
+    <article class="col pancake no-b">
+      <div class="sec-head">
+        <span class="num">02</span>
+        <span class="label">板块 <b>02</b> · <b>我方</b>主场 · P.03</span>
+      </div>
+      <h3>桌游：<span class="g">吸爆松饼</span>。</h3>
+      <div class="deck">5 人同乐的纸牌桌游，<b>来自戴家奇怪物资清单</b></div>
+      <div class="pic">
+        <span class="badge g">图 02</span>
+        <img src="https://dcrlovejs-spec.github.io/sleep-briefing/photos/2026-07-04/03-pancake-game.jpg" alt="吸爆松饼桌游">
+        <div class="cap"><b>▲ 5 人围一桌</b><br>纸牌散一桌 · 打了一下午</div>
+      </div>
+      <p>5 个人围一桌，<b>纸牌散一桌</b>，我们打了一下午。<b>戴太太笑得最大声</b>，朋友举牌挡住半张脸——大家都很开心。规则奇怪：要把松饼<span class="g">用嘴吸爆</span>。</p>
+      <blockquote class="b-gold">"奇怪的菜品 + 奇怪的桌游 = 奇怪的下午。"</blockquote>
+      <div class="credit">摄影 <b>戴先生随手</b> · 桌游 <em>戴家</em></div>
+    </article>
+
+    <!-- 板块 04 · 手账 · 小块 3×1 -->
+    <article class="col sketch">
       <div class="sec-head">
         <span class="num">04</span>
         <span class="label">板块 <b>04</b><br><b>文艺</b>担当<br>P.04</span>
       </div>
-      <h3>戴太太<span class="g">手绘</span><br>水彩。</h3>
-      <div class="deck">回家当晚 · 戴太太拿出水彩本 · 画了这次聚会</div>
+      <h3>戴太太<span class="g">手绘</span>水彩。</h3>
       <div class="pic">
         <span class="badge g">图 04</span>
         <img src="https://dcrlovejs-spec.github.io/sleep-briefing/photos/2026-07-04/04-sketchbook.jpg" alt="戴太太手账水彩">
-        <div class="cap"><b>▲ 戴太太水彩手账</b><br>红色彩笔画的箭头 + 星</div>
+        <div class="cap"><b>▲ 水彩手账</b><br>「火锅人们」</div>
       </div>
-      <p>标题叫<b>「火锅人们」</b>。副标题写：<b>「完整聚会，7.04 下午」</b>。旁边贴两张自拍小图，红色彩笔画的箭头 + 星。</p>
-      <p>批注三个字：<em>又吃又玩又让人奔欢</em>。我方家庭的<b>文艺担当</b>。</p>
-      <blockquote class="b-gold">"火锅人们——又吃又玩又让人奔欢。" —— 戴太太手账原文</blockquote>
-      <div class="credit">手绘 <b>戴太太</b> · 抄录 <em>bot1</em></div>
+      <p>标题「<b>火锅人们</b>」。批注三个字：<em>又吃又玩又让人奔欢</em>。</p>
+      <blockquote class="b-gold" style="font-size:11px;padding:5px 8px">"火锅人们——又吃又玩又让人奔欢。"</blockquote>
+      <div class="credit">手绘 <b>戴太太</b></div>
     </article>
 
-    <!-- 板块 05 -->
-    <article class="col">
+    <!-- 板块 05 · 结婚证 · 中块 4×1 -->
+    <article class="col wedding">
       <div class="sec-head">
         <span class="num">05</span>
         <span class="label">板块 <b>05</b><br><b>私人</b>珍藏<br>P.04</span>
       </div>
-      <h3>戴家书桌上的<br><span style="color:var(--ink-3)">结婚证</span>。</h3>
+      <h3>戴家书桌上的<span style="color:var(--ink-3)">结婚证</span>。</h3>
       <div class="deck">家中静物 · <b>不是聚会照片</b> · 仅限家人传阅</div>
-      <div class="pic">
-        <span class="badge">图 05</span>
-        <img src="https://dcrlovejs-spec.github.io/sleep-briefing/photos/2026-07-04/05-wedding-photo.jpg" alt="结婚证相框">
-        <div class="cap"><b>▲ 戴先生书桌上的结婚证相框</b><br>家中静物 · 摆了很久</div>
-      </div>
-      <p>这不是聚会照片——这是<b>家中静物</b>。</p>
-      <p>回家路上戴先生说：<b>"结婚证相框摆在书桌上很久了。"</b>。我们一致决定：今天的家报，应该有这一张。</p>
+      <div class="photo-mini" style="background-image:url('https://dcrlovejs-spec.github.io/sleep-briefing/photos/2026-07-04/05-wedding-photo.jpg')"></div>
+      <p>这不是聚会照片——这是<b>家中静物</b>。回家路上戴先生说：<b>"结婚证相框摆在书桌上很久了。"</b></p>
       <p>它代表——<b>我们去朋友家做客，是因为我们有了家</b>。有了家，才有 6 人围坐、才有"奇怪的菜品"、才有笑得最大声的戴太太。</p>
-      <blockquote class="b-gray">"家中静物，未公开陈列。" —— bot1 备注</blockquote>
+      <blockquote class="b-gray">"家中静物，未公开陈列。"</blockquote>
       <div class="credit">摄影 <b>戴先生</b> · 撰文 <em>戴先生 &amp; bot1</em></div>
     </article>
 
-    <!-- 客人话 -->
-    <article class="col">
-      <div class="sec-head">
-        <span class="num">★</span>
-        <span class="label">客人 <b>的话</b><br><b>VOICES</b><br>P.05</span>
+    <!-- 小豆腐 · 冷知识横排 5×1（板块 06） -->
+    <article class="col tip">
+      <div class="tip-head">
+        <h3>▌花 絮 · SIDEBAR</h3>
+        <span class="t">5 件小事 · 本报独家</span>
       </div>
-      <h3 style="font-size:18px">戴太太<br><em style="font-size:14px">原话摘录</em></h3>
-      <div class="deck">本报 <b>P.05 客人话栏</b> 全文刊载</div>
-      <blockquote style="font-size:13.5px;border-left-width:4px;padding:10px 12px;margin-top:12px">
-        三组家庭的会晤，<br>
-        <em style="font-size:14px">最累的不是——</em><br>
-        是你想离开的时候，<br>
-        <b style="color:var(--hot);font-size:15px">小北鼻对你笑了一下。</b>
-      </blockquote>
-      <p style="margin-top:14px;font-size:11.5px;color:var(--ink-3);line-height:1.6">—— 戴太太 · 原文 · 7 月 4 日晚间手账批注</p>
-      <p style="font-size:11px;color:var(--ink-3);border-top:1px dashed var(--rule-mid);padding-top:8px;margin-top:auto">
-        配图：戴太太手绘水彩「火锅人们」<br>（见板块 04）
-      </p>
-      <div class="credit">摘录 <b>bot1</b></div>
+      <ul class="tip-list">
+        <li data-num="①"><b>戴太太的薄荷</b>涮进锅里后，戴先生夹了三次确认味道</li>
+        <li data-num="②"><b>戴先生弹手指</b>逗小北鼻，被戴太太录成 47 秒视频</li>
+        <li data-num="③"><b>奇怪桌游的规则</b>是戴太太现场发明的，原版不存在</li>
+        <li data-num="④"><b>水彩「火锅人们」</b>当晚画了 25 分钟，戴先生全程端茶</li>
+      </ul>
     </article>
 
   </section>
