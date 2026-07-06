@@ -30,14 +30,14 @@
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{background:#2a2a28;color:var(--ink);font-family:"Source Han Serif SC","Noto Serif CJK SC","Songti SC","SimSun",serif;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
 
-/* === 一整张大报纸 === */
+/* === 一整张大报纸 · v15 横向更宽 === */
 .paper{
-  width:1200px;
-  margin:24px auto;
+  width:1500px;
+  margin:20px auto;
   background:var(--paper);
-  border-top:6px solid var(--ink);
-  border-bottom:6px solid var(--ink);
-  box-shadow:0 6px 48px rgba(0,0,0,.45);
+  border-top:4px solid var(--ink);
+  border-bottom:4px solid var(--ink);
+  box-shadow:0 4px 40px rgba(0,0,0,.4);
   position:relative;
 }
 .paper::before,.paper::after{
@@ -45,14 +45,14 @@ html,body{background:#2a2a28;color:var(--ink);font-family:"Source Han Serif SC",
 }
 .paper::before{top:8px}.paper::after{bottom:8px}
 
-/* ================== 装饰小条 / 元数据条 ================== */
+/* ================== 装饰小条 / 元数据条 · v15 更紧凑 ================== */
 .topbar{
-  border-bottom:1px solid var(--rule);
+  border-bottom:1px solid var(--ink);
   display:grid;grid-template-columns:1fr auto 1fr;align-items:center;
-  padding:5px 18px;
+  padding:4px 18px;
   font-family:"Courier New",monospace;font-size:10px;letter-spacing:.1em;
   color:var(--ink-2);
-  background:var(--paper-2);
+  background:var(--paper);
 }
 .topbar .l{display:flex;gap:14px;align-items:center}
 .topbar .c{display:flex;gap:8px;align-items:center;font-weight:700;color:var(--ink);text-transform:uppercase}
@@ -67,7 +67,7 @@ html,body{background:#2a2a28;color:var(--ink);font-family:"Source Han Serif SC",
 /* ================== 报头 MASTHEAD ================== */
 .masthead{
   text-align:center;
-  padding:18px 18px 14px;
+  padding:14px 18px 12px;
   border-bottom:3px double var(--ink);
   background:var(--paper);
   position:relative;
@@ -107,7 +107,7 @@ html,body{background:#2a2a28;color:var(--ink);font-family:"Source Han Serif SC",
 
 .masthead h1{
   font-family:"KaiTi","STKaiti","楷体","Songti SC","SimSun",serif;
-  font-size:104px;font-weight:900;letter-spacing:.18em;line-height:1;
+  font-size:88px;font-weight:900;letter-spacing:.18em;line-height:1;
   color:var(--ink);
   margin:0;
   text-shadow:1px 1px 0 rgba(0,0,0,.05);
@@ -127,11 +127,11 @@ html,body{background:#2a2a28;color:var(--ink);font-family:"Source Han Serif SC",
 .masthead .sub .sep{color:var(--ink-3)}
 .masthead .sub b{color:var(--hot);font-weight:900}
 
-/* ================== 导读条 RAIL ================== */
+/* ================== 导读条 RAIL · v15 简化 ================== */
 .rail{
   border-bottom:1px solid var(--ink);
   display:flex;align-items:stretch;
-  background:var(--paper-2);
+  background:var(--paper);
   font-size:12px;
 }
 .rail .tag{
@@ -162,13 +162,14 @@ html,body{background:#2a2a28;color:var(--ink);font-family:"Source Han Serif SC",
   font-family:"Arial Black",sans-serif;font-size:11px;letter-spacing:.2em;color:var(--ink);
 }
 
-/* ================== 头条区 HEADLINE ================== */
+/* ================== 头条区 HEADLINE · v15 更横 ================== */
 .front{
-  display:grid;grid-template-columns:5fr 4fr;gap:0;
+  display:grid;grid-template-columns:1fr 1fr;gap:0;
   border-bottom:3px solid var(--ink);
+  min-height:340px;
 }
 .front .ft{
-  padding:24px 28px 22px;
+  padding:18px 28px 16px;
   border-right:1px solid var(--rule);
   display:flex;flex-direction:column;justify-content:space-between;
 }
@@ -185,8 +186,8 @@ html,body{background:#2a2a28;color:var(--ink);font-family:"Source Han Serif SC",
 .front .ft .kicker::after{max-width:60px}
 .front .ft h2{
   font-family:"Source Han Serif SC","Songti SC","SimSun",serif;
-  font-size:64px;font-weight:900;line-height:1.05;
-  margin:14px 0 8px;color:var(--ink);letter-spacing:.02em;
+  font-size:58px;font-weight:900;line-height:1.05;
+  margin:10px 0 6px;color:var(--ink);letter-spacing:.02em;
 }
 .front .ft h2 em{color:var(--hot);font-style:normal}
 .front .ft .deck{
@@ -218,7 +219,7 @@ html,body{background:#2a2a28;color:var(--ink);font-family:"Source Han Serif SC",
 
 .front .fp{
   padding:0;position:relative;background:#000;overflow:hidden;
-  min-height:560px;
+  min-height:340px;
 }
 .front .fp img{
   width:100%;height:100%;object-fit:cover;display:block;filter:contrast(1.05) saturate(.92);
@@ -254,34 +255,42 @@ html,body{background:#2a2a28;color:var(--ink);font-family:"Source Han Serif SC",
   font-family:"Courier New",monospace;
 }
 
-/* ================== 板块 SECTION · 不规则网格 ==================
-   v14 改进: 报纸豆腐块大小不一 / 跨栏 / 跨行
-   12 列网格 + 各种跨栏组合 */
+/* ================== 板块 SECTION · v15 横版 ==================
+   特点: 12 列 grid + 全横板块 + 去掉遮盖
+   板块之间不用粗黑线分隔，用白色间距 */
 .middle{
   display:grid;
   grid-template-columns:repeat(12,1fr);
-  grid-auto-rows:minmax(60px,auto);
+  grid-auto-rows:minmax(80px,auto);
+  background:var(--paper);
+  padding:0;gap:0;
+  border-top:3px solid var(--ink);
   border-bottom:3px solid var(--ink);
 }
 .middle .col{
-  padding:16px 16px 14px;
+  padding:18px 20px;
   background:var(--paper);
   display:flex;flex-direction:column;
-  border-right:1px solid var(--rule);
-  border-bottom:1px solid var(--rule);
   min-width:0;overflow:hidden;
+  position:relative;
 }
-.middle .col.no-r{border-right:none}
-.middle .col.no-b{border-bottom:none}
 
-/* === 不规则大小 === */
-.middle .hotpot{grid-column:1 / span 5;grid-row:1 / span 2}      /* 火锅: 大块 5×2 */
-.middle .side-quote{grid-column:6 / span 3;grid-row:1}            /* 客人话侧栏: 3×1 */
-.middle .baby{grid-column:9 / span 4;grid-row:1 / span 2}          /* 北鼻: 高块 4×2 */
-.middle .pancake{grid-column:6 / span 4;grid-row:2}               /* 桌游: 4×1 */
-.middle .sketch{grid-column:1 / span 3;grid-row:3}                /* 手账: 小块 3×1 */
-.middle .wedding{grid-column:4 / span 4;grid-row:3}               /* 结婚证: 中块 4×1 */
-.middle .tip{grid-column:8 / span 5;grid-row:3}                   /* 冷知识 / 小豆腐: 5×1 */
+/* === 不规则大小 · 全横版 === */
+.middle .hotpot{grid-column:1 / span 6;grid-row:1;background:var(--paper)}     /* 火锅: 超横 6×1 */
+.middle .baby{grid-column:7 / span 6;grid-row:1;background:var(--paper)}        /* 北鼻: 横 6×1 */
+.middle .side-quote{grid-column:1 / span 12;grid-row:2;background:var(--ink);color:var(--paper)} /* 客人话: 全宽横条 */
+.middle .pancake{grid-column:1 / span 5;grid-row:3;background:var(--paper)}    /* 桌游: 横 5×1 */
+.middle .sketch{grid-column:6 / span 4;grid-row:3;background:var(--paper)}     /* 手账: 横 4×1 */
+.middle .wedding{grid-column:10 / span 3;grid-row:3;background:var(--paper)}  /* 结婚证: 横 3×1 */
+.middle .tip{grid-column:1 / span 12;grid-row:4;background:var(--paper)}       /* 花絮: 全宽横排 */
+
+/* === v15 关键: 板块内部横版布局 === */
+.col.row-l{display:grid;grid-template-columns:240px 1fr;gap:18px}
+.col.row-r{display:grid;grid-template-columns:1fr 240px;gap:18px}
+.col.row-l .pic,.col.row-r .pic{margin:0}
+.col.row-l .pic img,.col.row-r .pic img{height:100%;min-height:180px;object-fit:cover;width:100%}
+.col.row-l > div:last-child,.col.row-r > div:last-child{display:flex;flex-direction:column;justify-content:flex-start}
+.col.row-l > div:last-child > :first-child,.col.row-r > div:last-child > :first-child{margin-top:0}
 
 .sec-head{
   border-bottom:2px solid var(--ink);
@@ -301,38 +310,37 @@ html,body{background:#2a2a28;color:var(--ink);font-family:"Source Han Serif SC",
 .col h3{
   font-family:"Source Han Serif SC","Songti SC",serif;
   font-size:22px;font-weight:900;line-height:1.15;
-  margin:6px 0 4px;color:var(--ink);letter-spacing:.02em;
+  margin:0 0 4px;color:var(--ink);letter-spacing:.02em;
 }
 .col h3 em{color:var(--hot);font-style:normal}
 .col h3 .m{color:var(--mint)}
 .col h3 .g{color:var(--gold)}
 .col .deck{
   font-size:11px;color:var(--ink-2);font-style:italic;
-  border-top:1px solid var(--rule-mid);border-bottom:1px solid var(--rule-mid);
-  padding:4px 0;margin-bottom:8px;letter-spacing:.04em;
+  padding:0 0 6px;margin-bottom:8px;letter-spacing:.04em;
 }
 .col .deck b{color:var(--ink);font-style:normal;font-weight:900}
 
+/* === v15 .pic 去遮盖：去掉所有边框/背景/徽章 === */
 .col .pic{
-  margin:6px 0 8px;border:1px solid var(--ink);padding:4px;background:var(--paper-2);
-  position:relative;
+  margin:6px 0 8px;position:relative;
 }
-.col .pic img{width:100%;height:auto;display:block;border:1px solid var(--ink-3)}
+.col .pic img{width:100%;height:auto;display:block}
 .col .pic .cap{
-  font-size:10px;color:var(--ink-2);padding:4px 2px 0;line-height:1.5;
-  border-top:1px solid var(--rule-mid);margin-top:4px;
+  font-size:11px;color:var(--ink-2);padding:5px 0 0;line-height:1.55;
 }
 .col .pic .cap b{color:var(--ink);font-weight:900}
 .col .pic .cap em{color:var(--hot);font-style:normal;font-weight:700}
 .col .pic .badge{
-  position:absolute;top:-1px;left:-1px;
-  background:var(--ink);color:var(--paper);
-  padding:2px 6px;font-family:"Arial Black",sans-serif;
+  position:absolute;top:6px;left:6px;
+  background:rgba(0,0,0,.75);color:#fff;
+  padding:2px 8px;font-family:"Arial Black",sans-serif;
   font-size:9px;letter-spacing:.2em;font-weight:900;
+  backdrop-filter:blur(2px);
 }
-.col .pic .badge.r{background:var(--hot)}
-.col .pic .badge.g{background:var(--gold);color:var(--paper)}
-.col .pic .badge.m{background:var(--mint)}
+.col .pic .badge.r{background:rgba(184,22,14,.85)}
+.col .pic .badge.g{background:rgba(138,101,8,.85)}
+.col .pic .badge.m{background:rgba(31,110,74,.85)}
 
 .col p{
   font-size:12px;line-height:1.8;color:var(--ink-2);
@@ -341,95 +349,102 @@ html,body{background:#2a2a28;color:var(--ink);font-family:"Source Han Serif SC",
 .col p b{color:var(--ink);font-weight:700}
 .col p em{color:var(--hot);font-style:normal;font-weight:700}
 .col blockquote{
-  border-left:3px solid var(--hot);
-  background:rgba(184,22,14,.04);
-  padding:6px 10px;margin:8px 0;font-size:11.5px;color:var(--ink);
+  border-top:1px solid var(--rule-mid);
+  border-bottom:1px solid var(--rule-mid);
+  padding:6px 0;margin:8px 0;font-size:12px;color:var(--ink);
   font-style:italic;line-height:1.55;
 }
-.col blockquote::before{content:"❝";color:var(--hot);font-size:14px;line-height:0;margin-right:4px;vertical-align:middle}
-.col blockquote::after{content:"❞";color:var(--hot);font-size:14px;line-height:0;margin-left:4px;vertical-align:middle}
-.col blockquote.b-mint{border-left-color:var(--mint);background:rgba(31,110,74,.04)}
+.col blockquote::before{content:"❝ ";color:var(--hot);font-size:13px;line-height:0;margin-right:2px;vertical-align:middle}
+.col blockquote::after{content:" ❞";color:var(--hot);font-size:13px;line-height:0;margin-left:2px;vertical-align:middle}
 .col blockquote.b-mint::before,.col blockquote.b-mint::after{color:var(--mint)}
-.col blockquote.b-gold{border-left-color:var(--gold);background:rgba(138,101,8,.04)}
 .col blockquote.b-gold::before,.col blockquote.b-gold::after{color:var(--gold)}
-.col blockquote.b-gray{border-left-color:var(--ink-3);background:rgba(0,0,0,.03)}
 .col blockquote.b-gray::before,.col blockquote.b-gray::after{color:var(--ink-3)}
+.col blockquote.b-mint{border-color:var(--rule-mid)}
+.col blockquote.b-gold{border-color:var(--rule-mid)}
+.col blockquote.b-gray{border-color:var(--rule-mid)}
 
 .col .credit{
-  margin-top:auto;padding-top:8px;border-top:1px dashed var(--rule-mid);
+  margin-top:auto;padding-top:6px;
   font-size:9.5px;color:var(--ink-3);letter-spacing:.15em;
   text-transform:uppercase;font-family:"Arial Black",sans-serif;
 }
 .col .credit b{color:var(--ink)}
 .col .credit em{color:var(--hot);font-style:normal}
 
-/* === 内部布局变种（让豆腐块"形状"不同） === */
+/* === 内部布局变种 · v15 去遮盖 === */
 
-/* 火锅（大块）: 图大文字少 */
-.hotpot h3{font-size:32px}
-.hotpot .pic{margin:8px 0 10px}
-.hotpot .pic img{height:280px;object-fit:cover}
+/* 火锅（横版大块 6×1）: 左图 + 右文 */
+.hotpot h3{font-size:34px;letter-spacing:.02em}
 .hotpot p{font-size:13px;line-height:1.85}
+.hotpot .pic{border:none;padding:0;background:none;margin:0}
+.hotpot .pic img{border:none}
+.hotpot .pic .cap{display:none}
 
-/* 桌游（中块）: 图大 + 短文 */
-.pancake .pic img{height:200px;object-fit:cover}
+/* 北鼻（横版 6×1）: 左文 + 右图 */
+.baby h3{font-size:30px}
+.baby p{font-size:13px;line-height:1.85}
+.baby .pic{border:none;padding:0;background:none;margin:0}
+.baby .pic img{border:none}
+.baby .pic .cap{display:none}
+
+/* 桌游（横版 5×1）: 上图下文紧凑 */
+.pancake .pic{margin:0 0 8px;border:none;padding:0;background:none}
+.pancake .pic img{height:200px;border:none}
 .pancake h3{font-size:22px}
+.pancake p{font-size:12.5px;line-height:1.8}
 
-/* 北鼻（高块）: 图在顶部 + 文字在下 */
-.baby .pic img{height:220px;object-fit:cover}
-.baby h3{font-size:24px}
-.baby{background:var(--paper-2);border-right:1px solid var(--ink) !important;border-left:1px solid var(--ink) !important}
+/* 手账（横版 4×1）: 小图横排 + 短文 */
+.sketch .pic{border:none;padding:0;background:none;margin:0 0 6px}
+.sketch .pic img{height:130px;border:none}
+.sketch h3{font-size:19px}
+.sketch p{font-size:11.5px;line-height:1.7}
 
-/* 手账（小块）: 小图 + 短文 */
-.sketch .pic img{height:140px;object-fit:cover}
-.sketch h3{font-size:18px}
-.sketch p{font-size:11.5px}
-
-/* 结婚证（中块·无主图）: 全文字 + 嵌入式小图 */
-.wedding{background:var(--paper-2)}
-.wedding .pic{display:none}                          /* 不显示主图框，留更多文字空间 */
+/* 结婚证（横版 3×1）: 全文字 + 极小图 */
+.wedding .pic{display:none}
 .wedding .photo-mini{
-  width:100%;height:90px;background:#000;margin:6px 0 8px;
-  background-size:cover;background-position:center;
-  border:1px solid var(--ink);position:relative;
+  width:100%;height:60px;background:#000;margin:0 0 8px;
+  background-size:cover;background-position:center;position:relative;
 }
 .wedding .photo-mini::after{
   content:"▲ 家中静物";position:absolute;bottom:0;left:0;right:0;
-  background:linear-gradient(transparent,rgba(0,0,0,.8));color:#fff;
-  padding:8px 10px 5px;font-size:10px;
+  background:linear-gradient(transparent,rgba(0,0,0,.85));color:#fff;
+  padding:5px 8px 3px;font-size:9px;letter-spacing:.1em;
 }
-.wedding h3{font-size:18px}
+.wedding h3{font-size:17px;line-height:1.2}
+.wedding p{font-size:11.5px;line-height:1.65}
+.wedding .deck{font-size:10.5px;padding:3px 0;margin-bottom:6px}
 
-/* 客人话侧栏（3×1 横排）: 引言为主 */
-.side-quote{background:var(--ink);color:var(--paper);justify-content:center;padding:14px 18px;text-align:center}
-.side-quote h3{color:var(--paper);font-size:14px;letter-spacing:.3em;font-weight:900;margin-bottom:6px}
-.side-quote h3::before{content:"❝";color:var(--hot);font-size:20px;margin-right:6px;vertical-align:middle}
-.side-quote .q{font-size:13px;line-height:1.7;color:var(--paper);font-style:italic;text-align:left}
-.side-quote .q b{color:#ff8a82;font-weight:900}
-.side-quote .qby{margin-top:8px;font-size:10px;color:var(--ink-4);letter-spacing:.15em;text-align:left}
+/* 客人话横幅（全宽 12×1）: 引言横铺 */
+.side-quote{padding:14px 30px;justify-content:center}
+.side-quote .q-inner{display:grid;grid-template-columns:auto 1fr auto;gap:18px;align-items:center;width:100%}
+.side-quote h3{color:var(--paper);font-size:13px;letter-spacing:.3em;font-weight:900;margin:0;white-space:nowrap}
+.side-quote h3::before{content:"❝ ";color:var(--hot);font-size:18px}
+.side-quote .q{font-size:18px;line-height:1.5;color:var(--paper);font-style:italic;text-align:center;margin:0}
+.side-quote .q b{color:#ff8a82;font-weight:900;font-style:normal}
+.side-quote .qby{font-size:10px;color:var(--ink-4);letter-spacing:.15em;white-space:nowrap;text-align:right;margin:0}
 
-/* 冷知识 / 小豆腐（5×1 宽块）: 横排多列短消息 */
-.tip{background:var(--paper);padding:14px 18px}
+/* 冷知识（12×1 宽横排）: 4 列短消息横铺 */
+.tip{padding:14px 24px}
 .tip .tip-head{
-  border-bottom:2px solid var(--ink);padding-bottom:4px;margin-bottom:8px;
+  border-bottom:1px solid var(--ink);padding-bottom:5px;margin-bottom:10px;
   display:flex;justify-content:space-between;align-items:baseline;
 }
 .tip .tip-head h3{font-size:14px;letter-spacing:.3em;font-weight:900;color:var(--ink);margin:0}
 .tip .tip-head .t{font-size:10px;color:var(--ink-3);letter-spacing:.15em;font-family:"Arial Black",sans-serif}
 .tip .tip-list{
   display:grid;grid-template-columns:repeat(4,1fr);gap:0;
-  font-size:11.5px;color:var(--ink-2);line-height:1.6;
+  font-size:12px;color:var(--ink-2);line-height:1.6;
 }
 .tip .tip-list li{
-  list-style:none;padding:4px 10px;border-right:1px dashed var(--rule-mid);
-  display:flex;flex-direction:column;gap:2px;
+  list-style:none;padding:6px 14px;border-right:1px dashed var(--rule-mid);
+  display:flex;flex-direction:column;gap:3px;
 }
 .tip .tip-list li:last-child{border-right:none}
 .tip .tip-list li::before{
   content:attr(data-num);font-family:"Arial Black",sans-serif;
-  font-size:9px;color:var(--hot);letter-spacing:.15em;font-weight:900;
+  font-size:10px;color:var(--hot);letter-spacing:.15em;font-weight:900;
 }
-.tip .tip-list li b{color:var(--ink);font-weight:900;font-size:12px;margin-bottom:2px;display:block}
+.tip .tip-list li b{color:var(--ink);font-weight:900;font-size:13px;display:block}
 
 /* ================== 客人话页 ================== */
 .quote{
@@ -606,7 +621,7 @@ html,body{background:#2a2a28;color:var(--ink);font-family:"Source Han Serif SC",
 }
 
 /* ================== 移动端 ================== */
-@media (max-width:1240px){
+@media (max-width:1540px){
   .paper{width:100%;margin:0;border-left:none;border-right:none}
 }
 @media (max-width:900px){
@@ -622,7 +637,7 @@ html,body{background:#2a2a28;color:var(--ink);font-family:"Source Han Serif SC",
   .rail{flex-wrap:wrap}
   .rail ul{flex-wrap:wrap;padding:4px;font-size:11px}
   .rail li{padding:4px 8px;border-right:none}
-  .front{grid-template-columns:1fr}
+  .front{grid-template-columns:1fr;min-height:auto}
   .front .ft{border-right:none;border-bottom:1px solid var(--ink)}
   .front .ft h2{font-size:36px}
   .front .fp{min-height:280px}
@@ -635,7 +650,10 @@ html,body{background:#2a2a28;color:var(--ink);font-family:"Source Han Serif SC",
   .middle .col:nth-child(2n){border-right:none}
   .hotpot h3,.baby h3{font-size:20px}
   .hotpot .pic img,.baby .pic img{height:auto;max-height:240px}
+  .col.row-l,.col.row-r{grid-template-columns:1fr}
   .tip .tip-list{grid-template-columns:1fr}
+  .side-quote .q-inner{grid-template-columns:1fr;gap:6px;text-align:center}
+  .side-quote .qby{text-align:center}
   .quote{padding:22px 18px}
   .quote .q{font-size:20px}
   .bul{grid-template-columns:1fr}
@@ -743,107 +761,90 @@ html,body{background:#2a2a28;color:var(--ink);font-family:"Source Han Serif SC",
     </div>
   </section>
 
-  <!-- ============ 不规则板块区 · 大小不一 ============ -->
+  <!-- ============ 不规则板块区 · v15 全横版 =================== -->
   <section class="middle">
 
-    <!-- 板块 01 · 火锅 · 大块 5×2（头版要闻） -->
-    <article class="col hotpot">
-      <div class="sec-head">
-        <span class="num">01</span>
-        <span class="label">板块 <b>01</b><br><b>东道主</b>主场<br>P.02</span>
-      </div>
-      <h3>一锅<em>青菜</em><br>堆成了山。</h3>
-      <div class="deck">本次会晤<b>最硬的主菜</b>，来自王小娟家</div>
+    <!-- 板块 01 · 火锅 · 超横 6×1（左图右文） -->
+    <article class="col hotpot row-l">
       <div class="pic">
-        <span class="badge r">图 01</span>
+        <span class="badge r">01 · 火锅</span>
         <img src="https://dcrlovejs-spec.github.io/sleep-briefing/photos/2026-07-04/01-hotpot-selfie.jpg" alt="火锅全景">
-        <div class="cap"><b>▲ 鸳鸯锅 · 6 人围坐</b><br>红汤 + 青菜山 + 一些肉</div>
       </div>
-      <p>鸳鸯锅里咕嘟冒烟，<b>各式青菜铺成一座小山</b>：绿叶、菌菇、根茎，能涮的都涮了。山顶点缀几片肥牛卷，山脚沉着面条和蘸料。</p>
-      <p>我和戴太太夹了 8 筷子青菜，<em>才注意到山上没有薄荷</em>。奇怪菜品另有其处。</p>
-      <blockquote>"山，是王小娟家堆的。肉，是戴家点的。"</blockquote>
-      <div class="credit">撰文 <b>戴先生</b> · 板块 <em>bot1</em></div>
+      <div>
+        <h3>一锅<em>青菜</em>堆成了山。</h3>
+        <div class="deck">本次会晤<b>最硬的主菜</b> · 来自王小娟家</div>
+        <p>鸳鸯锅里咕嘟冒烟，<b>各式青菜铺成一座小山</b>：绿叶、菌菇、根茎，能涮的都涮了。山顶点缀几片肥牛卷，山脚沉着面条和蘸料。</p>
+        <p>我和戴太太夹了 8 筷子青菜，<em>才注意到山上没有薄荷</em>。奇怪菜品另有其处。</p>
+        <blockquote>"山，是王小娟家堆的。肉，是戴家点的。"</blockquote>
+        <div class="credit">撰文 <b>戴先生</b> · P.02 · <em>东道主主场</em></div>
+      </div>
     </article>
 
-    <!-- 客人话侧栏 · 3×1 横排小块 -->
-    <article class="col side-quote no-r no-b">
-      <h3>客人的话</h3>
-      <div class="q">
-        三组家庭的会晤，最累的不是——是你想离开的时候，<b>小北鼻对你笑了一下。</b>
+    <!-- 板块 03 · 北鼻 · 横 6×1（左文右图） -->
+    <article class="col baby row-r">
+      <div>
+        <h3>九个月，<span class="m">仰面</span>躺床上。</h3>
+        <div class="deck"><b>特邀方</b> · 9 个月小北鼻 · 当日最大彩蛋</div>
+        <p><b>他是全场焦点</b>——9 个月大，仰面躺在王小娟家的大床上，穿着浅色衣服，盖着灰白条纹薄被。</p>
+        <p><b>戴先生弯腰弹手指</b>逗他，王小娟家把孩子抱起来，他不哭。戴太太全程拍视频——一边拍一边说"他笑了他笑了"。</p>
+        <p>他最后睡了。<b>这是我们的撤退信号</b>——孩子一睡，全员撤退。</p>
+        <blockquote class="b-mint">"最累的不是——是你想离开的时候，他对你笑了一下。" —— 戴太太</blockquote>
+        <div class="credit">摄影 <b>戴太太</b> · P.03 · <em>全场焦点</em></div>
       </div>
-      <div class="qby">—— 戴太太 · 原文 · P.05</div>
-    </article>
-
-    <!-- 板块 03 · 北鼻 · 高块 4×2 -->
-    <article class="col baby">
-      <div class="sec-head">
-        <span class="num">03</span>
-        <span class="label">板块 <b>03</b><br><b>全场</b>焦点<br>P.03 · 特邀方</span>
-      </div>
-      <h3>九个月，<br><span class="m">仰面</span>躺床上。</h3>
       <div class="pic">
-        <span class="badge m">图 03</span>
+        <span class="badge m">03 · 小北鼻</span>
         <img src="https://dcrlovejs-spec.github.io/sleep-briefing/photos/2026-07-04/02-baby-play.jpg" alt="逗小北鼻">
-        <div class="cap"><b>▲ 5 个大人围 1 个 9 个月北鼻</b><br>仰躺 · 浅色衣服 · 灰白条纹薄被</div>
       </div>
-      <p><b>他是全场焦点</b>——9 个月大，仰面躺在王小娟家的大床上，穿着浅色衣服，盖着灰白条纹薄被。</p>
-      <p><b>戴先生弯腰弹手指</b>逗他，王小娟家把孩子抱起来，他不哭。戴太太全程拍视频——一边拍一边说"他笑了他笑了"。</p>
-      <p>他最后睡了。<b>这是我们的撤退信号</b>——孩子一睡，全员撤退。</p>
-      <blockquote class="b-mint">"最累的不是——是你想离开的时候，他对你笑了一下。" —— 戴太太</blockquote>
-      <div class="credit">摄影 <b>戴太太</b> · 撰文 <em>戴太太口述</em></div>
     </article>
 
-    <!-- 板块 02 · 桌游 · 中块 4×1 -->
-    <article class="col pancake no-b">
-      <div class="sec-head">
-        <span class="num">02</span>
-        <span class="label">板块 <b>02</b> · <b>我方</b>主场 · P.03</span>
+    <!-- 客人话横幅 · 全宽 12×1 -->
+    <article class="col side-quote">
+      <div class="q-inner">
+        <h3>客 人 的 话</h3>
+        <p class="q">三组家庭的会晤，最累的不是——是你想离开的时候，<b>小北鼻对你笑了一下。</b></p>
+        <p class="qby">—— 戴太太 · 原文 · P.05</p>
       </div>
-      <h3>桌游：<span class="g">吸爆松饼</span>。</h3>
-      <div class="deck">5 人同乐的纸牌桌游，<b>来自戴家奇怪物资清单</b></div>
+    </article>
+
+    <!-- 板块 02 · 桌游 · 横 5×1（左图右文） -->
+    <article class="col pancake row-l">
       <div class="pic">
-        <span class="badge g">图 02</span>
+        <span class="badge g">02 · 桌游</span>
         <img src="https://dcrlovejs-spec.github.io/sleep-briefing/photos/2026-07-04/03-pancake-game.jpg" alt="吸爆松饼桌游">
-        <div class="cap"><b>▲ 5 人围一桌</b><br>纸牌散一桌 · 打了一下午</div>
       </div>
-      <p>5 个人围一桌，<b>纸牌散一桌</b>，我们打了一下午。<b>戴太太笑得最大声</b>，朋友举牌挡住半张脸——大家都很开心。规则奇怪：要把松饼<span class="g">用嘴吸爆</span>。</p>
-      <blockquote class="b-gold">"奇怪的菜品 + 奇怪的桌游 = 奇怪的下午。"</blockquote>
-      <div class="credit">摄影 <b>戴先生随手</b> · 桌游 <em>戴家</em></div>
+      <div>
+        <h3>桌游：<span class="g">吸爆松饼</span>。</h3>
+        <div class="deck">5 人同乐的纸牌桌游 · <b>来自戴家奇怪物资清单</b></div>
+        <p>5 个人围一桌，<b>纸牌散一桌</b>，我们打了一下午。<b>戴太太笑得最大声</b>。</p>
+        <blockquote class="b-gold">"奇怪的菜品 + 奇怪的桌游 = 奇怪的下午。"</blockquote>
+        <div class="credit">摄影 <b>戴先生随手</b> · P.03 · <em>我方主场</em></div>
+      </div>
     </article>
 
-    <!-- 板块 04 · 手账 · 小块 3×1 -->
-    <article class="col sketch">
-      <div class="sec-head">
-        <span class="num">04</span>
-        <span class="label">板块 <b>04</b><br><b>文艺</b>担当<br>P.04</span>
-      </div>
-      <h3>戴太太<span class="g">手绘</span>水彩。</h3>
+    <!-- 板块 04 · 手账 · 横 4×1（左图右文·小图） -->
+    <article class="col sketch row-l">
       <div class="pic">
-        <span class="badge g">图 04</span>
+        <span class="badge g">04 · 手账</span>
         <img src="https://dcrlovejs-spec.github.io/sleep-briefing/photos/2026-07-04/04-sketchbook.jpg" alt="戴太太手账水彩">
-        <div class="cap"><b>▲ 水彩手账</b><br>「火锅人们」</div>
       </div>
-      <p>标题「<b>火锅人们</b>」。批注三个字：<em>又吃又玩又让人奔欢</em>。</p>
-      <blockquote class="b-gold" style="font-size:11px;padding:5px 8px">"火锅人们——又吃又玩又让人奔欢。"</blockquote>
-      <div class="credit">手绘 <b>戴太太</b></div>
+      <div>
+        <h3>戴太太<span class="g">手绘</span>水彩。</h3>
+        <div class="deck">「火锅人们」· 又吃又玩又让人奔欢</div>
+        <p>标题「<b>火锅人们</b>」。副标题：「完整聚会，7.04 下午」。红色彩笔画的箭头 + 星。</p>
+        <div class="credit">手绘 <b>戴太太</b> · P.04 · <em>文艺担当</em></div>
+      </div>
     </article>
 
-    <!-- 板块 05 · 结婚证 · 中块 4×1 -->
+    <!-- 板块 05 · 结婚证 · 横 3×1（全文字·极小图） -->
     <article class="col wedding">
-      <div class="sec-head">
-        <span class="num">05</span>
-        <span class="label">板块 <b>05</b><br><b>私人</b>珍藏<br>P.04</span>
-      </div>
-      <h3>戴家书桌上的<span style="color:var(--ink-3)">结婚证</span>。</h3>
-      <div class="deck">家中静物 · <b>不是聚会照片</b> · 仅限家人传阅</div>
       <div class="photo-mini" style="background-image:url('https://dcrlovejs-spec.github.io/sleep-briefing/photos/2026-07-04/05-wedding-photo.jpg')"></div>
-      <p>这不是聚会照片——这是<b>家中静物</b>。回家路上戴先生说：<b>"结婚证相框摆在书桌上很久了。"</b></p>
-      <p>它代表——<b>我们去朋友家做客，是因为我们有了家</b>。有了家，才有 6 人围坐、才有"奇怪的菜品"、才有笑得最大声的戴太太。</p>
-      <blockquote class="b-gray">"家中静物，未公开陈列。"</blockquote>
-      <div class="credit">摄影 <b>戴先生</b> · 撰文 <em>戴先生 &amp; bot1</em></div>
+      <h3>戴家书桌上的<span style="color:var(--ink-3)">结婚证</span>。</h3>
+      <p>回家路上戴先生说：<b>"结婚证相框摆在书桌上很久了。"</b></p>
+      <blockquote class="b-gray">家中静物，未公开陈列。</blockquote>
+      <div class="credit">摄影 <b>戴先生</b> · P.04 · <em>私人珍藏</em></div>
     </article>
 
-    <!-- 小豆腐 · 冷知识横排 5×1（板块 06） -->
+    <!-- 花絮 · 全宽 12×1 横排短消息 -->
     <article class="col tip">
       <div class="tip-head">
         <h3>▌花 絮 · SIDEBAR</h3>
