@@ -167,12 +167,17 @@ html,body{background:#2a2a28;color:var(--ink);font-family:"Source Han Serif SC",
   display:grid;grid-template-columns:1fr 1fr;gap:0;
   border-bottom:3px solid var(--ink);
   min-height:340px;
+  align-items:start;       /* v17: 顶部对齐，分割线跟最高那列走 */
 }
 .front .ft{
   padding:18px 28px 16px;
   border-right:1px solid var(--rule);
-  display:flex;flex-direction:column;justify-content:space-between;
+  display:flex;flex-direction:column;justify-content:flex-start;
+  align-self:start;        /* v17: 文字列不拉到图片高度 */
+  height:auto;             /* v17: 不要 stretch */
+  min-height:auto;         /* v17: 文字内容决定高度 */
 }
+.front .ft .byline{margin-top:auto} /* v17: 取消"推到底" */
 .front .ft .kicker{
   display:flex;align-items:center;gap:10px;
   font-family:"Arial Black",sans-serif;font-size:11px;
@@ -220,6 +225,7 @@ html,body{background:#2a2a28;color:var(--ink);font-family:"Source Han Serif SC",
 .front .fp{
   padding:0;position:relative;background:#000;overflow:hidden;
   min-height:340px;
+  align-self:stretch;      /* v17: 图片列 stretch 到底，跟分割线对齐 */
 }
 .front .fp img{
   width:100%;height:100%;object-fit:cover;display:block;filter:contrast(1.05) saturate(.92);
