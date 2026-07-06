@@ -26,26 +26,29 @@
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{background:#2a2a28;color:var(--ink);font-family:"Source Han Serif SC","Noto Serif CJK SC","Songti SC","SimSun",serif;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
 
-/* === 一整张铺开的报纸 · v19 双页 ===
-   整体 3000px，左页 1500px + 折缝 + 右页 1500px
-   用 flex 把两页摆开，中间一根折缝细线 */
+/* === 一整张铺开的报纸 · v20 双页中间白边 ===
+   整体 3000px，左页 1500px + 中间白边 60px + 右页 1500px
+   两页都有黑色边框，但中间是纯白间距（模拟书脊） */
 .paper{
   display:flex;flex-direction:row;
-  width:3000px;margin:20px auto;background:var(--paper);
+  width:3060px;margin:20px auto;background:#ffffff;   /* 整体背景白=中间是白边 */
   border-top:4px solid var(--ink);border-bottom:4px solid var(--ink);
   box-shadow:0 4px 40px rgba(0,0,0,.4);
   position:relative;
+  padding:0 0;
 }
 .page{
   width:1500px;flex-shrink:0;
   background:var(--paper);
   display:flex;flex-direction:column;
+  position:relative;
 }
-/* 中央折缝 */
+/* 左页右边框 + 右页左边框 = 报纸页边 */
+.page-left{border-right:1px solid var(--rule-mid)}
+.page-right{border-left:1px solid var(--rule-mid)}
+/* 中央白边 · 60px 纯白 */
 .fold{
-  width:2px;background:var(--ink);
-  background-image:linear-gradient(to bottom,var(--ink) 0,var(--ink) 60%,transparent 60%,transparent 70%,var(--ink) 70%,var(--ink) 85%,transparent 85%,transparent 92%,var(--ink) 92%,var(--ink) 100%);
-  flex-shrink:0;
+  width:60px;background:#ffffff;flex-shrink:0;position:relative;
 }
 
 /* === 装饰小条 === */
@@ -354,13 +357,13 @@ html,body{background:#2a2a28;color:var(--ink);font-family:"Source Han Serif SC",
 .bul .foot .v .pipe{color:var(--ink-4)}
 
 /* === 响应式 === */
-@media (max-width:3040px){.paper{width:100%;margin:0;border-left:none;border-right:none}}
+@media (max-width:3100px){.paper{width:100%;margin:0;border-left:none;border-right:none}}
 @media (max-width:900px){
   body{font-size:13px}
   .paper{flex-direction:column}
   .page{width:100%}
   .fold{width:100%;height:2px;background-image:linear-gradient(to right,var(--ink) 0,var(--ink) 60%,transparent 60%,transparent 70%,var(--ink) 70%,var(--ink) 85%,transparent 85%,transparent 92%,var(--ink) 92%,var(--ink) 100%)}
-  .paper{border-top-width:3px;border-bottom-width:3px}
+  .fold{width:100%;height:24px;background:#ffffff;border-top:1px solid var(--rule-mid);border-bottom:1px solid var(--rule-mid)}
   .masthead h1{font-size:54px;letter-spacing:.1em}
   .masthead .en{font-size:11px;letter-spacing:.3em}
   .masthead .stamp-l,.masthead .stamp-r{display:none}
@@ -388,7 +391,7 @@ html,body{background:#2a2a28;color:var(--ink);font-family:"Source Han Serif SC",
 <div class="paper">
 
   <!-- ============ 左页 ============ -->
-  <div class="page">
+  <div class="page page-left">
 
     <!-- 装饰小条 -->
     <div class="topbar">
@@ -545,7 +548,7 @@ html,body{background:#2a2a28;color:var(--ink);font-family:"Source Han Serif SC",
   <div class="fold"></div>
 
   <!-- ============ 右页 ============ -->
-  <div class="page">
+  <div class="page page-right">
 
     <!-- 装饰小条（右页独立） -->
     <div class="topbar">
