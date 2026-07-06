@@ -3,555 +3,831 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>《家报》2026年7月6日 · 三方家庭友好会晤 · 二号公报 · 兰州分刊 · 大横版</title>
+<title>《家庭纪事报》VOL.30 NO.002 · 2026年7月6日 · 三方家友好会晤 · 第二号公报 · 兰州分刊</title>
 <style>
+/* =========================================================
+   《家庭纪事报》v9 · 真正报纸版
+   核心：报头 + 6 栏密集 + 黑白印刷感 + 多层装饰
+   ========================================================= */
+
 :root{
-  --paper:#fafaf5;
-  --paper-2:#f0ece1;
-  --ink-1:#1a1a1a;
-  --ink-2:#444;
-  --ink-3:#888;
-  --hot:#c4302b;
-  --mint:#2d8a5f;
-  --gold:#b8870a;
-  --rule:rgba(0,0,0,.12);
+  --paper:#f3ede0;           /* 米黄报纸纸 */
+  --paper-2:#e9e2cd;         /* 深米黄 */
+  --paper-3:#d8cfb5;         /* 边线色 */
+  --ink:#0d0d0d;             /* 主墨 */
+  --ink-2:#2a2a2a;           /* 副墨 */
+  --ink-3:#5a5a5a;           /* 灰 */
+  --ink-4:#8a8a8a;           /* 浅灰 */
+  --rule:#0d0d0d;            /* 硬边线 */
+  --rule-thin:rgba(0,0,0,.35);
+  --rule-mid:rgba(0,0,0,.55);
+  --hot:#b8160e;             /* 报头红 */
+  --hot-2:#8a0e08;
+  --mint:#1f6e4a;            /* 薄荷绿 */
+  --gold:#8a6508;            /* 金 */
 }
-*{box-sizing:border-box}
-html,body{margin:0;padding:0;background:#222}
-body{
-  background:var(--paper);color:var(--ink-1);
-  font-family:"Source Han Serif SC","Noto Serif CJK SC","Songti SC","SimSun",serif;
-  font-size:14px;line-height:1.65;
-  -webkit-font-smoothing:antialiased;
-}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:#2a2a28;color:var(--ink);font-family:"Source Han Serif SC","Noto Serif CJK SC","Songti SC","SimSun",serif;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+
+/* === 一整张大报纸 === */
 .paper{
-  width:1600px;margin:24px auto;
+  width:1200px;
+  margin:24px auto;
   background:var(--paper);
-  border:2px solid var(--ink-1);
-  box-shadow:0 4px 32px rgba(0,0,0,.3);
-}
-
-/* ========== 双跨页（每页 800×720 横向矩形） ========== */
-.spread{
-  display:grid;grid-template-columns:1fr 1fr;
-  height:720px;border-bottom:3px solid var(--ink-1);
-  position:relative;overflow:hidden;
-}
-.spread::before{
-  content:"";position:absolute;top:0;bottom:0;left:50%;
-  width:1px;background:var(--rule);pointer-events:none;z-index:5;
-}
-.spread:last-child{border-bottom:none}
-
-/* ========== 报头（每页顶部细横条） ========== */
-.page-head{
-  height:48px;border-bottom:1px solid var(--ink-1);
-  display:flex;align-items:center;padding:0 20px;gap:14px;
-  background:var(--paper-2);
+  border-top:6px solid var(--ink);
+  border-bottom:6px solid var(--ink);
+  box-shadow:0 6px 48px rgba(0,0,0,.45);
   position:relative;
 }
-.page-head .pub{
-  font-family:"Arial Black",sans-serif;font-size:18px;font-weight:900;
-  color:var(--ink-1);letter-spacing:.05em;
+.paper::before,.paper::after{
+  content:"";position:absolute;left:0;right:0;height:1px;background:var(--ink);
 }
-.page-head .pub .red{color:var(--hot)}
-.page-head .url{
-  font-family:"Courier New",monospace;font-size:10px;
-  color:var(--ink-3);letter-spacing:.05em;
-}
-.page-head .date{
-  margin-left:auto;font-size:11px;color:var(--ink-2);letter-spacing:.05em;font-weight:700;
-}
-.page-head .meta{
-  display:flex;gap:8px;align-items:center;
-}
-.page-head .badge{
-  border:1px solid var(--ink-1);padding:2px 8px;
-  font-family:"Arial Black",sans-serif;font-size:10px;
-  letter-spacing:.15em;color:var(--ink-1);font-weight:900;
-}
-.page-head .badge.red{color:var(--hot);border-color:var(--hot)}
-.page-head .badge.gold{color:var(--gold);border-color:var(--gold)}
-.page-head .badge.mint{color:var(--mint);border-color:var(--mint)}
-.page-head .badge.gray{color:var(--ink-3);border-color:var(--ink-3)}
+.paper::before{top:8px}.paper::after{bottom:8px}
 
-/* 页面内容区（除报头外的高度） */
-.page-body{height:672px;display:grid;position:relative}
+/* ================== 装饰小条 / 元数据条 ================== */
+.topbar{
+  border-bottom:1px solid var(--rule);
+  display:grid;grid-template-columns:1fr auto 1fr;align-items:center;
+  padding:5px 18px;
+  font-family:"Courier New",monospace;font-size:10px;letter-spacing:.1em;
+  color:var(--ink-2);
+  background:var(--paper-2);
+}
+.topbar .l{display:flex;gap:14px;align-items:center}
+.topbar .c{display:flex;gap:8px;align-items:center;font-weight:700;color:var(--ink);text-transform:uppercase}
+.topbar .r{display:flex;gap:14px;align-items:center;justify-content:flex-end}
+.topbar .pill{
+  border:1px solid var(--ink);padding:1px 6px;font-weight:700;color:var(--ink);
+  font-family:"Arial Black",sans-serif;letter-spacing:.15em;font-size:9px;
+}
+.topbar .price{color:var(--hot);border-color:var(--hot)}
+.topbar .weather::before{content:"✦ "}
 
-/* ========== 头条页（左·横版） ========== */
-.headline-page{
-  grid-template-columns:1fr;border-right:1px solid var(--rule);
-}
-.headline-page .body{
-  display:grid;grid-template-columns:1.1fr 1fr;height:672px;
-}
-.headline-page .hl-left{
-  padding:28px 28px;display:flex;flex-direction:column;justify-content:center;
-}
-.headline-page .hl-left .kicker{
-  font-family:"Arial Black",sans-serif;font-size:11px;letter-spacing:.4em;
-  color:var(--hot);font-weight:900;text-transform:uppercase;
-}
-.headline-page .hl-left h1{
-  font-family:"Source Han Serif SC","Songti SC",serif;
-  font-size:42px;font-weight:900;line-height:1.05;
-  margin:10px 0 10px;color:var(--ink-1);letter-spacing:.02em;
-}
-.headline-page .hl-left .sub{
-  font-size:14px;color:var(--ink-2);letter-spacing:.1em;
-  margin:0 0 12px;border-bottom:1px solid var(--rule);padding-bottom:8px;
-}
-.headline-page .hl-left .lead{
-  font-size:13px;line-height:1.85;color:var(--ink-2);
-  margin:0 0 6px;
-}
-.headline-page .hl-left .lead b{color:var(--ink-1);font-weight:700}
-.headline-page .hl-left .lead em{color:var(--hot);font-style:normal;font-weight:700}
-.headline-page .hl-left .byline{
-  margin-top:14px;font-size:10px;color:var(--ink-3);
-  letter-spacing:.15em;text-transform:uppercase;
-}
-.headline-page .hl-left .byline b{color:var(--ink-1);font-weight:700}
-
-.headline-page .hl-right{
-  position:relative;background:#000;height:672px;overflow:hidden;
-}
-.headline-page .hl-right img{
-  width:100%;height:100%;object-fit:cover;display:block;
-}
-.headline-page .hl-right .stamp{
-  position:absolute;top:14px;right:14px;z-index:2;
-  border:3px solid var(--paper);background:var(--hot);color:var(--paper);
-  padding:5px 12px;font-family:"Arial Black",sans-serif;
-  font-size:13px;font-weight:900;letter-spacing:.1em;
-  transform:rotate(-4deg);
-}
-.headline-page .hl-right .cap{
-  position:absolute;bottom:0;left:0;right:0;z-index:2;
-  background:linear-gradient(transparent,rgba(0,0,0,.85));
-  color:#fff;padding:14px 20px 12px;font-size:12px;line-height:1.55;
-}
-.headline-page .hl-right .cap em{color:#ffb3b3;font-style:normal;font-weight:700}
-
-/* ========== 板块页：每页 1 个板块，左图右文 / 左文右图 / 上图下文等 ========== */
-/* 板块页通用样式：描述区 + 图区 */
-.sec-page{
-  display:grid;
-}
-.sec-page.left-img{grid-template-columns:1.2fr 1fr}
-.sec-page.right-img{grid-template-columns:1fr 1.2fr}
-.sec-page.top-img{grid-template-rows:1fr auto}
-.sec-page.bot-img{grid-template-rows:auto 1fr}
-.sec-page .sec-text{
-  padding:24px 28px;display:flex;flex-direction:column;justify-content:center;
+/* ================== 报头 MASTHEAD ================== */
+.masthead{
+  text-align:center;
+  padding:18px 18px 14px;
+  border-bottom:3px double var(--ink);
   background:var(--paper);
+  position:relative;
 }
-.sec-page .sec-text.right-border{border-right:1px solid var(--rule)}
-.sec-page .sec-text.left-border{border-left:1px solid var(--rule)}
-.sec-page .sec-text.bot-border{border-top:1px solid var(--rule)}
-.sec-page .sec-text .no{
-  font-family:"Arial Black",sans-serif;font-size:10px;
-  color:var(--ink-3);letter-spacing:.3em;font-weight:900;
+.masthead .stamp-l,.masthead .stamp-r{
+  position:absolute;top:50%;transform:translateY(-50%);
+  width:120px;height:120px;border:2px solid var(--ink);
+  display:flex;align-items:center;justify-content:center;
+  font-family:"Arial Black",sans-serif;font-size:11px;letter-spacing:.1em;
+  color:var(--ink);background:var(--paper);
+  border-radius:50%;
 }
-.sec-page .sec-text h2{
-  font-size:24px;font-weight:900;letter-spacing:.04em;
-  margin:6px 0 10px;color:var(--ink-1);line-height:1.15;
+.masthead .stamp-l{left:24px}
+.masthead .stamp-r{right:24px;border-color:var(--hot);color:var(--hot)}
+.masthead .stamp-l::before{
+  content:"";position:absolute;inset:6px;border:1px solid var(--ink);border-radius:50%;
 }
-.sec-page .sec-text h2 .accent{color:var(--hot)}
-.sec-page .sec-text h2 .mint{color:var(--mint)}
-.sec-page .sec-text h2 .gold{color:var(--gold)}
-.sec-page .sec-text p{
-  font-size:12.5px;line-height:1.75;color:var(--ink-2);
-  margin:0 0 6px;
+.masthead .stamp-r::before{
+  content:"";position:absolute;inset:6px;border:1px solid var(--hot);border-radius:50%;
 }
-.sec-page .sec-text p b{color:var(--ink-1);font-weight:700}
-.sec-page .sec-text p em{color:var(--hot);font-style:normal;font-weight:700}
-.sec-page .sec-text .quote-block{
-  border-left:3px solid var(--hot);padding-left:10px;
-  margin:8px 0;font-style:italic;color:var(--ink-2);font-size:12.5px;
+.masthead .stamp-l .v,.masthead .stamp-r .v{
+  position:absolute;top:18px;left:0;right:0;text-align:center;
+  font-size:8px;letter-spacing:.3em;color:var(--ink-3);
 }
-.sec-page .sec-text .quote-block.mint{border-left-color:var(--mint)}
-.sec-page .sec-text .quote-block.gold{border-left-color:var(--gold)}
-.sec-page .sec-text .quote-block.gray{border-left-color:var(--ink-3)}
-.sec-page .sec-text .credit{
-  margin-top:10px;font-size:10px;color:var(--ink-3);
-  letter-spacing:.15em;text-transform:uppercase;
+.masthead .stamp-l .v{color:var(--ink-3)}
+.masthead .stamp-r .v{color:var(--hot)}
+.masthead .stamp-l .big,.masthead .stamp-r .big{
+  font-size:24px;letter-spacing:.05em;margin-top:8px;
 }
+.masthead .stamp-l .sm,.masthead .stamp-r .sm{
+  font-size:8px;letter-spacing:.2em;margin-top:4px;
+}
+.masthead .stamp-l .line,.masthead .stamp-r .line{
+  position:absolute;left:14px;right:14px;height:1px;background:var(--ink);top:60px;
+}
+.masthead .stamp-r .line{background:var(--hot)}
 
-.sec-page .sec-img{
-  background:#000;position:relative;overflow:hidden;
-  height:672px;
-}
-.sec-page.top-img .sec-img,.sec-page.bot-img .sec-img{height:auto;width:100%}
-.sec-page .sec-img img{
-  width:100%;height:100%;object-fit:cover;display:block;
-}
-.sec-page .sec-img .badge{
-  position:absolute;top:12px;z-index:2;
-  background:var(--paper);color:var(--ink-1);
-  padding:3px 9px;font-family:"Arial Black",sans-serif;
-  font-size:10px;font-weight:900;letter-spacing:.1em;
-  border:1px solid var(--ink-1);
-}
-.sec-page .sec-img .badge.red{color:var(--hot);border-color:var(--hot)}
-.sec-page .sec-img .badge.mint{color:var(--mint);border-color:var(--mint)}
-.sec-page .sec-img .badge.gold{color:var(--gold);border-color:var(--gold)}
-.sec-page .sec-img .badge.gray{color:var(--ink-3);border-color:var(--ink-3)}
-.sec-page .sec-img .badge.b-top-left{top:12px;left:12px}
-.sec-page .sec-img .badge.b-top-right{top:12px;right:12px}
-.sec-page .sec-img .badge.b-bot-left{bottom:12px;left:12px;top:auto}
-.sec-page .sec-img .badge.b-bot-right{bottom:12px;right:12px;top:auto}
-.sec-page .sec-img .cap-bottom{
-  position:absolute;bottom:0;left:0;right:0;z-index:2;
-  background:linear-gradient(transparent,rgba(0,0,0,.85));
-  color:#fff;padding:10px 16px 9px;font-size:11.5px;line-height:1.5;
-}
-
-/* ========== 公报页 ========== */
-.bulletin-page{
-  display:grid;grid-template-columns:1fr;background:var(--paper-2);
-  border-right:1px solid var(--rule);
-}
-.bulletin-page .body{
-  display:grid;grid-template-columns:1fr 1.5fr;height:672px;
-}
-.bulletin-page .bl-left{
-  padding:24px 24px;display:flex;flex-direction:column;justify-content:center;
-  border-right:1px solid var(--ink-1);
-}
-.bulletin-page .bl-left .title-row{
-  display:flex;align-items:center;gap:10px;margin-bottom:14px;
-}
-.bulletin-page .bl-left .no{
-  background:var(--ink-1);color:var(--paper);
-  padding:4px 12px;font-family:"Arial Black",sans-serif;
-  font-size:14px;letter-spacing:.3em;
-}
-.bulletin-page .bl-left .name{
-  font-size:16px;font-weight:900;letter-spacing:.25em;color:var(--ink-1);
-}
-.bulletin-page .bl-left .topic{
-  font-size:13px;line-height:1.85;color:var(--ink-2);
-  font-style:italic;border-top:1px solid var(--ink-1);padding-top:12px;
+.masthead h1{
+  font-family:"KaiTi","STKaiti","楷体","Songti SC","SimSun",serif;
+  font-size:104px;font-weight:900;letter-spacing:.18em;line-height:1;
+  color:var(--ink);
   margin:0;
+  text-shadow:1px 1px 0 rgba(0,0,0,.05);
 }
-.bulletin-page .bl-left .topic b{color:var(--ink-1);font-weight:700}
-.bulletin-page .bl-left .topic em{color:var(--hot);font-style:normal;font-weight:700}
+.masthead .en{
+  font-family:"Times New Roman","Times",serif;
+  font-size:14px;font-weight:700;letter-spacing:.55em;
+  margin-top:8px;color:var(--ink-2);text-transform:uppercase;
+}
+.masthead .en::before,.masthead .en::after{
+  content:"❖";color:var(--hot);margin:0 14px;font-size:10px;vertical-align:middle;
+}
+.masthead .sub{
+  margin-top:8px;display:flex;justify-content:center;align-items:center;gap:18px;
+  font-size:13px;color:var(--ink-2);letter-spacing:.15em;
+}
+.masthead .sub .sep{color:var(--ink-3)}
+.masthead .sub b{color:var(--hot);font-weight:900}
 
-.bulletin-page .bl-right{padding:20px 24px;display:flex;flex-direction:column;justify-content:center}
-.bulletin-page .bl-right .b-grid{
-  display:grid;grid-template-columns:repeat(3,1fr);gap:10px;
+/* ================== 导读条 RAIL ================== */
+.rail{
+  border-bottom:1px solid var(--ink);
+  display:flex;align-items:stretch;
+  background:var(--paper-2);
+  font-size:12px;
 }
-.bulletin-page .bl-right .b-col{
-  background:var(--paper);padding:12px;border:1px solid var(--ink-1);
+.rail .tag{
+  background:var(--ink);color:var(--paper);
+  padding:8px 14px;font-family:"Arial Black",sans-serif;
+  font-size:11px;letter-spacing:.3em;font-weight:900;display:flex;align-items:center;
+  white-space:nowrap;
 }
-.bulletin-page .bl-right .b-col .role{
-  display:inline-block;font-family:"Arial Black",sans-serif;
-  font-size:9px;letter-spacing:.25em;font-weight:900;
-  padding:2px 6px;border:1px solid currentColor;
+.rail .tag::before{content:"▶";margin-right:8px;color:var(--hot)}
+.rail ul{
+  display:flex;list-style:none;flex:1;align-items:center;
+  padding:0 14px;gap:0;overflow:hidden;
 }
-.bulletin-page .bl-right .b-col.r-hot .role{color:var(--hot)}
-.bulletin-page .bl-right .b-col.r-mint .role{color:var(--mint)}
-.bulletin-page .bl-right .b-col.r-gold .role{color:var(--gold)}
-.bulletin-page .bl-right .b-col h4{
-  font-size:14px;font-weight:900;letter-spacing:.15em;
-  margin:6px 0 6px;color:var(--ink-1);
+.rail li{
+  padding:0 16px;border-right:1px solid var(--rule-mid);
+  display:flex;align-items:center;gap:8px;
+  white-space:nowrap;
 }
-.bulletin-page .bl-right .b-col ul{
-  margin:0;padding-left:0;list-style:none;font-size:11.5px;
-  color:var(--ink-2);line-height:1.65;
+.rail li:last-child{border-right:none}
+.rail li::before{
+  content:"▸";color:var(--hot);font-weight:900;font-size:10px;
 }
-.bulletin-page .bl-right .b-col ul li{
-  padding:2px 0 2px 14px;position:relative;
-  border-bottom:1px dashed var(--rule);
+.rail li b{color:var(--ink);font-weight:900}
+.rail li em{color:var(--hot);font-style:normal;font-weight:700}
+.rail .pn{
+  margin-left:auto;padding:8px 14px;background:var(--paper);
+  border-left:1px solid var(--ink);
+  font-family:"Arial Black",sans-serif;font-size:11px;letter-spacing:.2em;color:var(--ink);
 }
-.bulletin-page .bl-right .b-col ul li:last-child{border-bottom:none}
-.bulletin-page .bl-right .b-col ul li::before{
-  content:"▸";position:absolute;left:0;top:2px;
-  color:var(--hot);font-weight:700;
-}
-.bulletin-page .bl-right .b-col.r-mint ul li::before{color:var(--mint)}
-.bulletin-page .bl-right .b-col.r-gold ul li::before{color:var(--gold)}
-.bulletin-page .bl-right .b-col ul li b{color:var(--ink-1);font-weight:700}
-.bulletin-page .bl-right .b-col ul li em{color:var(--hot);font-style:normal;font-weight:700}
-.bulletin-page .bl-right .b-col.r-mint ul li em{color:var(--mint)}
-.bulletin-page .bl-right .b-col.r-gold ul li em{color:var(--gold)}
 
-.bulletin-page .bl-right .b-foot{
-  margin-top:10px;padding-top:8px;border-top:1px solid var(--ink-1);
-  display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;
-  font-size:10px;color:var(--ink-2);font-style:italic;
+/* ================== 头条区 HEADLINE ================== */
+.front{
+  display:grid;grid-template-columns:5fr 4fr;gap:0;
+  border-bottom:3px solid var(--ink);
 }
-.bulletin-page .bl-right .b-stamp{
-  border:1.5px solid var(--hot);color:var(--hot);
-  padding:2px 8px;font-family:"Arial Black",sans-serif;
-  font-size:9px;letter-spacing:.15em;font-style:normal;
+.front .ft{
+  padding:24px 28px 22px;
+  border-right:1px solid var(--rule);
+  display:flex;flex-direction:column;justify-content:space-between;
 }
-.bulletin-page .bl-right .b-stamp.s-mint{border-color:var(--mint);color:var(--mint)}
-.bulletin-page .bl-right .b-stamp.s-gold{border-color:var(--gold);color:var(--gold)}
-.bulletin-page .bl-right .b-stamp.s-gray{border-color:var(--ink-3);color:var(--ink-3)}
-
-/* ========== 客人话页 ========== */
-.quote-page{
-  display:flex;flex-direction:column;justify-content:center;
-  padding:32px 36px;background:var(--paper);
+.front .ft .kicker{
+  display:flex;align-items:center;gap:10px;
+  font-family:"Arial Black",sans-serif;font-size:11px;
+  letter-spacing:.35em;color:var(--hot);font-weight:900;
+  text-transform:uppercase;
 }
-.quote-page .q-label{
-  display:inline-block;background:var(--ink-1);color:var(--paper);
-  padding:6px 14px;font-family:"Arial Black",sans-serif;
-  font-size:12px;letter-spacing:.4em;font-weight:900;
-  margin-bottom:14px;align-self:flex-start;
+.front .ft .kicker::before,.front .ft .kicker::after{
+  content:"";flex:1;height:1px;background:var(--ink);
 }
-.quote-page .q{
-  font-size:24px;font-weight:700;letter-spacing:.04em;line-height:1.4;color:var(--ink-1);
+.front .ft .kicker::before{max-width:30px}
+.front .ft .kicker::after{max-width:60px}
+.front .ft h2{
+  font-family:"Source Han Serif SC","Songti SC","SimSun",serif;
+  font-size:64px;font-weight:900;line-height:1.05;
+  margin:14px 0 8px;color:var(--ink);letter-spacing:.02em;
 }
-.quote-page .q em{color:var(--hot);font-style:normal;font-weight:900}
-.quote-page .by{
+.front .ft h2 em{color:var(--hot);font-style:normal}
+.front .ft .deck{
+  font-size:16px;color:var(--ink-2);line-height:1.55;
+  font-style:italic;border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);
+  padding:8px 0;margin-bottom:14px;letter-spacing:.04em;
+}
+.front .ft .deck b{color:var(--ink);font-style:normal;font-weight:900}
+.front .ft .lead{
+  font-size:13.5px;line-height:1.95;color:var(--ink-2);
+  text-align:justify;
+}
+.front .ft .lead p{margin-bottom:8px;text-indent:2em}
+.front .ft .lead p:first-child{text-indent:0}
+.front .ft .lead p:first-child::first-letter{
+  font-size:48px;float:left;line-height:.9;padding:4px 8px 0 0;
+  font-weight:900;color:var(--hot);font-family:"Source Han Serif SC","Songti SC",serif;
+}
+.front .ft .lead b{color:var(--ink);font-weight:700;background:linear-gradient(transparent 60%,rgba(184,22,14,.18) 60%)}
+.front .ft .lead em{color:var(--hot);font-style:normal;font-weight:700}
+.front .ft .byline{
   margin-top:14px;font-size:11px;color:var(--ink-3);
-  font-style:italic;letter-spacing:.1em;
+  letter-spacing:.18em;text-transform:uppercase;
+  border-top:1px solid var(--ink);padding-top:8px;
+  display:flex;flex-wrap:wrap;gap:6px 14px;
 }
-.quote-page .banner{
-  margin-top:18px;background:var(--ink-1);color:var(--paper);
-  padding:8px 18px;display:inline-flex;align-items:center;
-  gap:14px;font-family:"Arial Black",sans-serif;
-  font-size:11px;letter-spacing:.25em;font-weight:900;align-self:flex-start;
+.front .ft .byline b{color:var(--ink);font-weight:900}
+.front .ft .byline .src{color:var(--hot)}
+
+.front .fp{
+  padding:0;position:relative;background:#000;overflow:hidden;
+  min-height:560px;
 }
-.quote-page .banner .ygt{
-  border:1.5px solid var(--paper);padding:4px 10px;letter-spacing:.15em;
+.front .fp img{
+  width:100%;height:100%;object-fit:cover;display:block;filter:contrast(1.05) saturate(.92);
+}
+.front .fp .stamp{
+  position:absolute;top:14px;left:14px;
+  background:var(--paper);color:var(--ink);
+  border:2px solid var(--ink);
+  padding:6px 12px;font-family:"Arial Black",sans-serif;
+  font-size:12px;font-weight:900;letter-spacing:.2em;
+  z-index:3;
+}
+.front .fp .stamp em{color:var(--hot);font-style:normal}
+.front .fp .stamp::before{content:"★ ";color:var(--hot)}
+.front .fp .corner{
+  position:absolute;top:14px;right:14px;z-index:3;
+  background:var(--hot);color:var(--paper);
+  padding:4px 10px;font-family:"Arial Black",sans-serif;
+  font-size:10px;letter-spacing:.25em;font-weight:900;
+}
+.front .fp .cap{
+  position:absolute;bottom:0;left:0;right:0;z-index:3;
+  background:linear-gradient(transparent,rgba(0,0,0,.92) 40%);
+  color:#fff;padding:30px 22px 14px;
+  font-size:12.5px;line-height:1.6;
+}
+.front .fp .cap b{font-size:14px;display:block;margin-bottom:2px;letter-spacing:.05em}
+.front .fp .cap em{color:#ffb3b3;font-style:normal;font-weight:700}
+.front .fp .photo-credit{
+  position:absolute;top:50px;right:14px;z-index:3;
+  background:rgba(0,0,0,.7);color:#fff;
+  padding:3px 8px;font-size:9px;letter-spacing:.15em;
+  font-family:"Courier New",monospace;
 }
 
-/* ========== 版权 ========== */
+/* ================== 板块 SECTION ================== */
+.body{
+  display:grid;grid-template-columns:repeat(6,1fr);gap:0;
+  border-bottom:3px solid var(--ink);
+}
+.body .col{
+  border-right:1px solid var(--rule);
+  padding:18px 16px 16px;
+  background:var(--paper);
+  display:flex;flex-direction:column;
+}
+.body .col:last-child{border-right:none}
+.body .col.no-img{padding-bottom:18px}
+
+.sec-head{
+  border-bottom:2px solid var(--ink);
+  padding-bottom:6px;margin-bottom:10px;
+  display:flex;align-items:flex-end;justify-content:space-between;gap:6px;
+}
+.sec-head .num{
+  font-family:"Arial Black",sans-serif;font-size:32px;font-weight:900;
+  color:var(--hot);letter-spacing:-.02em;line-height:.85;
+}
+.sec-head .label{
+  text-align:right;font-size:9.5px;color:var(--ink-3);letter-spacing:.2em;
+  text-transform:uppercase;font-family:"Arial Black",sans-serif;
+}
+.sec-head .label b{color:var(--ink)}
+
+.col h3{
+  font-family:"Source Han Serif SC","Songti SC",serif;
+  font-size:22px;font-weight:900;line-height:1.15;
+  margin:6px 0 4px;color:var(--ink);letter-spacing:.02em;
+}
+.col h3 em{color:var(--hot);font-style:normal}
+.col h3 .m{color:var(--mint)}
+.col h3 .g{color:var(--gold)}
+.col .deck{
+  font-size:11px;color:var(--ink-2);font-style:italic;
+  border-top:1px solid var(--rule-mid);border-bottom:1px solid var(--rule-mid);
+  padding:4px 0;margin-bottom:8px;letter-spacing:.04em;
+}
+.col .deck b{color:var(--ink);font-style:normal;font-weight:900}
+
+.col .pic{
+  margin:6px 0 8px;border:1px solid var(--ink);padding:4px;background:var(--paper-2);
+  position:relative;
+}
+.col .pic img{width:100%;height:auto;display:block;border:1px solid var(--ink-3)}
+.col .pic .cap{
+  font-size:10px;color:var(--ink-2);padding:4px 2px 0;line-height:1.5;
+  border-top:1px solid var(--rule-mid);margin-top:4px;
+}
+.col .pic .cap b{color:var(--ink);font-weight:900}
+.col .pic .cap em{color:var(--hot);font-style:normal;font-weight:700}
+.col .pic .badge{
+  position:absolute;top:-1px;left:-1px;
+  background:var(--ink);color:var(--paper);
+  padding:2px 6px;font-family:"Arial Black",sans-serif;
+  font-size:9px;letter-spacing:.2em;font-weight:900;
+}
+.col .pic .badge.r{background:var(--hot)}
+.col .pic .badge.g{background:var(--gold);color:var(--paper)}
+.col .pic .badge.m{background:var(--mint)}
+
+.col p{
+  font-size:12px;line-height:1.8;color:var(--ink-2);
+  margin-bottom:6px;text-align:justify;
+}
+.col p b{color:var(--ink);font-weight:700}
+.col p em{color:var(--hot);font-style:normal;font-weight:700}
+.col blockquote{
+  border-left:3px solid var(--hot);
+  background:rgba(184,22,14,.04);
+  padding:6px 10px;margin:8px 0;font-size:11.5px;color:var(--ink);
+  font-style:italic;line-height:1.55;
+}
+.col blockquote::before{content:"❝";color:var(--hot);font-size:14px;line-height:0;margin-right:4px;vertical-align:middle}
+.col blockquote::after{content:"❞";color:var(--hot);font-size:14px;line-height:0;margin-left:4px;vertical-align:middle}
+.col blockquote.b-mint{border-left-color:var(--mint);background:rgba(31,110,74,.04)}
+.col blockquote.b-mint::before,.col blockquote.b-mint::after{color:var(--mint)}
+.col blockquote.b-gold{border-left-color:var(--gold);background:rgba(138,101,8,.04)}
+.col blockquote.b-gold::before,.col blockquote.b-gold::after{color:var(--gold)}
+.col blockquote.b-gray{border-left-color:var(--ink-3);background:rgba(0,0,0,.03)}
+.col blockquote.b-gray::before,.col blockquote.b-gray::after{color:var(--ink-3)}
+
+.col .credit{
+  margin-top:auto;padding-top:8px;border-top:1px dashed var(--rule-mid);
+  font-size:9.5px;color:var(--ink-3);letter-spacing:.15em;
+  text-transform:uppercase;font-family:"Arial Black",sans-serif;
+}
+.col .credit b{color:var(--ink)}
+.col .credit em{color:var(--hot);font-style:normal}
+
+/* 全场焦点专栏 */
+.col.spotlight{
+  background:var(--paper-2);
+  border-right:1px solid var(--ink);
+  border-left:1px solid var(--ink);
+}
+.col.spotlight h3{font-size:24px}
+
+/* ================== 客人话页 ================== */
+.quote{
+  padding:32px 48px;
+  background:var(--ink);
+  color:var(--paper);
+  text-align:center;
+  border-bottom:3px solid var(--ink);
+  position:relative;
+}
+.quote::before,.quote::after{
+  content:"";position:absolute;left:32px;right:32px;height:1px;background:var(--paper);opacity:.4;
+}
+.quote::before{top:10px}
+.quote::after{bottom:10px}
+.quote .qflag{
+  display:inline-block;background:var(--hot);color:var(--paper);
+  padding:5px 18px;font-family:"Arial Black",sans-serif;
+  font-size:12px;letter-spacing:.4em;font-weight:900;
+  margin-bottom:18px;
+}
+.quote .qflag::before{content:"▌ "}
+.quote .q{
+  font-family:"Source Han Serif SC","Songti SC",serif;
+  font-size:30px;font-weight:700;line-height:1.5;color:var(--paper);letter-spacing:.04em;
+  max-width:880px;margin:0 auto;
+}
+.quote .q em{
+  color:#ff8a82;font-style:normal;font-weight:900;
+  border-bottom:2px solid var(--hot);padding-bottom:2px;
+}
+.quote .qby{
+  margin-top:18px;font-size:11px;color:var(--ink-4);letter-spacing:.2em;
+  text-transform:uppercase;font-family:"Arial Black",sans-serif;
+}
+.quote .qby b{color:var(--paper);font-weight:900}
+.quote .qline{
+  margin:18px auto 0;width:60%;height:1px;background:var(--paper);opacity:.4;
+}
+
+/* ================== 公报 BULLETIN ================== */
+.bul{
+  display:grid;grid-template-columns:3fr 5fr;gap:0;
+  border-bottom:3px solid var(--ink);
+}
+.bul .bleft{
+  border-right:2px solid var(--ink);padding:24px 26px;
+  background:var(--paper-2);
+}
+.bul .bleft .bhead{
+  display:flex;align-items:center;gap:10px;margin-bottom:14px;
+  border-bottom:2px solid var(--ink);padding-bottom:10px;
+}
+.bul .bleft .bhead .no{
+  background:var(--ink);color:var(--paper);
+  padding:6px 12px;font-family:"Arial Black",sans-serif;
+  font-size:14px;letter-spacing:.3em;font-weight:900;
+}
+.bul .bleft .bhead .ttl{
+  font-size:18px;font-weight:900;letter-spacing:.15em;color:var(--ink);
+}
+.bul .bleft .bhead .sub{
+  font-size:10px;color:var(--ink-3);letter-spacing:.25em;
+  font-family:"Arial Black",sans-serif;
+}
+.bul .bleft .topic{
+  font-size:12.5px;line-height:1.95;color:var(--ink-2);
+}
+.bul .bleft .topic dt{
+  font-family:"Arial Black",sans-serif;font-size:10px;
+  letter-spacing:.2em;color:var(--ink-3);text-transform:uppercase;
+  margin-top:8px;
+}
+.bul .bleft .topic dt:first-child{margin-top:0}
+.bul .bleft .topic dd{
+  margin:2px 0 0;font-size:13px;color:var(--ink);
+}
+.bul .bleft .topic dd b{color:var(--ink);font-weight:900}
+.bul .bleft .topic dd em{color:var(--hot);font-style:normal;font-weight:900}
+.bul .bleft .resolution{
+  margin-top:14px;padding-top:12px;border-top:1px solid var(--ink);
+  font-size:12.5px;line-height:1.85;color:var(--ink);font-style:italic;
+}
+.bul .bleft .resolution::before{
+  content:"三方一致认定 · ";font-weight:900;color:var(--hot);font-style:normal;
+  font-family:"Arial Black",sans-serif;font-size:10px;letter-spacing:.2em;display:block;margin-bottom:4px;
+}
+.bul .bleft .resolution b{color:var(--hot);font-style:normal;font-weight:900}
+
+.bul .bright{padding:22px 24px;background:var(--paper)}
+.bul .bright .bgrid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:14px;
+}
+.bul .bright .bcol{
+  border:2px solid var(--ink);background:var(--paper);
+  padding:14px 14px 12px;display:flex;flex-direction:column;
+  position:relative;
+}
+.bul .bright .bcol.r-hot{border-top:5px solid var(--hot)}
+.bul .bright .bcol.r-mint{border-top:5px solid var(--mint)}
+.bul .bright .bcol.r-gold{border-top:5px solid var(--gold)}
+.bul .bright .bcol .role{
+  display:inline-block;align-self:flex-start;
+  font-family:"Arial Black",sans-serif;font-size:10px;
+  letter-spacing:.3em;font-weight:900;
+  padding:3px 8px;margin-bottom:6px;
+  border:1px solid currentColor;
+}
+.bul .bright .bcol.r-hot .role{color:var(--hot)}
+.bul .bright .bcol.r-mint .role{color:var(--mint)}
+.bul .bright .bcol.r-gold .role{color:var(--gold)}
+.bul .bright .bcol h4{
+  font-size:18px;font-weight:900;letter-spacing:.1em;
+  margin:0 0 8px;color:var(--ink);
+}
+.bul .bright .bcol ul{
+  list-style:none;padding:0;margin:0;
+  border-top:1px solid var(--ink);padding-top:6px;
+  font-size:11.5px;color:var(--ink-2);line-height:1.7;
+}
+.bul .bright .bcol li{
+  padding:2px 0 2px 12px;position:relative;
+  border-bottom:1px dashed var(--rule-mid);
+}
+.bul .bright .bcol li:last-child{border-bottom:none}
+.bul .bright .bcol li::before{
+  content:"▸";position:absolute;left:0;top:2px;
+  font-weight:900;
+}
+.bul .bright .bcol.r-hot li::before{color:var(--hot)}
+.bul .bright .bcol.r-mint li::before{color:var(--mint)}
+.bul .bright .bcol.r-gold li::before{color:var(--gold)}
+.bul .bright .bcol li b{color:var(--ink);font-weight:700}
+.bul .bright .bcol li em{color:var(--hot);font-style:normal;font-weight:700}
+.bul .bright .bcol.r-mint li em{color:var(--mint)}
+.bul .bright .bcol.r-gold li em{color:var(--gold)}
+.bul .bright .bcol .stamp{
+  position:absolute;bottom:-1px;right:-1px;
+  background:var(--ink);color:var(--paper);
+  padding:3px 10px;font-family:"Arial Black",sans-serif;
+  font-size:10px;letter-spacing:.3em;font-weight:900;
+}
+.bul .bright .bcol.r-hot .stamp{background:var(--hot)}
+.bul .bright .bcol.r-mint .stamp{background:var(--mint)}
+.bul .bright .bcol.r-gold .stamp{background:var(--gold)}
+
+.bul .bright .bfoot{
+  margin-top:14px;padding-top:10px;border-top:2px solid var(--ink);
+  display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;
+  font-size:11px;color:var(--ink-2);font-style:italic;letter-spacing:.05em;
+}
+.bul .bright .bfoot b{color:var(--hot);font-style:normal;font-weight:900}
+
+/* ================== 版权 FOOTER ================== */
 .foot{
-  padding:10px 24px;
-  display:flex;justify-content:space-between;align-items:center;gap:18px;
+  padding:10px 22px;
+  display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:18px;
   font-size:10.5px;color:var(--ink-3);
   border-top:1px solid var(--rule);
-  height:38px;
+  background:var(--paper-2);
+  font-family:"Courier New",monospace;letter-spacing:.05em;
 }
 .foot .issue{
-  border:1px solid var(--ink-1);padding:2px 9px;
-  font-family:"Arial Black",sans-serif;
-  font-weight:900;letter-spacing:.3em;color:var(--ink-1);font-size:10px;
+  border:1.5px solid var(--ink);padding:3px 10px;
+  font-family:"Arial Black",sans-serif;font-weight:900;letter-spacing:.3em;
+  color:var(--ink);font-size:10px;
 }
+.foot .mid{text-align:center;color:var(--ink-2)}
+.foot .mid b{color:var(--ink)}
 .foot .stamp{
-  border:1px solid var(--hot);color:var(--hot);
-  padding:2px 7px;font-size:9px;letter-spacing:.2em;font-family:"Arial Black",sans-serif;
+  border:1.5px solid var(--hot);color:var(--hot);
+  padding:3px 10px;font-size:10px;letter-spacing:.2em;
+  font-family:"Arial Black",sans-serif;font-weight:900;
 }
 
-/* ========== 移动端 ========== */
+/* ================== 移动端 ================== */
+@media (max-width:1240px){
+  .paper{width:100%;margin:0;border-left:none;border-right:none}
+}
 @media (max-width:900px){
   body{font-size:13px}
-  .paper{width:100%;margin:0;border:none}
-  .spread{
-    grid-template-columns:1fr;height:auto;border-bottom:2px solid var(--ink-1);
-  }
-  .spread::before{display:none}
-  .page-head{height:42px;padding:0 14px;font-size:11px}
-  .page-head .pub{font-size:14px}
-  .page-body{height:auto}
-  .headline-page .body,
-  .bulletin-page .body{grid-template-columns:1fr;height:auto}
-  .headline-page .hl-right,
-  .sec-page .sec-img{height:300px}
-  .sec-page.left-img,
-  .sec-page.right-img,
-  .sec-page.top-img,
-  .sec-page.bot-img{grid-template-columns:1fr;grid-template-rows:auto auto}
-  .sec-page .sec-text{padding:18px 18px;border-right:none !important;border-left:none !important}
-  .sec-page .sec-img{border-top:1px solid var(--rule)}
-  .sec-page .sec-text h2{font-size:20px}
-  .quote-page{padding:20px 18px}
-  .quote-page .q{font-size:18px}
-  .bulletin-page .bl-right .b-grid{grid-template-columns:1fr}
-  .foot{height:auto;padding:8px 12px;flex-wrap:wrap;gap:6px;text-align:center}
+  .paper{border-top-width:3px;border-bottom-width:3px}
+  .paper::before,.paper::after{display:none}
+  .topbar{font-size:9px;padding:4px 8px;gap:6px}
+  .topbar .l,.topbar .r{display:none}
+  .topbar .c{font-size:9px}
+  .masthead h1{font-size:54px;letter-spacing:.1em}
+  .masthead .en{font-size:11px;letter-spacing:.3em}
+  .masthead .stamp-l,.masthead .stamp-r{display:none}
+  .rail{flex-wrap:wrap}
+  .rail ul{flex-wrap:wrap;padding:4px;font-size:11px}
+  .rail li{padding:4px 8px;border-right:none}
+  .front{grid-template-columns:1fr}
+  .front .ft{border-right:none;border-bottom:1px solid var(--ink)}
+  .front .ft h2{font-size:36px}
+  .front .fp{min-height:280px}
+  .body{grid-template-columns:repeat(2,1fr)}
+  .body .col{border-right:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+  .body .col:nth-child(2n){border-right:none}
+  .col h3{font-size:18px}
+  .quote{padding:22px 18px}
+  .quote .q{font-size:20px}
+  .bul{grid-template-columns:1fr}
+  .bul .bleft{border-right:none;border-bottom:2px solid var(--ink)}
+  .bul .bright .bgrid{grid-template-columns:1fr}
+  .foot{grid-template-columns:1fr;text-align:center;gap:6px;padding:8px 10px}
 }
 </style>
 </head>
 <body>
+
 <div class="paper">
 
-<!-- ========== 跨页 1：报头 + 头条（左 文字 / 右 主图） ========== -->
-<section class="spread">
-
-  <!-- 左 page：头条 -->
-  <div class="page-head headline-page">
-    <span class="pub">三方家 <span class="red">友好</span>会晤</span>
-    <span class="url">www.family-gov.local</span>
-    <div class="meta"><span class="badge">002 期</span></div>
-    <span class="date">2026.07.04 · 兰州分刊</span>
-  </div>
-  <div class="page-head" style="border-left:1px solid var(--rule)">
-    <span class="pub">家庭<span style="color:var(--hot)">纪事</span>报</span>
-    <span class="badge red">SPECIAL EDITION</span>
-    <span class="badge">头 版</span>
-    <span class="date">VOL.30</span>
-  </div>
-
-  <div class="headline-page body" style="grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr;height:672px">
-    <div class="hl-left">
-      <div class="kicker">▌头　版　头　条 / HEADLINE</div>
-      <h1>三组家庭，<br>一锅青菜山。</h1>
-      <div class="sub">兰州·王小娟家 · 七月四日 · 下午 → 晚间</div>
-      <p class="lead">三组家庭进行了<b>友好会晤</b>。<br>王小娟家庭代表提供自家房屋作为聚会地点，并提前准备了丰盛的菜品——<em>一锅各式青菜堆成了山</em>，加一些肉。<br>马瑞家庭代表准备饮料。<br>我方家庭准备<b>奇怪的菜品</b>及桌游。<br>大家开展了积极地吃吃喝喝活动，并进行了愉快的游戏。<br>此次聚会取得<b>圆满成功</b>。</p>
-      <div class="byline">撰稿 <b>戴先生 &amp; 戴太太</b> · 出品 <b>bot1 小豆包</b> · 文体 <b>外交公报（白话版）</b></div>
+  <!-- ============ 顶部装饰条 ============ -->
+  <div class="topbar">
+    <div class="l">
+      <span class="pill">VOL.30</span>
+      <span class="pill">NO.002</span>
+      <span>SINCE 2026</span>
+      <span>本期 <b>1</b> 张全版 · 售价 <b>¥0</b>（家庭内部发行）</span>
     </div>
-    <div class="hl-right">
-      <div class="stamp">VOL.30</div>
-      <img src="photos/2026-07-04/01-hotpot-selfie.jpg" alt="戴太太歪头 selfie，6 人围坐一桌吃火锅">
-      <div class="cap">▲ 戴太太歪头 selfie · 6 人围坐 · 红汤鸳鸯锅<br><em>（一锅青菜堆成山 + 一些肉 + 奇怪菜品）</em></div>
+    <div class="c">
+      <span class="weather">兰州 · 多云转晴 22°C~31°C</span>
+    </div>
+    <div class="r">
+      <span>2026 年 7 月 6 日 · 星期一</span>
+      <span>农历：丙午年 五月廿一 · 大暑前</span>
+      <span class="pill price">¥0</span>
     </div>
   </div>
-</section>
 
-<!-- ========== 跨页 2：板块 01 + 板块 02 ========== -->
-<section class="spread">
-  <!-- 报头 -->
-  <div class="page-head"><span class="pub">三方家 <span class="red">友好</span>会晤</span><span class="badge red">板块 01</span><span class="date">P.02</span></div>
-  <div class="page-head" style="border-left:1px solid var(--rule)"><span class="pub">家庭<span style="color:var(--hot)">纪事</span>报</span><span class="badge gold">板块 02</span><span class="date">P.02</span></div>
-
-  <!-- 板块 01 左 page：图左，文右 -->
-  <div class="sec-page left-img">
-    <div class="sec-img">
-      <span class="badge red b-top-left">板块 01 · 东道主主场</span>
-      <img src="photos/2026-07-04/01-hotpot-selfie.jpg" alt="火锅全景">
-      <div class="cap-bottom">▲ 戴太太 selfie · 鸳鸯锅 · 6 人围坐</div>
+  <!-- ============ 报头 MASTHEAD ============ -->
+  <header class="masthead">
+    <div class="stamp-l">
+      <div class="v">FAMILY CHRONICLE</div>
+      <div class="big">№002</div>
+      <div class="line"></div>
+      <div class="sm">2026 · 兰州分社</div>
     </div>
-    <div class="sec-text left-border">
-      <div class="no">01 / 05</div>
-      <h2>一锅<span class="accent">青菜</span>堆成了山。</h2>
-      <p>这是本次会晤<b>最硬的主菜</b>——来自王小娟家。</p>
-      <p>鸳鸯锅里咕嘟冒烟，<b>各式青菜铺成了一座小山</b>：绿叶、菌菇、根茎，能涮的都涮了。山顶点缀几片肥牛卷，<b>山脚沉着面条和蘸料</b>。</p>
+    <div class="stamp-r">
+      <div class="v">SECOND BULLETIN</div>
+      <div class="big">二号</div>
+      <div class="line"></div>
+      <div class="sm">三方外交通讯</div>
+    </div>
+
+    <h1>家庭纪事报</h1>
+    <div class="en">Family Chronicle · Daily</div>
+    <div class="sub">
+      <span><b>三方家友好会晤</b></span>
+      <span class="sep">／</span>
+      <span>第二号公报</span>
+      <span class="sep">／</span>
+      <span>兰州分刊</span>
+      <span class="sep">／</span>
+      <span>二〇二六年七月四日发刊</span>
+    </div>
+  </header>
+
+  <!-- ============ 今日要闻 ============ -->
+  <nav class="rail">
+    <span class="tag">今日要闻 / TODAY</span>
+    <ul>
+      <li><b>一锅青菜堆成山</b></li>
+      <li>奇怪桌游：<em>吸爆松饼</em></li>
+      <li><b>9 个月北鼻</b>· 全场焦点</li>
+      <li>戴太太手绘<em>「火锅人们」</em></li>
+      <li>私人珍藏：<em>结婚证相框</em></li>
+      <li>三方家庭<em>外交通讯</em></li>
+    </ul>
+    <span class="pn">P.01 — P.06</span>
+  </nav>
+
+  <!-- ============ 头条 ============ -->
+  <section class="front">
+    <div class="ft">
+      <div class="kicker">▌头版头条 · HEADLINE 002</div>
+      <h2>三组家庭，<br>一锅<em>青菜</em>山。</h2>
+      <div class="deck">
+        兰州·王小娟家 · 七月四日 · 下午 → 晚间<br>
+        <b>三组家庭友好会晤取得圆满成功</b>
+      </div>
+      <div class="lead">
+        <p><b>本报讯</b>　七月四日下午，三组家庭在王小娟家中进行了友好会晤。</p>
+        <p>王小娟家庭代表提供自家房屋作为聚会地点，并提前准备了丰盛菜品——一锅各式<em>青菜堆成了山</em>，加一些肉。马瑞家庭代表准备饮料。我方家庭（戴家）准备奇怪的菜品及桌游。</p>
+        <p>大家开展了积极地吃吃喝喝活动，并进行了愉快的桌游（吸爆松饼）。此次聚会取得圆满成功。</p>
+        <p>本报<em>二号公报</em>同时发布于头版，见 P.06。</p>
+      </div>
+      <div class="byline">
+        <span><b>本报特约记者</b>　戴先生 &amp; 戴太太</span>
+        <span>·　<span class="src">兰州分社发</span></span>
+        <span>·　摄影 / 戴太太 &amp; 戴先生</span>
+        <span>·　文 / bot1 小豆包</span>
+      </div>
+    </div>
+    <div class="fp">
+      <span class="stamp"><em>VOL.30</em> 头版主图</span>
+      <span class="corner">★ FOCUS</span>
+      <span class="photo-credit">PHOTO BY MRS. DAI · 2026.07.04</span>
+      <img src="https://dcrlovejs-spec.github.io/sleep-briefing/photos/2026-07-04/01-hotpot-selfie.jpg" alt="戴太太歪头 selfie · 6 人围坐一桌 · 鸳鸯锅">
+      <div class="cap">
+        <b>▲ 戴太太歪头 selfie · 6 人围坐 · 红汤鸳鸯锅</b>
+        <em>一锅青菜堆成山 + 一些肉 + 奇怪菜品</em>　／　本报头版主图 · 7 月 4 日兰州王小娟家摄
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 6 栏板块 ============ -->
+  <section class="body">
+
+    <!-- 板块 01 -->
+    <article class="col">
+      <div class="sec-head">
+        <span class="num">01</span>
+        <span class="label">板块 <b>01</b><br><b>东道主</b>主场<br>P.02</span>
+      </div>
+      <h3>一锅<em>青菜</em><br>堆成了山。</h3>
+      <div class="deck">本次会晤<b>最硬的主菜</b>，来自王小娟家</div>
+      <div class="pic">
+        <span class="badge r">图 01</span>
+        <img src="https://dcrlovejs-spec.github.io/sleep-briefing/photos/2026-07-04/01-hotpot-selfie.jpg" alt="火锅全景">
+        <div class="cap"><b>▲ 鸳鸯锅 · 6 人围坐</b><br>红汤 + 青菜山 + 一些肉</div>
+      </div>
+      <p>鸳鸯锅里咕嘟冒烟，<b>各式青菜铺成一座小山</b>：绿叶、菌菇、根茎，能涮的都涮了。山顶点缀几片肥牛卷，山脚沉着面条和蘸料。</p>
       <p>我和戴太太夹了 8 筷子青菜，<em>才注意到山上没有薄荷</em>。奇怪菜品另有其处。</p>
-      <div class="quote-block red">"山，是王小娟家堆的。肉，是戴家点的。"</div>
-      <div class="credit">撰文 / 戴先生 · 板块 / bot1 急就</div>
-    </div>
-  </div>
+      <blockquote>"山，是王小娟家堆的。肉，是戴家点的。"</blockquote>
+      <div class="credit">撰文 <b>戴先生</b> · 板块 <em>bot1</em></div>
+    </article>
 
-  <!-- 板块 02 右 page：文左，图右 -->
-  <div class="sec-page right-img">
-    <div class="sec-text right-border">
-      <div class="no">02 / 05</div>
-      <h2>桌游：<span class="gold">吸爆松饼</span>。</h2>
+    <!-- 板块 02 -->
+    <article class="col">
+      <div class="sec-head">
+        <span class="num">02</span>
+        <span class="label">板块 <b>02</b><br><b>我方</b>主场<br>P.03</span>
+      </div>
+      <h3>桌游：<span class="g">吸爆松饼</span>。</h3>
+      <div class="deck">5 人同乐的纸牌桌游，<b>来自戴家奇怪物资清单</b></div>
+      <div class="pic">
+        <span class="badge g">图 02</span>
+        <img src="https://dcrlovejs-spec.github.io/sleep-briefing/photos/2026-07-04/03-pancake-game.jpg" alt="吸爆松饼桌游">
+        <div class="cap"><b>▲ 5 人围一桌</b><br>纸牌散一桌 · 打了一下午</div>
+      </div>
       <p>这是一款<b>5 人同乐的纸牌桌游</b>，来自我方家庭带来的奇怪物资清单。</p>
       <p>5 个人围一桌，<b>纸牌散一桌</b>，我们打了一下午。<b>戴太太笑得最大声</b>，朋友举牌挡住半张脸——大家都很开心。</p>
-      <p>规则奇怪：要把松饼<span class="gold">用嘴吸爆</span>。谁吸爆了谁赢。</p>
-      <div class="quote-block gold">"奇怪的菜品 + 奇怪的桌游 = 奇怪的下午。"</div>
-      <div class="credit">摄影 / 戴先生随手 · 桌游 / 我方家庭</div>
-    </div>
-    <div class="sec-img">
-      <span class="badge gold b-top-right">板块 02 · 我方主场</span>
-      <img src="photos/2026-07-04/03-pancake-game.jpg" alt="吸爆松饼桌游">
-      <div class="cap-bottom">▲ 5 人围一桌 · 纸牌散一桌</div>
-    </div>
-  </div>
-</section>
+      <p>规则奇怪：要把松饼<span class="g">用嘴吸爆</span>。谁吸爆了谁赢。</p>
+      <blockquote class="b-gold">"奇怪的菜品 + 奇怪的桌游 = 奇怪的下午。"</blockquote>
+      <div class="credit">摄影 <b>戴先生随手</b> · 桌游 <em>戴家</em></div>
+    </article>
 
-<!-- ========== 跨页 3：板块 03 + 板块 04 ========== -->
-<section class="spread">
-  <div class="page-head"><span class="pub">三方家 <span class="red">友好</span>会晤</span><span class="badge mint">板块 03</span><span class="date">P.03</span></div>
-  <div class="page-head" style="border-left:1px solid var(--rule)"><span class="pub">家庭<span style="color:var(--hot)">纪事</span>报</span><span class="badge gold">板块 04</span><span class="date">P.03</span></div>
-
-  <!-- 板块 03 左 page：图左，文右 -->
-  <div class="sec-page left-img">
-    <div class="sec-img">
-      <span class="badge mint b-top-left">板块 03 · 全场焦点</span>
-      <img src="photos/2026-07-04/02-baby-play.jpg" alt="逗小北鼻">
-      <div class="cap-bottom">▲ 5 个大人围着 1 个 9 个月北鼻</div>
-    </div>
-    <div class="sec-text left-border">
-      <div class="no">03 / 05</div>
-      <h2>九个月，<span class="mint">仰面</span>躺床上。</h2>
+    <!-- 板块 03（焦点专栏） -->
+    <article class="col spotlight">
+      <div class="sec-head">
+        <span class="num">03</span>
+        <span class="label">板块 <b>03</b><br><b>全场</b>焦点<br>P.03</span>
+      </div>
+      <h3>九个月，<br><span class="m">仰面</span>躺床上。</h3>
+      <div class="deck"><b>特邀方</b>· 9 个月小北鼻 · 当日最大彩蛋</div>
+      <div class="pic">
+        <span class="badge m">图 03</span>
+        <img src="https://dcrlovejs-spec.github.io/sleep-briefing/photos/2026-07-04/02-baby-play.jpg" alt="逗小北鼻">
+        <div class="cap"><b>▲ 5 个大人围 1 个 9 个月北鼻</b><br>仰躺 · 浅色衣服 · 灰白条纹薄被</div>
+      </div>
       <p><b>他是全场焦点</b>——9 个月大，仰面躺在王小娟家的大床上，穿着浅色衣服，盖着灰白条纹薄被。</p>
       <p><b>戴先生弯腰弹手指</b>逗他，王小娟家把孩子抱起来，他不哭。戴太太全程拍视频——一边拍一边说"他笑了他笑了"。</p>
       <p>他最后睡了。<b>这是我们的撤退信号</b>——孩子一睡，全员撤退。</p>
-      <div class="quote-block mint">"最累的不是——是你想离开的时候，他对你笑了一下。" —— 戴太太</div>
-      <div class="credit">摄影 / 戴太太 · 撰文 / 戴太太口述</div>
-    </div>
-  </div>
+      <blockquote class="b-mint">"最累的不是——是你想离开的时候，他对你笑了一下。" —— 戴太太</blockquote>
+      <div class="credit">摄影 <b>戴太太</b> · 撰文 <em>戴太太口述</em></div>
+    </article>
 
-  <!-- 板块 04 右 page：图右，文左 -->
-  <div class="sec-page right-img">
-    <div class="sec-text right-border">
-      <div class="no">04 / 05</div>
-      <h2>戴太太<span class="gold">手绘</span>水彩。</h2>
-      <p>回家当晚，戴太太拿出水彩本，画了这次聚会。</p>
+    <!-- 板块 04 -->
+    <article class="col">
+      <div class="sec-head">
+        <span class="num">04</span>
+        <span class="label">板块 <b>04</b><br><b>文艺</b>担当<br>P.04</span>
+      </div>
+      <h3>戴太太<span class="g">手绘</span><br>水彩。</h3>
+      <div class="deck">回家当晚 · 戴太太拿出水彩本 · 画了这次聚会</div>
+      <div class="pic">
+        <span class="badge g">图 04</span>
+        <img src="https://dcrlovejs-spec.github.io/sleep-briefing/photos/2026-07-04/04-sketchbook.jpg" alt="戴太太手账水彩">
+        <div class="cap"><b>▲ 戴太太水彩手账</b><br>红色彩笔画的箭头 + 星</div>
+      </div>
       <p>标题叫<b>「火锅人们」</b>。副标题写：<b>「完整聚会，7.04 下午」</b>。旁边贴两张自拍小图，红色彩笔画的箭头 + 星。</p>
       <p>批注三个字：<em>又吃又玩又让人奔欢</em>。我方家庭的<b>文艺担当</b>。</p>
-      <div class="quote-block gold">"火锅人们——又吃又玩又让人奔欢。" —— 戴太太手账原文</div>
-      <div class="credit">手绘 / 戴太太 · 抄录 / bot1</div>
-    </div>
-    <div class="sec-img">
-      <span class="badge gold b-bot-right">板块 04 · 文艺担当</span>
-      <img src="photos/2026-07-04/04-sketchbook.jpg" alt="戴太太手账水彩">
-      <div class="cap-bottom">▲ 戴太太水彩手账 · 红色彩笔画的箭头 + 星</div>
-    </div>
-  </div>
-</section>
+      <blockquote class="b-gold">"火锅人们——又吃又玩又让人奔欢。" —— 戴太太手账原文</blockquote>
+      <div class="credit">手绘 <b>戴太太</b> · 抄录 <em>bot1</em></div>
+    </article>
 
-<!-- ========== 跨页 4：板块 05 + 客人话 ========== -->
-<section class="spread">
-  <div class="page-head"><span class="pub">三方家 <span class="red">友好</span>会晤</span><span class="badge gray">板块 05</span><span class="date">P.04</span></div>
-  <div class="page-head" style="border-left:1px solid var(--rule)"><span class="pub">家庭<span style="color:var(--hot)">纪事</span>报</span><span class="badge">客 人 话</span><span class="date">P.04</span></div>
-
-  <!-- 板块 05 左 page -->
-  <div class="sec-page left-img">
-    <div class="sec-img">
-      <span class="badge gray b-top-left">板块 05 · 私人珍藏</span>
-      <img src="photos/2026-07-04/05-wedding-photo.jpg" alt="结婚证相框">
-      <div class="cap-bottom">▲ 戴先生书桌上的结婚证相框 · 家中静物</div>
-    </div>
-    <div class="sec-text left-border">
-      <div class="no">05 / 05</div>
-      <h2>戴家书桌上的<span style="color:var(--ink-3)">结婚证</span>。</h2>
+    <!-- 板块 05 -->
+    <article class="col">
+      <div class="sec-head">
+        <span class="num">05</span>
+        <span class="label">板块 <b>05</b><br><b>私人</b>珍藏<br>P.04</span>
+      </div>
+      <h3>戴家书桌上的<br><span style="color:var(--ink-3)">结婚证</span>。</h3>
+      <div class="deck">家中静物 · <b>不是聚会照片</b> · 仅限家人传阅</div>
+      <div class="pic">
+        <span class="badge">图 05</span>
+        <img src="https://dcrlovejs-spec.github.io/sleep-briefing/photos/2026-07-04/05-wedding-photo.jpg" alt="结婚证相框">
+        <div class="cap"><b>▲ 戴先生书桌上的结婚证相框</b><br>家中静物 · 摆了很久</div>
+      </div>
       <p>这不是聚会照片——这是<b>家中静物</b>。</p>
       <p>回家路上戴先生说：<b>"结婚证相框摆在书桌上很久了。"</b>。我们一致决定：今天的家报，应该有这一张。</p>
       <p>它代表——<b>我们去朋友家做客，是因为我们有了家</b>。有了家，才有 6 人围坐、才有"奇怪的菜品"、才有笑得最大声的戴太太。</p>
-      <p>这是家里的<b>私人珍藏</b>。本板块仅限家人传阅。</p>
-      <div class="quote-block gray">"家中静物，未公开陈列。" —— bot1 备注</div>
-      <div class="credit">摄影 / 戴先生 · 撰文 / 戴先生 &amp; bot1</div>
-    </div>
-  </div>
+      <blockquote class="b-gray">"家中静物，未公开陈列。" —— bot1 备注</blockquote>
+      <div class="credit">摄影 <b>戴先生</b> · 撰文 <em>戴先生 &amp; bot1</em></div>
+    </article>
 
-  <!-- 客人话 右 page -->
-  <div class="quote-page">
-    <span class="q-label">客 人 的 话</span>
-    <div class="q">三组家庭的会晤，最累的不是——<br>是<em>你想离开的时候，<br>小北鼻对你笑了一下。</em></div>
-    <div class="by">—— 戴太太 · 原文 · 配图：戴太太手绘水彩（板块 04）</div>
-    <div class="banner">
-      <span>YOU GOT THIS!</span>
-      <span>·</span>
-      <span class="ygt">圆满成功</span>
-      <span>·</span>
-      <span>FAMILY</span>
-    </div>
-  </div>
-</section>
-
-<!-- ========== 跨页 5：公报（左议题 / 右三方） ========== -->
-<section class="spread">
-  <div class="page-head"><span class="pub">三方家 <span class="red">友好</span>会晤</span><span class="badge">公 报</span><span class="date">P.05</span></div>
-  <div class="page-head" style="border-left:1px solid var(--rule)"><span class="pub">家庭<span style="color:var(--hot)">纪事</span>报</span><span class="badge">第 二 号</span><span class="date">P.05</span></div>
-
-  <!-- 公报页（左议题 / 右三方） -->
-  <div class="bulletin-page body" style="grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr;height:672px;background:var(--paper-2)">
-    <div class="bl-left">
-      <div class="title-row">
-        <span class="no">第 二 号</span>
-        <span class="name">三方家庭外交通讯</span>
+    <!-- 客人话 -->
+    <article class="col">
+      <div class="sec-head">
+        <span class="num">★</span>
+        <span class="label">客人 <b>的话</b><br><b>VOICES</b><br>P.05</span>
       </div>
-      <p class="topic">
-        <b>议　题：</b>"三方家庭如何开展友好会晤"<br>
-        <b>时　间：</b>七月四日 下午→晚间<br>
-        <b>地　点：</b>王小娟家·客厅+卧室<br>
-        <b>代　表：</b>东道主（王小娟家）/ 后勤部长（马瑞家）/ 文艺担当（戴家）<br>
-        <b>特邀方：</b>小北鼻（9 个月）<br><br>
-        <i>三方一致认定：</i><br>
-        <em>三组家庭 + 一位小北鼻 = 当代家庭外交最高境界——吃饱、喝足、玩好、让人奔欢。</em>
+      <h3 style="font-size:18px">戴太太<br><em style="font-size:14px">原话摘录</em></h3>
+      <div class="deck">本报 <b>P.05 客人话栏</b> 全文刊载</div>
+      <blockquote style="font-size:13.5px;border-left-width:4px;padding:10px 12px;margin-top:12px">
+        三组家庭的会晤，<br>
+        <em style="font-size:14px">最累的不是——</em><br>
+        是你想离开的时候，<br>
+        <b style="color:var(--hot);font-size:15px">小北鼻对你笑了一下。</b>
+      </blockquote>
+      <p style="margin-top:14px;font-size:11.5px;color:var(--ink-3);line-height:1.6">—— 戴太太 · 原文 · 7 月 4 日晚间手账批注</p>
+      <p style="font-size:11px;color:var(--ink-3);border-top:1px dashed var(--rule-mid);padding-top:8px;margin-top:auto">
+        配图：戴太太手绘水彩「火锅人们」<br>（见板块 04）
       </p>
+      <div class="credit">摘录 <b>bot1</b></div>
+    </article>
+
+  </section>
+
+  <!-- ============ 客人话横幅 ============ -->
+  <section class="quote">
+    <div class="qflag">客人的 话 · VOICES · P.05</div>
+    <div class="q">
+      三组家庭的会晤，最累的不是——<br>
+      是<em>你想离开的时候，<br>小北鼻对你笑了一下。</em>
     </div>
-    <div class="bl-right">
-      <div class="b-grid">
-        <div class="b-col r-hot">
+    <div class="qline"></div>
+    <div class="qby">本报特约记者 · 戴太太 · 原文刊于 7 月 4 日晚间 · 配图 <b>戴太太手绘水彩「火锅人们」</b>（板块 04）</div>
+  </section>
+
+  <!-- ============ 公报 ============ -->
+  <section class="bul">
+
+    <div class="bleft">
+      <div class="bhead">
+        <span class="no">第二号</span>
+        <span class="ttl">三方家庭外交通讯</span>
+      </div>
+      <div class="bhead" style="border-bottom:none;padding-bottom:0;margin-bottom:14px">
+        <span class="sub">BULLETIN №002 · LANZHOU BRANCH · JUL 04 2026</span>
+      </div>
+      <dl class="topic">
+        <dt>议　题</dt>
+        <dd>三方家庭如何开展友好会晤</dd>
+        <dt>时　间</dt>
+        <dd>七月四日　下午 → 晚间</dd>
+        <dt>地　点</dt>
+        <dd>王小娟家 · 客厅 + 卧室</dd>
+        <dt>代　表</dt>
+        <dd>东道主（王小娟家）/<br>后勤部长（马瑞家）/<br>文艺担当（戴家）</dd>
+        <dt>特邀方</dt>
+        <dd>小北鼻（9 个月）</dd>
+      </dl>
+      <div class="resolution">
+        三组家庭 + 一位小北鼻 = <b>当代家庭外交最高境界</b>——吃饱、喝足、玩好、让人奔欢。
+      </div>
+    </div>
+
+    <div class="bright">
+      <div class="bgrid">
+        <div class="bcol r-hot">
           <span class="role">东 道 主</span>
           <h4>王小娟家</h4>
           <ul>
@@ -561,8 +837,9 @@ body{
             <li>含<em>一些肉</em></li>
             <li><em>小北鼻</em>（9 个月）</li>
           </ul>
+          <div class="stamp">王 方 印</div>
         </div>
-        <div class="b-col r-mint">
+        <div class="bcol r-mint">
           <span class="role">后 勤 部 长</span>
           <h4>马　瑞　家</h4>
           <ul>
@@ -572,8 +849,9 @@ body{
             <li><em>不参与奇怪菜品</em></li>
             <li>下次轮换为<em>东道主</em></li>
           </ul>
+          <div class="stamp">马 方 印</div>
         </div>
-        <div class="b-col r-gold">
+        <div class="bcol r-gold">
           <span class="role">文 艺 担 当</span>
           <h4>戴　家</h4>
           <ul>
@@ -583,26 +861,30 @@ body{
             <li>戴太太手绘水彩</li>
             <li>下次带<b>新奇怪菜品</b></li>
           </ul>
+          <div class="stamp">戴 方 印</div>
         </div>
       </div>
-      <div class="b-foot">
-        <span class="b-stamp">王 方 印</span>
-        <span class="b-stamp s-mint">马 方 印</span>
-        <span class="b-stamp s-gold">戴 方 印</span>
-        <span class="b-stamp s-gray">北 鼻 戳</span>
-        <span>· 本公报自即日起生效，<b>圆满成功</b> ·</span>
+      <div class="bfoot">
+        <span class="stamp" style="background:var(--hot);color:var(--paper);padding:3px 8px;font-family:'Arial Black',sans-serif;font-size:9px;letter-spacing:.2em;font-weight:900;border:none">王 方 印</span>
+        <span class="stamp" style="background:var(--mint);color:var(--paper);padding:3px 8px;font-family:'Arial Black',sans-serif;font-size:9px;letter-spacing:.2em;font-weight:900;border:none">马 方 印</span>
+        <span class="stamp" style="background:var(--gold);color:var(--paper);padding:3px 8px;font-family:'Arial Black',sans-serif;font-size:9px;letter-spacing:.2em;font-weight:900;border:none">戴 方 印</span>
+        <span class="stamp" style="background:var(--ink);color:var(--paper);padding:3px 8px;font-family:'Arial Black',sans-serif;font-size:9px;letter-spacing:.2em;font-weight:900;border:none">北 鼻 戳</span>
+        <span>· 本公报自即日起生效 · <b>圆满成功</b> · 仅供家人传阅 · 谢绝外传</span>
       </div>
     </div>
-  </div>
-</section>
 
-<!-- 版权 -->
-<footer class="foot">
-  <span class="issue">第 002 期</span>
-  <span class="src">文案 / 戴先生&戴太太 · 出报 / bot1 小豆包 · 文体 / 大横版杂志（参考 trend 双跨页） · 主图 / 戴太太 selfie · 5 张现场照全嵌入 · 戴太太水彩手账 · 结婚证相框 · v12 真正大横版</span>
-  <span class="stamp">仅供家人阅读 · 谢绝外传</span>
-</footer>
+  </section>
+
+  <!-- ============ 版权 ============ -->
+  <footer class="foot">
+    <span class="issue">№ 002</span>
+    <span class="mid">
+      文案 <b>戴先生 &amp; 戴太太</b>　·　摄影 <b>戴太太 &amp; 戴先生</b>　·　出报 <b>小豆包 bot1</b>　·　兰州分社
+    </span>
+    <span class="stamp">仅供家人阅读 · 谢绝外传</span>
+  </footer>
 
 </div>
+
 </body>
 </html>
