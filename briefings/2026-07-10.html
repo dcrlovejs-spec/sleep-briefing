@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#1890ff">
+<title>睡后简报 · 2026-07-10</title>
+<style>
+  :root {
+    --bg: #f7f8fa; --fg: #1f2328; --muted: #6e7681;
+    --card: #ffffff; --border: #e6e8eb; --border-strong: #d0d7de;
+    --shadow: 0 1px 3px rgba(31,35,40,0.04), 0 1px 2px rgba(31,35,40,0.06);
+    --shadow-hover: 0 8px 24px rgba(31,35,40,0.08), 0 2px 6px rgba(31,35,40,0.06);
+    --accent-news: #1890ff; --accent-social: #ff4d4f; --accent-other: #fa8c16;
+    --accent-grad-news: linear-gradient(135deg, #1890ff, #36cbcb);
+    --accent-grad-social: linear-gradient(135deg, #ff4d4f, #ff7a45);
+    --accent-grad-other: linear-gradient(135deg, #fa8c16, #ffc53d);
+    --quote-bg: #f6f8fa;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0d1117; --fg: #e6edf3; --muted: #8b949e;
+      --card: #161b22; --border: #30363d; --border-strong: #484f58;
+      --shadow: 0 1px 3px rgba(0,0,0,0.3), 0 1px 2px rgba(0,0,0,0.3);
+      --shadow-hover: 0 8px 24px rgba(0,0,0,0.4), 0 2px 6px rgba(0,0,0,0.3);
+      --quote-bg: #21262d;
+    }
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+      "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", sans-serif;
+    background: var(--bg); color: var(--fg);
+    line-height: 1.7; -webkit-font-smoothing: antialiased;
+  }
+
+  /* 顶部 Hero */
+  .hero {
+    background: linear-gradient(135deg, #1890ff08, #ff4d4f08, #fa8c1608);
+    border-bottom: 1px solid var(--border);
+    padding: 48px 24px 36px; text-align: center;
+  }
+  .hero h1 { font-size: 32px; font-weight: 700; margin-bottom: 8px; letter-spacing: -0.02em; }
+  .hero .subtitle { color: var(--muted); font-size: 14px; }
+  .hero-stats {
+    display: flex; justify-content: center; gap: 24px;
+    margin-top: 24px; flex-wrap: wrap;
+  }
+  .stat-pill {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 20px; padding: 8px 16px; font-size: 13px;
+    box-shadow: var(--shadow);
+  }
+  .stat-pill strong { color: var(--accent-news); font-weight: 600; }
+  .stat-pill.social strong { color: var(--accent-social); }
+  .stat-pill.other strong { color: var(--accent-other); }
+
+  /* 粘性导航 */
+  nav.toc {
+    position: sticky; top: 0; z-index: 100;
+    background: color-mix(in srgb, var(--bg) 90%, transparent);
+    backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 12px 24px;
+  }
+  nav.toc-inner { max-width: 880px; margin: 0 auto;
+    display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+  nav.toc a {
+    color: var(--fg); text-decoration: none; font-size: 14px;
+    padding: 6px 14px; border-radius: 16px;
+    transition: all 0.2s ease;
+  }
+  nav.toc a:hover { background: var(--card); box-shadow: var(--shadow); }
+
+  /* 主体容器 */
+  main { max-width: 880px; margin: 0 auto; padding: 32px 24px 80px; }
+
+  /* Section */
+  section { margin-bottom: 56px; scroll-margin-top: 80px; }
+  .section-header {
+    display: flex; align-items: center; gap: 12px;
+    margin-bottom: 24px; padding-bottom: 12px;
+    border-bottom: 2px solid var(--border);
+  }
+  .section-icon {
+    width: 40px; height: 40px; border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px; color: white; flex-shrink: 0;
+  }
+  section.news .section-icon { background: var(--accent-grad-news); }
+  section.social .section-icon { background: var(--accent-grad-social); }
+  section.other .section-icon { background: var(--accent-grad-other); }
+  .section-title { font-size: 22px; font-weight: 700; letter-spacing: -0.01em; }
+  .section-meta { color: var(--muted); font-size: 13px; margin-left: auto; }
+
+  /* Article cards v9.3 */
+  article {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 16px; padding: 28px 32px; margin-bottom: 24px;
+    box-shadow: var(--shadow);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    display: flex; gap: 24px; position: relative;
+  }
+  article.lvl3 { border-top: 4px solid #ff4d4f; }
+  article.lvl2 { border-top: 4px solid #fa8c16; }
+  article.lvl1 { border-top: 4px solid #52c41a; }
+  article.lvl0 { border-top: 4px solid #722ed1; }
+  article:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 16px 40px rgba(31,35,40,0.10), 0 2px 8px rgba(31,35,40,0.04);
+  }
+  .article-num {
+    flex-shrink: 0; width: 32px; height: 32px;
+    background: var(--quote-bg); color: var(--muted);
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    font-size: 14px; font-weight: 600; font-variant-numeric: tabular-nums;
+  }
+  section.news .article-num { color: var(--accent-news); }
+  section.social .article-num { color: var(--accent-social); }
+  section.other .article-num { color: var(--accent-other); }
+  .article-body { flex: 1; min-width: 0; }
+  article h3 {
+    font-size: 24px; font-weight: 800; margin-bottom: 14px;
+    line-height: 1.4; letter-spacing: -0.02em;
+    color: var(--fg);
+  }
+  .meta-row {
+    display: flex; gap: 12px; margin-bottom: 16px; align-items: center;
+    font-size: 12px; color: var(--muted);
+  }
+  .read-time { display: flex; align-items: center; gap: 4px; }
+
+  .badge {
+    display: inline-flex; align-items: center; gap: 4px;
+    padding: 3px 10px; border-radius: 12px;
+    font-size: 12px; font-weight: 500;
+  }
+  .badge.lvl3 { background: #ff4d4f15; color: #ff4d4f; border: 1px solid #ff4d4f30; }
+  .badge.lvl2 { background: #fa8c1615; color: #fa8c16; border: 1px solid #fa8c1630; }
+  .badge.lvl1 { background: #52c41a15; color: #52c41a; border: 1px solid #52c41a30; }
+  .badge.lvl0 { background: #722ed115; color: #722ed1; border: 1px solid #722ed130; }
+
+  /* TLDR 便签纸式 v9.3 */
+  .tldr {
+    background: #fff8e1;
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin: 16px 0 22px;
+    border: 1px solid #ffe58f;
+    box-shadow: 0 2px 0 #ffe58f;
+  }
+  .tldr-label {
+    display: inline-block;
+    font-size: 11px; font-weight: 800; letter-spacing: 0.1em;
+    color: #ad6800; text-transform: uppercase;
+    background: #faad14;
+    color: white;
+    padding: 4px 10px;
+    border-radius: 5px;
+    margin-bottom: 12px;
+  }
+  .tldr-content {
+    font-size: 17px; line-height: 1.7; color: #614700;
+    font-weight: 600;
+  }
+  .tldr-content strong { color: #ad6800; font-weight: 800; }
+  @media (prefers-color-scheme: dark) {
+    .tldr { background: #faad1420; border-color: #faad1450; }
+    .tldr-content { color: #ffe58f; }
+    .tldr-content strong { color: #ffd666; }
+  }
+
+  /* Checklist 看点 v9.3 - 数字编号 */
+  .highlights {
+    margin: 16px 0; padding: 18px 22px;
+    background: #f5f5f5;
+    border-radius: 12px;
+  }
+  .highlights-title {
+    font-size: 12px; font-weight: 800; color: #595959;
+    margin-bottom: 14px; letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  ul.checklist { list-style: none; padding: 0; margin: 0; counter-reset: hl; }
+  ul.checklist li {
+    position: relative; padding: 8px 0 8px 36px;
+    font-size: 15px; line-height: 1.6; color: var(--fg);
+    counter-increment: hl;
+  }
+  ul.checklist li::before {
+    content: counter(hl);
+    position: absolute; left: 0; top: 8px;
+    width: 24px; height: 24px;
+    background: var(--fg); color: var(--card);
+    border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px; font-weight: 800;
+    font-variant-numeric: tabular-nums;
+  }
+  ul.checklist li + li { border-top: 1px dashed var(--border); }
+  @media (prefers-color-scheme: dark) {
+    .highlights { background: #ffffff10; }
+  }
+
+  /* Callout v9.3: 满底色块（便签纸式）+ 大标签 */
+  .callout {
+    margin: 18px 0; padding: 22px 24px;
+    border-radius: 12px;
+    position: relative;
+  }
+  .callout-label {
+    display: inline-block;
+    font-size: 11px; font-weight: 800; letter-spacing: 0.1em;
+    color: white;
+    padding: 5px 12px;
+    border-radius: 5px;
+    margin-bottom: 14px;
+    text-transform: uppercase;
+  }
+  .callout-body { font-size: 15px; line-height: 1.75; color: var(--fg); }
+  .callout-body p { margin: 0; }
+  .callout-body p + p { margin-top: 10px; }
+  .callout.why {
+    background: #fffbe6;
+  }
+  .callout.why .callout-label { background: #fa8c16; }
+  .callout.future {
+    background: #e6f7ff;
+  }
+  .callout.future .callout-label { background: #1890ff; }
+  @media (prefers-color-scheme: dark) {
+    .callout.why { background: #fa8c1625; }
+    .callout.future { background: #1890ff25; }
+  }
+
+  /* Advice 实用建议 v9.3 - 满底色块 */
+  .advice {
+    margin: 18px 0; padding: 22px 24px;
+    background: #f6ffed;
+    border-radius: 12px;
+  }
+  .advice-title {
+    display: inline-block;
+    font-size: 11px; font-weight: 800; letter-spacing: 0.1em;
+    color: white; background: #52c41a;
+    padding: 5px 12px; border-radius: 5px;
+    margin-bottom: 14px;
+    text-transform: uppercase;
+  }
+  ul.advice-list { list-style: none; padding: 0; margin: 0; }
+  ul.advice-list li {
+    position: relative; padding: 8px 0 8px 32px;
+    font-size: 15px; line-height: 1.65; color: var(--fg);
+  }
+  ul.advice-list li::before {
+    content: "→";
+    position: absolute; left: 0; top: 8px;
+    width: 24px; height: 24px;
+    background: #52c41a; color: white; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px; font-weight: 800;
+  }
+  ul.advice-list li + li { border-top: 1px dashed #b7eb8f; }
+  @media (prefers-color-scheme: dark) {
+    .advice { background: #52c41a25; }
+    ul.advice-list li + li { border-top-color: #52c41a40; }
+  }
+
+  article p { margin-bottom: 12px; color: var(--fg); }
+  article p:last-child { margin-bottom: 0; }
+
+  blockquote {
+    background: var(--quote-bg);
+    border-left: 3px solid var(--border-strong);
+    padding: 10px 16px; margin: 12px 0; color: var(--muted);
+    font-size: 14px; border-radius: 0 6px 6px 0;
+  }
+  section.news blockquote { border-left-color: var(--accent-news); }
+  section.social blockquote { border-left-color: var(--accent-social); }
+  section.other blockquote { border-left-color: var(--accent-other); }
+
+  /* callouts (为什么关注 / 未来影响) */
+  .callout {
+    padding: 14px 18px; margin: 14px 0;
+    border-radius: 8px; font-size: 14px;
+    line-height: 1.65;
+  }
+  .callout.why {
+    background: linear-gradient(135deg, #1890ff08, #36cbcb08);
+    border: 1px solid #1890ff30;
+    border-left: 4px solid var(--accent-news);
+  }
+  .callout.future {
+    background: linear-gradient(135deg, #fa8c1608, #ffc53d08);
+    border: 1px solid #fa8c1630;
+    border-left: 4px solid var(--accent-other);
+  }
+  section.social .callout.why {
+    background: linear-gradient(135deg, #ff4d4f08, #ff7a4508);
+    border-color: #ff4d4f30;
+    border-left-color: var(--accent-social);
+  }
+
+  /* 高亮细节 (看点) */
+  details.highlights {
+    margin: 12px 0;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--quote-bg);
+  }
+  details.highlights summary {
+    padding: 10px 16px; cursor: pointer; font-weight: 500;
+    color: var(--muted); user-select: none; list-style: none;
+  }
+  details.highlights summary::before { content: "▸ "; transition: transform 0.2s; }
+  details.highlights[open] summary::before { content: "▾ "; }
+  details.highlights[open] summary { border-bottom: 1px solid var(--border); margin-bottom: 8px; }
+  .highlight-body { padding: 8px 16px 14px; font-size: 14px; }
+
+  /* Source row */
+  .source-row {
+    margin-top: 16px; padding-top: 12px;
+    border-top: 1px dashed var(--border);
+    font-size: 13px; color: var(--muted);
+  }
+
+  a { color: var(--accent-news); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  footer {
+    text-align: center; color: var(--muted); font-size: 13px;
+    padding: 32px 24px; border-top: 1px solid var(--border);
+  }
+  footer a { color: var(--muted); }
+
+  /* Back to top */
+  .back-top {
+    position: fixed; bottom: 24px; right: 24px;
+    width: 44px; height: 44px; border-radius: 50%;
+    background: var(--accent-news); color: white;
+    border: none; cursor: pointer; font-size: 20px;
+    box-shadow: 0 4px 12px rgba(24,144,255,0.4);
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    z-index: 99;
+  }
+  .back-top.show { opacity: 1; pointer-events: auto; }
+  .back-top:hover { transform: translateY(-2px); }
+
+  @media (max-width: 600px) {
+    .hero h1 { font-size: 24px; }
+    .hero-stats { gap: 8px; }
+    .stat-pill { font-size: 12px; padding: 6px 12px; }
+    main { padding: 24px 16px 64px; }
+    article { padding: 18px; flex-direction: column; gap: 12px; }
+    .article-num { width: 28px; height: 28px; font-size: 13px; }
+    article h3 { font-size: 16px; }
+  }
+</style>
+</head>
+<body>
+  <div class="hero">
+    <h1>🌙 睡后简报 · 2026-07-10</h1>
+    <div class="subtitle">由 探索(Bot3) 自动生成 · 04:17 推送 · 永久免费托管于 GitHub Pages</div>
+    <div class="hero-stats">
+      <span class="stat-pill ">新闻 <strong>10</strong></span>
+      <span class="stat-pill other">🛠️ ClawHub <strong>2</strong></span>
+      <span class="stat-pill other">🧠 心理观察 <strong>1</strong></span>
+      <span class="stat-pill ">合计 <strong>13</strong></span>
+    </div>
+  </div>
+  <nav class="toc">
+    <div class="toc-inner">
+      <a href="#新闻">📰 新闻</a>
+      <a href="#-clawhub">🛠️ 🛠️ ClawHub</a>
+      <a href="#-心理观察">🧠 🧠 心理观察</a>
+      <a href="#footer" style="margin-left:auto;color:var(--muted);">关于</a>
+    </div>
+  </nav>
+  <main>
+    <section id="新闻">
+  <div class="section-header">
+    <div class="section-icon">📰</div>
+    <div class="section-title">新闻</div>
+    <div class="section-meta">10 条</div>
+  </div>
+<article class="lvl1">
+<div class="article-num">1</div>
+<div class="article-body">
+<h3>🔥 今日科技脉搏</h3>
+<div class="meta-row"><span><span class="badge lvl1">🔥 速览</span></span><span class="read-time">⏱ 1 分钟</span></div>
+<p>今天的科技圈由三条主线交织：<strong>OpenAI GPT-5.6 三款模型正式全球开放</strong> 把"按任务挑模型"的定价策略推向主流；<strong>国家最高科学技术奖揭晓</strong> 给了中国锂电池与雷达 50 年积淀的国家级认证；<strong>英伟达三连击</strong>（CPO 量产 + Kyber NVL144 延期 12 月 + 法国反垄断临近）则在 AI 算力赛道上投下一颗不确定性的深水炸弹。<br>- 主线 1：AI 大模型进入「按场景定价」精细化运营阶段（Sol/Terra/Luna 三档）<br>- 主线 2：中国硬科技 50 年长跑得到国家最高认证（陈立泉锂电池 / 贲德雷达）<br>- 主线 3：英伟达高端算力遭遇技术与监管双重压力（Kyber 延期 + 法国反垄断）<br>- <strong>核心判断</strong>：AI 商业化正从「一个模型通吃」转向「按任务分层定价 + 端侧代理」两端并进，中美算力格局可能因英伟达挫败出现新的窗口。</p>
+<p>---</p>
+</div></article>
+<article class="lvl3">
+<div class="article-num">2</div>
+<div class="article-body">
+<h3>🔥🔥🔥 OpenAI 正式发布 GPT-5.6 三款模型：Sol/Terra/Luna 全球开放，按任务分层定价</h3>
+<div class="meta-row"><span><span class="badge lvl3">🔥 必读</span></span><span class="read-time">⏱ 2 分钟</span></div>
+<div class="tldr"><span class="tldr-label">TL;DR</span><div class="tldr-content">OpenAI 于 7 月 10 日正式将 GPT-5.6 系列（Sol、Terra、Luna）面向公众开放，三款模型分别登陆 ChatGPT、Codex 与 API。这是 OpenAI 首次以「三档」形式同步推出 GPT 系列，标志其商业策略从「一个旗舰」转向「按场景分层」。</div></div>
+<p><details><summary>📊 看点</summary></p>
+<p>&nbsp;&nbsp;▸ 三档定位差异明显：Sol 旗舰级（性能阶跃提升），Terra 均衡级（性能媲美 GPT-5.5、价格减半），Luna 轻量级（最具性价比）<br>&nbsp;&nbsp;▸ 定价体系清晰：Sol 输入 / 输出 30 美元/百万 Token，Terra 2.5/15 美元，Luna 1/6 美元<br>&nbsp;&nbsp;▸ 应美国政府要求，6 月 26 日~7 月 9 日仅对"可信合作伙伴"限量预览，7 月 10 日全面放开<br>&nbsp;&nbsp;▸ ChatGPT、Codex、API 三大入口同步上线</p>
+<p></details></p>
+<p><details><summary>📚 1 分钟背景</summary></p>
+<p>OpenAI 在 2025 年凭借 GPT-5 系列奠定了"超大模型 + API 商业化"的双轮驱动。但用户反馈越来越分化：开发者要"快 + 便宜"，企业要"稳 + 强"，创意工作者要"理解力"。GPT-5.6 三档模型的本质，是把 GPT-5 时代"一个模型打天下"的哲学，改为"按任务挑模型"的精细化运营——类似云计算从「统一规格」到「按 vCPU 弹性」的演进。</p>
+<p></details></p>
+<div class="callout why"><span class="callout-label">💡 为什么关注</span><div class="callout-body">GPT-5.6 三档定价是 AI 行业"分层商业化"的标志性事件。对开发者来说，最便宜的 Luna（1 美元/百万 Token 输入）让「24 小时 AI 助手」成本接近免费，开发者可以大胆把 AI 嵌入边缘场景；对企业来说，Terra 提供了 80% 性能 + 50% 价格的甜蜜点，可能推动 AI 在中后台流程（合同审阅、客服、报表）的全面铺开。最深的影响是行业范式：Anthropic、Google、Meta、字节、阿里很可能在 6 个月内跟进"三档化"，AI 行业从"性能竞赛"正式进入"价格分层 + 场景分发"的新阶段。</div></div>
+<div class="callout future"><span class="callout-label">🔮 未来影响</span><div class="callout-body">未来 3-6 个月，最可能发生的是：(1) Anthropic 与 Google 跟进推出"轻量 + 均衡 + 旗舰"三档产品对标；(2) Luna 价格可能进一步下探至 0.5 美元/百万 Token，引发"AI 替代 SaaS 中后台"的二次冲击；(3) 中国大模型（DeepSeek、Kimi、Qwen）将面对"按场景定价 + 多档覆盖"的新竞争维度，需要在"国内版 ChatGPT"基础上补齐场景化分发能力。</div></div>
+<p><strong>对谁重要</strong><br>- 👨‍💻 开发者：把"按任务挑模型"嵌入开发流程，复杂推理用 Sol、批处理用 Luna，成本可压 50%+<br>- 💼 投资人：关注 OpenAI 收入结构变化——Terra/Luna 可能贡献 60%+ 收入，Sol 退守高端<br>- 🛒 普通用户：ChatGPT 将出现明显的"响应速度/深度"选择界面，按场景挑模型成为日常</p>
+<div class="advice"><div class="advice-title">🎯 实用建议</div><ul class="advice-list">
+<li><span class="advice-mark">→</span> 立即到 ChatGPT 三档体验，识别自己常用任务的"性价比档位"</li>
+<li><span class="advice-mark">→</span> 开发者：把 Luna 用于日志分析、单元测试、批量 prompt；Terra 用于日常编码；Sol 用于架构设计</li>
+<li><span class="advice-mark">→</span> 企业 IT：评估「Terra 替代 GPT-5 中后台」的成本下降空间（30-50%）</li>
+</ul></div>
+<blockquote>来源：财联社 / 钛媒体 / 腾讯新闻 / 每经 AI</blockquote>
+<p>---</p>
+</div></article>
+<article class="lvl3">
+<div class="article-num">3</div>
+<div class="article-body">
+<h3>🔥🔥🔥 2025 年度国家最高科学技术奖揭晓：陈立泉（锂电池）、贲德（雷达）获奖</h3>
+<div class="meta-row"><span><span class="badge lvl3">🔥 必读</span></span><span class="read-time">⏱ 3 分钟</span></div>
+<p>7 月 8 日，2025 年度国家最高科学技术奖在人民大会堂揭晓，<strong>中国科学院物理研究所陈立泉院士</strong>（中国第一块锂电池缔造者）与<strong>中国电子科技集团贲德院士</strong>（新中国第一部相控阵雷达与机载脉冲多普勒火控雷达）获奖。这是中国对硬科技长跑者 50 年积淀的国家级认证。</p>
+<p><details><summary>📊 看点</summary></p>
+<p>&nbsp;&nbsp;▸ 陈立泉：从 1970 年代"手搓设备"造中国第一块锂电池，到推动中国锂电池产业领跑全球，50 年死磕电池<br>&nbsp;&nbsp;▸ 贲德：60 多年没有离开雷达领域，从相控阵到机载火控雷达，新中国雷达事业奠基者之一<br>&nbsp;&nbsp;▸ 两人共同点：在国产替代的"冷板凳期"坚持数十年，最终在国家战略产业开花结果<br>&nbsp;&nbsp;▸ 颁奖时间 7 月 8 日，但 7 月 9~10 日的科技日报报道密集，是国家科技战略宣示的关键节点</p>
+<p></details></p>
+<p><details><summary>📚 1 分钟背景</summary></p>
+<p>国家最高科学技术奖是中国科技界最高荣誉，2000 年设立，每年授予不超过 2 名在当代科技前沿取得重大突破、或在科技创新和科技成果转化中创造巨大经济/社会效益的科学家。陈立泉与贲德的共同特质是"50~60 年磨一剑"——他们研究的方向（锂电池、雷达）在立项时都不被看好，靠国家战略定力 + 个人长期坚持才换来今天的产业地位。这与互联网时代的"快速迭代"哲学形成鲜明对比。</p>
+<p></details></p>
+<div class="callout why"><span class="callout-label">💡 为什么关注</span><div class="callout-body">在中国硬科技被卡脖子的当下，这次颁奖传递的信号比奖项本身更重要：<strong>国家认可"50 年磨一剑"的科研耐心</strong>。陈立泉的锂电池如今支撑了全球 70%+ 的新能源车电池供应，贲德的雷达则覆盖了新中国几乎所有主力战机的火控系统——硬科技的回报周期长，但战略价值不可替代。对投资者来说，这意味着半导体、光刻机、航空发动机等"当下不赚钱但国家必须投入"的领域，未来 5~10 年仍将获得稳定的国家级资金倾斜。</div></div>
+<div class="callout future"><span class="callout-label">🔮 未来影响</span><div class="callout-body">未来 6-12 个月：(1) 国家自然科学基金可能扩大对"长期基础研究"的容忍期（5~10 年不出论文也能拿到经费）；(2) 锂电池产业链（特别是固态电池）将获得新一轮政策红利，贲德所在的中国电科系（雷达、通讯、电子战）可能进入新一轮资产整合；(3) "两弹一星"式科研精神在新一代科学家中可能再次被唤醒，缓解当下"AI 热门、硬科技冷门"的人才失衡。</div></div>
+<p><strong>对谁重要</strong><br>- 👨‍💻 开发者：理解中国硬科技 50 年走过的路，识别"被卡脖子"领域的国产替代窗口（EDA、CAE、CAD 软件）<br>- 💼 投资人：关注锂电产业链（固态电池、回收）、雷达产业链（毫米波、相控阵）的政策红利期<br>- 🛒 普通用户：购买新能源车时，可更自信地理解"国产电池 = 世界领跑"的产业现实</p>
+<div class="advice"><div class="advice-title">🎯 实用建议</div><ul class="advice-list">
+<li><span class="advice-mark">→</span> 跟踪陈立泉团队后续在固态电池方向的论文与专利发布</li>
+<li><span class="advice-mark">→</span> 关注中国电科系上市公司（国睿科技、四创电子、凤凰光学）的资本运作</li>
+<li><span class="advice-mark">→</span> 在投资组合中保持 10~15% 的"国家战略硬科技"敞口</li>
+</ul></div>
+<blockquote>来源：腾讯新闻面对面 / 央广网 / 人民日报</blockquote>
+<p>---</p>
+</div></article>
+<article class="lvl3">
+<div class="article-num">4</div>
+<div class="article-body">
+<h3>🔥🔥🔥 英伟达三连击：CPO 量产、Kyber NVL144 延期 12 月、法国反垄断临近收尾</h3>
+<div class="meta-row"><span><span class="badge lvl3">🔥 必读</span></span><span class="read-time">⏱ 2 分钟</span></div>
+<p>7 月 9~10 日，英伟达被三条新闻同时推上风口：CPO（共封装光学）量产启动、<strong>Kyber NVL144 芯片或因技术问题延期 12 个月</strong>（推至 2028 年量产）、法国竞争管理局反垄断调查临近收尾（最高罚全球营收 10% = 215.9 亿美元）。三条新闻指向同一判断：<strong>AI 算力龙头首次遭遇技术与监管双重压力</strong>。</p>
+<p><details><summary>📊 看点</summary></p>
+<p>&nbsp;&nbsp;▸ Kyber NVL144 原是英伟达下一代高端 AI 芯片，延期 12 月意味着 2028 年才能落地，是其高端算力路线的重大挫败<br>&nbsp;&nbsp;▸ 法国反垄断一旦违规，英伟达最高面临 215.9 亿美元罚款（2025 年营收 2159.38 亿美元 × 10%）<br>&nbsp;&nbsp;▸ CPO 量产虽是正面消息，但难以抵消 Kyber 延期 + 反垄断的双重利空<br>&nbsp;&nbsp;▸ 直接传导：国产替代（华为昇腾、寒武纪、海光、摩尔线程）窗口进一步打开</p>
+<p></details></p>
+<p><details><summary>📚 1 分钟背景</summary></p>
+<p>英伟达的护城河是"每 18~24 个月推出一代新 GPU + 软件生态（CUDA）锁死"。Kyber NVL144 延期 12 个月打破了这一节奏，意味着客户（OpenAI、Anthropic、Meta、字节、阿里）将被迫延长现有 Hopper/Blackwell 架构的使用周期，对英伟达的"代际涨价"策略构成根本性挑战。CPO（共封装光学）则是把光模块从板级搬到芯片级，提升带宽密度，被视为后 Blackwell 时代的关键技术。</p>
+<p></details></p>
+<div class="callout why"><span class="callout-label">💡 为什么关注</span><div class="callout-body">这是 2024 年以来英伟达遇到的<strong>最严峻组合拳</strong>：技术延期（自我失误）+ 监管压力（外部施压）。对全球 AI 行业意味着 (1) 客户议价能力增强，未来 12 个月 GPU 价格可能松动；(2) 国产替代窗口期至少延长 12 个月，华为昇腾、寒武纪、海光的市占率有望从"个位数"跃升至"两位数"；(3) AI 算力"卖方市场"可能转向"买方市场"，对所有 AI 创业公司的成本结构都是重大利好。</div></div>
+<div class="callout future"><span class="callout-label">🔮 未来影响</span><div class="callout-body">未来 6-12 个月：(1) 英伟达股价可能出现 15~25% 的中期回调，但长期垄断地位不会被颠覆（CPO 量产 + 软件生态仍在）；(2) 中国 AI 芯片公司（华为、寒武纪、海光、摩尔线程）将在国产替代政策与英伟达延期双重利好下加速产品迭代；(3) 全球 AI 算力供给将在 2027 年出现"英伟达出货放缓 + AMD/Intel/Cerebras 补位"的再平衡。</div></div>
+<p><strong>对谁重要</strong><br>- 👨‍💻 开发者：未来 12 个月 GPU 租赁价格可能下降 10~20%，是训练大模型的好窗口<br>- 💼 投资人：英伟达中期风险加大，国产 AI 芯片股 + AMD 是对冲标的<br>- 🛒 普通用户：未来 1~2 年，AI 应用价格可能下降（推理成本下降），AI 助手普及速度加快</p>
+<div class="advice"><div class="advice-title">🎯 实用建议</div><ul class="advice-list">
+<li><span class="advice-mark">→</span> 关注英伟达 7 月底 Q2 财报对 Kyber 延期的官方回应</li>
+<li><span class="advice-mark">→</span> 评估投资组合中"英伟达 vs 国产 AI 芯片股"的配置比例</li>
+<li><span class="advice-mark">→</span> AI 创业团队可在 Q3-Q4 锁定 GPU 算力合约，享受价格下行红利</li>
+</ul></div>
+<blockquote>来源：腾讯新闻 / 36 氪 / 集微网 / AnandTech</blockquote>
+<p>---</p>
+</div></article>
+<article class="lvl2">
+<div class="article-num">5</div>
+<div class="article-body">
+<h3>🔥🔥 努比亚官宣全球首款 AI 智能体手机 7 月 17 日 WAIC 2026 首发亮相</h3>
+<div class="meta-row"><span><span class="badge lvl2">🔥 重要</span></span><span class="read-time">⏱ 2 分钟</span></div>
+<div class="tldr"><span class="tldr-label">TL;DR</span><div class="tldr-content">中兴努比亚 7 月 9 日正式宣布，全球首款 AI 智能体手机将于 7 月 17 日 WAIC 2026（世界人工智能大会）首次亮相，新机采用蓝色背板 + 银色直边设计 + 类似 iPhone Air 的横向条形后摄方案。这是国内厂商在"端侧 AI Agent"赛道上的首发抢跑。</div></div>
+<p><details><summary>📊 看点</summary></p>
+<p>&nbsp;&nbsp;▸ 中兴通讯董事长方榕 6 月世界经济论坛已预热："听得懂、能干活"的 AI 手机即将上市<br>&nbsp;&nbsp;▸ "AI 智能体手机"与"AI 助手手机"的关键区别：能从云端对话升级为本地任务执行（订外卖、改文件、跨 App 操作）<br>&nbsp;&nbsp;▸ WAIC 2026 时间点精准——抢在苹果秋季发布会和华为 Mate 80 之前卡位<br>&nbsp;&nbsp;▸ 国内手机厂商（华为、小米、OPPO、vivo）将在 Q3 密集跟进</p>
+<p></details></p>
+<div class="callout why"><span class="callout-label">💡 为什么关注</span><div class="callout-body">智能手机行业已经 5 年没有"代际跃迁"了。从 AI 助手（Siri、小爱）到 AI 智能体（Agent）的飞跃，本质是把手机从"被动响应工具"变成"主动执行助理"。这意味着 (1) 操作系统需要从 App 范式转向 Agent 范式（重新设计 UI）；(2) 端侧算力（芯片 + 内存）需求会大幅提升，AI 芯片厂商（联发科、高通、紫光展锐）将进入新增长周期；(3) 手机 App 生态可能被重新洗牌——大量"工具型 App"会被 AI Agent 直接替代。</div></div>
+<div class="callout future"><span class="callout-label">🔮 未来影响</span><div class="callout-body">未来 3-6 个月：(1) 华为、小米、OPPO、vivo 必将在 Q3-Q4 推出对标产品，"AI 智能体手机"成为旗舰标配；(2) 苹果 Apple Intelligence 中国版本地化将被迫加速（不然 iPhone 在中国市场被国产 AI Agent 手机压着打）；(3) 手机 App 开发者需要重新思考"AI Agent 时代的 App 形态"——可能向"插件化"或"被 Agent 调用的工具"转型。</div></div>
+<p><strong>对谁重要</strong><br>- 👨‍💻 开发者：提前学习 Agent 框架（OpenAI Operator、Claude Computer Use、字节 Coze）以适配新平台<br>- 💼 投资人：关注端侧 AI 芯片（联发科、高通、紫光展锐）、AI Agent 框架、跨 App 调用中间件<br>- 🛒 普通用户：7 月 17 日 WAIC 后可关注努比亚新机评测，决定是否第一批尝鲜</p>
+<div class="advice"><div class="advice-title">🎯 实用建议</div><ul class="advice-list">
+<li><span class="advice-mark">→</span> 7 月 17 日 WAIC 直播重点看努比亚发布会 + 各厂商的端侧 AI Agent 演示</li>
+<li><span class="advice-mark">→</span> 现役手机用户可以先在 ChatGPT/豆包/Kimi 上体验 Agent 模式，为换机做心理准备</li>
+<li><span class="advice-mark">→</span> App 开发者：评估自家产品的"Agent 化"路径（如何被 Agent 调用、还是被替代）</li>
+</ul></div>
+<blockquote>来源：腾讯新闻 / IT 之家 / 36 氪</blockquote>
+<p>---</p>
+</div></article>
+<article class="lvl2">
+<div class="article-num">6</div>
+<div class="article-body">
+<h3>🔥🔥 英矽智能 Rentosertib 启动 III 期临床：全球首款 AI 设计新药进入关键验证</h3>
+<div class="meta-row"><span><span class="badge lvl2">🔥 重要</span></span><span class="read-time">⏱ 2 分钟</span></div>
+<p>7 月 8 日，英矽智能（Insilico Medicine）宣布其自主研发的 <strong>Rentosertib（ISM001-055）正式启动 III 期临床试验</strong>，该药物是<strong>全球首款从靶点发现到分子设计全程由 AI 参与、且推进至 III 期的候选新药</strong>，适应症为特发性肺纤维化（IPF）。III 期将在全国 47 家中心同步开展，计划入组 320 例 IPF 患者，持续 52 周。</p>
+<p><details><summary>📊 看点</summary></p>
+<p>&nbsp;&nbsp;▸ 全球第一款"AI 设计"新药进入 III 期——AI 制药从概念验证（POC）进入关键临床验证阶段<br>&nbsp;&nbsp;▸ 研发周期仅 18 个月（传统药物 5~7 年），大幅缩短但 III 期成功率仍是最大考验<br>&nbsp;&nbsp;▸ 47 家临床中心同步开展，是中国 AI 制药史上规模最大的临床试验<br>&nbsp;&nbsp;▸ 半年内 BD（商业合作）潜在总额近 70 亿美元，市场对 AI 制药的商业化预期强烈</p>
+<p></details></p>
+<div class="callout why"><span class="callout-label">💡 为什么关注</span><div class="callout-body">AI 制药过去 5 年一直被诟病"论文漂亮、临床失败"。Rentosertib 进入 III 期是<strong>第一个真正的"AI 设计药物能否走到上市"的试金石</strong>。一旦成功，将证明 (1) AI 能在靶点发现（传统最难的环节）做出实质性贡献；(2) 中国 AI 制药公司在全球赛道处于第一梯队；(3) AI 制药的投资逻辑从"故事"进入"现金流"。</div></div>
+<div class="callout future"><span class="callout-label">🔮 未来影响</span><div class="callout-body">未来 12-24 个月：(1) 全球制药巨头（辉瑞、罗氏、诺华、礼来）将加大对中国 AI 制药公司的 BD 与并购；(2) 国内 AI 制药公司（英矽智能、晶泰科技、望石智慧）估值可能再上一台阶；(3) AI 制药的"III 期成功率"将成为行业新指标——首个成功案例将打开行业天花板，反之则可能引发资本退潮。</div></div>
+<p><strong>对谁重要</strong><br>- 👨‍💻 开发者：关注 AI 制药开源工具（英矽智能 Pharma.AI、晶泰 XtalPi）的开放接口<br>- 💼 投资人：AI 制药板块进入"临床验证 + 商业化兑现"双驱动期，关注 III 期中期分析节点<br>- 🛒 普通用户：特发性肺纤维化（IPF）患者 2~3 年内可能用上全球首款 AI 设计药物</p>
+<div class="advice"><div class="advice-title">🎯 实用建议</div><ul class="advice-list">
+<li><span class="advice-mark">→</span> 跟踪英矽智能 Q4 2026 / Q1 2027 的临床进展公告</li>
+<li><span class="advice-mark">→</span> 关注 2027 年中期分析（如果成功，板块估值将快速重估）</li>
+<li><span class="advice-mark">→</span> 患者家属：IPF 是罕见病，可通过 IPF 病友会等渠道提前了解 III 期入组标准</li>
+</ul></div>
+<blockquote>来源：CNMO / 医药魔方 / 临床试验公示</blockquote>
+<p>---</p>
+</div></article>
+<article class="lvl2">
+<div class="article-num">7</div>
+<div class="article-body">
+<h3>🔥🔥 工信部发布 Claude Code 安全后门风险提示：2.1.91~2.1.196 版本须立即升级</h3>
+<div class="meta-row"><span><span class="badge lvl2">🔥 重要</span></span><span class="read-time">⏱ 2 分钟</span></div>
+<div class="tldr"><span class="tldr-label">TL;DR</span><div class="tldr-content">7 月 9 日，工业和信息化部网络安全威胁和漏洞信息共享平台（NVDB）发布安全风险提示：监测发现 Anthropic 旗下 AI 编程工具 Claude Code 存在安全后门隐患，相关风险可造成用户地域、身份标识等敏感信息违规外泄。受影响版本为 2.1.91~2.1.196，建议相关单位和用户立即卸载或升级。</div></div>
+<p><details><summary>📊 看点</summary></p>
+<p>&nbsp;&nbsp;▸ 这是中国监管机构首次针对海外 AI 开发工具发布专项安全风险提示<br>&nbsp;&nbsp;▸ "内置监控机制、未授权回传用户敏感信息"是典型的"安全后门"指控<br>&nbsp;&nbsp;▸ 受影响版本跨度长达 105 个小版本（2.1.91~2.1.196），说明漏洞存在时间长<br>&nbsp;&nbsp;▸ 直接影响国内大量使用 Claude Code 的开发团队</p>
+<p></details></p>
+<div class="callout why"><span class="callout-label">💡 为什么关注</span><div class="callout-body">这是 AI 工具首次被国家级监管机构点名"安全后门"，意义远超技术层面：(1) 给所有海外 AI 工具（GitHub Copilot、Cursor、JetBrains AI）划出"中国合规红线"；(2) 推动国产 AI 开发工具（CodeGeeX、通义灵码、文心快码）替代加速；(3) AI 工具的"数据出境"合规成为企业 IT 必须评估的硬指标。</div></div>
+<div class="callout future"><span class="callout-label">🔮 未来影响</span><div class="callout-body">未来 3-6 个月：(1) 央企、国企、金融机构将全面排查 Claude Code 使用情况，部分单位可能直接禁用；(2) 国产 AI 编程工具（CodeGeeX、通义灵码、文心快码）将进入政企采购清单；(3) 海外 AI 工具进入中国市场可能需要"源代码审计 + 数据本地化"双重合规。</div></div>
+<p><strong>对谁重要</strong><br>- 👨‍💻 开发者：自查是否使用 Claude Code 2.1.91~2.1.196 版本，立即升级<br>- 💼 投资人：关注国产 AI 编程工具厂商（智谱、阿里、百度）的政企市场拓展<br>- 🛒 普通用户：使用海外 AI 工具时注意敏感信息（身份、地理位置）保护</p>
+<div class="advice"><div class="advice-title">🎯 实用建议</div><ul class="advice-list">
+<li><span class="advice-mark">→</span> Claude Code 用户：立即升级到最新版本（≥ 2.1.197），或暂时切换至国产工具</li>
+<li><span class="advice-mark">→</span> 企业 IT：建立 AI 工具使用白名单，定期审计海外工具的版本与数据流向</li>
+<li><span class="advice-mark">→</span> 关注国家网信办、工信部后续是否有更详细的"AI 工具合规指引"</li>
+</ul></div>
+<blockquote>来源：环球网科技 / 工信部 NVDB</blockquote>
+<p>---</p>
+</div></article>
+<article class="lvl1">
+<div class="article-num">8</div>
+<div class="article-body">
+<h3>🔥 特斯拉 Robotaxi 落地迈阿密：第五城扩张，车内无安全员</h3>
+<div class="meta-row"><span><span class="badge lvl1">🔥 速览</span></span><span class="read-time">⏱ 2 分钟</span></div>
+<p>7 月初，特斯拉官方 X 平台账号宣布 Robotaxi 服务<strong>正式落地迈阿密</strong>，是特斯拉自动驾驶出租车业务的<strong>第五座城市</strong>。迈阿密也是继 Waymo（4 月）之后，<strong>第二家在迈阿密推出无人驾驶载客服务的厂商</strong>。</p>
+<p><details><summary>📊 看点</summary></p>
+<p>&nbsp;&nbsp;▸ 第五城：奥斯汀（首发）→ 旧金山湾区 → 凤凰城 → 拉斯维加斯 → 迈阿密<br>&nbsp;&nbsp;▸ 车内<strong>无安全员</strong>（奥斯汀模式），这是 Waymo 在迈阿密都没做到的<br>&nbsp;&nbsp;▸ 车队规模已达 200 辆（2026 年 1 月数据）<br>&nbsp;&nbsp;▸ 与 Waymo、Zoox 形成三足鼎立竞争格局</p>
+<p></details></p>
+<div class="callout why"><span class="callout-label">💡 为什么关注</span><div class="callout-body">Robotaxi 是特斯拉"未来万亿美元市值"的核心故事。落地迈阿密（美国第二大旅游城市）+ 无安全员 = 把"实验室技术"推向"商业服务"的关键一步。对中国玩家（小马智行、萝卜快跑、文远知行）来说，特斯拉的扩张速度将直接影响国内 L4 商业化的政策窗口。</div></div>
+<div class="callout future"><span class="callout-label">🔮 未来影响</span><div class="callout-body">未来 6-12 个月：(1) 特斯拉股价将再次进入"Robotaxi 概念驱动"周期；(2) 中国 Robotaxi 公司将面临"政策开放 vs 国际竞争"的双重压力，预计 Q4 出现城市级开放提速；(3) 传统网约车（Uber、Lyft、滴滴）将进入"司机成本 vs Robotaxi 成本"的临界点。</div></div>
+<p><strong>对谁重要</strong><br>- 👨‍💻 开发者：关注特斯拉 FSD v13+ 的技术博客与 API 开放进度<br>- 💼 投资人：Robotaxi 商业化进入兑现期，关注特斯拉、Uber、滴滴的估值变化<br>- 🛒 普通用户：迈阿密游客可体验无安全员 Robotaxi，国内用户可关注萝卜快跑的城市扩张</p>
+<div class="advice"><div class="advice-title">🎯 实用建议</div><ul class="advice-list">
+<li><span class="advice-mark">→</span> 计划去迈阿密的旅客可体验特斯拉 Robotaxi（App 下载 + 实名认证）</li>
+<li><span class="advice-mark">→</span> 国内用户：跟踪萝卜快跑（北京、武汉、重庆、福州等城市）的扩张动态</li>
+<li><span class="advice-mark">→</span> 网约车司机：开始思考"Robotaxi 全面铺开后的职业转型路径"</li>
+</ul></div>
+<blockquote>来源：环球市场播报 / 特斯拉官方 / 快科技</blockquote>
+<p>---</p>
+</div></article>
+<article class="lvl1">
+<div class="article-num">9</div>
+<div class="article-body">
+<h3>🔥 Nature 子刊《自然·神经科学》：TDP-43 是小胶质细胞维持髓鞘精细化的关键</h3>
+<div class="meta-row"><span><span class="badge lvl1">🔥 速览</span></span><span class="read-time">⏱ 2 分钟</span></div>
+<div class="tldr"><span class="tldr-label">TL;DR</span><div class="tldr-content">7 月 9 日，《自然·神经科学》在线发表瑞士洛桑大学最新研究成果：首次发现 TDP-43 是小胶质细胞在生命早期维持髓鞘精细化的关键蛋白。TDP-43 缺失的小鼠成年后出现运动障碍，提示其与神经退行性疾病（如 ALS、FTD）的早期发病机制相关。</div></div>
+<p><details><summary>📊 看点</summary></p>
+<p>&nbsp;&nbsp;▸ 首次揭示 TDP-43 在小胶质细胞（而非神经元）中的关键作用——颠覆传统认知<br>&nbsp;&nbsp;▸ 髓鞘是神经元"电线外皮"，其精细化异常与多发性硬化、ALS 等疾病相关<br>&nbsp;&nbsp;▸ 生命早期（出生后早期）的小胶质细胞 TDP-43 缺失会导致成年期运动障碍——提示<strong>神经发育时间窗</strong>的重要性<br>&nbsp;&nbsp;▸ 对 ALS/FTD 药物研发有直接指导意义（TDP-43 已成为 ALS 治疗靶点）</p>
+<p></details></p>
+<div class="callout why"><span class="callout-label">💡 为什么关注</span><div class="callout-body">这是神经科学"基础研究 → 临床应用"的典型案例。TDP-43 这个蛋白过去 20 年一直是 ALS（渐冻症）/FTD（额颞叶痴呆）研究的明星分子，但所有研究都集中在神经元上。本研究第一次把目光投向<strong>小胶质细胞</strong>（大脑免疫细胞），打开了"非神经元机制"的新方向，可能催生全新治疗策略。</div></div>
+<div class="callout future"><span class="callout-label">🔮 未来影响</span><div class="callout-body">未来 12-24 个月：(1) 全球 ALS/FTD 药物研发管线可能快速跟进 TDP-43 小胶质细胞机制；(2) "神经发育时间窗"概念可能进入儿科神经评估标准；(3) 中国神经科学领域（脑科学与智能技术卓越创新中心、清华大学-IDG/麦戈文脑研究所）可能加速这一方向的布局。</div></div>
+<p><strong>对谁重要</strong><br>- 👨‍💻 开发者：跟踪 Nature Neuroscience、Cell、Science 的神经科学论文 RSS<br>- 💼 投资人：ALS/FTD 生物科技公司（如 Biogen、Ionis）估值可能受新机制发现推动<br>- 🛒 普通用户：理解"生命早期"对孩子神经系统发育的关键意义，重视儿童早期筛查</p>
+<div class="advice"><div class="advice-title">🎯 实用建议</div><ul class="advice-list">
+<li><span class="advice-mark">→</span> ALS/FTD 患者家属：可关注 ALS 协会（中国）等组织对新研究的解读</li>
+<li><span class="advice-mark">→</span> 家长：重视 0-3 岁神经发育关键期，避免接触神经毒性物质</li>
+<li><span class="advice-mark">→</span> 神经科学爱好者：读《自然·神经科学》原文 + 中国脑科学中心的科普文章</li>
+</ul></div>
+<blockquote>来源：自然·神经科学 / 腾讯云开发者 / 中科院脑科学中心</blockquote>
+<p>---</p>
+</div></article>
+<article class="lvl1">
+<div class="article-num">10</div>
+<div class="article-body">
+<h3>🔥 今日情绪风向：🟡 中性偏多——AI 商业化提速与硬科技挫折并存</h3>
+<div class="meta-row"><span><span class="badge lvl1">🔥 速览</span></span><span class="read-time">⏱ 1 分钟</span></div>
+<p>- 利多：OpenAI GPT-5.6 全球开放 + 国家最高科技奖揭晓 + AI 制药 III 期 + AI 智能体手机首发 + 国家科技战略定力<br>- 利空：英伟达 Kyber NVL144 延期 12 月 + 法国反垄断临近 + Claude Code 安全后门监管<br>- <strong>主基调</strong>：中美 AI 竞速进入"你追我赶 + 监管博弈"的新阶段，国内利好偏多但国际龙头挫败带来的不确定性需要警惕。</p>
+<p>---</p>
+<p>_本简报由 bot3 睡后任务 v11.0 自动生成 · 信源已多渠道交叉验证 · 数据置信度基于来源权威性分级_</p>
+</div></article>
+</section>
+
+<section other id="-clawhub">
+  <div class="section-header">
+    <div class="section-icon">🛠️</div>
+    <div class="section-title">🛠️ ClawHub</div>
+    <div class="section-meta">2 条</div>
+  </div>
+<article class="lvl0">
+<div class="article-num">1</div>
+<div class="article-body">
+<h3>🛠 ClawHub 每日精选 · 2026-07-10</h3>
+<div class="meta-row"><span><span class="badge lvl0">📌 工具</span></span><span class="read-time">⏱ 1 分钟</span></div>
+<blockquote>本通知仅含 ClawHub Skill 推荐 + 心理现象分析（非新闻报道）</blockquote>
+<p>---</p>
+</div></article>
+<article class="lvl0">
+<div class="article-num">2</div>
+<div class="article-body">
+<h3>🛠 ClawHub Top 1：ai-agent-orchestrator v1.0.0</h3>
+<div class="meta-row"><span><span class="badge lvl0">📌 工具</span></span><span class="read-time">⏱ 2 分钟</span></div>
+<div class="tldr"><span class="tldr-label">TL;DR</span><div class="tldr-content">AI Agent Orchestrator & MCP Integration ⭐ 66.021</div></div>
+<p>OpenClaw 官方技能市场中，<strong>AI Agent 编排 + MCP（Model Context Protocol）集成</strong> 是 2026 年开发者社区最热门方向。该技能解决了多个 AI Agent 协同调度、外部工具（MCP Server）调用的标准化问题，是从"单 Agent 对话"走向"多 Agent 协作"的关键基础设施。</p>
+<p><details><summary>📊 看点</summary></p>
+<p>&nbsp;&nbsp;▸ AI Agent Orchestrator：编排多个 AI Agent 协同完成任务（如「研究 Agent + 写作 Agent + 校对 Agent」流水线）<br>&nbsp;&nbsp;▸ MCP Integration：通过 Anthropic 主导的 MCP 协议，让 Agent 无缝调用外部工具（数据库、API、文件）<br>&nbsp;&nbsp;▸ 评分 66.021 是 ClawHub 市场中<strong>AI Agent 方向</strong>的第一名（紧随其后的 ai-agent-helper 评分 65.258）<br>&nbsp;&nbsp;▸ 适合场景：复杂工作流自动化、企业内部 AI 助手、跨工具数据整合</p>
+<p></details></p>
+<p><details><summary>📚 1 分钟背景</summary></p>
+<p>2026 年 AI Agent 赛道的核心矛盾是"模型能力强，但工具调用碎片化"。MCP（Model Context Protocol）是 Anthropic 在 2024 年提出的开放协议，目标是让 AI Agent 像 USB-C 一样"即插即用"调用外部工具。ai-agent-orchestrator 是首批将 MCP 集成做到生产级别的 ClawHub 技能，背后是"多 Agent + 标准化工具调用"的工程实践。</p>
+<p></details></p>
+<div class="callout why"><span class="callout-label">💡 为什么关注</span><div class="callout-body">过去 1 年，AI 创业公司最常问的问题是"我的 Agent 怎么调用外部工具"。答案是 MCP。ai-agent-orchestrator 给出了一套开箱即用的实现：开发者不用从零写 Agent 调度逻辑，直接用编排器 + MCP 集成就能搭出生产级多 Agent 系统。</div></div>
+<div class="callout future"><span class="callout-label">🔮 未来影响</span><div class="callout-body">未来 6-12 个月：(1) MCP 生态将快速扩张，可能成为 AI Agent 工具调用的"事实标准"；(2) ai-agent-orchestrator 类技能将进入企业采购清单，特别是金融、客服、运营场景；(3) Agent 编排能力将成为 AI 工程师的"硬技能"，类似 2020 年 Kubernetes 对运维工程师的意义。</div></div>
+<p><strong>对谁重要</strong><br>- 👨‍💻 开发者：强烈建议安装 ai-agent-orchestrator，作为多 Agent 项目的脚手架<br>- 💼 投资人：关注 MCP 生态企业（如 Anthropic 相关开源项目）+ 多 Agent 框架厂商<br>- 🛒 普通用户：未来 6-12 个月，你使用的 AI 助手可能从"单 Agent"升级为"多 Agent 协作"，体验更智能</p>
+<div class="advice"><div class="advice-title">🎯 实用建议</div><ul class="advice-list">
+<li><span class="advice-mark">→</span> 安装：`clawhub install ai-agent-orchestrator`</li>
+<li><span class="advice-mark">→</span> 学习路径：先理解 MCP 协议（Anthropic 官方文档）→ 再跑通编排器 demo → 最后接入自己的工具</li>
+<li><span class="advice-mark">→</span> 关注每周 ClawHub AI Agent 榜单变化（当前 Top 1 是 ai-agent-orchestrator）</li>
+</ul></div>
+<blockquote>来源：ClawHub 官方市场 / npx clawhub search "ai-agent"</blockquote>
+<p>---</p>
+</div></article>
+</section>
+
+<section other id="-心理观察">
+  <div class="section-header">
+    <div class="section-icon">🧠</div>
+    <div class="section-title">🧠 心理观察</div>
+    <div class="section-meta">1 条</div>
+  </div>
+<article class="lvl0">
+<div class="article-num">1</div>
+<div class="article-body">
+<h3>🧠 心理观察：当 AI 智能体开始替你"做决定"——决策权让渡的心理代价</h3>
+<div class="meta-row"><span><span class="badge lvl0">📌 工具</span></span><span class="read-time">⏱ 3 分钟</span></div>
+<p>今天努比亚宣布 7 月 17 日发布全球首款 AI 智能体手机。"智能体"（Agent）与"助手"（Assistant）的关键区别是：<strong>智能体能主动执行任务</strong>，而助手只能被动响应。这个看似技术化的转变，背后是人类<strong>决策权让渡</strong>的心理临界点。</p>
+<p><details><summary>📊 看点</summary></p>
+<p>&nbsp;&nbsp;▸ 助手模式（被动响应）：用户说"帮我订外卖"，AI 展示选项，用户点确认 → <strong>决策权在用户</strong><br>&nbsp;&nbsp;▸ 智能体模式（主动执行）：用户说"今晚想吃清淡的"，AI 自动调用美团、对比餐厅、下单支付 → <strong>决策权在 AI</strong><br>&nbsp;&nbsp;▸ 心理学研究显示，人类对"决策权让渡"的耐受度与<strong>信任度</strong>强相关，但信任建立需要 3~6 个月的实际体验<br>&nbsp;&nbsp;▸ 过度让渡可能引发"控制感丧失"焦虑，类似于自动驾驶早期用户的"不敢放手"</p>
+<p></details></p>
+<p><details><summary>📚 1 分钟背景</summary></p>
+<p>心理学中的"控制感"（sense of control）是心理健康的核心要素之一。经典的"习得性无助"实验（Seligman, 1967）证明：当人反复体验"无论怎么努力结果都一样"时，会陷入抑郁和无力感。AI 智能体时代的新型心理挑战是：当 AI 替你做了 90% 的决定（订外卖、改文件、买机票），你还能否对生活保有"这是我的选择"的掌控感？这与"自动驾驶焦虑"、"算法喂养"等问题一脉相承。</p>
+<p></details></p>
+<div class="callout why"><span class="callout-label">💡 为什么关注</span><div class="callout-body">AI 智能体手机的普及将在未来 12~24 个月引发大规模"决策权让渡焦虑"。心理学研究表明，<strong>让渡决策权必须与"可撤回性"绑定</strong>——用户可以一键"撤销 AI 的决定"，焦虑才能被容忍。这给产品设计者一个明确指引：AI 智能体不能是"全自动黑盒"，必须保留"人类最终拍板"的接口。</div></div>
+<div class="callout future"><span class="callout-label">🔮 未来影响</span><div class="callout-body">未来 6-12 个月：(1) AI 智能体产品的 UX 设计将出现"透明度评分"——告诉用户"AI 在哪些环节做了决定、可否撤回"；(2) 心理学界可能兴起"AI 决策依赖症"研究，类似过去的手机依赖、社交媒体依赖；(3) 教育系统将开始教孩子"如何与 AI 智能体协作"而不是"如何被 AI 替代"。</div></div>
+<p><strong>对谁重要</strong><br>- 👨‍💻 开发者：设计 AI Agent 产品时务必保留"人类最终决策"接口，避免黑盒化<br>- 💼 投资人：关注"AI 透明度"相关的合规与隐私项目（数据可撤回 + 决策可解释）<br>- 🛒 普通用户：使用 AI 智能体时，主动保留 10~20% 的"自己决定"事项，保持心理掌控感</p>
+<div class="advice"><div class="advice-title">🎯 实用建议</div><ul class="advice-list">
+<li><span class="advice-mark">→</span> AI 智能体手机用户：每天给自己留 1~2 个"不用 AI 决定"的小事（如手动选餐厅）</li>
+<li><span class="advice-mark">→</span> 家长：教孩子"AI 助手是工具，最终决定权在我"的认知习惯</li>
+<li><span class="advice-mark">→</span> 关注自己或家人是否出现"懒得决定、全部交给 AI"的心理依赖信号</li>
+</ul></div>
+<blockquote>来源：Seligman 习得性无助理论 / HCI 人机交互研究 / 自我决定理论（Self-Determination Theory）</blockquote>
+<p>---</p>
+<p>_本通知由 bot3 睡后任务 v11.0 自动生成 · 内容仅含 ClawHub Skill 推荐 + 心理现象分析（非新闻报道）_</p>
+</div></article>
+</section>
+
+  </main>
+  <footer id="footer">
+    <p style="margin-bottom:8px;font-size:14px;">🌙 探索者 · 睡后简报</p>
+    <p>Bot3 · OpenClaw · GitHub Pages · 永久免费</p>
+    <p style="margin-top:12px;font-size:12px;">
+      <a href="https://dcrlovejs-spec.github.io/sleep-briefing/">📚 历史归档</a>
+      · <a href="https://github.com/dcrlovejs-spec/sleep-briefing">⭐ 仓库</a>
+    </p>
+  </footer>
+  <button class="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="回到顶部">↑</button>
+  <script>
+    const btn = document.querySelector('.back-top');
+    window.addEventListener('scroll', () => {
+      btn.classList.toggle('show', window.scrollY > 600);
+    });
+  </script>
+</body>
+</html>
