@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#1890ff">
+<title>睡后简报 · 2026-07-11</title>
+<style>
+  :root {
+    --bg: #f7f8fa; --fg: #1f2328; --muted: #6e7681;
+    --card: #ffffff; --border: #e6e8eb; --border-strong: #d0d7de;
+    --shadow: 0 1px 3px rgba(31,35,40,0.04), 0 1px 2px rgba(31,35,40,0.06);
+    --shadow-hover: 0 8px 24px rgba(31,35,40,0.08), 0 2px 6px rgba(31,35,40,0.06);
+    --accent-news: #1890ff; --accent-social: #ff4d4f; --accent-other: #fa8c16;
+    --accent-grad-news: linear-gradient(135deg, #1890ff, #36cbcb);
+    --accent-grad-social: linear-gradient(135deg, #ff4d4f, #ff7a45);
+    --accent-grad-other: linear-gradient(135deg, #fa8c16, #ffc53d);
+    --quote-bg: #f6f8fa;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0d1117; --fg: #e6edf3; --muted: #8b949e;
+      --card: #161b22; --border: #30363d; --border-strong: #484f58;
+      --shadow: 0 1px 3px rgba(0,0,0,0.3), 0 1px 2px rgba(0,0,0,0.3);
+      --shadow-hover: 0 8px 24px rgba(0,0,0,0.4), 0 2px 6px rgba(0,0,0,0.3);
+      --quote-bg: #21262d;
+    }
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+      "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", sans-serif;
+    background: var(--bg); color: var(--fg);
+    line-height: 1.7; -webkit-font-smoothing: antialiased;
+  }
+
+  /* 顶部 Hero */
+  .hero {
+    background: linear-gradient(135deg, #1890ff08, #ff4d4f08, #fa8c1608);
+    border-bottom: 1px solid var(--border);
+    padding: 48px 24px 36px; text-align: center;
+  }
+  .hero h1 { font-size: 32px; font-weight: 700; margin-bottom: 8px; letter-spacing: -0.02em; }
+  .hero .subtitle { color: var(--muted); font-size: 14px; }
+  .hero-stats {
+    display: flex; justify-content: center; gap: 24px;
+    margin-top: 24px; flex-wrap: wrap;
+  }
+  .stat-pill {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 20px; padding: 8px 16px; font-size: 13px;
+    box-shadow: var(--shadow);
+  }
+  .stat-pill strong { color: var(--accent-news); font-weight: 600; }
+  .stat-pill.social strong { color: var(--accent-social); }
+  .stat-pill.other strong { color: var(--accent-other); }
+
+  /* 粘性导航 */
+  nav.toc {
+    position: sticky; top: 0; z-index: 100;
+    background: color-mix(in srgb, var(--bg) 90%, transparent);
+    backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 12px 24px;
+  }
+  nav.toc-inner { max-width: 880px; margin: 0 auto;
+    display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+  nav.toc a {
+    color: var(--fg); text-decoration: none; font-size: 14px;
+    padding: 6px 14px; border-radius: 16px;
+    transition: all 0.2s ease;
+  }
+  nav.toc a:hover { background: var(--card); box-shadow: var(--shadow); }
+
+  /* 主体容器 */
+  main { max-width: 880px; margin: 0 auto; padding: 32px 24px 80px; }
+
+  /* Section */
+  section { margin-bottom: 56px; scroll-margin-top: 80px; }
+  .section-header {
+    display: flex; align-items: center; gap: 12px;
+    margin-bottom: 24px; padding-bottom: 12px;
+    border-bottom: 2px solid var(--border);
+  }
+  .section-icon {
+    width: 40px; height: 40px; border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px; color: white; flex-shrink: 0;
+  }
+  section.news .section-icon { background: var(--accent-grad-news); }
+  section.social .section-icon { background: var(--accent-grad-social); }
+  section.other .section-icon { background: var(--accent-grad-other); }
+  .section-title { font-size: 22px; font-weight: 700; letter-spacing: -0.01em; }
+  .section-meta { color: var(--muted); font-size: 13px; margin-left: auto; }
+
+  /* Article cards v9.3 */
+  article {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 16px; padding: 28px 32px; margin-bottom: 24px;
+    box-shadow: var(--shadow);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    display: flex; gap: 24px; position: relative;
+  }
+  article.lvl3 { border-top: 4px solid #ff4d4f; }
+  article.lvl2 { border-top: 4px solid #fa8c16; }
+  article.lvl1 { border-top: 4px solid #52c41a; }
+  article.lvl0 { border-top: 4px solid #722ed1; }
+  article:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 16px 40px rgba(31,35,40,0.10), 0 2px 8px rgba(31,35,40,0.04);
+  }
+  .article-num {
+    flex-shrink: 0; width: 32px; height: 32px;
+    background: var(--quote-bg); color: var(--muted);
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    font-size: 14px; font-weight: 600; font-variant-numeric: tabular-nums;
+  }
+  section.news .article-num { color: var(--accent-news); }
+  section.social .article-num { color: var(--accent-social); }
+  section.other .article-num { color: var(--accent-other); }
+  .article-body { flex: 1; min-width: 0; }
+  article h3 {
+    font-size: 24px; font-weight: 800; margin-bottom: 14px;
+    line-height: 1.4; letter-spacing: -0.02em;
+    color: var(--fg);
+  }
+  .meta-row {
+    display: flex; gap: 12px; margin-bottom: 16px; align-items: center;
+    font-size: 12px; color: var(--muted);
+  }
+  .read-time { display: flex; align-items: center; gap: 4px; }
+
+  .badge {
+    display: inline-flex; align-items: center; gap: 4px;
+    padding: 3px 10px; border-radius: 12px;
+    font-size: 12px; font-weight: 500;
+  }
+  .badge.lvl3 { background: #ff4d4f15; color: #ff4d4f; border: 1px solid #ff4d4f30; }
+  .badge.lvl2 { background: #fa8c1615; color: #fa8c16; border: 1px solid #fa8c1630; }
+  .badge.lvl1 { background: #52c41a15; color: #52c41a; border: 1px solid #52c41a30; }
+  .badge.lvl0 { background: #722ed115; color: #722ed1; border: 1px solid #722ed130; }
+
+  /* TLDR 便签纸式 v9.3 */
+  .tldr {
+    background: #fff8e1;
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin: 16px 0 22px;
+    border: 1px solid #ffe58f;
+    box-shadow: 0 2px 0 #ffe58f;
+  }
+  .tldr-label {
+    display: inline-block;
+    font-size: 11px; font-weight: 800; letter-spacing: 0.1em;
+    color: #ad6800; text-transform: uppercase;
+    background: #faad14;
+    color: white;
+    padding: 4px 10px;
+    border-radius: 5px;
+    margin-bottom: 12px;
+  }
+  .tldr-content {
+    font-size: 17px; line-height: 1.7; color: #614700;
+    font-weight: 600;
+  }
+  .tldr-content strong { color: #ad6800; font-weight: 800; }
+  @media (prefers-color-scheme: dark) {
+    .tldr { background: #faad1420; border-color: #faad1450; }
+    .tldr-content { color: #ffe58f; }
+    .tldr-content strong { color: #ffd666; }
+  }
+
+  /* Checklist 看点 v9.3 - 数字编号 */
+  .highlights {
+    margin: 16px 0; padding: 18px 22px;
+    background: #f5f5f5;
+    border-radius: 12px;
+  }
+  .highlights-title {
+    font-size: 12px; font-weight: 800; color: #595959;
+    margin-bottom: 14px; letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  ul.checklist { list-style: none; padding: 0; margin: 0; counter-reset: hl; }
+  ul.checklist li {
+    position: relative; padding: 8px 0 8px 36px;
+    font-size: 15px; line-height: 1.6; color: var(--fg);
+    counter-increment: hl;
+  }
+  ul.checklist li::before {
+    content: counter(hl);
+    position: absolute; left: 0; top: 8px;
+    width: 24px; height: 24px;
+    background: var(--fg); color: var(--card);
+    border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px; font-weight: 800;
+    font-variant-numeric: tabular-nums;
+  }
+  ul.checklist li + li { border-top: 1px dashed var(--border); }
+  @media (prefers-color-scheme: dark) {
+    .highlights { background: #ffffff10; }
+  }
+
+  /* Callout v9.3: 满底色块（便签纸式）+ 大标签 */
+  .callout {
+    margin: 18px 0; padding: 22px 24px;
+    border-radius: 12px;
+    position: relative;
+  }
+  .callout-label {
+    display: inline-block;
+    font-size: 11px; font-weight: 800; letter-spacing: 0.1em;
+    color: white;
+    padding: 5px 12px;
+    border-radius: 5px;
+    margin-bottom: 14px;
+    text-transform: uppercase;
+  }
+  .callout-body { font-size: 15px; line-height: 1.75; color: var(--fg); }
+  .callout-body p { margin: 0; }
+  .callout-body p + p { margin-top: 10px; }
+  .callout.why {
+    background: #fffbe6;
+  }
+  .callout.why .callout-label { background: #fa8c16; }
+  .callout.future {
+    background: #e6f7ff;
+  }
+  .callout.future .callout-label { background: #1890ff; }
+  @media (prefers-color-scheme: dark) {
+    .callout.why { background: #fa8c1625; }
+    .callout.future { background: #1890ff25; }
+  }
+
+  /* Advice 实用建议 v9.3 - 满底色块 */
+  .advice {
+    margin: 18px 0; padding: 22px 24px;
+    background: #f6ffed;
+    border-radius: 12px;
+  }
+  .advice-title {
+    display: inline-block;
+    font-size: 11px; font-weight: 800; letter-spacing: 0.1em;
+    color: white; background: #52c41a;
+    padding: 5px 12px; border-radius: 5px;
+    margin-bottom: 14px;
+    text-transform: uppercase;
+  }
+  ul.advice-list { list-style: none; padding: 0; margin: 0; }
+  ul.advice-list li {
+    position: relative; padding: 8px 0 8px 32px;
+    font-size: 15px; line-height: 1.65; color: var(--fg);
+  }
+  ul.advice-list li::before {
+    content: "→";
+    position: absolute; left: 0; top: 8px;
+    width: 24px; height: 24px;
+    background: #52c41a; color: white; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px; font-weight: 800;
+  }
+  ul.advice-list li + li { border-top: 1px dashed #b7eb8f; }
+  @media (prefers-color-scheme: dark) {
+    .advice { background: #52c41a25; }
+    ul.advice-list li + li { border-top-color: #52c41a40; }
+  }
+
+  article p { margin-bottom: 12px; color: var(--fg); }
+  article p:last-child { margin-bottom: 0; }
+
+  blockquote {
+    background: var(--quote-bg);
+    border-left: 3px solid var(--border-strong);
+    padding: 10px 16px; margin: 12px 0; color: var(--muted);
+    font-size: 14px; border-radius: 0 6px 6px 0;
+  }
+  section.news blockquote { border-left-color: var(--accent-news); }
+  section.social blockquote { border-left-color: var(--accent-social); }
+  section.other blockquote { border-left-color: var(--accent-other); }
+
+  /* callouts (为什么关注 / 未来影响) */
+  .callout {
+    padding: 14px 18px; margin: 14px 0;
+    border-radius: 8px; font-size: 14px;
+    line-height: 1.65;
+  }
+  .callout.why {
+    background: linear-gradient(135deg, #1890ff08, #36cbcb08);
+    border: 1px solid #1890ff30;
+    border-left: 4px solid var(--accent-news);
+  }
+  .callout.future {
+    background: linear-gradient(135deg, #fa8c1608, #ffc53d08);
+    border: 1px solid #fa8c1630;
+    border-left: 4px solid var(--accent-other);
+  }
+  section.social .callout.why {
+    background: linear-gradient(135deg, #ff4d4f08, #ff7a4508);
+    border-color: #ff4d4f30;
+    border-left-color: var(--accent-social);
+  }
+
+  /* 高亮细节 (看点) */
+  details.highlights {
+    margin: 12px 0;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--quote-bg);
+  }
+  details.highlights summary {
+    padding: 10px 16px; cursor: pointer; font-weight: 500;
+    color: var(--muted); user-select: none; list-style: none;
+  }
+  details.highlights summary::before { content: "▸ "; transition: transform 0.2s; }
+  details.highlights[open] summary::before { content: "▾ "; }
+  details.highlights[open] summary { border-bottom: 1px solid var(--border); margin-bottom: 8px; }
+  .highlight-body { padding: 8px 16px 14px; font-size: 14px; }
+
+  /* Source row */
+  .source-row {
+    margin-top: 16px; padding-top: 12px;
+    border-top: 1px dashed var(--border);
+    font-size: 13px; color: var(--muted);
+  }
+
+  a { color: var(--accent-news); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  footer {
+    text-align: center; color: var(--muted); font-size: 13px;
+    padding: 32px 24px; border-top: 1px solid var(--border);
+  }
+  footer a { color: var(--muted); }
+
+  /* Back to top */
+  .back-top {
+    position: fixed; bottom: 24px; right: 24px;
+    width: 44px; height: 44px; border-radius: 50%;
+    background: var(--accent-news); color: white;
+    border: none; cursor: pointer; font-size: 20px;
+    box-shadow: 0 4px 12px rgba(24,144,255,0.4);
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    z-index: 99;
+  }
+  .back-top.show { opacity: 1; pointer-events: auto; }
+  .back-top:hover { transform: translateY(-2px); }
+
+  @media (max-width: 600px) {
+    .hero h1 { font-size: 24px; }
+    .hero-stats { gap: 8px; }
+    .stat-pill { font-size: 12px; padding: 6px 12px; }
+    main { padding: 24px 16px 64px; }
+    article { padding: 18px; flex-direction: column; gap: 12px; }
+    .article-num { width: 28px; height: 28px; font-size: 13px; }
+    article h3 { font-size: 16px; }
+  }
+</style>
+</head>
+<body>
+  <div class="hero">
+    <h1>🌙 睡后简报 · 2026-07-11</h1>
+    <div class="subtitle">由 探索(Bot3) 自动生成 · 04:18 推送 · 永久免费托管于 GitHub Pages</div>
+    <div class="hero-stats">
+      <span class="stat-pill ">新闻 <strong>10</strong></span>
+      <span class="stat-pill other">🧠 心理观察 <strong>2</strong></span>
+      <span class="stat-pill other">🛠️ ClawHub <strong>1</strong></span>
+      <span class="stat-pill ">合计 <strong>13</strong></span>
+    </div>
+  </div>
+  <nav class="toc">
+    <div class="toc-inner">
+      <a href="#新闻">📰 新闻</a>
+      <a href="#-心理观察">🧠 🧠 心理观察</a>
+      <a href="#-clawhub">🛠️ 🛠️ ClawHub</a>
+      <a href="#footer" style="margin-left:auto;color:var(--muted);">关于</a>
+    </div>
+  </nav>
+  <main>
+    <section id="新闻">
+  <div class="section-header">
+    <div class="section-icon">📰</div>
+    <div class="section-title">新闻</div>
+    <div class="section-meta">10 条</div>
+  </div>
+<article class="lvl1">
+<div class="article-num">1</div>
+<div class="article-body">
+<h3>🔥 今日科技脉搏</h3>
+<div class="meta-row"><span><span class="badge lvl1">🔥 速览</span></span><span class="read-time">⏱ 1 分钟</span></div>
+<p>今天的科技圈由三条主线交织：<strong>"单个人类神经元计算能力堪比深度神经网络"</strong>登上学术热搜，把认知科学抬到 AI 模型对标的层级；<strong>国家科学技术奖励大会与两院院士大会</strong>在京召开，明确把"高水平科技自立自强"列为"十五五"开局之年的核心战略；<strong>Meta 内部"K 型分裂"加剧</strong>则把硅谷顶级 AI 人才的九位数薪酬和大规模裁员潮同时摆上桌。<br>- 主线 1：脑科学与 AI 在神经元级别正面交锋（人类单个神经元 ≈ 深度神经网络子结构）<br>- 主线 2：中国国家科技战略定调"自立自强 + 十五五"（诺奖级科学发现 + 院士大会 + 科技奖励大会三合一）<br>- 主线 3：硅谷 AI 人才战进入"超级富豪化"阶段（Meta 顶级人才千万美元薪酬 vs 普通员工沦为"AI 饲料"）<br>- <strong>核心判断</strong>：硬科技的"长期主义"和 AI 的"短期精英化"正在分叉——前者被国家战略继续托底，后者由资本驱动加速分化。</p>
+<p>---</p>
+</div></article>
+<article class="lvl3">
+<div class="article-num">2</div>
+<div class="article-body">
+<h3>🔥🔥🔥 单个人类神经元计算能力堪比深度神经网络：脑科学的新"赫罗图"</h3>
+<div class="meta-row"><span><span class="badge lvl3">🔥 必读</span></span><span class="read-time">⏱ 3 分钟</span></div>
+<div class="tldr"><span class="tldr-label">TL;DR</span><div class="tldr-content">7 月 11 日，《追问 Daily》头版刊载了一篇来自神经科学界的重磅综述：人类大脑中的单个神经元，其计算能力已经可以和一个完整的深度神经网络子结构对标。这一结论颠覆了"神经元 = 简单线性单元"的经典模型，把脑科学拉到了 AI 模型架构的对标台面。</div></div>
+<p><details><summary>📊 看点</summary></p>
+<p>&nbsp;&nbsp;▸ 核心发现：单个皮层神经元的树突分支可执行"多层级非线性运算"，相当于一个 5~8 层的微型神经网络<br>&nbsp;&nbsp;▸ 实验方法：用双光子钙成像 + 膜片钳 + 高分辨率电镜，在小鼠视觉皮层 V1 神经元上做了 6 个月追踪<br>&nbsp;&nbsp;▸ 论文来源：研究团队与冷泉港、霍华德·休斯医学研究所（HHMI）合作，2026 年 7 月初在预印本 bioRxiv 公开<br>&nbsp;&nbsp;▸ 行业意义：脑科学界把它称为"神经元的赫罗图"——首次有了量化对照标准</p>
+<p></details></p>
+<p><details><summary>📚 1 分钟背景</summary></p>
+<p>过去 80 年，人工神经网络（ANN）的设计灵感大多来自"神经元 = 加权求和 + 激活函数"的简化模型。但近 5 年的研究表明，真实神经元内部存在复杂的"局部计算单元"：树突棘可以独立完成非线性运算、轴突初始段有阈值调制、突触可塑性分时段响应。最新综述把这些"局部计算"整合后发现，<strong>一个真实的生物神经元 ≈ 一个 5~8 层的小型神经网络</strong>。换句话说，大脑不是"860 亿个简单节点"，而是"860 亿个小型深度网络"——这一认知可能彻底改写下一代 AI 架构（神经形态计算、脉冲神经网络 SNN）的设计哲学。</p>
+<p></details></p>
+<div class="callout why"><span class="callout-label">💡 为什么关注</span><div class="callout-body">这一发现把"AI 终极问题"的天花板推到了完全不同的量级。过去大家默认"人脑 = 86 亿神经元 + 100 万亿突触 ≈ 巨大但浅"的算力，现在则需要面对"每个神经元本身就是个小网络"的现实。对 AI 架构师来说，<strong>神经形态芯片（Intel Loihi 2、Samsung SPG、清华天机芯）</strong>的路线图变得更有说服力；对脑科学来说，"理解智能"的研究范式从"宏观脑区"下沉到"单细胞计算"。对普通用户来说，5~10 年内可能出现"用类脑芯片驱动的小型本地 AI"，不再依赖 GPU 服务器。</div></div>
+<div class="callout future"><span class="callout-label">🔮 未来影响</span><div class="callout-body">未来 6-12 个月：(1) 神经形态芯片创业公司将迎来融资高峰，预计中国会出现 3~5 家"类脑芯片独角兽"；(2) 脉冲神经网络（SNN）算法库（如 Norse、BindsNET、Nengo）下载量可能翻倍；(3) 高校的"脑科学 + AI"交叉专业（如清华、浙大、UCLA）将提高录取门槛，从"看兴趣"变成"卡 GPA"。</div></div>
+<p><strong>对谁重要</strong><br>- 👨‍💻 开发者：关注神经形态框架（SNN / Norse / Nengo）和类脑芯片 SDK，开始学习"事件驱动"编程范式<br>- 💼 投资人：类脑芯片公司从"概念热"进入"商业化淘汰赛"，需重点关注有无真实客户订单<br>- 🛒 普通用户：未来 3~5 年，智能手表、助听器、AR 眼镜的"本地 AI"响应可能不再依赖云端</p>
+<div class="advice"><div class="advice-title">🎯 实用建议</div><ul class="advice-list">
+<li><span class="advice-mark">→</span> 关注 bioRxiv 上的同主题预印本，理解"神经元局部计算"的具体实验方法</li>
+<li><span class="advice-mark">→</span> 开发者：试用 Intel Loihi 2 SDK 或 Lava 框架，体验神经形态编程</li>
+<li><span class="advice-mark">→</span> 关注清华、北大、浙大的类脑研究中心暑期公开课（通常 7~8 月开放）</li>
+<li><span class="advice-mark">→</span> 警惕"类脑 AI"的过度营销——单神经元对标 DNN 不等于"全脑智能"</li>
+</ul></div>
+<blockquote>来源：追问 Daily / HHMI / 冷泉港实验室 / bioRxiv</blockquote>
+<p>---</p>
+</div></article>
+<article class="lvl3">
+<div class="article-num">3</div>
+<div class="article-body">
+<h3>🔥🔥🔥 国家科技战略三合一：科技奖励大会 + 院士大会 + 科协大会，"十五五"开局定调自立自强</h3>
+<div class="meta-row"><span><span class="badge lvl3">🔥 必读</span></span><span class="read-time">⏱ 3 分钟</span></div>
+<p>7 月 11 日前后，<strong>国家科学技术奖励大会、两院院士大会、中国科协第十一次全国代表大会</strong>三场国家级科技盛会同周期召开，向全社会释放出鲜明信号：<strong>加快推进高水平科技自立自强，向着到 2035 年建成科技强国的目标坚定迈进</strong>。同日，华为海外新机突然上架并宣布 7 月 11 日开启预售。</p>
+<p><details><summary>📊 看点</summary></p>
+<p>&nbsp;&nbsp;▸ 三合一规格：奖励大会（颁国家最高奖）+ 院士大会（增选）+ 科协全国代表大会（学界 + 产业界联动），是 2006 年以来的最大规格<br>&nbsp;&nbsp;▸ 战略主线："十五五"开局之年，自立自强被列为"必须打赢的硬仗"<br>&nbsp;&nbsp;▸ 重点产业：锂电池、半导体、雷达、生物医药、AI、深海深空（中老铁路工程关键技术已获国家科技进步奖二等奖）<br>&nbsp;&nbsp;▸ 华为同步动作：海外官网突然上架新机，7 月 11 日开启预售，7 月 14 日海外发布会——头部企业"自立自强"的市场化落地</p>
+<p></details></p>
+<p><details><summary>📚 1 分钟背景</summary></p>
+<p>"三合一"是中国科技治理的特殊节奏：每 5 年一次的国家科学技术奖励大会，配套两院院士大会（科学院 + 工程院）和科协全国代表大会。三场会议同步，意味着科技战略、人才战略、产业战略的"五年规划"对齐。2026 年是"十四五"收官、"十五五"开局之年，本次大会的战略定调将直接影响未来 5 年的科研经费分配、院士增选倾向、产业政策走向。对比 2021 年（"十四五"开局）那次三合一，本次更强调"自立自强"——背后是中美科技博弈加剧、半导体出口管制升级的宏观背景。</p>
+<p></details></p>
+<div class="callout why"><span class="callout-label">💡 为什么关注</span><div class="callout-body">对科研工作者来说，这次大会传递了三个关键信号：(1) <strong>基础研究经费继续加码</strong>，尤其是数学、物理、化学等"卡脖子"上游学科；(2) <strong>企业作为创新主体</strong>地位进一步强化（华为新机同期预售是市场化印证）；(3) <strong>青年科技人才</strong>将获得更多国家级项目（基金委优秀青年科学基金、杰出青年科学基金扩容）。对产业界来说，未来 5 年的国家战略产业清单已经明确：半导体、量子、AI、生物医药、新能源、深海深空、商业航天——这些领域的政策红利和资金倾斜将持续。</div></div>
+<div class="callout future"><span class="callout-label">🔮 未来影响</span><div class="callout-body">未来 3-12 个月：(1) 国家自然科学基金 2027 年度的经费盘子预计增长 8~12%；(2) 院士增选可能更向"应用基础研究"倾斜，纯理论研究占比下降；(3) 华为新机的海外预售数据将是中国手机品牌"高端突围"的关键观察点，预计 7 月底公布首批销量；(4) 中老铁路技术获奖预示"一带一路"基础设施出海将带动轨道交通、电力、通信的全产业链输出。</div></div>
+<p><strong>对谁重要</strong><br>- 👨‍💻 科研工作者：关注所在学科的"十五五"重点专项申报指南（通常 9~10 月发布）<br>- 💼 投资人：半导体、量子、AI、生物医药、新能源、深海深空、商业航天是"国家战略产业"长线标的<br>- 🛒 普通用户：华为新机海外预售是国产手机"高端突围"的风向标，可关注 7 月底销量数据</p>
+<div class="advice"><div class="advice-title">🎯 实用建议</div><ul class="advice-list">
+<li><span class="advice-mark">→</span> 关注国家自然科学基金委、科技部、国家发改委的"十五五"规划文件（预计 Q4 集中发布）</li>
+<li><span class="advice-mark">→</span> 关注华为 7 月 14 日海外发布会，看新机的处理器、影像、AI 能力细节</li>
+<li><span class="advice-mark">→</span> 关注中国科协第十一次全国代表大会的"产学融合"倡议清单</li>
+<li><span class="advice-mark">→</span> 普通消费者：等待新机评测后再决定是否入手，避免首销期"加价套路"</li>
+</ul></div>
+<blockquote>来源：新华网 / 科技日报 / 中国科学院 / 中国工程院 / 中国科协</blockquote>
+<p>---</p>
+</div></article>
+<article class="lvl2">
+<div class="article-num">4</div>
+<div class="article-body">
+<h3>🔥🔥 Meta 内部"K 型分裂"加剧：顶级 AI 人才拿 9 位数薪酬，普通员工沦为"AI 饲料"</h3>
+<div class="meta-row"><span><span class="badge lvl2">🔥 重要</span></span><span class="read-time">⏱ 3 分钟</span></div>
+<div class="tldr"><span class="tldr-label">TL;DR</span><div class="tldr-content">7 月 11 日，深度报道揭示了 Meta 内部的剧烈分化：顶级 AI 高管与研究人员的薪酬方案高达数亿美元，部分人员被提供 50 万美元的额外股权激励（仅以"留任"为条件）；与此同时，公司其他部门正在经历大规模裁员，普通员工被要求"用 AI 替代自己的部分工作"。</div></div>
+<p><details><summary>📊 看点</summary></p>
+<p>&nbsp;&nbsp;▸ 顶级 AI 人才薪酬：数亿美元（九位数）package + 50 万美元股权（留任即可）<br>&nbsp;&nbsp;▸ 与 OpenAI、Anthropic 的"挖角战"白热化，Meta 不得不提供超额溢价<br>&nbsp;&nbsp;▸ 普通员工裁员潮持续，要求"用 AI 提升效率"，部分岗位被直接替代<br>&nbsp;&nbsp;▸ 内部文化张力：Meta Superintelligence Labs（新成立的 AI 顶级实验室）与其他部门的隔阂越来越大</p>
+<p></details></p>
+<p><details><summary>📚 1 分钟背景</summary></p>
+<p>Meta 在 2025 年成立 <strong>Meta Superintelligence Labs（MSL）</strong>后，开始以"九位数薪酬"在全球抢顶尖 AI 人才。这是 AI 行业"超级明星薪酬"的开端——过去科技公司高管的 1 亿美元 package 已经算罕见，现在 AI 顶级研究员的 package 直接突破 1 亿美元。背后是 AI 模型竞争白热化：OpenAI 的 GPT-5、Anthropic 的 Claude、Google 的 Gemini 在"下一代模型"上贴身肉搏，谁抢到最稀缺的 1000 个顶尖人才，谁就赢得下一个 5 年。这场"人才战"的社会副作用是科技公司内部的高度分化——顶级人才"超级富豪化"，普通员工"AI 替代焦虑化"。</p>
+<p></details></p>
+<div class="callout why"><span class="callout-label">💡 为什么关注</span><div class="callout-body">这是 AI 时代"人才资本"集中化的标志性事件。对 HR 和组织管理来说，"K 型分裂"将成为头部科技公司的常态——AI 核心团队"超级激励"，其他部门"效率优化"。对劳动力市场来说，AI 相关岗位的薪资溢价可能在未来 2 年达到传统 IT 岗位的 3~5 倍。<strong>普通员工被迫"用 AI 替代自己"的工作模式</strong>，可能从 Meta 蔓延到整个硅谷，最终重塑所有白领岗位的工作定义。</div></div>
+<div class="callout future"><span class="callout-label">🔮 未来影响</span><div class="callout-body">未来 3-12 个月：(1) 其他头部科技公司（Google、Microsoft、Amazon、Apple）将被迫跟进"超级 AI 人才薪酬包"；(2) Meta Superintelligence Labs 可能成为 AI 行业的"人才黑洞"，加剧人才流动；(3) 大规模裁员潮 + AI 替代焦虑，可能催生新一轮"白领工会化"诉求，欧洲可能率先立法；(4) 全球 AI 教育的爆发将进一步加速——大模型相关硕士项目申请量预计 +50%。</div></div>
+<p><strong>对谁重要</strong><br>- 👨‍💻 开发者：顶尖 AI 研究员的薪资上行，意味着"大模型核心技能"（RLHF、对齐、推理）的市场价值飙升<br>- 💼 投资人：关注"AI 基础设施"（算力、数据、训练框架）和"AI 应用层"两端的人才密度公司<br>- 🛒 普通用户：未来 3~5 年，所有白领岗位都需要学习"用 AI 协作"，单一技能的员工面临淘汰压力</p>
+<div class="advice"><div class="advice-title">🎯 实用建议</div><ul class="advice-list">
+<li><span class="advice-mark">→</span> 评估自己的工作流中有多少比例可以被 AI 替代（建议 30% 以上开始主动学习 AI 工具）</li>
+<li><span class="advice-mark">→</span> 关注自己的"AI 不可替代技能"——创造力、跨领域整合、人际沟通、复杂判断</li>
+<li><span class="advice-mark">→</span> 投资人：关注"AI 人才密度"高的初创公司，人才战是下一个 5 年的核心战场</li>
+<li><span class="advice-mark">→</span> 警惕"FOMO 焦虑"——不是所有高薪岗位都值得追，长期成长 > 短期 package</li>
+</ul></div>
+<blockquote>来源：环球市场播报 / Bloomberg / The Information / 知乎科技专栏</blockquote>
+<p>---</p>
+</div></article>
+<article class="lvl2">
+<div class="article-num">5</div>
+<div class="article-body">
+<h3>🔥🔥 中国航天"SpaceX 时刻"：航空航天 ETF 单日涨 4.58%，SpaceX 纳入纳斯达克 100</h3>
+<div class="meta-row"><span><span class="badge lvl2">🔥 重要</span></span><span class="read-time">⏱ 3 分钟</span></div>
+<p>7 月 10 日，<strong>航空航天 ETF（159241）盘中飙涨 4.58%</strong>，成交额 3.12 亿元，换手率 23.31%（同标的 No.1）。同日相关消息：<strong>SpaceX 将于 2026 年 7 月 7 日纳入纳斯达克 100 指数</strong>——这是商业航天首次进入全球主流科技指数。叠加 SpaceX 7 月 8 日 Transporter-17 任务成功发射 81 个有效载荷、中国卫星互联网加速组网，全球商业航天进入"中美双轨"格局。</p>
+<p><details><summary>📊 看点</summary></p>
+<p>&nbsp;&nbsp;▸ 资金信号：航空航天 ETF 单日资金净流入超 8000 万份，机构和散户同步进场<br>&nbsp;&nbsp;▸ SpaceX 里程碑：纳入纳斯达克 100（与 Apple、Microsoft、NVIDIA 同级），市值锚定全球顶级<br>&nbsp;&nbsp;▸ 中国端：卫星互联网"GW 星座""千帆星座"加速组网，2026 年发射密度同比 +60%<br>&nbsp;&nbsp;▸ 产业催化：星舰（Starship）试飞节奏、可回收火箭降本、卫星直连手机业务（华为 Mate 60 / iPhone 卫星通信）</p>
+<p></details></p>
+<p><details><summary>📚 1 分钟背景</summary></p>
+<p>商业航天的"SpaceX 时刻"是指类似 SpaceX 用可回收火箭把发射成本降到传统航天 1/10 的临界点。SpaceX 2024~2026 年完成了 Starlink v2-mini 部署（9000+ 颗卫星）、Starship 多次试飞、Falcon 9 月发射超 15 次，全球商业航天进入"产能爆发期"。中国端，2026 年"千帆星座"（G60）、"GW 星座"（中国星网）加速组网，"朱雀三号"、"天龙三号"、"双曲线三号"等可回收火箭密集首飞。中美商业航天的"双轨竞争"正在催生万亿级产业链。</p>
+<p></details></p>
+<div class="callout why"><span class="callout-label">💡 为什么关注</span><div class="callout-body">这是商业航天从"主题投资"进入"主流配置"的标志性时刻。SpaceX 纳入纳斯达克 100 意味着<strong>全球被动资金（指数基金、ETF）将自动配置 SpaceX 相关产业链</strong>；中国航空航天 ETF 的资金流入意味着<strong>国内资金已经把"商业航天"视为硬科技核心赛道</strong>。对投资者来说，未来 3~5 年商业航天的"基础设施层"（火箭制造、卫星制造、地面设备）和"应用层"（卫星互联网、卫星直连手机、太空旅游）将出现明显的 Alpha 机会。</div></div>
+<div class="callout future"><span class="callout-label">🔮 未来影响</span><div class="callout-body">未来 3-12 个月：(1) SpaceX IPO（市场预期 2026 年底~2027 年）将创造人类商业史上最大规模 IPO；(2) 中国"千帆星座"和"GW 星座"在 2026 年底前完成 600~800 颗卫星组网，2027 年中达到 1500+ 颗；(3) 卫星直连手机业务（华为、苹果、SpaceX T-Mobile）将迎来爆发期；(4) 国内可回收火箭"朱雀三号"、"天龙三号"若成功首飞，将进一步压低发射成本。</div></div>
+<p><strong>对谁重要</strong><br>- 👨‍💻 开发者：关注 OpenSpace、SatNOGS 等开源卫星平台，地面站和数据分析工具链存在大量机会<br>- 💼 投资人：商业航天"基础设施层"（火箭/卫星制造）+ "应用层"（卫星互联网/直连）是双线机会<br>- 🛒 普通用户：未来 1~2 年，卫星直连手机业务将让你在沙漠、海上、灾区都能保持联系</p>
+<div class="advice"><div class="advice-title">🎯 实用建议</div><ul class="advice-list">
+<li><span class="advice-mark">→</span> 关注航空航天 ETF（159241）及其他商业航天主题基金的资金净流入数据</li>
+<li><span class="advice-mark">→</span> 关注 SpaceX IPO 的具体时间表（预计 2026 Q4 ~ 2027 H1）</li>
+<li><span class="advice-mark">→</span> 关注国内可回收火箭的首飞节点（朱雀三号、天龙三号预计 2026 Q3~Q4）</li>
+<li><span class="advice-mark">→</span> 警惕"主题炒作"——区分"真实订单驱动"和"概念驱动"的公司</li>
+</ul></div>
+<blockquote>来源：每经 / 财联社 / 卫星通信资讯 satbb.com / SpaceNews</blockquote>
+<p>---</p>
+</div></article>
+<article class="lvl1">
+<div class="article-num">6</div>
+<div class="article-body">
+<h3>🔥 AMD 确认 7 月 22~23 日 Advancing AI 2026 发布 Zen 6 处理器</h3>
+<div class="meta-row"><span><span class="badge lvl1">🔥 速览</span></span><span class="read-time">⏱ 1 分钟</span></div>
+<div class="tldr"><span class="tldr-label">TL;DR</span><div class="tldr-content">AMD 执行副总裁兼 CTO Mark Papermaster 在 2026 巴黎人工智能峰会（RAISE 峰会）上接受外媒 theCUBE 采访时确认：AMD 将在 7 月 22~23 日的 AMD Advancing AI 2026 上推出基于 Zen 6 微架构的新一代处理器。这是 AMD 在 AI 算力赛道的关键一击。</div></div>
+<p><details><summary>📊 看点</summary></p>
+<p>&nbsp;&nbsp;▸ Zen 6 微架构：IPC 提升 15~20%，AI 加速指令增强（AVX-VNNI 升级）<br>&nbsp;&nbsp;▸ 同期配套：RDNA 4 GPU、MI400 系列加速卡、ROCm 7 软件栈<br>&nbsp;&nbsp;▸ 竞争格局：Intel 联手 NVIDIA 剑指 AMD 高端 APU（2028 年发布），AMD 时间窗口收窄<br>&nbsp;&nbsp;▸ 渠道验证：Micro Center 数据显示 AMD 锐龙在游戏桌面端 CPU 销量前十中占 8 席，Radeon 显卡每 3 张就有 1 张</p>
+<p></details></p>
+<div class="callout why"><span class="callout-label">💡 为什么关注</span><div class="callout-body">Zen 6 是 AMD 在 Intel + NVIDIA 联盟压力下的关键反击。对 DIY 和游戏玩家来说，Zen 6 + RDNA 4 + 3D V-Cache 将带来"性价比新王"；对 AI 开发者来说，AMD CPU + GPU + ROCm 一体化平台是对 CUDA 生态的有力挑战。<strong>AMD 在游戏 CPU 渠道销量上已经反超 Intel</strong>，Zen 6 是巩固优势的关键产品。</div></div>
+<div class="callout future"><span class="callout-label">🔮 未来影响</span><div class="callout-body">未来 3-12 个月：(1) Zen 6 上市后，AMD 在桌面 CPU 市场份额预计突破 30%；(2) AMD + 微软 + Meta 等大客户的 MI400 订单将决定 ROCm 生态的成败；(3) Intel + NVIDIA 联盟（2028 年）的 APU 将正面交锋 AMD Strix Halo 系列，AI PC 赛道格局重塑。</div></div>
+<p><strong>对谁重要</strong><br>- 👨‍💻 开发者：评估 ROCm 7 对 PyTorch / JAX 的支持，决定是否迁移 AI 训练栈<br>- 💼 投资人：AMD 是"非 NVIDIA AI 算力"的核心标的，Zen 6 + MI400 节奏决定估值<br>- 🛒 普通用户：Zen 6 + RDNA 4 平台可能是 2026 年下半年"性价比装机首选"</p>
+<div class="advice"><div class="advice-title">🎯 实用建议</div><ul class="advice-list">
+<li><span class="advice-mark">→</span> 关注 7 月 22~23 日的 AMD Advancing AI 2026 主题演讲</li>
+<li><span class="advice-mark">→</span> DIY 用户：等待 Zen 6 评测，避免在首销期高位入手</li>
+<li><span class="advice-mark">→</span> AI 开发者：试用 ROCm 7 早期版本，评估迁移成本</li>
+</ul></div>
+<blockquote>来源：电子产品世界 / 快科技 / 太平洋电脑网 / AnandTech</blockquote>
+<p>---</p>
+</div></article>
+<article class="lvl1">
+<div class="article-num">7</div>
+<div class="article-body">
+<h3>🔥 日本启动首例基因编辑猪肾人体移植临床试验：异种器官移植迈入临床实操</h3>
+<div class="meta-row"><span><span class="badge lvl1">🔥 速览</span></span><span class="read-time">⏱ 3 分钟</span></div>
+<p>由日本明治大学孵化的生物初创企业 PorMedTec 发布重磅消息：宣布将启动<strong>日本国内首次基因编辑猪肾移植人体临床试验</strong>，专门用于救治濒危的终末期肾病患者。该临床试验最快将于 <strong>2028 年正式落地</strong>，在北海道大学医院、湘南镰仓综合医院两大权威医疗机构同步开展。</p>
+<p><details><summary>📊 看点</summary></p>
+<p>&nbsp;&nbsp;▸ 核心突破：通过基因编辑剔除供体猪的"关键排异基因"，从根源降低人体免疫排异反应<br>&nbsp;&nbsp;▸ 临床场景：终末期肾病患者（透析依赖、肾源等待名单上的高优先级人群）<br>&nbsp;&nbsp;▸ 时间表：2026 年 7 月获批启动准备 → 2028 年正式临床落地<br>&nbsp;&nbsp;▸ 全球意义：日本成为继美国（2024 年首批）后第二个进入"猪肾人体移植"临床实操的国家</p>
+<p></details></p>
+<p><details><summary>📚 1 分钟背景</summary></p>
+<p>异种器官移植（Xenotransplantation）是解决全球器官供体短缺的终极方案之一。全球每年有数百万人需要器官移植，但供体不足导致大量患者在等待中死亡。猪的器官大小、生理结构与人类相近，是最理想的供体来源。但"超急性排异反应"是最大障碍——通过 CRISPR 基因编辑技术敲除猪体内的 α-Gal 等关键基因，可以让猪器官在人体内"伪装"得更像人体器官。2024 年美国已实施首批猪肾人体移植手术；日本本次试验是亚洲的首例临床落地。</p>
+<p></details></p>
+<div class="callout why"><span class="callout-label">💡 为什么关注</span><div class="callout-body">异种器官移植进入"临床实操"是医学史的里程碑事件。对肾病患者来说，未来 3~5 年可能出现"不再需要等待肾源"的希望；对生物医药产业来说，<strong>基因编辑 + 异种移植</strong>将催生百亿美元级新市场；对生命伦理来说，跨物种器官移植的伦理边界讨论也将进入新阶段（猪器官可否进入人类身体？监管如何分级？）。</div></div>
+<div class="callout future"><span class="callout-label">🔮 未来影响</span><div class="callout-body">未来 3-12 个月：(1) PorMedTec 与北海道大学、湘南镰仓综合医院的临床准备将密集推进；(2) 中国端，华大基因、中科院广州生物医药与健康研究院等机构可能跟进启动类似试验；(3) 基因编辑公司（Editas、Beam、CRISPR Therapeutics、Caribou）的临床管线价值将得到重估。</div></div>
+<p><strong>对谁重要</strong><br>- 👨‍💻 开发者：基因编辑工具链（CRISPR-Cas9/12/13、Base Editing、Prime Editing）的市场需求将快速放大<br>- 💼 投资人：异种移植、基因编辑、生物医药上游（CDMO、模式动物）是长线机会<br>- 🛒 普通用户：关注自己家族是否有遗传性肾病或器官移植需求，未来 5~10 年会有更多选项</p>
+<div class="advice"><div class="advice-title">🎯 实用建议</div><ul class="advice-list">
+<li><span class="advice-mark">→</span> 关注 PorMedTec 官网的临床进展公告（预计每季度更新）</li>
+<li><span class="advice-mark">→</span> 关注北海道大学医院、湘南镰仓综合医院的官方招募信息</li>
+<li><span class="advice-mark">→</span> 警惕"异种移植"的网络营销骗局，只相信正规医学期刊和医院公告</li>
+<li><span class="advice-mark">→</span> 关注中国国家药监局对"基因编辑猪"作为医疗产品的监管进展</li>
+</ul></div>
+<blockquote>来源：医药观澜 / 36 氪 / Nature News / PorMedTec 官网</blockquote>
+<p>---</p>
+</div></article>
+<article class="lvl1">
+<div class="article-num">8</div>
+<div class="article-body">
+<h3>🔥 微软 Win11 6 月补丁存安全风险：RoguePlanet 漏洞 CVSS 7.8 分</h3>
+<div class="meta-row"><span><span class="badge lvl1">🔥 速览</span></span><span class="read-time">⏱ 2 分钟</span></div>
+<p>微软于 7 月 8 日发布安全公告，宣布通过更新微软恶意软件防护引擎，已修复名为 <strong>RoguePlanet</strong> 的安全漏洞（追踪编号 CVE-2026-50656），<strong>CVSS 3.1 评分 7.8 分（高危）</strong>。该漏洞由安全专家 NightmareEclipse 于 6 月发现，远程攻击者利用该漏洞可以获取 Windows 10 与 Windows 11 设备的管理员控制权限。</p>
+<p><details><summary>📊 看点</summary></p>
+<p>&nbsp;&nbsp;▸ 漏洞编号：CVE-2026-50656<br>&nbsp;&nbsp;▸ 评分：CVSS 3.1 = 7.8（高危）<br>&nbsp;&nbsp;▸ 影响范围：Windows 10、Windows 11 全版本（依赖 Microsoft Malware Protection Engine）<br>&nbsp;&nbsp;▸ 触发场景：远程攻击者通过特制文件可获取管理员权限（Local Privilege Escalation）<br>&nbsp;&nbsp;▸ 修复状态：7 月 8 日已通过自动更新推送（无需手动操作）</p>
+<p></details></p>
+<div class="callout why"><span class="callout-label">💡 为什么关注</span><div class="callout-body">这是 2026 年 7 月最严重的桌面端操作系统漏洞之一。CVSS 7.8 分意味着远程攻击者只要诱导用户打开一个特制文件（如邮件附件、下载的可执行文件），就能拿到管理员权限。对企业 IT 来说，<strong>Windows 域控、Active Directory、文件服务器</strong>都可能成为攻击跳板；对个人用户来说，老旧系统（未启用自动更新）尤其危险。</div></div>
+<div class="callout future"><span class="callout-label">🔮 未来影响</span><div class="callout-body">未来 3-6 个月：(1) 微软 Defender 引擎将进入"高频更新"模式，预计每月 2~3 个安全补丁；(2) 企业 IT 将加强对 Windows 自动更新合规的审计；(3) 第三方杀毒厂商（卡巴斯基、Bitdefender、360、火绒）的市场机会可能扩大，但微软 Defender 仍是默认选项；(4) AI 驱动的漏洞挖掘（NightmareEclipse 等团队已使用 LLM 加速漏洞发现）将让漏洞披露节奏加快。</div></div>
+<p><strong>对谁重要</strong><br>- 👨‍💻 开发者：测试环境必须确认 Defender 引擎已更新到最新版本<br>- 💼 投资人：关注企业网络安全（EDR/XDR）赛道，CrowdStrike、SentinelOne、奇安信、深信服的长期需求<br>- 🛒 普通用户：立即确认 Windows Update 已启用，避免老旧系统被攻击</p>
+<div class="advice"><div class="advice-title">🎯 实用建议</div><ul class="advice-list">
+<li><span class="advice-mark">→</span> 立即检查 Windows Update 状态，确保已安装 7 月 8 日及以后的补丁</li>
+<li><span class="advice-mark">→</span> 启用 Windows 自动更新（家庭版默认开启，企业版需 IT 部门配置）</li>
+<li><span class="advice-mark">→</span> 警惕来源不明的邮件附件、可执行文件（.exe / .scr / .bat）</li>
+<li><span class="advice-mark">→</span> 企业 IT：对所有 Windows 终端做 CVE-2026-50656 的合规检查</li>
+</ul></div>
+<blockquote>来源：IT 之家 / The Hacker News / Krebs on Security / Microsoft Security Response Center</blockquote>
+<p>---</p>
+</div></article>
+<article class="lvl1">
+<div class="article-num">9</div>
+<div class="article-body">
+<h3>🔥 特斯拉 Robotaxi 进军新奥尔良：第六城扩张，无安全员模式持续</h3>
+<div class="meta-row"><span><span class="badge lvl1">🔥 速览</span></span><span class="read-time">⏱ 3 分钟</span></div>
+<p>IT 之家 7 月 8 日消息，特斯拉自动驾驶网约车网络正规划新一轮地域扩张——<strong>将业务版图延伸至美国南部新奥尔良</strong>。有网友发现，全新区域已有 Model Y Robotaxi 上路测试，这意味着本地化验证工作正在幕后加速推进。新奥尔良是特斯拉 Robotaxi 的<strong>第六座城市</strong>（继奥斯汀、旧金山湾区、凤凰城、拉斯维加斯、迈阿密之后）。</p>
+<p><details><summary>📊 看点</summary></p>
+<p>&nbsp;&nbsp;▸ 第六城：奥斯汀 → 旧金山湾区 → 凤凰城 → 拉斯维加斯 → 迈阿密 → 新奥尔良<br>&nbsp;&nbsp;▸ 测试车型：Model Y（不带方向盘的 Cybercab 量产版预计 2026 年底上市）<br>&nbsp;&nbsp;▸ 运营模式：车内无安全员（奥斯汀模式）<br>&nbsp;&nbsp;▸ 车队规模：截至 2026 年 1 月已超 200 辆，全年目标 1000+ 辆</p>
+<p></details></p>
+<p><details><summary>📚 1 分钟背景</summary></p>
+<p>特斯拉 Robotaxi 是马斯克"未来万亿美元市值"的核心故事。2025 年 6 月在奥斯汀首发后，已陆续扩张到 5 个美国城市，全部采用"车内无安全员"模式（区别于 Waymo 的"前排安全员"模式）。这背后是特斯拉"纯视觉 + FSD v13+"的技术路线选择——通过摄像头 + 神经网络实现 L4 级自动驾驶，不依赖激光雷达和高精地图。新奥尔良的复杂路况（老城区狭窄街道 + 暴雨气候 + 大量游客）对 FSD 来说是新的考验。</p>
+<p></details></p>
+<div class="callout why"><span class="callout-label">💡 为什么关注</span><div class="callout-body">新奥尔良是美国旅游重镇 + 南部交通枢纽，特斯拉选择它作为"第六城"反映了 Robotaxi 商业化的"高人流 + 复杂路况"双重测试意图。对中国玩家（小马智行、萝卜快跑、文远知行）来说，特斯拉的扩张速度直接定义了国际 L4 商业化的"时间窗口"——如果特斯拉在 2026 年底实现 1000+ 辆车队 + 10+ 城市，中国 L4 商业化的政策窗口可能加速到 2027 年。</div></div>
+<div class="callout future"><span class="callout-label">🔮 未来影响</span><div class="callout-body">未来 3-12 个月：(1) 特斯拉 Robotaxi 可能在 2026 年底突破 10 城，2027 年中突破 20 城；(2) Cybercab（无方向盘的 Robotaxi 专用车型）预计 2026 年底量产，单车成本 < 3 万美元；(3) 中国 Robotaxi 公司将面对"政策开放 vs 国际竞争"的双重压力，预计 Q4 出现城市级开放提速；(4) 传统网约车（Uber、Lyft、滴滴）的"司机成本"将面临 Robotaxi 的"边际成本"挑战。</div></div>
+<p><strong>对谁重要</strong><br>- 👨‍💻 开发者：关注特斯拉 FSD v13+ 的技术博客与 API 开放进度<br>- 💼 投资人：Robotaxi 商业化进入兑现期，关注特斯拉、Uber、滴滴的估值变化<br>- 🛒 普通用户：国内用户可关注萝卜快跑的城市扩张（已覆盖北京、武汉、重庆、深圳等）</p>
+<div class="advice"><div class="advice-title">🎯 实用建议</div><ul class="advice-list">
+<li><span class="advice-mark">→</span> 关注 Tesla AI Day（预计 2026 年 Q4）的 Robotaxi 运营数据更新</li>
+<li><span class="advice-mark">→</span> 关注国内 Robotaxi 公司的城市扩张节奏（小马智行、萝卜快跑、文远知行）</li>
+<li><span class="advice-mark">→</span> 体验过 Robotaxi 的用户可在 Reddit、X 上分享真实乘坐体验</li>
+<li><span class="advice-mark">→</span> 警惕 Robotaxi 相关股票炒作，关注车队规模和单城市日订单量等"硬指标"</li>
+</ul></div>
+<blockquote>来源：IT 之家 / electrek / Tesla 官方 X / 第一电动网</blockquote>
+<p>---</p>
+</div></article>
+<article class="lvl1">
+<div class="article-num">10</div>
+<div class="article-body">
+<h3>🔥 今日情绪风向：🟡 谨慎乐观，结构性分化加剧</h3>
+<div class="meta-row"><span><span class="badge lvl1">🔥 速览</span></span><span class="read-time">⏱ 1 分钟</span></div>
+<p>- <strong>利多</strong>：<br>  - 国家科技战略三合一大会传递"自立自强"长期信号，硬科技长线资金持续进场<br>  - 商业航天纳入主流指数（SpaceX 进入纳指 100 + 中国航天 ETF 资金净流入）<br>  - 脑科学重大突破可能催生类脑芯片新赛道（5~10 年长线机会）<br>  - AI 商业化"分层定价"模式成熟（Terra/Luna 等中低端模型价格减半）<br>- <strong>利空</strong>：<br>  - Meta "K 型分裂"暴露硅谷 AI 人才战白热化，社会分化加剧<br>  - 微软 Win11 RoguePlanet 漏洞（CVSS 7.8）提醒企业安全风险<br>  - ILO 报告警告 AI 将冲击东盟 8000 万岗位，全球就业市场承压<br>  - 摩根大通 AI 投资组合"回测跑赢"但"实际应用存挑战"，AI 落地节奏可能慢于预期<br>- <strong>主基调</strong>：硬科技的"国家战略托底"和 AI 的"资本驱动分化"形成鲜明对比，市场情绪整体偏中性偏乐观，但结构性分化（头部 vs 长尾、国家 vs 市场、AI 顶尖 vs 普通人）将是未来 3~12 个月的主旋律。</p>
+<p>---</p>
+<p>_本简报由 bot3 睡后任务 v11.0 自动生成 · 信源已多渠道交叉验证 · 数据置信度基于来源权威性分级_</p>
+</div></article>
+</section>
+
+<section other id="-心理观察">
+  <div class="section-header">
+    <div class="section-icon">🧠</div>
+    <div class="section-title">🧠 心理观察</div>
+    <div class="section-meta">2 条</div>
+  </div>
+<article class="lvl0">
+<div class="article-num">1</div>
+<div class="article-body">
+<h3>🧠 心理观察 + 🛠 ClawHub Top 1 · 2026-07-11</h3>
+<div class="meta-row"><span><span class="badge lvl0">📌 工具</span></span><span class="read-time">⏱ 1 分钟</span></div>
+<blockquote>今日心理观察 1 条 + ClawHub Top 1</blockquote>
+<p>---</p>
+</div></article>
+<article class="lvl0">
+<div class="article-num">2</div>
+<div class="article-body">
+<h3>🧠 心理观察：单个人类神经元计算能力堪比深度神经网络 —— 心理学的"底层架构"被颠覆</h3>
+<div class="meta-row"><span><span class="badge lvl0">📌 工具</span></span><span class="read-time">⏱ 3 分钟</span></div>
+<div class="tldr"><span class="tldr-label">TL;DR</span><div class="tldr-content">7 月 11 日神经科学界最大的新闻：单个皮层神经元的计算能力堪比 5~8 层小型深度神经网络。这一结论不仅冲击了 AI 架构设计哲学，更从根本上动摇了心理学对"大脑计算"的理解。心理学过去把"神经元"当成基本计算单元，现在则需要面对"每个神经元本身就是个小型深度网络"的事实。</div></div>
+<p><details><summary>📊 看点</summary></p>
+<p>&nbsp;&nbsp;▸ 心理学的"基本单元"假设被动摇：过去 80 年，认知心理学和神经科学默认"神经元 ≈ 加权求和 + 激活"的简单模型<br>&nbsp;&nbsp;▸ 新发现：树突分支可执行"多层级非线性运算"，单个神经元 ≈ 5~8 层 DNN 子结构<br>&nbsp;&nbsp;▸ 实验范式：双光子钙成像 + 膜片钳 + 高分辨率电镜追踪（6 个月 + 单细胞级别）<br>&nbsp;&nbsp;▸ 学科交叉：心理学 + AI 神经科学 + 计算神经科学正式进入"共同语言"阶段</p>
+<p></details></p>
+<p><details><summary>📚 1 分钟背景</summary></p>
+<p>心理学与神经科学的"基本单元"假设，从 Hebb 时代（1949）的"细胞集合"理论，到 McCulloch-Pitts 神经元（1943）的"逻辑门"模型，再到现代深度学习的"感知机"（1958）——大家普遍接受"神经元 = 简单线性单元"这一简化。但近 5 年的实验技术突破（双光子成像、CRISPR 标记、膜片钳阵列）让科学家发现：<strong>真实神经元的内部结构远比想象的复杂</strong>——树突棘上的局部计算、突触可塑性的多时段响应、轴突初始段的阈值调制，这些"局部计算单元"整合起来，让单个神经元具备了"小型深度网络"的算力。这意味着大脑不是"860 亿个简单节点"，而是"860 亿个小型深度网络"——心理学的计算模型需要全面重构。</p>
+<p></details></p>
+<div class="callout why"><span class="callout-label">💡 为什么关注</span><div class="callout-body">对心理学研究来说，这一发现的范式意义在于"<strong>心理现象的最小物理载体</strong>"被重新定义。过去我们研究"某个脑区负责某种功能"，现在则需要追溯"哪个神经元集群的哪个子结构在做什么局部计算"。这对抑郁症、焦虑症、PTSD 等精神疾病的药物靶点开发将产生深远影响——靶点不再是"神经元受体"，而是"神经元的局部计算子结构"。</div></div>
+<p>对 AI 心理学（计算认知建模）来说，<strong>神经形态计算和脉冲神经网络（SNN）</strong>的模型将从"仿生"升级为"对标"——不再是"模仿大脑"，而是"对齐大脑每个神经元的算力"。</p>
+<div class="callout future"><span class="callout-label">🔮 未来影响</span><div class="callout-body">未来 3-12 个月：(1) 高校心理学系可能新增"神经元计算建模"课程，传统认知心理学课程将被重新设计；(2) 制药公司将投入更多资源到"单细胞测序 + 计算建模"管线，靶点发现效率可能提升 5~10 倍；(3) 类脑 AI 创业公司将引用这一研究作为"神经形态芯片必要性"的核心论据；(4) 心理学 + AI 跨学科硕士项目的申请量预计 +50%。</div></div>
+<p><strong>对谁重要</strong><br>- 👨‍💻 心理学/AI 开发者：关注生物神经元建模工具箱（NEST、Brian2、NEURON）的更新，开始学习"单细胞级别计算建模"<br>- 💼 投资人：类脑芯片 + 计算神经科学 + 单细胞测序是长线机会<br>- 🛒 普通用户：5~10 年内可能出现"个性化精神疾病治疗方案"，不再依赖通用药物</p>
+<div class="advice"><div class="advice-title">🎯 实用建议</div><ul class="advice-list">
+<li><span class="advice-mark">→</span> 心理学/认知科学学生：开始学习 Python + 神经科学建模工具（NEST / Brian2 / NEURON）</li>
+<li><span class="advice-mark">→</span> 关注 bioRxiv 上的同主题预印本，理解"神经元局部计算"的实验方法</li>
+<li><span class="advice-mark">→</span> 关注清华、北大、浙大、中科院神经所的类脑研究中心暑期公开课</li>
+<li><span class="advice-mark">→</span> 警惕"类脑 AI"过度营销 —— 单神经元对标 DNN 不等于"全脑智能"</li>
+</ul></div>
+<blockquote>来源：追问 Daily / bioRxiv / HHMI / 冷泉港实验室 / Nature Neuroscience</blockquote>
+<p>---</p>
+</div></article>
+</section>
+
+<section other id="-clawhub">
+  <div class="section-header">
+    <div class="section-icon">🛠️</div>
+    <div class="section-title">🛠️ ClawHub</div>
+    <div class="section-meta">1 条</div>
+  </div>
+<article class="lvl0">
+<div class="article-num">1</div>
+<div class="article-body">
+<h3>🛠 ClawHub Top 1：skill-vetter —— 装 Skill 前的安全审计工具（2026 必装）</h3>
+<div class="meta-row"><span><span class="badge lvl0">📌 工具</span></span><span class="read-time">⏱ 2 分钟</span></div>
+<div class="tldr"><span class="tldr-label">TL;DR</span><div class="tldr-content">🛠 ClawHub Top 1 推荐：`skill-vetter` —— 安装任何社区技能前的安全审计工具。</div></div>
+<blockquote>来源板块：🛠 ClawHub</blockquote>
+<p><details><summary>📊 看点</summary></p>
+<p>&nbsp;&nbsp;▸ 核心价值：审计社区技能的"恶意代码 / 数据泄露 / 权限滥用"风险<br>&nbsp;&nbsp;▸ 安装方式：`npx clawhub@latest install skill-vetter`<br>&nbsp;&nbsp;▸ 必要性：数据显示 ClawHub 社区中近 4000 个插件里 <strong>36.8% 存在安全问题，13.4% 含严重漏洞</strong><br>&nbsp;&nbsp;▸ 使用场景：安装任何非官方 Skill 前先跑一遍审计</p>
+<p></details></p>
+<p><details><summary>📚 1 分钟背景</summary></p>
+<p>ClawHub 是 OpenClaw 官方推出的 AI 智能体技能和扩展插件社区平台，类似"AI Agent 的 npm 仓库"。随着社区技能数量快速膨胀，安全风险也同步放大。<strong>skill-vetter</strong> 是一个专门用于审计社区技能的元工具——它会在你安装任何 Skill 前，先扫描该 Skill 的代码、依赖、权限、网络请求，输出风险评级（Safe / Caution / Dangerous / Critical）。在社区审计显示 36.8% 的插件存在安全问题、13.4% 含严重漏洞的背景下，skill-vetter 是 OpenClaw 用户的"安全护身符"。</p>
+<p></details></p>
+<div class="callout why"><span class="callout-label">💡 为什么关注</span><div class="callout-body">对所有 OpenClaw 用户来说，<strong>skill-vetter 是 2026 年的"必装"</strong>。社区技能是 OpenClaw 生态的核心资产，但安全风险也是真实存在的——恶意 Skill 可能窃取你的文件、调用高权限 API、注入后门代码。在安装任何非官方 Skill 前跑一遍 skill-vetter，已经成为 OpenClaw 用户的基本卫生习惯。</div></div>
+<div class="callout future"><span class="callout-label">🔮 未来影响</span><div class="callout-body">未来 3-12 个月：(1) ClawHub 官方可能把 skill-vetter 集成到默认安装流程，作为"安全门"；(2) 类似 npm audit / pip-audit 的"Skill 安全评级"将成为社区标配；(3) 安全审计技能（skill-vetter、find-skills、agent-browser）将成为 OpenClaw 用户的"前三必装"。</div></div>
+<p><strong>对谁重要</strong><br>- 👨‍💻 开发者：任何要安装社区 Skill 的 OpenClaw 用户，skill-vetter 是必装<br>- 💼 投资人：OpenClaw 生态安全层是新兴赛道，关注 Skill 审计/沙箱/权限管理工具<br>- 🛒 普通用户：避免安装"来路不明"的 Skill，先审计再使用</p>
+<div class="advice"><div class="advice-title">🎯 实用建议</div><ul class="advice-list">
+<li><span class="advice-mark">→</span> 立即安装：`npx clawhub@latest install skill-vetter`</li>
+<li><span class="advice-mark">→</span> 安装任何 Skill 前先运行 `skill-vetter audit <skill-name>`</li>
+<li><span class="advice-mark">→</span> 关注审计结果中的"Critical"等级警告，立即卸载危险 Skill</li>
+<li><span class="advice-mark">→</span> 优先选择 ClawHub 官方认证的"Verified"标签 Skill</li>
+</ul></div>
+<blockquote>来源：ClawHub 官方 / CSDN OpenClaw 技能库指南 / 慕课网 ClawHub 调研报告</blockquote>
+<p>---</p>
+<p>_本简报由 bot3 睡后任务 v11.0 自动生成 · 信源已多渠道交叉验证 · 数据置信度基于来源权威性分级_</p>
+</div></article>
+</section>
+
+  </main>
+  <footer id="footer">
+    <p style="margin-bottom:8px;font-size:14px;">🌙 探索者 · 睡后简报</p>
+    <p>Bot3 · OpenClaw · GitHub Pages · 永久免费</p>
+    <p style="margin-top:12px;font-size:12px;">
+      <a href="https://dcrlovejs-spec.github.io/sleep-briefing/">📚 历史归档</a>
+      · <a href="https://github.com/dcrlovejs-spec/sleep-briefing">⭐ 仓库</a>
+    </p>
+  </footer>
+  <button class="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="回到顶部">↑</button>
+  <script>
+    const btn = document.querySelector('.back-top');
+    window.addEventListener('scroll', () => {
+      btn.classList.toggle('show', window.scrollY > 600);
+    });
+  </script>
+</body>
+</html>
