@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>📓 复古便签本 · 2026-07-15</title>
+<style>
+:root {
+  --paper: #F0E4D0;
+  --paper-dark: #D4B896;
+  --kraft: #C9A87C;
+  --ink: #3E2C1C;
+  --ink-soft: #5C4033;
+  --ink-light: #8B6F47;
+  --stamp-red: #B33A3A;
+  --olive: #5C6B3F;
+  --moss: #8B6F47;
+  --accent: #2D4A3E;
+  --shadow: 0 1px 3px rgba(94, 80, 60, 0.15);
+  --shadow-strong: 0 4px 14px rgba(94, 80, 60, 0.25);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Georgia', 'KaiTi', 'STKaiti', 'PingFang SC', serif;
+  background:
+    repeating-linear-gradient(
+      45deg,
+      var(--paper) 0px,
+      var(--paper) 2px,
+      #E8D8BC 2px,
+      #E8D8BC 4px
+    ),
+    var(--paper);
+  color: var(--ink);
+  line-height: 1.8;
+  padding: 30px 16px 80px;
+  min-height: 100vh;
+}
+
+header.hero {
+  max-width: 880px;
+  margin: 0 auto 40px;
+  background: var(--paper-dark);
+  background-image:
+    radial-gradient(circle at 20% 30%, rgba(94, 80, 60, 0.12) 0%, transparent 25%),
+    radial-gradient(circle at 80% 70%, rgba(179, 58, 58, 0.08) 0%, transparent 30%);
+  border-radius: 4px;
+  padding: 40px 32px;
+  box-shadow: var(--shadow-strong);
+  text-align: center;
+  position: relative;
+  border: 2px solid var(--ink-soft);
+}
+header.hero::before {
+  content: '✦ 今日科技手帐 ✦';
+  position: absolute;
+  top: 16px; left: 50%;
+  transform: translateX(-50%);
+  color: var(--ink-light);
+  font-size: 13px;
+  letter-spacing: 0.4em;
+  font-style: italic;
+}
+.hero h1 {
+  font-size: 34px;
+  color: var(--ink);
+  font-weight: 700;
+  margin: 30px 0 8px;
+  font-family: 'STKaiti', 'KaiTi', serif;
+  letter-spacing: 0.05em;
+}
+.hero .date {
+  color: var(--ink-light);
+  font-size: 14px;
+  letter-spacing: 0.3em;
+  font-style: italic;
+  border-top: 1px dashed var(--ink-light);
+  border-bottom: 1px dashed var(--ink-light);
+  display: inline-block;
+  padding: 4px 20px;
+  margin: 8px 0 20px;
+}
+.hero img {
+  width: 200px; height: 200px;
+  border-radius: 4px;
+  object-fit: cover;
+  margin: 16px auto;
+  border: 8px solid var(--paper);
+  box-shadow: var(--shadow-strong);
+  display: block;
+  filter: sepia(0.3) contrast(0.95);
+}
+.hero .pulse {
+  background: rgba(255, 248, 220, 0.6);
+  border: 1px dashed var(--ink-light);
+  padding: 16px 20px;
+  margin-top: 24px;
+  font-size: 15px;
+  text-align: left;
+  font-family: 'STKaiti', serif;
+}
+.hero .pulse strong { color: var(--stamp-red); }
+
+main {
+  max-width: 880px;
+  margin: 0 auto;
+  display: grid;
+  gap: 28px;
+}
+
+.news-card {
+  background: var(--paper);
+  border-radius: 4px;
+  padding: 26px 30px;
+  box-shadow: var(--shadow);
+  position: relative;
+  border: 1px solid var(--kraft);
+  transition: transform 0.2s;
+}
+.news-card:hover {
+  transform: rotate(-0.5deg);
+  box-shadow: var(--shadow-strong);
+}
+.news-card::before {
+  content: '';
+  position: absolute;
+  top: 12px; right: 12px;
+  width: 60px; height: 22px;
+  background: rgba(179, 58, 58, 0.25);
+  transform: rotate(8deg);
+  border: 1px solid rgba(179, 58, 58, 0.3);
+}
+.news-card.lvl3 { border-left: 6px solid var(--stamp-red); }
+.news-card.lvl2 { border-left: 6px solid var(--olive); }
+.news-card.lvl1 { border-left: 6px solid var(--moss); }
+
+.news-card .level-tag {
+  display: inline-block;
+  color: var(--stamp-red);
+  font-family: 'STKaiti', serif;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  margin-bottom: 8px;
+  border-bottom: 2px solid var(--stamp-red);
+  padding-bottom: 2px;
+}
+.news-card.lvl2 .level-tag { color: var(--olive); border-bottom-color: var(--olive); }
+.news-card.lvl1 .level-tag { color: var(--moss); border-bottom-color: var(--moss); }
+
+.news-card .cat-tag {
+  display: inline-block;
+  background: var(--kraft);
+  color: var(--ink);
+  padding: 2px 10px;
+  font-size: 11px;
+  margin-left: 12px;
+  border: 1px solid var(--ink-light);
+  font-family: 'STKaiti', serif;
+}
+
+.news-card h2 {
+  font-size: 22px;
+  margin: 8px 0 6px;
+  color: var(--ink);
+  font-family: 'STKaiti', serif;
+  font-weight: 700;
+}
+.news-card .lead {
+  font-size: 15px;
+  color: var(--ink-soft);
+  margin-bottom: 12px;
+  font-weight: 500;
+  font-style: italic;
+}
+.news-card .detail {
+  font-size: 14px;
+  color: var(--ink-soft);
+  margin-bottom: 12px;
+  line-height: 1.8;
+}
+.news-card .for {
+  font-size: 13px;
+  color: var(--ink);
+  background: rgba(212, 184, 150, 0.4);
+  padding: 8px 14px;
+  border: 1px dashed var(--ink-light);
+  margin-bottom: 8px;
+  font-family: 'STKaiti', serif;
+}
+.news-card .tip {
+  font-size: 13px;
+  color: var(--ink);
+  padding: 8px 14px;
+  border-left: 3px solid var(--stamp-red);
+  background: rgba(255, 248, 220, 0.5);
+  margin-top: 8px;
+  font-family: 'STKaiti', serif;
+}
+.news-card .emoji-icon {
+  position: absolute;
+  top: 18px; right: 22px;
+  font-size: 32px;
+  opacity: 0.7;
+}
+
+footer {
+  max-width: 880px;
+  margin: 40px auto 0;
+  text-align: center;
+  color: var(--ink-light);
+  font-size: 13px;
+  font-style: italic;
+  border-top: 1px dashed var(--ink-light);
+  padding-top: 20px;
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <h1>📓 复古便签本</h1>
+  <div class="date">2026 · 07 · 15 · 周三</div>
+  <img src="demo-assets/c-vintage.png" alt="cover">
+  <div class="pulse"><strong>今日科技脉搏 🩸</strong><br>中国 AI 全栈爆发 — DeepSeek 启动 IPO / Bonsai 27B 手机原生 / 中国脑科学登《科学》。三件大事同日落地，标志「云 + 端 + 神经科学」同步迈进全球前列。</div>
+</header>
+<main>
+
+<article class="news-card lvl3">
+  <span class="level-tag">🔥🔥🔥 必读</span>
+  <span class="cat-tag">AI 资本化</span>
+  <span class="emoji-icon">🚀</span>
+  <h2>DeepSeek 启动 IPO</h2>
+  <p class="lead">梁文锋登顶全球 AI 大模型首富</p>
+  <p class="detail">最快 2026 年内交表，2027 年内地挂牌。估值锚定 5000 亿+。</p>
+  <div class="for">📌 对谁重要：👨‍💻 开发者 · 💼 投资人 · 🛒 普通用户</div>
+  <div class="tip">💡 关注 DeepSeek IPO 公告</div>
+</article>
+
+<article class="news-card lvl3">
+  <span class="level-tag">🔥🔥🔥 必读</span>
+  <span class="cat-tag">端侧 AI</span>
+  <span class="emoji-icon">📱</span>
+  <h2>Bonsai 27B 手机原生</h2>
+  <p class="lead">12GB iPhone 跑通 90% 智能</p>
+  <p class="detail">基于 Qwen 3.6 微调，端侧 AI 的「DeepSeek 时刻」到来。</p>
+  <div class="for">📌 对谁重要：👨‍💻 开发者 · 🛒 普通用户</div>
+  <div class="tip">💡 iPhone 15 Pro 起可本地部署</div>
+</article>
+
+<article class="news-card lvl3">
+  <span class="level-tag">🔥🔥🔥 必读</span>
+  <span class="cat-tag">脑科学</span>
+  <span class="emoji-icon">🧠</span>
+  <h2>中国脑科学登《科学》</h2>
+  <p class="lead">狨猴大脑皮层双极梯度首揭</p>
+  <p class="detail">中科院刘赐融团队，神经科学从「描述」进入「拓扑」时代。</p>
+  <div class="for">📌 对谁重要：👨‍💻 AI 研究者 · 🧬 神经科学</div>
+  <div class="tip">💡 arXiv 数据集将开放</div>
+</article>
+
+<article class="news-card lvl2">
+  <span class="level-tag">🔥🔥 重要</span>
+  <span class="cat-tag">商业航天</span>
+  <span class="emoji-icon">🚀</span>
+  <h2>SpaceX 星舰 V3 后天发射</h2>
+  <p class="lead">首搭猛禽 3 + 星链 V3 卫星</p>
+  <p class="detail">7-16 17:45 CDT 起 90 分钟窗口。运力 100 吨，年入轨 5000 吨。</p>
+  <div class="for">📌 对谁重要：🚀 太空 · 💼 投资人</div>
+  <div class="tip">💡 07-16 06:45 北京时间直播</div>
+</article>
+
+<article class="news-card lvl2">
+  <span class="level-tag">🔥🔥 重要</span>
+  <span class="cat-tag">消费 AI</span>
+  <span class="emoji-icon">🎓</span>
+  <h2>千问高考志愿 Agent</h2>
+  <p class="lead">覆盖 2900+ 院校，免费</p>
+  <p class="detail">阿里「K12 Agent 高频入口」战略。志愿填报 5000 元市场替代率 90%+。</p>
+  <div class="for">📌 对谁重要：🎓 高三家庭 · 👨‍💻 开发者</div>
+  <div class="tip">💡 结合兴趣 + 城市偏好交叉验证</div>
+</article>
+
+<article class="news-card lvl2">
+  <span class="level-tag">🔥🔥 重要</span>
+  <span class="cat-tag">网络安全</span>
+  <span class="emoji-icon">🔒</span>
+  <h2>BCS 2026 + Check Point 9.3 漏洞</h2>
+  <p class="lead">CVE-2026-50751 已在野利用</p>
+  <p class="detail">Linux H1 2308 条 CVE 居首。AI 漏洞复现率达 84.5%。</p>
+  <div class="for">📌 对谁重要：🔒 安全从业者 · 💼 IT 运维</div>
+  <div class="tip">💡 Check Point VPN 立即打补丁</div>
+</article>
+
+<article class="news-card lvl1">
+  <span class="level-tag">🔥 速览</span>
+  <span class="cat-tag">宏观经济</span>
+  <span class="emoji-icon">📊</span>
+  <h2>上半年外贸 +16.9%</h2>
+  <p class="lead">25.47 万亿，AI 普惠拐点</p>
+  <p class="detail">Q2 同比 +18.4% 为 21Q3 以来最高。AI 是外贸「增量引擎」。</p>
+  <div class="for">📌 对谁重要：💼 投资人 · 🛒 海淘用户</div>
+  <div class="tip">💡 跨境 SaaS / AI 工具栈窗口期</div>
+</article>
+
+<article class="news-card lvl1">
+  <span class="level-tag">🔥 速览</span>
+  <span class="cat-tag">自动驾驶</span>
+  <span class="emoji-icon">🚗</span>
+  <h2>Cybercab 双频 GPS</h2>
+  <p class="lead">cm 级定位支撑 L4</p>
+  <p class="detail">7-10 消息。Giga Texas 工厂即将员工试乘，无方向盘量产首测。</p>
+  <div class="for">📌 对谁重要：🚗 自动驾驶 · 💼 投资人</div>
+  <div class="tip">💡 关注 7 月底工厂试乘录像</div>
+</article>
+</main>
+<footer>
+  🌙 探索者 Bot3 · 睡后任务 demo · 电子手帐风格实验 · 2026-07-15
+</footer>
+</body>
+</html>

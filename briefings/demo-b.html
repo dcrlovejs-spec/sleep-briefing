@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🍑 K-pop 马卡龙 · 2026-07-15</title>
+<style>
+:root {
+  --bg: linear-gradient(135deg, #FFE0E9 0%, #C5F0D6 50%, #D9C9F2 100%);
+  --bg-solid: #FFF5F7;
+  --card: #FFFFFF;
+  --ink: #2D2A4A;
+  --muted: #8B85A8;
+  --peach: #FFB7C5;
+  --mint: #9FE0BB;
+  --yellow: #FFE99B;
+  --lavender: #C9B8F0;
+  --pink: #FF6B9D;
+  --shadow: 0 4px 12px rgba(255, 107, 157, 0.15);
+  --shadow-strong: 0 8px 28px rgba(255, 107, 157, 0.22);
+  --shadow-mint: 0 6px 18px rgba(159, 224, 187, 0.4);
+  --shadow-lavender: 0 6px 18px rgba(201, 184, 240, 0.4);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  background: var(--bg-solid);
+  background-image:
+    radial-gradient(circle at 10% 10%, var(--peach) 0%, transparent 15%),
+    radial-gradient(circle at 90% 20%, var(--yellow) 0%, transparent 18%),
+    radial-gradient(circle at 50% 80%, var(--mint) 0%, transparent 20%),
+    radial-gradient(circle at 80% 90%, var(--lavender) 0%, transparent 15%);
+  background-attachment: fixed;
+  color: var(--ink);
+  line-height: 1.7;
+  padding: 30px 16px 80px;
+  min-height: 100vh;
+}
+
+header.hero {
+  max-width: 880px;
+  margin: 0 auto 40px;
+  background: var(--card);
+  border-radius: 32px;
+  padding: 40px 32px;
+  box-shadow: var(--shadow-strong);
+  text-align: center;
+  border: 3px solid var(--peach);
+  position: relative;
+  overflow: hidden;
+}
+header.hero::before {
+  content: '✨';
+  position: absolute;
+  top: 14px; left: 24px;
+  font-size: 24px;
+}
+header.hero::after {
+  content: '☁️';
+  position: absolute;
+  top: 14px; right: 24px;
+  font-size: 24px;
+}
+.hero h1 {
+  font-size: 36px;
+  background: linear-gradient(135deg, var(--pink), var(--lavender));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-weight: 800;
+  margin-bottom: 6px;
+  letter-spacing: -0.02em;
+}
+.hero .date {
+  background: var(--yellow);
+  display: inline-block;
+  padding: 4px 16px;
+  border-radius: 20px;
+  font-weight: 700;
+  font-size: 13px;
+  color: var(--ink);
+  margin: 8px 0;
+}
+.hero img {
+  width: 180px; height: 180px;
+  border-radius: 28px;
+  object-fit: cover;
+  margin: 20px auto;
+  box-shadow: var(--shadow-mint);
+  display: block;
+  transform: rotate(-2deg);
+  transition: transform 0.3s;
+}
+.hero img:hover { transform: rotate(2deg) scale(1.05); }
+.hero .pulse {
+  background: linear-gradient(135deg, var(--peach), var(--yellow));
+  border-radius: 20px;
+  padding: 18px 24px;
+  margin-top: 24px;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--ink);
+  text-align: left;
+  box-shadow: var(--shadow);
+}
+.hero .pulse strong {
+  color: var(--pink);
+  font-size: 16px;
+}
+
+main {
+  max-width: 880px;
+  margin: 0 auto;
+  display: grid;
+  gap: 24px;
+}
+
+.news-card {
+  background: var(--card);
+  border-radius: 24px;
+  padding: 28px;
+  box-shadow: var(--shadow);
+  position: relative;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  border: 2px solid transparent;
+}
+.news-card:hover {
+  transform: translateY(-4px) scale(1.01);
+  border-color: var(--peach);
+}
+.news-card.lvl3 { box-shadow: var(--shadow-strong); }
+.news-card.lvl3:hover { box-shadow: var(--shadow-lavender); }
+
+.news-card .lvl-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--pink);
+  color: white;
+  padding: 6px 14px;
+  border-radius: 16px;
+  font-size: 13px;
+  font-weight: 700;
+}
+.news-card.lvl2 .lvl-pill { background: var(--mint); color: var(--ink); }
+.news-card.lvl1 .lvl-pill { background: var(--lavender); color: var(--ink); }
+
+.news-card .cat-tag {
+  display: inline-block;
+  background: var(--yellow);
+  color: var(--ink);
+  padding: 4px 12px;
+  border-radius: 14px;
+  font-size: 11px;
+  margin-left: 8px;
+  font-weight: 600;
+}
+
+.news-card h2 {
+  font-size: 22px;
+  margin: 12px 0 6px;
+  color: var(--ink);
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+.news-card .lead {
+  font-size: 16px;
+  color: var(--pink);
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+.news-card .detail {
+  font-size: 14px;
+  color: var(--muted);
+  margin-bottom: 14px;
+  line-height: 1.7;
+}
+.news-card .for {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+.news-card .for span {
+  background: var(--mint);
+  color: var(--ink);
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+}
+.news-card .tip {
+  font-size: 13px;
+  color: var(--ink);
+  padding: 10px 14px;
+  background: linear-gradient(135deg, var(--peach), var(--yellow));
+  border-radius: 14px;
+  margin-top: 10px;
+  font-weight: 500;
+}
+.news-card .emoji-icon {
+  position: absolute;
+  top: 22px; right: 26px;
+  font-size: 36px;
+  filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
+}
+
+footer {
+  max-width: 880px;
+  margin: 40px auto 0;
+  text-align: center;
+  color: var(--muted);
+  font-size: 13px;
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <h1>🍑 K-pop 马卡龙</h1>
+  <div class="date">2026 · 07 · 15 · 周三</div>
+  <img src="demo-assets/b-macaron.png" alt="cover">
+  <div class="pulse"><strong>今日科技脉搏 🩸</strong><br>中国 AI 全栈爆发 — DeepSeek 启动 IPO / Bonsai 27B 手机原生 / 中国脑科学登《科学》。三件大事同日落地，标志「云 + 端 + 神经科学」同步迈进全球前列。</div>
+</header>
+<main>
+
+<article class="news-card lvl3">
+  <span class="lvl-pill">🔥🔥🔥 必读</span>
+  <span class="cat-tag">AI 资本化</span>
+  <span class="emoji-icon">🚀</span>
+  <h2>DeepSeek 启动 IPO</h2>
+  <p class="lead">梁文锋登顶全球 AI 大模型首富</p>
+  <p class="detail">最快 2026 年内交表，2027 年内地挂牌。估值锚定 5000 亿+。</p>
+  <div class="for"><span>👨‍💻 开发者</span><span>💼 投资人</span><span>🛒 普通用户</span></div>
+  <div class="tip">💡 关注 DeepSeek IPO 公告</div>
+</article>
+
+<article class="news-card lvl3">
+  <span class="lvl-pill">🔥🔥🔥 必读</span>
+  <span class="cat-tag">端侧 AI</span>
+  <span class="emoji-icon">📱</span>
+  <h2>Bonsai 27B 手机原生</h2>
+  <p class="lead">12GB iPhone 跑通 90% 智能</p>
+  <p class="detail">基于 Qwen 3.6 微调，端侧 AI 的「DeepSeek 时刻」到来。</p>
+  <div class="for"><span>👨‍💻 开发者</span><span>🛒 普通用户</span></div>
+  <div class="tip">💡 iPhone 15 Pro 起可本地部署</div>
+</article>
+
+<article class="news-card lvl3">
+  <span class="lvl-pill">🔥🔥🔥 必读</span>
+  <span class="cat-tag">脑科学</span>
+  <span class="emoji-icon">🧠</span>
+  <h2>中国脑科学登《科学》</h2>
+  <p class="lead">狨猴大脑皮层双极梯度首揭</p>
+  <p class="detail">中科院刘赐融团队，神经科学从「描述」进入「拓扑」时代。</p>
+  <div class="for"><span>👨‍💻 AI 研究者</span><span>🧬 神经科学</span></div>
+  <div class="tip">💡 arXiv 数据集将开放</div>
+</article>
+
+<article class="news-card lvl2">
+  <span class="lvl-pill">🔥🔥 重要</span>
+  <span class="cat-tag">商业航天</span>
+  <span class="emoji-icon">🚀</span>
+  <h2>SpaceX 星舰 V3 后天发射</h2>
+  <p class="lead">首搭猛禽 3 + 星链 V3 卫星</p>
+  <p class="detail">7-16 17:45 CDT 起 90 分钟窗口。运力 100 吨，年入轨 5000 吨。</p>
+  <div class="for"><span>🚀 太空</span><span>💼 投资人</span></div>
+  <div class="tip">💡 07-16 06:45 北京时间直播</div>
+</article>
+
+<article class="news-card lvl2">
+  <span class="lvl-pill">🔥🔥 重要</span>
+  <span class="cat-tag">消费 AI</span>
+  <span class="emoji-icon">🎓</span>
+  <h2>千问高考志愿 Agent</h2>
+  <p class="lead">覆盖 2900+ 院校，免费</p>
+  <p class="detail">阿里「K12 Agent 高频入口」战略。志愿填报 5000 元市场替代率 90%+。</p>
+  <div class="for"><span>🎓 高三家庭</span><span>👨‍💻 开发者</span></div>
+  <div class="tip">💡 结合兴趣 + 城市偏好交叉验证</div>
+</article>
+
+<article class="news-card lvl2">
+  <span class="lvl-pill">🔥🔥 重要</span>
+  <span class="cat-tag">网络安全</span>
+  <span class="emoji-icon">🔒</span>
+  <h2>BCS 2026 + Check Point 9.3 漏洞</h2>
+  <p class="lead">CVE-2026-50751 已在野利用</p>
+  <p class="detail">Linux H1 2308 条 CVE 居首。AI 漏洞复现率达 84.5%。</p>
+  <div class="for"><span>🔒 安全从业者</span><span>💼 IT 运维</span></div>
+  <div class="tip">💡 Check Point VPN 立即打补丁</div>
+</article>
+
+<article class="news-card lvl1">
+  <span class="lvl-pill">🔥 速览</span>
+  <span class="cat-tag">宏观经济</span>
+  <span class="emoji-icon">📊</span>
+  <h2>上半年外贸 +16.9%</h2>
+  <p class="lead">25.47 万亿，AI 普惠拐点</p>
+  <p class="detail">Q2 同比 +18.4% 为 21Q3 以来最高。AI 是外贸「增量引擎」。</p>
+  <div class="for"><span>💼 投资人</span><span>🛒 海淘用户</span></div>
+  <div class="tip">💡 跨境 SaaS / AI 工具栈窗口期</div>
+</article>
+
+<article class="news-card lvl1">
+  <span class="lvl-pill">🔥 速览</span>
+  <span class="cat-tag">自动驾驶</span>
+  <span class="emoji-icon">🚗</span>
+  <h2>Cybercab 双频 GPS</h2>
+  <p class="lead">cm 级定位支撑 L4</p>
+  <p class="detail">7-10 消息。Giga Texas 工厂即将员工试乘，无方向盘量产首测。</p>
+  <div class="for"><span>🚗 自动驾驶</span><span>💼 投资人</span></div>
+  <div class="tip">💡 关注 7 月底工厂试乘录像</div>
+</article>
+</main>
+<footer>
+  🌙 探索者 Bot3 · 睡后任务 demo · 电子手帐风格实验 · 2026-07-15
+</footer>
+</body>
+</html>
