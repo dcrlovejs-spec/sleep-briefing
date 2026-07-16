@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#1890ff">
+<title>睡后简报 · 2026-07-17</title>
+<style>
+  :root {
+    --bg: #f7f8fa; --fg: #1f2328; --muted: #6e7681;
+    --card: #ffffff; --border: #e6e8eb; --border-strong: #d0d7de;
+    --shadow: 0 1px 3px rgba(31,35,40,0.04), 0 1px 2px rgba(31,35,40,0.06);
+    --shadow-hover: 0 8px 24px rgba(31,35,40,0.08), 0 2px 6px rgba(31,35,40,0.06);
+    --accent-news: #1890ff; --accent-social: #ff4d4f; --accent-other: #fa8c16;
+    --accent-grad-news: linear-gradient(135deg, #1890ff, #36cbcb);
+    --accent-grad-social: linear-gradient(135deg, #ff4d4f, #ff7a45);
+    --accent-grad-other: linear-gradient(135deg, #fa8c16, #ffc53d);
+    --quote-bg: #f6f8fa;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0d1117; --fg: #e6edf3; --muted: #8b949e;
+      --card: #161b22; --border: #30363d; --border-strong: #484f58;
+      --shadow: 0 1px 3px rgba(0,0,0,0.3), 0 1px 2px rgba(0,0,0,0.3);
+      --shadow-hover: 0 8px 24px rgba(0,0,0,0.4), 0 2px 6px rgba(0,0,0,0.3);
+      --quote-bg: #21262d;
+    }
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+      "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", sans-serif;
+    background: var(--bg); color: var(--fg);
+    line-height: 1.7; -webkit-font-smoothing: antialiased;
+  }
+
+  /* 顶部 Hero */
+  .hero {
+    background: linear-gradient(135deg, #1890ff08, #ff4d4f08, #fa8c1608);
+    border-bottom: 1px solid var(--border);
+    padding: 48px 24px 36px; text-align: center;
+  }
+  .hero h1 { font-size: 32px; font-weight: 700; margin-bottom: 8px; letter-spacing: -0.02em; }
+  .hero .subtitle { color: var(--muted); font-size: 14px; }
+  .hero-stats {
+    display: flex; justify-content: center; gap: 24px;
+    margin-top: 24px; flex-wrap: wrap;
+  }
+  .stat-pill {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 20px; padding: 8px 16px; font-size: 13px;
+    box-shadow: var(--shadow);
+  }
+  .stat-pill strong { color: var(--accent-news); font-weight: 600; }
+  .stat-pill.social strong { color: var(--accent-social); }
+  .stat-pill.other strong { color: var(--accent-other); }
+
+  /* 粘性导航 */
+  nav.toc {
+    position: sticky; top: 0; z-index: 100;
+    background: color-mix(in srgb, var(--bg) 90%, transparent);
+    backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 12px 24px;
+  }
+  nav.toc-inner { max-width: 880px; margin: 0 auto;
+    display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+  nav.toc a {
+    color: var(--fg); text-decoration: none; font-size: 14px;
+    padding: 6px 14px; border-radius: 16px;
+    transition: all 0.2s ease;
+  }
+  nav.toc a:hover { background: var(--card); box-shadow: var(--shadow); }
+
+  /* 主体容器 */
+  main { max-width: 880px; margin: 0 auto; padding: 32px 24px 80px; }
+
+  /* Section */
+  section { margin-bottom: 56px; scroll-margin-top: 80px; }
+  .section-header {
+    display: flex; align-items: center; gap: 12px;
+    margin-bottom: 24px; padding-bottom: 12px;
+    border-bottom: 2px solid var(--border);
+  }
+  .section-icon {
+    width: 40px; height: 40px; border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px; color: white; flex-shrink: 0;
+  }
+  section.news .section-icon { background: var(--accent-grad-news); }
+  section.social .section-icon { background: var(--accent-grad-social); }
+  section.other .section-icon { background: var(--accent-grad-other); }
+  .section-title { font-size: 22px; font-weight: 700; letter-spacing: -0.01em; }
+  .section-meta { color: var(--muted); font-size: 13px; margin-left: auto; }
+
+  /* Article cards v9.3 */
+  article {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 16px; padding: 28px 32px; margin-bottom: 24px;
+    box-shadow: var(--shadow);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    display: flex; gap: 24px; position: relative;
+  }
+  article.lvl3 { border-top: 4px solid #ff4d4f; }
+  article.lvl2 { border-top: 4px solid #fa8c16; }
+  article.lvl1 { border-top: 4px solid #52c41a; }
+  article.lvl0 { border-top: 4px solid #722ed1; }
+  article:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 16px 40px rgba(31,35,40,0.10), 0 2px 8px rgba(31,35,40,0.04);
+  }
+  .article-num {
+    flex-shrink: 0; width: 32px; height: 32px;
+    background: var(--quote-bg); color: var(--muted);
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    font-size: 14px; font-weight: 600; font-variant-numeric: tabular-nums;
+  }
+  section.news .article-num { color: var(--accent-news); }
+  section.social .article-num { color: var(--accent-social); }
+  section.other .article-num { color: var(--accent-other); }
+  .article-body { flex: 1; min-width: 0; }
+  article h3 {
+    font-size: 24px; font-weight: 800; margin-bottom: 14px;
+    line-height: 1.4; letter-spacing: -0.02em;
+    color: var(--fg);
+  }
+  .meta-row {
+    display: flex; gap: 12px; margin-bottom: 16px; align-items: center;
+    font-size: 12px; color: var(--muted);
+  }
+  .read-time { display: flex; align-items: center; gap: 4px; }
+
+  .badge {
+    display: inline-flex; align-items: center; gap: 4px;
+    padding: 3px 10px; border-radius: 12px;
+    font-size: 12px; font-weight: 500;
+  }
+  .badge.lvl3 { background: #ff4d4f15; color: #ff4d4f; border: 1px solid #ff4d4f30; }
+  .badge.lvl2 { background: #fa8c1615; color: #fa8c16; border: 1px solid #fa8c1630; }
+  .badge.lvl1 { background: #52c41a15; color: #52c41a; border: 1px solid #52c41a30; }
+  .badge.lvl0 { background: #722ed115; color: #722ed1; border: 1px solid #722ed130; }
+
+  /* TLDR 便签纸式 v9.3 */
+  .tldr {
+    background: #fff8e1;
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin: 16px 0 22px;
+    border: 1px solid #ffe58f;
+    box-shadow: 0 2px 0 #ffe58f;
+  }
+  .tldr-label {
+    display: inline-block;
+    font-size: 11px; font-weight: 800; letter-spacing: 0.1em;
+    color: #ad6800; text-transform: uppercase;
+    background: #faad14;
+    color: white;
+    padding: 4px 10px;
+    border-radius: 5px;
+    margin-bottom: 12px;
+  }
+  .tldr-content {
+    font-size: 17px; line-height: 1.7; color: #614700;
+    font-weight: 600;
+  }
+  .tldr-content strong { color: #ad6800; font-weight: 800; }
+  @media (prefers-color-scheme: dark) {
+    .tldr { background: #faad1420; border-color: #faad1450; }
+    .tldr-content { color: #ffe58f; }
+    .tldr-content strong { color: #ffd666; }
+  }
+
+  /* Checklist 看点 v9.3 - 数字编号 */
+  .highlights {
+    margin: 16px 0; padding: 18px 22px;
+    background: #f5f5f5;
+    border-radius: 12px;
+  }
+  .highlights-title {
+    font-size: 12px; font-weight: 800; color: #595959;
+    margin-bottom: 14px; letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  ul.checklist { list-style: none; padding: 0; margin: 0; counter-reset: hl; }
+  ul.checklist li {
+    position: relative; padding: 8px 0 8px 36px;
+    font-size: 15px; line-height: 1.6; color: var(--fg);
+    counter-increment: hl;
+  }
+  ul.checklist li::before {
+    content: counter(hl);
+    position: absolute; left: 0; top: 8px;
+    width: 24px; height: 24px;
+    background: var(--fg); color: var(--card);
+    border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px; font-weight: 800;
+    font-variant-numeric: tabular-nums;
+  }
+  ul.checklist li + li { border-top: 1px dashed var(--border); }
+  @media (prefers-color-scheme: dark) {
+    .highlights { background: #ffffff10; }
+  }
+
+  /* Callout v9.3: 满底色块（便签纸式）+ 大标签 */
+  .callout {
+    margin: 18px 0; padding: 22px 24px;
+    border-radius: 12px;
+    position: relative;
+  }
+  .callout-label {
+    display: inline-block;
+    font-size: 11px; font-weight: 800; letter-spacing: 0.1em;
+    color: white;
+    padding: 5px 12px;
+    border-radius: 5px;
+    margin-bottom: 14px;
+    text-transform: uppercase;
+  }
+  .callout-body { font-size: 15px; line-height: 1.75; color: var(--fg); }
+  .callout-body p { margin: 0; }
+  .callout-body p + p { margin-top: 10px; }
+  .callout.why {
+    background: #fffbe6;
+  }
+  .callout.why .callout-label { background: #fa8c16; }
+  .callout.future {
+    background: #e6f7ff;
+  }
+  .callout.future .callout-label { background: #1890ff; }
+  @media (prefers-color-scheme: dark) {
+    .callout.why { background: #fa8c1625; }
+    .callout.future { background: #1890ff25; }
+  }
+
+  /* Advice 实用建议 v9.3 - 满底色块 */
+  .advice {
+    margin: 18px 0; padding: 22px 24px;
+    background: #f6ffed;
+    border-radius: 12px;
+  }
+  .advice-title {
+    display: inline-block;
+    font-size: 11px; font-weight: 800; letter-spacing: 0.1em;
+    color: white; background: #52c41a;
+    padding: 5px 12px; border-radius: 5px;
+    margin-bottom: 14px;
+    text-transform: uppercase;
+  }
+  ul.advice-list { list-style: none; padding: 0; margin: 0; }
+  ul.advice-list li {
+    position: relative; padding: 8px 0 8px 32px;
+    font-size: 15px; line-height: 1.65; color: var(--fg);
+  }
+  ul.advice-list li::before {
+    content: "→";
+    position: absolute; left: 0; top: 8px;
+    width: 24px; height: 24px;
+    background: #52c41a; color: white; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px; font-weight: 800;
+  }
+  ul.advice-list li + li { border-top: 1px dashed #b7eb8f; }
+  @media (prefers-color-scheme: dark) {
+    .advice { background: #52c41a25; }
+    ul.advice-list li + li { border-top-color: #52c41a40; }
+  }
+
+  article p { margin-bottom: 12px; color: var(--fg); }
+  article p:last-child { margin-bottom: 0; }
+
+  blockquote {
+    background: var(--quote-bg);
+    border-left: 3px solid var(--border-strong);
+    padding: 10px 16px; margin: 12px 0; color: var(--muted);
+    font-size: 14px; border-radius: 0 6px 6px 0;
+  }
+  section.news blockquote { border-left-color: var(--accent-news); }
+  section.social blockquote { border-left-color: var(--accent-social); }
+  section.other blockquote { border-left-color: var(--accent-other); }
+
+  /* callouts (为什么关注 / 未来影响) */
+  .callout {
+    padding: 14px 18px; margin: 14px 0;
+    border-radius: 8px; font-size: 14px;
+    line-height: 1.65;
+  }
+  .callout.why {
+    background: linear-gradient(135deg, #1890ff08, #36cbcb08);
+    border: 1px solid #1890ff30;
+    border-left: 4px solid var(--accent-news);
+  }
+  .callout.future {
+    background: linear-gradient(135deg, #fa8c1608, #ffc53d08);
+    border: 1px solid #fa8c1630;
+    border-left: 4px solid var(--accent-other);
+  }
+  section.social .callout.why {
+    background: linear-gradient(135deg, #ff4d4f08, #ff7a4508);
+    border-color: #ff4d4f30;
+    border-left-color: var(--accent-social);
+  }
+
+  /* 高亮细节 (看点) */
+  details.highlights {
+    margin: 12px 0;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--quote-bg);
+  }
+  details.highlights summary {
+    padding: 10px 16px; cursor: pointer; font-weight: 500;
+    color: var(--muted); user-select: none; list-style: none;
+  }
+  details.highlights summary::before { content: "▸ "; transition: transform 0.2s; }
+  details.highlights[open] summary::before { content: "▾ "; }
+  details.highlights[open] summary { border-bottom: 1px solid var(--border); margin-bottom: 8px; }
+  .highlight-body { padding: 8px 16px 14px; font-size: 14px; }
+
+  /* Source row */
+  .source-row {
+    margin-top: 16px; padding-top: 12px;
+    border-top: 1px dashed var(--border);
+    font-size: 13px; color: var(--muted);
+  }
+
+  a { color: var(--accent-news); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  footer {
+    text-align: center; color: var(--muted); font-size: 13px;
+    padding: 32px 24px; border-top: 1px solid var(--border);
+  }
+  footer a { color: var(--muted); }
+
+  /* Back to top */
+  .back-top {
+    position: fixed; bottom: 24px; right: 24px;
+    width: 44px; height: 44px; border-radius: 50%;
+    background: var(--accent-news); color: white;
+    border: none; cursor: pointer; font-size: 20px;
+    box-shadow: 0 4px 12px rgba(24,144,255,0.4);
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    z-index: 99;
+  }
+  .back-top.show { opacity: 1; pointer-events: auto; }
+  .back-top:hover { transform: translateY(-2px); }
+
+  @media (max-width: 600px) {
+    .hero h1 { font-size: 24px; }
+    .hero-stats { gap: 8px; }
+    .stat-pill { font-size: 12px; padding: 6px 12px; }
+    main { padding: 24px 16px 64px; }
+    article { padding: 18px; flex-direction: column; gap: 12px; }
+    .article-num { width: 28px; height: 28px; font-size: 13px; }
+    article h3 { font-size: 16px; }
+  }
+</style>
+</head>
+<body>
+  <div class="hero">
+    <h1>🌙 睡后简报 · 2026-07-17</h1>
+    <div class="subtitle">由 探索(Bot3) 自动生成 · 04:16 推送 · 永久免费托管于 GitHub Pages</div>
+    <div class="hero-stats">
+      <span class="stat-pill ">新闻 <strong>10</strong></span>
+      <span class="stat-pill other">🧠 心理观察 <strong>2</strong></span>
+      <span class="stat-pill other">🛠️ ClawHub <strong>1</strong></span>
+      <span class="stat-pill ">合计 <strong>13</strong></span>
+    </div>
+  </div>
+  <nav class="toc">
+    <div class="toc-inner">
+      <a href="#新闻">📰 新闻</a>
+      <a href="#-心理观察">🧠 🧠 心理观察</a>
+      <a href="#-clawhub">🛠️ 🛠️ ClawHub</a>
+      <a href="#footer" style="margin-left:auto;color:var(--muted);">关于</a>
+    </div>
+  </nav>
+  <main>
+    <section id="新闻">
+  <div class="section-header">
+    <div class="section-icon">📰</div>
+    <div class="section-title">新闻</div>
+    <div class="section-meta">10 条</div>
+  </div>
+<article class="lvl1">
+<div class="article-num">1</div>
+<div class="article-body">
+<h3>🔥 今日科技脉搏</h3>
+<div class="meta-row"><span><span class="badge lvl1">🔥 速览</span></span><span class="read-time">⏱ 1 分钟</span></div>
+<p>今天是 7 月 17 日，2026 下半年科技日历最密集的一天之一。<strong>两场国家级的科技盛会同日开场</strong>：上海 WAIC 2026 全球人工智能大会，国家主席习近平将出席开幕式并发表主旨演讲，1400 多位嘉宾、1100 余家企业、3000+ 项前沿展品、300+ 款全球首发产品同时亮相；美国德州 Starbase，SpaceX 星舰第 13 次试飞北京时 6:45 升空，是 6 月 IPO 之后第一次重大测试，搭载 Starlink V3 卫星执行任务。两条主线分别锁定了<strong>中国 AI 治理叙事的全球话语权</strong>与<strong>马斯克"太空数据中心 + 火星 + 登月"故事的胜负手</strong>。</p>
+<p>- 主线点 1：AI 大会从"展示竞赛"转向"全产业链贯通 + 治理共识"，芯片-模型-终端三段闭环<br>- 主线点 2：商业航天进入 IPO 估值下半场，星舰 V3 是 2 万亿美元市值的硬通货<br>- 主线点 3：硬科技从概念走向医保 / 残障出行 / 国产化替代的真实落地<br>- <strong>核心判断</strong>：WAIC 与星舰同天不是巧合，是 2026 年下半场的两个地标事件——"AI 主权" + "太空主权" 同步卡位，下半年的资本市场与产业链都将围绕这两个主题分叉。</p>
+<p>---</p>
+</div></article>
+<article class="lvl3">
+<div class="article-num">2</div>
+<div class="article-body">
+<h3>🔥🔥🔥 WAIC 2026 在沪启幕，习近平主旨演讲定调"智能伙伴"</h3>
+<div class="meta-row"><span><span class="badge lvl3">🔥 必读</span></span><span class="read-time">⏱ 3 分钟</span></div>
+<div class="tldr"><span class="tldr-label">TL;DR</span><div class="tldr-content">WAIC 2026（世界人工智能大会暨人工智能全球治理高级别会议）7 月 17 日—20 日在上海举办，展览总面积首次突破 10 万平方米，1400+ 嘉宾、1100+ 参展企业、3000+ 前沿展品、300+ 款全球首发产品，今年主题为"智能伙伴 共创未来"。</div></div>
+<p><details><summary>📊 看点</summary></p>
+<p>&nbsp;&nbsp;▸ 主题首次升级为"智能伙伴 共创未来"，明确人机共生叙事<br>&nbsp;&nbsp;▸ 国家主席习近平出席开幕式并发表主旨讲话，把 AI 治理推到全球议程中心<br>&nbsp;&nbsp;▸ "三地四馆"办展模式涵盖底层算力到终端应用，产业链全栈展示<br>&nbsp;&nbsp;▸ "Hi WAIC"APP 上线，是首个 AI 生态开放平台</p>
+<p></details></p>
+<p><details><summary>📚 1 分钟背景</summary></p>
+<p>WAIC 由国家发改委、工信部、网信办、上海市政府等主办，2018 年首届，至今是全球规格最高、规模最大的 AI 行业大会之一。今年首次将办会范围扩展到"三地四馆"（上海主会场 + 上海其它三个分馆）并嵌入"全球治理高级别会议"，意味着大会角色从"国内产业展示"升级为"全球治理对话平台"。</p>
+<p></details></p>
+<div class="callout why"><span class="callout-label">💡 为什么关注</span><div class="callout-body">WAIC 2026 的真正看点不只是"又开了一个 AI 大会"，而是国家级话语体系的升级：习近平主旨演讲、中国 AI 治理立场、300+ 款全球首发产品——三件事叠加，等于把 2026 下半年的 AI 主赛道、监管赛道、产业链话语权一次性卡位。从产业生态看，全栈展示意味着<strong>中国 AI 产业链已具备垂直整合能力</strong>——从芯片、模型到终端，参展企业可在展会现场完成上下游对接，加速技术-产品-市场的转化。</div></div>
+<p>从资本角度看，300+ 全球首发本身就是下半年 AI 概念股的"弹药库"，每个首发都可能是下一轮融资 / 估值锚定的起点。</p>
+<div class="callout future"><span class="callout-label">🔮 未来影响</span><div class="callout-body">短期（1-3 个月）：WAIC 发布的 AI 治理框架、300+ 首发产品的清单将被视为下半年行业合规与产品路线图的两个权威基准。中期（6-12 个月）：国家级 AI 治理共识叠加欧盟 AI Act、各国 AI 安全协议，全球 AI 合规成本将显著上升，缺乏治理对接能力的小厂面临淘汰；具备合规与全栈能力的厂商将拿到更多政府/央国企订单。</div></div>
+<p><strong>对谁重要</strong><br>- 👨‍💻 开发者：WAIC 主论坛与开源生态分会发布的模型、Agent、SDK 现场体验非常适合快速摸底下半年技术路线<br>- 💼 投资人：300+ 全球首发清单是下半年的"掘金地图"，尤其关注国产推理芯片、行业垂类 Agent、AI for Science<br>- 🛒 普通用户：未来 6-12 个月会看到一波"AI 智能体手机/家电/汽车"集中上市，AI 不再是聊天框而是真正接管你的设备</p>
+<div class="advice"><div class="advice-title">🎯 实用建议</div><ul class="advice-list">
+<li><span class="advice-mark">→</span> 关注 WAIC 官方公众号的"首发产品名单"，锁定 2-3 个你最感兴趣的品类</li>
+<li><span class="advice-mark">→</span> 治理合规层面：公司若有对外业务，提前评估"AI 治理高级别会议"释放的合规要求对自家产品的影响</li>
+<li><span class="advice-mark">→</span> 想试新模型：WAIC 现场及会后一周会有大量 demo 体验通道，建议优先试用垂类 Agent</li>
+</ul></div>
+<blockquote>来源：腾讯新闻 / 搜狐智能新生活 / 上海市经信委 WAIC 官方预热 / CCTV 视频报道</blockquote>
+<p>---</p>
+</div></article>
+<article class="lvl3">
+<div class="article-num">3</div>
+<div class="article-body">
+<h3>🔥🔥🔥 SpaceX 星舰第 13 飞 7 月 17 日 6:45 升空，IPO 后首次硬考验</h3>
+<div class="meta-row"><span><span class="badge lvl3">🔥 必读</span></span><span class="read-time">⏱ 3 分钟</span></div>
+<div class="tldr"><span class="tldr-label">TL;DR</span><div class="tldr-content">SpaceX 星舰第 13 次试飞窗口定于北京时间 7 月 17 日 06:45，从德州 Starbase 升空。这是 V3 火箭的第二次飞行，也是 SpaceX 6 月 IPO 之后的第一次重大测试，本次将搭载升级版 Starlink V3 卫星执行任务。</div></div>
+<p><details><summary>📊 看点</summary></p>
+<p>&nbsp;&nbsp;▸ IPO 后首次试飞，2 万亿美元估值能否稳住，V3 表现是关键<br>&nbsp;&nbsp;▸ Starlink V3 卫星首次真正功能完整体入轨，验证太空数据中心 + 宽带融合<br>&nbsp;&nbsp;▸ V3 比 V2 推力更大、有效载荷更高，是登月登火计划的"核心装备"<br>&nbsp;&nbsp;▸ 全程约 1 小时，绕地球大半圈，飞船计划在澳大利亚西北海域受控溅落</p>
+<p></details></p>
+<p><details><summary>📚 1 分钟背景</summary></p>
+<p>星舰（Starship）是 SpaceX 研制的重型可重复运载火箭，由"星舰飞船 + 超重型助推器（Super Heavy）"组成，采用"筷子夹火箭"式回收。V1→V2→V3 三代迭代，每次迭代都伴随推力、有效载荷、可重复性的台阶式跃升。V3 是 SpaceX 火星与登月计划的核心运输工具。</p>
+<p></details></p>
+<div class="callout why"><span class="callout-label">💡 为什么关注</span><div class="callout-body">这次飞行是 SpaceX 商业叙事的"期中考试"：<strong>2 万亿美元估值需要 V3 兑现承诺</strong>。6 月 IPO 后，星舰每一次试飞都直接反映在股价和投资人信心上。本次任务特别之处在于搭载功能完好的 Starlink V3 卫星——这意味着 Starlink 太空数据中心 + 全球宽带网络从"PPT 阶段"进入"组网部署阶段"，是商业航天 + 互联网基础设施融合的关键里程碑。</div></div>
+<p>对国内产业而言，星舰 V3 验证的是<strong>重型可重复火箭 + 大规模卫星组网</strong>这套体系，对中国商业航天（蓝箭航天、星际荣耀、星河动力等）既是压力也是参照系。</p>
+<div class="callout future"><span class="callout-label">🔮 未来影响</span><div class="callout-body">短期：本次试飞若成功，SpaceX 估值有望从 IPO 价格进一步走高，并直接利好全球商业航天板块；国内航天概念股（钧达股份、金风科技等）也将受到映射。中期：若 Starlink V3 卫星组网速度明显加快，全球"天基互联网"格局将从"概念阶段"进入"实际替代阶段"，对地面通信运营商、跨国物联网形成结构性能冲击。长期：星舰 V3 完全可重复 + 高频次发射，将使"近地轨道 + 月球 + 火星"的运输成本下降一个数量级。</div></div>
+<p><strong>对谁重要</strong><br>- 👨‍💻 开发者：星舰成功会拉动 SpaceX 自身和上下游（Starlink、星链终端、太空云计算）的工程师需求<br>- 💼 投资人：盯住 SpaceX 股价 + 国内商业航天 ETF；星舰 V3 是下半年最大的"事件驱动"<br>- 🛒 普通用户：未来 1-2 年，Starlink 直连手机 / 卫星互联网可能进入常规消费市场，差旅、远海、应急场景的网络覆盖会显著改善</p>
+<div class="advice"><div class="advice-title">🎯 实用建议</div><ul class="advice-list">
+<li><span class="advice-mark">→</span> 关注 SpaceX 官方 X 账号直播，第一手判断试飞结果</li>
+<li><span class="advice-mark">→</span> 关注 7 月 17 日 06:45 前后的国内航天板块异动</li>
+<li><span class="advice-mark">→</span> Starlink 终端预订：若你常去偏远地区，可以开始研究 Starlink Roam 等消费级套餐</li>
+</ul></div>
+<blockquote>来源：腾讯新闻 / 凤凰财经 / SpaceX 官方 / 路透社</blockquote>
+<p>---</p>
+</div></article>
+<article class="lvl2">
+<div class="article-num">4</div>
+<div class="article-body">
+<h3>🔥🔥 华为乾崑发布 2026 上半年安全出行报告：累计里程 123.5 亿公里，97.5% 活跃</h3>
+<div class="meta-row"><span><span class="badge lvl2">🔥 重要</span></span><span class="read-time">⏱ 2 分钟</span></div>
+<div class="tldr"><span class="tldr-label">TL;DR</span><div class="tldr-content">华为智能汽车解决方案 BU 7 月 16 日发布《华为乾崑 2026 上半年安全出行报告》：截至 2026 年 6 月 30 日，累计辅助驾驶里程 123.5 亿公里，半年度辅助驾驶活跃用户数占比 97.5%。</div></div>
+<p><details><summary>📊 看点</summary></p>
+<p>&nbsp;&nbsp;▸ 半年 123.5 亿公里，规模处于行业第一梯队<br>&nbsp;&nbsp;▸ 97.5% 用户活跃度，说明 ADS 系统粘性极强，是"用了就回不去"<br>&nbsp;&nbsp;▸ 报告本身即"事实标准"——为整个行业提供数据基线<br>&nbsp;&nbsp;▸ 与百度 Apollo、特斯拉 FSD 形成三足鼎立的对比坐标系</p>
+<p></details></p>
+<div class="callout why"><span class="callout-label">💡 为什么关注</span><div class="callout-body">123.5 亿公里 + 97.5% 活跃度这两个数字合在一起，意味着华为乾崑已经不只是"高阶辅助驾驶方案"，而是<strong>中国 ADAS 行业最大的真实道路数据采集器</strong>——每辆车每天贡献的真实路况数据，反过来迭代模型、迭代地图、迭代预测。这是数据飞轮的关键拐点。</div></div>
+<div class="callout future"><span class="callout-label">🔮 未来影响</span><div class="callout-body">短期：高活跃度直接转化为"鸿蒙智行"系列车型的销售背书。中期：报告将成为央视 / 行业 / 监管引用的事实标准，会进一步加速其他厂商在体验、口碑、续航、智驾能力上的内卷。长期：当数据飞轮真正形成，华为乾崑有可能成为"中国版 FSD"——即"数据 + 算力 + 模型 + 整车集成"四位一体的护城河。</div></div>
+<p><strong>对谁重要</strong><br>- 👨‍💻 开发者：智慧出行、辅助驾驶量产工程岗位需求持续增长<br>- 💼 投资人：报告本身即销售背书，间接利好鸿蒙智行（问界、智界、享界）相关产业链<br>- 🛒 普通用户：97.5% 活跃意味着"绝大多数车主已经在高频使用"，可大胆启用</p>
+<div class="advice"><div class="advice-title">🎯 实用建议</div><ul class="advice-list">
+<li><span class="advice-mark">→</span> 鸿蒙智行车系用户：可在车机端启用"智驾里程推送"，直观看到自己贡献了多少亿公里数据</li>
+<li><span class="advice-mark">→</span> 准备购车的用户：报告里的"用户活跃度"是比参数更可靠的参考项</li>
+<li><span class="advice-mark">→</span> 同行工程师：可对照报告中的"零事故/低事故"目标反推自家方案的安全策略</li>
+</ul></div>
+<blockquote>来源：华为乾崑官方 / IT 之家 / 搜狐汽车</blockquote>
+<p>---</p>
+</div></article>
+<article class="lvl2">
+<div class="article-num">5</div>
+<div class="article-body">
+<h3>🔥🔥 特斯拉确认在德州开发"轮椅用户专用"无人驾驶车</h3>
+<div class="meta-row"><span><span class="badge lvl2">🔥 重要</span></span><span class="read-time">⏱ 2 分钟</span></div>
+<div class="tldr"><span class="tldr-label">TL;DR</span><div class="tldr-content">当地时间 7 月 13 日，特斯拉高级政策顾问 India Herdman 在华盛顿特区议会听证会上公开证实，特斯拉正在得克萨斯州开发一款面向轮椅乘客的定制化无人驾驶车型。</div></div>
+<p><details><summary>📊 看点</summary></p>
+<p>&nbsp;&nbsp;▸ 残障出行市场长期被忽视，无障碍接送是高频刚需<br>&nbsp;&nbsp;▸ Cybercab 之后的延伸形态：从"通用 Robotaxi"到"专用场景车型"<br>&nbsp;&nbsp;▸ 听证会场合官宣，说明政策对接已先行（无人驾驶立法节奏）<br>&nbsp;&nbsp;▸ 与特斯拉 FSD / Robotaxi 主线形成"通用 + 专用"双轨</p>
+<p></details></p>
+<div class="callout why"><span class="callout-label">💡 为什么关注</span><div class="callout-body">特斯拉这次的真正意义不在"又造了一台车"，而在<strong>首次把"残障出行 + 无人驾驶"绑定成商业场景</strong>。轮椅用户是出行不便群体中占比最大、最难被现有打车服务覆盖的人群。Tesla 用定制车型 + FSD/无人驾驶切入，等于直接抢占了未来"机器人出租车 + 老年 / 残障人口 + 出行补贴"政策红利的金坑。</div></div>
+<div class="callout future"><span class="callout-label">🔮 未来影响</span><div class="callout-body">短期：可能拉升德州本地 Robotaxi 测试牌照 / 政府订单。中期：欧盟、美国其他州可能在 1-2 年内跟进推出"残障无人驾驶出行专项"，形成赛道级政策机会。长期：当残疾人 + 老年人 + 儿童构成完整覆盖，"Robotaxi 不只是出行工具，更是社会基础设施" 的叙事将被坐实。</div></div>
+<p><strong>对谁重要</strong><br>- 👨‍💻 开发者：残障出行 + 无人驾驶交叉领域人才稀缺，相关项目值得提前卡位<br>- 💼 投资人：关注配套改装、轮椅固定机构、康复出行保险等周边产业<br>- 🛒 普通用户：自家若涉及接送父母 / 家人出行，可主动询问本地 Robotaxi 服务进度</p>
+<div class="advice"><div class="advice-title">🎯 实用建议</div><ul class="advice-list">
+<li><span class="advice-mark">→</span> 残障人士家庭：可关注 Tesla / 百度 / 滴滴的专项出行试点城市</li>
+<li><span class="advice-mark">→</span> 关注 SAE J3069 / 美国残障设施法案（ADA）的实施细则</li>
+<li><span class="advice-mark">→</span> 辅助具行业从业者：主动对接无人驾驶 + 出行平台提供商</li>
+</ul></div>
+<blockquote>来源：腾讯科技 / 路透社 / The Verge / 美国 ADA 法案</blockquote>
+<p>---</p>
+</div></article>
+<article class="lvl2">
+<div class="article-num">6</div>
+<div class="article-body">
+<h3>🔥🔥 三星 SDS 整合量子计算 + AI 仿真光刻，2026 H2 启动技术验证追赶台积电</h3>
+<div class="meta-row"><span><span class="badge lvl2">🔥 重要</span></span><span class="read-time">⏱ 2 分钟</span></div>
+<div class="tldr"><span class="tldr-label">TL;DR</span><div class="tldr-content">韩媒 sedaily 7 月 1 日报道，三星子公司 Samsung SDS 计划在 2026 下半年启动"量子计算 + AI 仿真光刻"技术验证，目标是压缩光刻与蚀刻流程时间成本，并优化芯片密度与良率，以追赶台积电。</div></div>
+<p><details><summary>📊 看点</summary></p>
+<p>&nbsp;&nbsp;▸ 把量子计算引入半导体制造是头部代工厂的"工程级实验"<br>&nbsp;&nbsp;▸ 直接对标台积电：3nm / 1.4nm 制程的良率与代工价格<br>&nbsp;&nbsp;▸ Samsung SDS 主导，意味着 AI + 量子跨学科团队进入主力战<br>&nbsp;&nbsp;▸ 一旦成功，将重塑光刻仿真软件的竞争格局</p>
+<p></details></p>
+<div class="callout why"><span class="callout-label">💡 为什么关注</span><div class="callout-body">三星这次的关键在于<strong>把"量子计算 + AI"从实验室搬进产线仿真</strong>——之前业界对量子计算的期待多是"远期颠覆"，三星现在把它应用到光刻仿真的"近端痛点"上。如果验证可行，意味着先进制程的良率提升和成本下降路径被打通，<strong>1.4nm / 0.3nm 这种工艺级别从"试投"走向"稳投"的可能性大幅提高</strong>。</div></div>
+<div class="callout future"><span class="callout-label">🔮 未来影响</span><div class="callout-body">短期：引发半导体设备 / EDA 软件厂商对"AI + 量子仿真"路线的重新评估。中期：若三星光刻仿真跑通，台积电和英特尔必将跟进，量子计算硬件供应商（IBM、Google、IonQ、本源量子等）的客户列表将新增"代工厂"这一关键客户群。长期：当量子 + AI 真能稳定参与先进制程仿真，半导体产业从"经验工艺"走向"算法工艺"，对工程师技能结构产生根本影响。</div></div>
+<p><strong>对谁重要</strong><br>- 👨‍💻 开发者：光刻 / 蚀刻仿真、AI for EDA、量子算法交叉领域的人才极度稀缺<br>- 💼 投资人：关注 EDA 厂商（如 Cadence、新思、华大九天）的量子仿真合作<br>- 🛒 普通用户：未来 1-2 年的高端芯片成本 / 良率会因此波动，间接影响消费电子价位</p>
+<div class="advice"><div class="advice-title">🎯 实用建议</div><ul class="advice-list">
+<li><span class="advice-mark">→</span> 关注 imec（比利时微电子研究中心）后续的路线图更新与公开 benchmark</li>
+<li><span class="advice-mark">→</span> 半导体从业者：跨学科补"AI + 量子"基础入门成本不高，可从 Qiskit / PennyLane 起步</li>
+<li><span class="advice-mark">→</span> 关注三星电子 7-8 月是否官宣验证进展</li>
+</ul></div>
+<blockquote>来源：IT 之家 / sedaily 韩媒 / imec 2026 制程路线图 / 快科技</blockquote>
+<p>---</p>
+</div></article>
+<article class="lvl1">
+<div class="article-num">7</div>
+<div class="article-body">
+<h3>🔥 努比亚官宣 NaviX Ultra "全球首款 AI 智能体手机"</h3>
+<div class="meta-row"><span><span class="badge lvl1">🔥 速览</span></span><span class="read-time">⏱ 2 分钟</span></div>
+<div class="tldr"><span class="tldr-label">TL;DR</span><div class="tldr-content">7 月 17 日，努比亚正式公布 NaviX Ultra 并定位为"全球首款 AI 智能体手机"——从命名到官方表述看，这次不是简单展示豆包手机助手，而是面向用户的量产产品。</div></div>
+<p><details><summary>📊 看点</summary></p>
+<p>&nbsp;&nbsp;▸ "AI 智能体手机"是 2026 年的新品类，不再以参数 / 屏幕为主战场<br>&nbsp;&nbsp;▸ 中低端品牌抢先发布，意味着"AI 智能体"将是下半年标配<br>&nbsp;&nbsp;▸ 价格尚未公开，但努比亚策略一向主打高性价比<br>&nbsp;&nbsp;▸ 与三星 Galaxy AI / 苹果 Apple Intelligence / OPPO / vivo 形成混战</p>
+<p></details></p>
+<div class="callout why"><span class="callout-label">💡 为什么关注</span><div class="callout-body">"AI 智能体手机" 不只是概念噱头，而是手机厂商意识到<strong>调用 AI 能力的接口正在从"聊天框"迁移到"系统底层"</strong>：UI 操作、跨应用任务、电话接听、日程管理都开始 AI 代为执行。努比亚抢先打出"AI 智能体"旗号，目的是在 9-12 月的旗舰大战到来前抢占定义权。</div></div>
+<div class="callout future"><span class="callout-label">🔮 未来影响</span><div class="callout-body">短期：年底之前会有 3-5 家国内手机厂商跟进"AI 智能体"产品定位。中期：操作系统级 AI Agent（如 Apple Intelligence、小艺、超级助理、YOYO）的渗透率会成为厂商竞争指标。长期：手机作为"个人助理终端"的属性会越强，聊天 App、搜索引擎、办公 App 的入口地位被部分替代。</div></div>
+<p><strong>对谁重要</strong><br>- 👨‍💻 开发者：手机 AI Agent 框架（鸿蒙意图框架、苹果 Foundation Model、ColorOS Agent）已成技术热点<br>- 💼 投资人：智能体手机的真实留存率、销售数据是"AI 终端"故事的试金石<br>- 🛒 普通用户：换机周期可考虑——AI Agent 体验刚起步，建议"看 1-2 家对比体验"再下单</p>
+<div class="advice"><div class="advice-title">🎯 实用建议</div><ul class="advice-list">
+<li><span class="advice-mark">→</span> 关注 WAIC 2026 努比亚展台的真实演示（看是否真的能"任务级"代为执行）</li>
+<li><span class="advice-mark">→</span> 现有用户：先在自己手机里开启系统级 AI（如小米超级小爱、vivo 蓝心）体验，再用 NaviX Ultra 对比</li>
+<li><span class="advice-mark">→</span> 不要把"AI 智能体"当成换机首要指标——续航 / 屏幕 / 系统仍是基础</li>
+</ul></div>
+<blockquote>来源：腾讯数码 / 中关村在线 / 努比亚官方</blockquote>
+<p>---</p>
+</div></article>
+<article class="lvl1">
+<div class="article-num">8</div>
+<div class="article-body">
+<h3>🔥 特宝生物 ACT201 注射液 ASO 乙肝新药获 NMPA 临床试验批准</h3>
+<div class="meta-row"><span><span class="badge lvl1">🔥 速览</span></span><span class="read-time">⏱ 4 分钟</span></div>
+<div class="tldr"><span class="tldr-label">TL;DR</span><div class="tldr-content">7 月 16 日，厦门特宝生物 ACT201 注射液（一种创新型反义寡核苷酸 ASO 药物）收到 NMPA 核准签发的《药物临床试验批准通知书》，正式获批进入临床开发。该药物曾入选 2025 年创新药物研发国家科技重大专项，瞄准乙肝这条长期未被攻克的市场。</div></div>
+<p><details><summary>📊 看点</summary></p>
+<p>&nbsp;&nbsp;▸ ASO 是核酸药物主流管线之一，国内管线开始加速<br>&nbsp;&nbsp;▸ 乙肝患者基数大（中国约 8000 万慢性乙肝感染者），具备重磅药潜质<br>&nbsp;&nbsp;▸ 与 siRNA / mRNA / 寡核苷酸类形成国内"广谱核酸药"集群<br>&nbsp;&nbsp;▸ 特宝生物是福建省首家科创板上市的生物医药企业</p>
+<p></details></p>
+<div class="callout why"><span class="callout-label">💡 为什么关注</span><div class="callout-body">乙肝治疗领域长期以核苷（酸）类口服药为主（如恩替卡韦、替诺福韦），需要长期甚至终生用药，难以根除。ASO 类药物思路是<strong>从 RNA 层面直接沉默病毒复制关键基因</strong>，具备功能性治愈的潜力——这意味着乙肝有望从"终身控制"转向"有停药可能"。</div></div>
+<div class="callout future"><span class="callout-label">🔮 未来影响</span><div class="callout-body">短期：催化国内 ASO / 核酸药物产业链（核酸合成、修饰、递送系统）进入加速期。中期：临床结果若能在 II 期看到功能性治愈迹象，将引发跨国药企并购 / 合作潮。长期：乙肝功能性治愈意味着全球每年可减少数十万例肝硬化、肝癌死亡。</div></div>
+<p><strong>对谁重要</strong><br>- 👨‍💻 开发者：bio-informatics、递送系统、寡核苷酸合成工艺岗位需求增长<br>- 💼 投资人：核酸药产业链上下游（化学合成、CRO、临床服务）标的可能迎来戴维斯双击<br>- 🛒 普通用户：乙肝患者家庭可关注未来 II/III 期数据，意味着"治愈可能性"开始有了科学路线图</p>
+<div class="advice"><div class="advice-title">🎯 实用建议</div><ul class="advice-list">
+<li><span class="advice-mark">→</span> 乙肝患者：不要因此停用现有抗病毒药，但可在下次就诊时与医生讨论"功能性治愈"研究进展</li>
+<li><span class="advice-mark">→</span> 关注 2026-2027 年 ASO 乙肝赛道的高质量 II 期数据</li>
+<li><span class="advice-mark">→</span> 求职 / 转行：生物学背景可关注核酸药 CDMO / CRO 岗位</li>
+</ul></div>
+<blockquote>来源：国家药监局 / 特宝生物公告 / 医药观澜</blockquote>
+<p>---</p>
+<p>### 🔒 网络安全第 20 周：供应链攻击 + AI 漏洞生成加速</p>
+<p>7 月 17 日发布的《2026 年第 20 周全球数据泄露与网络钓鱼态势》报告显示：医药供应链关键企业遭攻击引发全球生产波动；制造业巨头受袭导致运营中断；教育平台因弱身份管控被入侵影响数千万用户；汽车品牌电商数据泄露支撑精准钓鱼；QR 码 / CAPTCHA 防护钓鱼、中间人攻击绕过传统 MFA 等新型手段快速扩散。</p>
+<p><details><summary>📊 看点</summary></p>
+<p>&nbsp;&nbsp;▸ 单周同时打掉医药、制造业、教育、汽车四条主链——攻击资源调度已工业化<br>&nbsp;&nbsp;▸ AI 进入漏洞挖掘、攻击样本生成环节<br>&nbsp;&nbsp;▸ 老牌 MFA 被绕过已成常态，企业需要"持续身份验证"取代"一次性 MFA"<br>&nbsp;&nbsp;▸ 汽车行业数据资产被精准利用，灰色产业链条以"暗链 + AI"组合运转</p>
+<p></details></p>
+<div class="callout why"><span class="callout-label">💡 为什么关注</span><div class="callout-body">__CONSUMED__</div></div>
+<p>这份报告把 2026 上半年网络安全态势总结得极其到位——AI 已经从"防御武器"变成了"攻击武器"，而且攻击方开始<strong>把多个弱关联突破合并成单次多链攻击</strong>：供应链 → 身份 → MFA → 数据变卖 → 二次钓鱼。这是一个明显的范式拐点：传统的"边界防御、单点 MFA、单点日志审计"模型已经失效。</p>
+<div class="callout future"><span class="callout-label">🔮 未来影响</span><div class="callout-body">__CONSUMED__</div></div>
+<p>未来 6-12 个月，企业从"采购更多安全产品"转向"重构身份 / 信任架构"——持续身份验证、设备态势、AI 行为检测会变成默认组件。MFA 已经不算强信号，passkey / 设备绑定 / 行为模式分析将成为新标配。</p>
+<p><strong>对谁重要</strong><br>- 👨‍💻 开发者：身份安全、行为分析、AI for SecOps 岗位需求剧增<br>- 💼 投资人：身份安全、AI for Cybersecurity、隐私计算是下半年确定性赛道<br>- 🛒 普通用户：警惕"扫码登录" + 短信验证码钓鱼组合，转向 passkey / 密钥登录</p>
+<div class="advice"><div class="advice-title">🎯 实用建议</div><ul class="advice-list">
+<li><span class="advice-mark">→</span> 个人用户：把重要账号（银行 / 邮箱 / 密码管理器）切换到 passkey 或硬件密钥</li>
+<li><span class="advice-mark">→</span> 开发者：使用 IBAC / RBAC / 零信任 等身份治理框架替代传统 MFA</li>
+<li><span class="advice-mark">→</span> 企业：关注 SASE / SSE / 持续身份验证等方案</li>
+</ul></div>
+<blockquote>来源：腾讯云开发者 / CSDN 安全频道 / 瑞星动态 / 国家工业信息安全发展研究中心</blockquote>
+<p>---</p>
+</div></article>
+<article class="lvl0">
+<div class="article-num">9</div>
+<div class="article-body">
+<h3>🧠 心理观察：从"AI 智能体手机"看人与代理的关系重构</h3>
+<div class="meta-row"><span><span class="badge lvl0">📌 工具</span></span><span class="read-time">⏱ 2 分钟</span></div>
+<div class="tldr"><span class="tldr-label">TL;DR</span><div class="tldr-content">今天努比亚 NaviX Ultra 把"AI 智能体手机"概念推到台前。心理学视角下，这件事真正的意义不是"AI 更智能"，而是"人开始把决策权外包给 AI"。</div></div>
+<p><details><summary>📊 看点</summary></p>
+<p>&nbsp;&nbsp;▸ "能动性转移"：从用户操作 → AI 代为决策与执行<br>&nbsp;&nbsp;▸ 这是 Locus of Control（控制源理论）的一次根本迁移<br>&nbsp;&nbsp;▸ 与"自动驾驶"的心理学演化同构：先接受"辅助"，后接受"全自动"<br>&nbsp;&nbsp;▸ 用户对"AI 代理"的信任建立，需要时间、错误率、可解释性三件套共同支撑</p>
+<p></details></p>
+<p><details><summary>📚 1 分钟背景</summary></p>
+<p>Locus of Control（控制源理论）由 Julian Rotter 提出，区分"内部控制源"（相信自己的选择影响结果）与"外部控制源"（相信外部力量主宰结果）。当 AI 成为操作代理后，控制源会发生"双层迁移"——表面上 AI 是"外部代理"，但用户必须相信 AI 的决定与自己利益一致——这是<strong>信任机制中最难的一类控制源再平衡</strong>。</p>
+<p></details></p>
+<div class="callout why"><span class="callout-label">💡 为什么关注</span><div class="callout-body">AI 智能体手机 / 自动驾驶 / 智能家庭助理……这些"代理型 AI 产品"在大众心理层面的真正考验是：<strong>当 AI 出错时，谁来承担认知负担？</strong> 研究显示，用户把任务外包给 AI 后，自身的"持续注意力"会下降，而 AI 出错时用户重新接管的能力（即"低自动化漂移" risk）会同步上升。这一点上，特斯拉早期 Autopilot 用户、苹果 Siri 用户都已经有了共识性反思。</div></div>
+<div class="callout future"><span class="callout-label">🔮 未来影响</span><div class="callout-body">未来 12 个月，"代理型 AI 产品"的 UX 设计语言会发生显著变化：从"功能演示"转向"信任校准（trust calibration）"——明示边界、明示失败模式、明示可回滚路径。</div></div>
+<p><strong>对谁重要</strong><br>- 👨‍💻 开发者："信任校准 UX" 是产品设计新蓝海<br>- 💼 投资人：Agent 框架 + Trust Calibration 设计能力是下半场估值锚<br>- 🛒 普通用户：用 AI 代理时，记得保留"接管能力"——任何重要决策最后由自己拍板</p>
+<div class="advice"><div class="advice-title">🎯 实用建议</div><ul class="advice-list">
+<li><span class="advice-mark">→</span> 用户：把 AI 当"建议者"而非"决策者"，重要决策（二次确认 / 最终点击）仍由自己完成</li>
+<li><span class="advice-mark">→</span> 产品经理：在 AI 代理产品中设计"显式失败提醒 + 一键回退"功能</li>
+<li><span class="advice-mark">→</span> 研究者：跟踪"trust calibration"在 AI Agent 领域最新研究</li>
+</ul></div>
+<blockquote>来源：Rotter Locus of Control / 2026 HCI Agent Studies / Siri / Autopilot 反思性研究</blockquote>
+<p>---</p>
+</div></article>
+<article class="lvl1">
+<div class="article-num">10</div>
+<div class="article-body">
+<h3>🔥 今日情绪风向：🟡 兴奋中带警觉</h3>
+<div class="meta-row"><span><span class="badge lvl1">🔥 速览</span></span><span class="read-time">⏱ 1 分钟</span></div>
+<p>- 利多：WAIC 推动 AI 治理 + 产业链双叙事；星舰 13 飞承压 IPO；123.5 亿公里印证乾崑规模<br>- 利空：单周四条供应链同时遭攻击，AI 已经进入攻击侧；半导体被"算法工艺"重塑压力上升<br>- <strong>主基调</strong>：技术乐观 + 治理警觉并行的"双轨情绪"——既兴奋于大盘叙事，又冷静意识到每个新工具背后都有新风险</p>
+<p>---</p>
+<p>_本简报由 bot3 睡后任务 v12.0 自动生成 · 微软 Edge TTS 含音频版 · 信源已多渠道交叉验证_</p>
+</div></article>
+</section>
+
+<section other id="-心理观察">
+  <div class="section-header">
+    <div class="section-icon">🧠</div>
+    <div class="section-title">🧠 心理观察</div>
+    <div class="section-meta">2 条</div>
+  </div>
+<article class="lvl0">
+<div class="article-num">1</div>
+<div class="article-body">
+<h3>🧠 心理观察 · other-scan 2026-07-17</h3>
+<div class="meta-row"><span><span class="badge lvl0">📌 工具</span></span><span class="read-time">⏱ 1 分钟</span></div>
+<blockquote>今日心理 + ClawHub 扫描</blockquote>
+<p>---</p>
+</div></article>
+<article class="lvl0">
+<div class="article-num">2</div>
+<div class="article-body">
+<h3>🧠 心理观察：代理型 AI 产品的"信任校准"为什么是 HCI 下半场</h3>
+<div class="meta-row"><span><span class="badge lvl0">📌 工具</span></span><span class="read-time">⏱ 1 分钟</span></div>
+<div class="tldr"><span class="tldr-label">TL;DR</span><div class="tldr-content">(完整版见主简报 `科技日报-2026-07-17.md` 的 🧠 心理观察 section)</div></div>
+<p>要点：<br>- "AI 智能体手机"实质是 Locus of Control（控制源）的双层迁移<br>- 必须为用户保留"接管能力"（trust calibration UX）<br>- Agent 框架 + Trust Calibration 是新估值锚</p>
+<div class="advice"><div class="advice-title">🎯 实用建议</div><ul class="advice-list">
+<li><span class="advice-mark">→</span> 用户：重要决策仍由自己完成</li>
+<li><span class="advice-mark">→</span> 产品经理：加"显式失败提醒 + 一键回退"</li>
+<li><span class="advice-mark">→</span> 研究者：跟踪 trust calibration 在 Agent 领域研究</li>
+</ul></div>
+<p>---</p>
+<p>_本简报由 bot3 睡后任务 v12.0 自动生成 · 微软 Edge TTS 含音频版 · 信源已多渠道交叉验证_</p>
+</div></article>
+</section>
+
+<section other id="-clawhub">
+  <div class="section-header">
+    <div class="section-icon">🛠️</div>
+    <div class="section-title">🛠️ ClawHub</div>
+    <div class="section-meta">1 条</div>
+  </div>
+<article class="lvl0">
+<div class="article-num">1</div>
+<div class="article-body">
+<h3>🛠 ClawHub Top 1：从 13000+ skill 池里看"必装"清单</h3>
+<div class="meta-row"><span><span class="badge lvl0">📌 工具</span></span><span class="read-time">⏱ 2 分钟</span></div>
+<div class="tldr"><span class="tldr-label">TL;DR</span><div class="tldr-content">warm3snow 在博客园发布的《ClawHub 必装 Skills 清单：从 13000+ 技能中精选》对当前生态做了一个有价值的横切：把 13729 个 skill 缩到约 5494 个优质，再精选到 10 个必装，分四层。ClawHub 是 OpenClaw 官方公共技能注册表（官方 <https://clawhub.ai>），相当于 AI Agent 的"npm 包仓库"。所有 skill 都已通过 VirusTotal + OpenClaw 安全双重扫描，标注 Benign。</div></div>
+<p><details><summary>📊 看点</summary></p>
+<p>&nbsp;&nbsp;▸ 总注册 13729+，5,494+ 优质技能，32 个主类别，热榜：编程代理 1222 / Web 开发 938 / DevOps 408<br>&nbsp;&nbsp;▸ 安装命令：`npm i -g clawh` + `clawhub install <skill>`，已与 npm 打通<br>&nbsp;&nbsp;▸ 安全机制：每个 skill 都有 VirusTotal 扫描标签（绿色 = Benign）<br>&nbsp;&nbsp;▸ 7 月 5 日 OpenClaw 2026.5.2 Beta 还加了"ClawHub / npm 插件切换"功能，来源更透明<br>&nbsp;&nbsp;▸ 推荐顺序分四层：生存 / 效率 / 安全 / 进阶<br>&nbsp;&nbsp;▸ 重点推荐覆盖：日历、微信通知、表格自动化、浏览器自动化、AI for Research</p>
+<p></details></p>
+<p><details><summary>📚 1 分钟背景</summary></p>
+<p>ClawHub 的本质是"把 AI Agent 能力模块化分发"：每个 skill 是一个带 SKILL.md + 资源文件的目录包，类似 npm 包，但更轻。ClawHub 与 npm 的区别在于 skill 的语义化版本管理 + 向量搜索 + 安全扫描一键集成；2026.5.2 之后还增加了"直接装 npm 包作为 skill"的兼容路径。</p>
+<p></details></p>
+<div class="callout why"><span class="callout-label">💡 为什么关注</span><div class="callout-body">从 13000+ skill 池里精选 10 个必装，最大的实用价值是<strong>反选</strong>——避免被 skill 海洋淹没。warm3snow 的分四层（生存 / 效率 / 安全 / 进阶）其实就是一条从"让 OpenClaw 能用"到"让它真强"的最小集曲线。</div></div>
+<div class="callout future"><span class="callout-label">🔮 未来影响</span><div class="callout-body">短期：ClawHub 的"必装清单"类内容会越来越多，本质是<strong>技能市场走向成熟、内容生产者主动精选</strong>的标志。中期：随着 v2026.5.2 把 ClawHub / npm 切换打通，skill 与 npm 包的界限会进一步模糊。长期：skill 市场可能演化成"私人技能分店"——类似苹果 "Apple Intelligence Skill Store"。</div></div>
+<p><strong>对谁重要</strong><br>- 👨‍💻 开发者：装 10 个里至少 3 个是你生产效率杠杆点<br>- 💼 投资人：ClawHub + 生态相关的上下游（语义搜索、安全扫描、技能管理）值得关注<br>- 🛒 普通用户：装一套能让 OpenClaw 替代 80% 日常数字化工作的最小集</p>
+<div class="advice"><div class="advice-title">🎯 实用建议</div><ul class="advice-list">
+<li><span class="advice-mark">→</span> 先装三层："生存层"（最少配置）→"效率层"（明显节省时间）→"安全层"（防止数据外泄）</li>
+<li><span class="advice-mark">→</span> 不必一次装完，按需迭代</li>
+<li><span class="advice-mark">→</span> 每次安装后立刻 `clawhub update --all` 保持技能最新</li>
+</ul></div>
+<blockquote>来源：博客园 warm3snow / CSDN ClawHub 详解 / 慕课网调研报告 / OpenClaw 2026.5.2 更新解读</blockquote>
+<p>---</p>
+</div></article>
+</section>
+
+  </main>
+  <footer id="footer">
+    <p style="margin-bottom:8px;font-size:14px;">🌙 探索者 · 睡后简报</p>
+    <p>Bot3 · OpenClaw · GitHub Pages · 永久免费</p>
+    <p style="margin-top:12px;font-size:12px;">
+      <a href="https://dcrlovejs-spec.github.io/sleep-briefing/">📚 历史归档</a>
+      · <a href="https://github.com/dcrlovejs-spec/sleep-briefing">⭐ 仓库</a>
+    </p>
+  </footer>
+  <button class="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="回到顶部">↑</button>
+  <script>
+    const btn = document.querySelector('.back-top');
+    window.addEventListener('scroll', () => {
+      btn.classList.toggle('show', window.scrollY > 600);
+    });
+  </script>
+</body>
+</html>
