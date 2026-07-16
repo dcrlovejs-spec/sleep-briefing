@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>📚 学霸笔记本 · 2026-07-17</title>
+<title>🌌 深夜银河风 · 2026-07-17</title>
 <style>
 /* ===== 公共装饰类（所有主题共用）===== */
 .tape {
@@ -55,67 +55,73 @@
 }
 
 :root {
-  --paper: #FFFFFF;
-  --paper-line: #D4E4F7;
-  --margin-red: #E8A0A0;
-  --ink: #1A1A3A;
-  --ink-light: #5A5A7A;
-  --yellow: #FFE99B;
-  --blue: #A8C5E8;
-  --green: #B5E0B5;
-  --pink: #FFB7C5;
-  --grid: rgba(168, 197, 232, 0.3);
+  --bg: #0B0F2C;
+  --card: #1A1F4A;
+  --ink: #E8E8FF;
+  --muted: #9999CC;
+  --star: #FFFFFF;
+  --purple: #6B5BD9;
+  --cyan: #5BD9E0;
+  --gold: #FFD700;
+  --pink: #FF8FAB;
+  --grid: rgba(255, 255, 255, 0.05);
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body {
-  font-family: 'Caveat', 'Comic Sans MS', 'PingFang SC', cursive;
-  background-color: #F5F0E1;
+  font-family: 'Quicksand', 'PingFang SC', system-ui, sans-serif;
+  background-color: var(--bg);
   background-image:
-    radial-gradient(circle at 50% 50%, var(--yellow) 0%, transparent 15%);
+    radial-gradient(2px 2px at 20% 30%, var(--star), transparent),
+    radial-gradient(1px 1px at 40% 70%, var(--star), transparent),
+    radial-gradient(2px 2px at 60% 20%, var(--star), transparent),
+    radial-gradient(1px 1px at 80% 60%, var(--star), transparent),
+    radial-gradient(1.5px 1.5px at 10% 80%, var(--star), transparent),
+    radial-gradient(1px 1px at 90% 40%, var(--star), transparent),
+    radial-gradient(2px 2px at 30% 50%, var(--star), transparent),
+    radial-gradient(1px 1px at 70% 90%, var(--star), transparent),
+    radial-gradient(1.5px 1.5px at 50% 10%, var(--star), transparent),
+    linear-gradient(135deg, #0B0F2C 0%, #1A1F4A 50%, #2D1B4E 100%);
+  background-attachment: fixed;
   color: var(--ink); line-height: 1.7;
   padding: 30px 16px 80px; min-height: 100vh;
 }
 
 header.hero {
   max-width: 880px; margin: 0 auto 40px;
-  background-color: var(--paper);
+  background-color: var(--card);
   background-image:
-    linear-gradient(var(--paper-line) 1px, transparent 1px);
-  background-size: 100% 28px;
-  border-radius: 4px; padding: 40px 32px;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+    radial-gradient(1.5px 1.5px at 30% 40%, var(--star), transparent),
+    radial-gradient(1px 1px at 70% 60%, var(--star), transparent),
+    radial-gradient(1px 1px at 50% 80%, var(--star), transparent);
+  background-size: 80px 80px;
+  border-radius: 24px; padding: 40px 32px;
+  box-shadow: 0 0 40px rgba(107, 91, 217, 0.4);
   text-align: center; position: relative;
-  border-left: 3px solid var(--margin-red);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 .hero h1 {
-  font-size: 36px; color: var(--ink);
-  font-family: 'Caveat', cursive, system-ui;
+  font-size: 34px; color: var(--star);
   font-weight: 700; margin-bottom: 8px;
-  text-decoration: underline;
-  text-decoration-color: var(--yellow);
-  text-decoration-thickness: 6px;
-  text-underline-offset: 4px;
+  text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+  letter-spacing: 0.05em;
 }
 .hero .date {
-  color: var(--ink-light); font-size: 16px;
-  font-family: 'Caveat', cursive;
-  letter-spacing: 0.05em; margin: 8px 0 20px;
+  color: var(--muted); font-size: 14px;
+  letter-spacing: 0.3em; margin: 8px 0 20px;
 }
 .hero img {
-  width: 220px; height: 220px; border-radius: 4px;
+  width: 220px; height: 220px; border-radius: 50%;
   object-fit: cover; margin: 16px auto;
-  border: 4px solid var(--paper);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-  display: block; transform: rotate(-2deg);
+  border: 4px solid var(--gold);
+  box-shadow: 0 0 30px rgba(255, 215, 0, 0.6);
+  display: block;
 }
 .hero .pulse {
-  background: var(--yellow);
-  border-radius: 4px; padding: 16px 20px;
-  margin-top: 24px; font-size: 16px;
+  background: linear-gradient(135deg, var(--purple), var(--cyan));
+  border-radius: 16px; padding: 18px 24px;
+  margin-top: 24px; font-size: 15px;
   text-align: left;
-  font-family: 'Caveat', cursive, system-ui;
-  box-shadow: 3px 3px 0 var(--ink);
-  position: relative;
+  box-shadow: 0 0 20px rgba(91, 217, 224, 0.3);
 }
 
 main {
@@ -123,75 +129,73 @@ main {
 }
 
 .news-card {
-  background-color: var(--paper);
+  background-color: var(--card);
   background-image:
-    linear-gradient(var(--paper-line) 1px, transparent 1px);
-  background-size: 100% 26px;
-  border-radius: 4px; padding: 28px 28px 28px 36px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    radial-gradient(1px 1px at 20% 30%, var(--star), transparent),
+    radial-gradient(1px 1px at 60% 70%, var(--star), transparent),
+    radial-gradient(1px 1px at 80% 20%, var(--star), transparent);
+  background-size: 120px 120px;
+  border-radius: 20px; padding: 28px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.3);
   position: relative;
-  border-left: 3px solid var(--margin-red);
-  transition: transform 0.2s;
+  border: 1px solid rgba(107, 91, 217, 0.3);
+  transition: all 0.3s;
 }
-.news-card:hover { transform: rotate(-0.3deg); }
+.news-card:hover {
+  border-color: var(--gold);
+  box-shadow: 0 0 24px rgba(255, 215, 0, 0.3);
+}
 
 .news-card .lvl {
   display: inline-block;
-  background: var(--yellow); color: var(--ink);
-  padding: 4px 14px; border-radius: 4px;
-  font-size: 14px; font-weight: 700;
-  font-family: 'Caveat', cursive, system-ui;
-  box-shadow: 2px 2px 0 var(--ink);
-  margin-bottom: 10px;
+  background: linear-gradient(135deg, var(--gold), var(--pink));
+  color: var(--bg); padding: 5px 14px;
+  border-radius: 14px; font-size: 13px; font-weight: 700;
 }
-.news-card.lvl2 .lvl { background: var(--blue); }
-.news-card.lvl1 .lvl { background: var(--green); }
+.news-card.lvl2 .lvl { background: linear-gradient(135deg, var(--purple), var(--cyan)); color: var(--star); }
+.news-card.lvl1 .lvl { background: rgba(255,255,255,0.15); color: var(--star); }
 
 .news-card .cat {
   display: inline-block;
-  background: var(--pink); color: var(--ink);
-  padding: 2px 10px; font-size: 12px;
+  background: rgba(255, 215, 0, 0.2);
+  color: var(--gold); padding: 3px 12px;
+  border-radius: 12px; font-size: 11px;
   margin-left: 6px; font-weight: 600;
-  font-family: 'Caveat', cursive, system-ui;
-  border-radius: 12px;
+  border: 1px solid rgba(255, 215, 0, 0.3);
 }
 
 .news-card h2 {
-  font-size: 26px; margin: 10px 0 6px;
-  color: var(--ink); font-family: 'Caveat', cursive, system-ui;
-  font-weight: 700;
+  font-size: 22px; margin: 12px 0 6px;
+  color: var(--star); font-weight: 700;
 }
 .news-card .lead {
-  font-size: 17px; color: var(--ink);
+  font-size: 15px; color: var(--cyan);
   font-weight: 500; margin-bottom: 10px;
-  font-family: 'Caveat', cursive, system-ui;
 }
 .news-card .detail {
-  font-size: 15px; color: var(--ink-light);
-  margin-bottom: 12px; line-height: 1.8;
-  font-family: 'Caveat', cursive, system-ui;
+  font-size: 14px; color: var(--muted);
+  margin-bottom: 14px; line-height: 1.8;
 }
 .news-card .for {
-  font-size: 14px; color: var(--ink);
-  background: var(--green);
-  padding: 6px 14px; border-radius: 4px;
-  margin-bottom: 8px; display: inline-block;
-  font-family: 'Caveat', cursive, system-ui;
-  box-shadow: 2px 2px 0 var(--ink);
+  font-size: 13px; color: var(--star);
+  background: rgba(107, 91, 217, 0.2);
+  padding: 8px 14px; border-radius: 12px;
+  margin-bottom: 8px;
+  border: 1px solid rgba(107, 91, 217, 0.4);
 }
 .news-card .tip {
-  font-size: 14px; color: var(--ink);
-  padding: 8px 14px;
-  background: rgba(255, 233, 155, 0.5);
-  border: 1.5px dashed var(--ink);
-  border-radius: 4px; margin-top: 10px;
-  font-family: 'Caveat', cursive, system-ui;
+  font-size: 13px; color: var(--star);
+  padding: 10px 14px;
+  background: rgba(255, 215, 0, 0.1);
+  border-left: 3px solid var(--gold);
+  border-radius: 4px 12px 12px 4px;
+  margin-top: 10px;
 }
 
 footer {
   max-width: 880px; margin: 40px auto 0;
-  text-align: center; color: var(--ink-light);
-  font-size: 14px; font-family: 'Caveat', cursive, system-ui;
+  text-align: center; color: var(--muted); font-size: 13px;
+  letter-spacing: 0.2em;
 }
 </style>
 </head>
@@ -199,9 +203,9 @@ footer {
 <header class="hero">
   <div class="tape tape-pink tape-tl"></div>
   <div class="tape tape-mint tape-tr"></div>
-  <h1>📚 学霸笔记本</h1>
+  <h1>🌌 深夜银河风</h1>
   <div class="date">2026-07-17 · 周三 · 科技手帐</div>
-  <img src="demo-assets-v2/d-study.png" alt="学霸笔记本">
+  <img src="demo-assets-v2/e-galaxy.png" alt="深夜银河">
   <div class="pulse">今日科技脉搏 🩸 · ### 🔥🔥🔥 长鑫科技发行价 8.66 元/股，市值 57 / ### 🔥🔥🔥 网信办一次性放行 7 款手机端侧 AI 大模 / ### 🔥🔥🔥 享界 G9 拿下北京 120km/h L3 </div>
 </header>
 <div class="audio-player-wrap" style="max-width:680px;margin:24px auto;padding:18px 22px;background:rgba(255,255,255,0.85);border-radius:14px;box-shadow:0 4px 14px rgba(0,0,0,0.08);border:1.5px dashed rgba(0,0,0,0.12);">
@@ -317,9 +321,22 @@ footer {
   <div class="for">📌 对谁重要：👨‍💻 读者 · 💼 关注者</div>
   <div class="tip">💡 ClawHub 平台「**ai-agent**」关键词排名第一，主打 **AI Agent 编排 + MCP（Model…</div>
 </article>
+
+<article class="news-card lvl1">
+  <div>
+    <span class="lvl">🔥 速览</span>
+    <span class="cat">科技动态</span>
+  </div>
+  <div class="sticker top-right">🌐</div>
+  <h2>### 🌐 WAIC 2026 特别模块 · 开幕前夜篇 —— 明日 7-17 启幕，9 位图灵/诺奖将齐聚上海</h2>
+  <p class="lead">7 月 17-20 日，2026 世界人工智能大会（WAIC）暨人工智能全球治理高级别会议将在上海举行，主题「智能伙伴 共创未来」。本届亮点齐发：习近平主席将出席开幕式并发表主旨讲话；9 位图灵奖 / 诺贝尔奖得主确认参会；展览总面积首破 10 万 m²；1100+ 企业、3000+ 展品、300+ 款产品全球首发。</p>
+  <p class="detail">**未来 3 天的连锁反应：** 1. **A 股 / 港股直接映射**——昇腾链（神州数码、拓维信息）、GPU 替代（沐曦、芯原、寒武纪、海光）、近存计算（澜起科技、聚辰股份）Q3 估值催化。 2. **政策合规利好转折**——主旨讲话将明确「AI 安全 + 治理 + 出海」三层政策框架，让中国 AI 企业的「政策折价」快速修复。预计 H2 板块估值中枢上抬 5-10%。 3. **学术与论文密集发布**——WAIC Academic 284 篇论文中，可能出现 3-5 篇会成为全球引用热点的「中国原创 AI 论文」；这些论文背后的初创公司在 2027 H1 估值会获加成。 4. **展会经济 / 上海科创中心**——世博会、张江、西岸商圈展会期间人流 +30%，上海科创板块 Q3 业绩会有结构性提振。 **⏱ 关键时间线（4 天议程展望）**： - **7-17（Day 1）**：开幕式 + 习近平主旨讲话 + Sutton 主旨演讲 + 昇腾 950 真机首发 - **7-18（Day 2）**：Bengio 联合国治理框架发布会 + 东方算芯 / 沐曦曦景 S 全球首发 - **7-19（Day 3）**：WAIC Academic 主论坛（姚期智主席 + 9 国 284 篇论文）+ 具身智能 + AI4S - **7-20（Day 4）**：AI 全球治理高级别会议闭幕式 + 「WAIC UP!」东南亚分会场预告</p>
+  <div class="for">📌 对谁重要：👨‍💻 读者 · 💼 关注者</div>
+  <div class="tip">💡 **第一层（产业定位）**：WAIC 2026 是中国 AI 产业从「野蛮生长」到「技术 + 治理双轨」的标志性时刻——…</div>
+</article>
 </main>
 <footer>
-  🌙 探索者 Bot3 · 睡后任务 · 学霸笔记本 · 2026-07-17
+  🌙 探索者 Bot3 · 睡后任务 · 深夜银河 · 2026-07-17
 </footer>
 </body>
 </html>
