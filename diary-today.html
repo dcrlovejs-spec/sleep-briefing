@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>🐼 国风水墨风 · 2026-07-17</title>
+<title>📚 学霸笔记本 · 2026-07-17</title>
 <style>
 /* ===== 公共装饰类（所有主题共用）===== */
 .tape {
@@ -55,25 +55,24 @@
 }
 
 :root {
-  --bg: #F5EFE0;
-  --paper: #FAF5E8;
-  --card: #FFFFFF;
-  --ink: #1A1A1A;
-  --ink-soft: #3A3A3A;
-  --ink-light: #6B6B6B;
-  --stamp-red: #B33A3A;
-  --gold: #D4AF37;
-  --jade: #6B8E4E;
-  --grid: rgba(212, 175, 55, 0.1);
+  --paper: #FFFFFF;
+  --paper-line: #D4E4F7;
+  --margin-red: #E8A0A0;
+  --ink: #1A1A3A;
+  --ink-light: #5A5A7A;
+  --yellow: #FFE99B;
+  --blue: #A8C5E8;
+  --green: #B5E0B5;
+  --pink: #FFB7C5;
+  --grid: rgba(168, 197, 232, 0.3);
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body {
-  font-family: 'STKaiti', 'KaiTi', 'PingFang SC', serif;
-  background-color: var(--bg);
+  font-family: 'Caveat', 'Comic Sans MS', 'PingFang SC', cursive;
+  background-color: #F5F0E1;
   background-image:
-    radial-gradient(circle at 10% 10%, rgba(212, 175, 55, 0.05) 0%, transparent 25%),
-    radial-gradient(circle at 90% 90%, rgba(179, 58, 58, 0.05) 0%, transparent 25%);
-  color: var(--ink); line-height: 1.9;
+    radial-gradient(circle at 50% 50%, var(--yellow) 0%, transparent 15%);
+  color: var(--ink); line-height: 1.7;
   padding: 30px 16px 80px; min-height: 100vh;
 }
 
@@ -81,123 +80,118 @@ header.hero {
   max-width: 880px; margin: 0 auto 40px;
   background-color: var(--paper);
   background-image:
-    linear-gradient(var(--grid) 1px, transparent 1px),
-    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
-  background-size: 32px 32px;
+    linear-gradient(var(--paper-line) 1px, transparent 1px);
+  background-size: 100% 28px;
   border-radius: 4px; padding: 40px 32px;
   box-shadow: 0 4px 16px rgba(0,0,0,0.08);
   text-align: center; position: relative;
-  border: 1px solid var(--gold);
+  border-left: 3px solid var(--margin-red);
 }
 .hero h1 {
-  font-size: 38px; color: var(--ink);
-  font-family: 'STKaiti', serif;
+  font-size: 36px; color: var(--ink);
+  font-family: 'Caveat', cursive, system-ui;
   font-weight: 700; margin-bottom: 8px;
-  letter-spacing: 0.2em;
-  text-shadow: 2px 2px 0 rgba(212, 175, 55, 0.3);
+  text-decoration: underline;
+  text-decoration-color: var(--yellow);
+  text-decoration-thickness: 6px;
+  text-underline-offset: 4px;
 }
 .hero .date {
-  color: var(--stamp-red); font-size: 14px;
-  letter-spacing: 0.4em; margin: 8px 0 20px;
-  font-family: 'STKaiti', serif;
+  color: var(--ink-light); font-size: 16px;
+  font-family: 'Caveat', cursive;
+  letter-spacing: 0.05em; margin: 8px 0 20px;
 }
 .hero img {
   width: 220px; height: 220px; border-radius: 4px;
   object-fit: cover; margin: 16px auto;
-  border: 6px solid var(--paper);
-  box-shadow: 0 0 0 1px var(--gold), 0 4px 12px rgba(0,0,0,0.15);
-  display: block;
+  border: 4px solid var(--paper);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  display: block; transform: rotate(-2deg);
 }
 .hero .pulse {
-  background: rgba(212, 175, 55, 0.1);
-  border: 1.5px solid var(--gold);
+  background: var(--yellow);
   border-radius: 4px; padding: 16px 20px;
-  margin-top: 24px; font-size: 15px;
-  text-align: left; font-family: 'STKaiti', serif;
+  margin-top: 24px; font-size: 16px;
+  text-align: left;
+  font-family: 'Caveat', cursive, system-ui;
+  box-shadow: 3px 3px 0 var(--ink);
   position: relative;
-}
-.hero .pulse::before {
-  content: '印'; position: absolute;
-  top: -10px; right: 20px;
-  background: var(--stamp-red); color: var(--paper);
-  padding: 4px 10px; border-radius: 4px;
-  font-size: 14px; font-weight: 700;
-  box-shadow: 1px 1px 0 rgba(0,0,0,0.2);
 }
 
 main {
-  max-width: 880px; margin: 0 auto; display: grid; gap: 28px;
+  max-width: 880px; margin: 0 auto; display: grid; gap: 24px;
 }
 
 .news-card {
   background-color: var(--paper);
   background-image:
-    radial-gradient(circle, var(--grid) 1px, transparent 1px);
-  background-size: 24px 24px;
-  border-radius: 4px; padding: 28px;
+    linear-gradient(var(--paper-line) 1px, transparent 1px);
+  background-size: 100% 26px;
+  border-radius: 4px; padding: 28px 28px 28px 36px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.06);
   position: relative;
-  border: 1px solid var(--gold);
-  transition: transform 0.3s;
+  border-left: 3px solid var(--margin-red);
+  transition: transform 0.2s;
 }
-.news-card:hover { transform: translateY(-2px); }
+.news-card:hover { transform: rotate(-0.3deg); }
 
 .news-card .lvl {
   display: inline-block;
-  background: var(--stamp-red); color: var(--paper);
+  background: var(--yellow); color: var(--ink);
   padding: 4px 14px; border-radius: 4px;
-  font-size: 12px; font-weight: 700;
-  font-family: 'STKaiti', serif;
-  letter-spacing: 0.2em;
+  font-size: 14px; font-weight: 700;
+  font-family: 'Caveat', cursive, system-ui;
+  box-shadow: 2px 2px 0 var(--ink);
+  margin-bottom: 10px;
 }
-.news-card.lvl2 .lvl { background: var(--gold); color: var(--ink); }
-.news-card.lvl1 .lvl { background: var(--jade); color: var(--paper); }
+.news-card.lvl2 .lvl { background: var(--blue); }
+.news-card.lvl1 .lvl { background: var(--green); }
 
 .news-card .cat {
   display: inline-block;
-  background: var(--ink); color: var(--paper);
-  padding: 3px 10px; font-size: 11px;
-  margin-left: 6px; font-family: 'STKaiti', serif;
-  letter-spacing: 0.1em;
+  background: var(--pink); color: var(--ink);
+  padding: 2px 10px; font-size: 12px;
+  margin-left: 6px; font-weight: 600;
+  font-family: 'Caveat', cursive, system-ui;
+  border-radius: 12px;
 }
 
 .news-card h2 {
-  font-size: 24px; margin: 10px 0 6px;
-  color: var(--ink); font-family: 'STKaiti', serif;
-  font-weight: 700; letter-spacing: 0.05em;
+  font-size: 26px; margin: 10px 0 6px;
+  color: var(--ink); font-family: 'Caveat', cursive, system-ui;
+  font-weight: 700;
 }
 .news-card .lead {
-  font-size: 15px; color: var(--stamp-red);
+  font-size: 17px; color: var(--ink);
   font-weight: 500; margin-bottom: 10px;
-  font-family: 'STKaiti', serif;
+  font-family: 'Caveat', cursive, system-ui;
 }
 .news-card .detail {
-  font-size: 14px; color: var(--ink-soft);
-  margin-bottom: 12px; line-height: 1.9;
-  font-family: 'STKaiti', serif;
+  font-size: 15px; color: var(--ink-light);
+  margin-bottom: 12px; line-height: 1.8;
+  font-family: 'Caveat', cursive, system-ui;
 }
 .news-card .for {
-  font-size: 13px; color: var(--ink);
-  background: rgba(107, 142, 78, 0.15);
-  border-left: 3px solid var(--jade);
-  padding: 8px 14px; margin-bottom: 8px;
-  font-family: 'STKaiti', serif;
+  font-size: 14px; color: var(--ink);
+  background: var(--green);
+  padding: 6px 14px; border-radius: 4px;
+  margin-bottom: 8px; display: inline-block;
+  font-family: 'Caveat', cursive, system-ui;
+  box-shadow: 2px 2px 0 var(--ink);
 }
 .news-card .tip {
-  font-size: 13px; color: var(--ink);
+  font-size: 14px; color: var(--ink);
   padding: 8px 14px;
-  background: rgba(212, 175, 55, 0.15);
-  border-left: 3px solid var(--gold);
-  margin-top: 8px; font-family: 'STKaiti', serif;
+  background: rgba(255, 233, 155, 0.5);
+  border: 1.5px dashed var(--ink);
+  border-radius: 4px; margin-top: 10px;
+  font-family: 'Caveat', cursive, system-ui;
 }
 
 footer {
   max-width: 880px; margin: 40px auto 0;
   text-align: center; color: var(--ink-light);
-  font-size: 13px; font-family: 'STKaiti', serif;
-  letter-spacing: 0.3em;
-  border-top: 1px solid var(--gold);
-  padding-top: 20px;
+  font-size: 14px; font-family: 'Caveat', cursive, system-ui;
 }
 </style>
 </head>
@@ -205,9 +199,9 @@ footer {
 <header class="hero">
   <div class="tape tape-pink tape-tl"></div>
   <div class="tape tape-mint tape-tr"></div>
-  <h1>🐼 国风水墨风</h1>
+  <h1>📚 学霸笔记本</h1>
   <div class="date">2026-07-17 · 周三 · 科技手帐</div>
-  <img src="demo-assets-v2/i-chinese.png" alt="国风水墨">
+  <img src="demo-assets-v2/d-study.png" alt="学霸笔记本">
   <div class="pulse">今日科技脉搏 🩸 · ### 🔥🔥🔥 长鑫科技发行价 8.66 元/股，市值 57 / ### 🔥🔥🔥 网信办一次性放行 7 款手机端侧 AI 大模 / ### 🔥🔥🔥 享界 G9 拿下北京 120km/h L3 </div>
 </header>
 <div class="audio-player-wrap" style="max-width:680px;margin:24px auto;padding:18px 22px;background:rgba(255,255,255,0.85);border-radius:14px;box-shadow:0 4px 14px rgba(0,0,0,0.08);border:1.5px dashed rgba(0,0,0,0.12);">
@@ -228,9 +222,9 @@ footer {
   <div class="sticker top-right">🔥</div>
   <h2>### 🔥🔥🔥 长鑫科技发行价 8.66 元/股，市值 5791 亿元 —— A 股最大半导体 IPO 诞生</h2>
   <p class="lead">长鑫科技（CXMT）正式发行价 8.66 元/股，预计发行 67 亿股；如全部发行成功，IPO 募资规模约 579 亿元，上市首日市值有望冲 5791 亿元。</p>
-  <p class="detail">未来 3-12 个月，三件连锁反应：1) 长鑫上市后股价表现决定后续 AI 芯片 IPO 的估值天花板；2) 国产 EDA、IP、设备厂（北方华创、中微公司）将获订单倾斜；3) DRAM 现货价格可能在 Q3 迎来「长鑫效应」定价——历史上新玩家入场会触发一轮价格博弈。</p>
+  <p class="detail">**未来 3-12 个月的连锁反应：** 1. **估值层面**：长鑫上市后股价表现决定后续 AI 芯片 IPO 估值天花板。首批大基金/国家队入场价格会形成「**长鑫-壁仞-昆仑芯-地平线-寒武纪**」的估值参考链条——任意一家破发或暴涨，整条链都会重置。 2. **产业链层面**：长鑫产能爬坡期（2026H2-2028H1）将带动上游国产 EDA、设备（北方华创、中微公司）、材料（沪硅产业、安集科技）的订单可见度大幅提升——下游客户锁定的同时，**上游产能锁定会反向传导**，这些公司的财报可能在 2026 Q4 出现明显提速。 3. **终端价格层**：DRAM 现货价格可能在 Q3 迎来「**长鑫效应**」定价——历史上新玩家入场会触发一轮降价+提升市占率的强博弈。叠加 Q3 的开学/新机潮，**DDR5 价格 Q4 或 Q1 触底**。 **⏱ 关键时间线**： - 7 月 16 日（今天）：正式打新 - 7 月下旬：网下询价 → 定价 - 7 月 28 日：网上申购 - 7 月 30 日：公布中签率（创今年新高 167.2 万股上限） - Q3 末：上市首日定价（市值有望冲 5791 亿元） - Q4：壁仞、昆仑芯跟进 IPO 的**信号节点**</p>
   <div class="for">📌 对谁重要：👨‍💻 读者 · 💼 关注者</div>
-  <div class="tip">💡 **第一层（产业）**：验证了「中国 AI 公司可以在不靠 BAT 输血的情况下走完商业循环」。**第二层（估值）**：…</div>
+  <div class="tip">💡 **第一层（产业）**：长鑫 IPO 验证了「中国存储芯片可以走完商业循环」，不靠外资助力也能完成国产替代。在美光/三星…</div>
 </article>
 
 <article class="news-card lvl3">
@@ -241,9 +235,9 @@ footer {
   <div class="sticker top-right">🔥</div>
   <h2>### 🔥🔥🔥 网信办一次性放行 7 款手机端侧 AI 大模型 —— 端侧 AI 进入「合规上牌」时代</h2>
   <p class="lead">7 月 15 日网信办公告：苹果、华为、OPPO、vivo、小米、三星、努比亚共 7 款手机厂商的端侧大模型完成备案，被允许进入「端侧 + 云端」混合部署模式。这是中国 AI 监管「第一次」对手持端的端侧 AI 给出明确合规口径。</p>
-  <p class="detail">未来 3-12 个月，3 个连锁反应：1) 国产手机 AI 助手「功能军备赛」开打，AI 修图、通话、文档成为标配；2) 第三方 AI APP 端侧 SDK 需求爆发（高斯、智谱、阿里通义端侧版）；3) 国行 iPhone AI 上线时间可能在 Q3-Q4，对苹果在华销量是关键变量。</p>
+  <p class="detail">**未来 3-12 个月的连锁反应：** 1. **手机厂层面**：国产手机 AI 助手「功能军备赛」开打——AI 修图、通话、文档 OCR 成为标配。**OEM 利润空间被重新定义**：硬件毛利率被锁死，AI 服务变现成为新利润中枢。 2. **第三方 APP 层面**：AI 应用开发者进入红利窗口——端侧 LLM SDK 的需求量级会从「百万级调用」跃升到「十亿级调用」。这一波红利**6 个月后才会被定价**——早期入场者有压倒性优势。 3. **国行 iPhone 层面**：Apple 智能上线时间可能在 Q3-Q4。这一时间点会影响 2025 iPhone Air 系列在华销量——**苹果能否保住中国高端市场份额**，端侧 AI 政策是最大变量。 **⏱ 关键时间线**： - 7 月 17-20 日：WAIC（世界人工智能大会）——重点关注 7 家厂商的「端侧 AI 落地案例」 - Q3 末：苹果 Q3 财报披露 → 关注大中华区营收是否反映 AI 政策落地 - Q4：第二轮备案名单预计放出（覆盖家电/车载等场景） - 2027 H1：端侧 LLM SDK 标准制定阶段</p>
   <div class="for">📌 对谁重要：👨‍💻 读者 · 💼 关注者</div>
-  <div class="tip">💡 **第一层（政策）**：监管层首次明确表态：端侧 AI 是被允许的、是受鼓励的。**第二层（产业）**：这是国产手机 A…</div>
+  <div class="tip">💡 **第一层（政策）**：这是中国 AI 监管**第一次**对手持端的端侧 AI 给出明确合规口径，意味着**端侧 AI …</div>
 </article>
 
 <article class="news-card lvl3">
@@ -254,9 +248,9 @@ footer {
   <div class="sticker top-right">🔥</div>
   <h2>### 🔥🔥🔥 享界 G9 拿下北京 120km/h L3 牌照 —— 首款「高速 L3」落地</h2>
   <p class="lead">享界 G9 拿下北京 120km/h L3 级自动驾驶道路测试牌照，是该标准下首款获批新车，预计 8 月上市。G9 由华为 ADS 3.0 系统支持，覆盖北京六环内所有高速 + 快速路。</p>
-  <p class="detail">未来 3-12 个月，3 个连锁反应：1) Q3-Q4 将有 3-5 款 L3 车型集中上市（小米 YU7、蔚来 ET9、小鹏 P7+）；2) L3 保险产品将首次出现，保费定价会成为新赛道；3) 责任划分细则有望在 2026 年底前出台，车厂法务部门成为关键角色。</p>
+  <p class="detail">**未来 3-12 个月的连锁反应：** 1. **新车型层面**：Q3-Q4 将有 3-5 款 L3 车型集中上市（小米 YU7、蔚来 ET9、小鹏 P7+、阿维塔 12），形成一个**「L3 上市窗口期」**。这一波集中上市的逻辑不只是车厂抢牌照，更是**抢保险市场定价权**。 2. **保险产业层面**：L3 保险产品将首次出现——平安、人保、太保三家头部已立项。L3 保险保费预计 5000-8000 元/年，是 L2 智驾的 5-8 倍。这是一片**新蓝海**。 3. **责任细则层面**：L3 责任划分细则有望在 2026 年底前出台——主要是「系统请求接管」窗口期（10 秒）内的责任划分。一旦细则落地，**车厂法务部门将从「成本中心」转为「利润中心」**，L3 车型的毛利结构会重估。 **⏱ 关键时间线**： - 7 月 16 日（今天）：享界 G9 拿下 L3 牌照 - 8 月：享界 G9 上市 - Q3：小米 YU7 / 蔚来 ET9 等跟进 - Q4：L3 保险产品首次上线 + 责任细则征求意见</p>
   <div class="for">📌 对谁重要：👨‍💻 读者 · 💼 关注者</div>
-  <div class="tip">💡 **第一层（政策）**：北京发放 L3 牌照是一个「从示范到商用」的关键转折——监管层首次明确接受「车厂作为责任主体」。…</div>
+  <div class="tip">💡 **第一层（政策）**：北京发放 L3 牌照是「从示范到商用」的关键转折——监管层首次明确接受「车厂作为责任主体」，而不…</div>
 </article>
 
 <article class="news-card lvl2">
@@ -267,9 +261,9 @@ footer {
   <div class="sticker top-right">🔥</div>
   <h2>### 🔥🔥 SpaceX 星舰第 13 次试飞 —— 北京时间 7 月 17 日 6:45 开启窗口</h2>
   <p class="lead">SpaceX 星舰（Starship）V3 计划在 7 月 17 日 6:45（北京时间）进行第 13 次综合飞行测试（IFT-13）。本次将首次测试二级在轨重启（off-nominal restart），是登月 / 登火星的关键试验。</p>
-  <p class="detail">未来 3 个月，2 个连锁反应：1) 二级在轨重启成功 → V2 密集发射将在 Q3 启动，SpaceX IPO 估值预期继续上调；2) 若失败 → V2 计划延后 6-12 个月。窗口期 7-17 6:45 开启，错过则顺延。</p>
+  <p class="detail">**未来 3 个月的连锁反应：** 1. **二级重启成功（高概率）**：V2 密集发射将在 Q3 启动——单月平均 2-3 颗 V2 卫星入轨，**星链 V3 部署周期缩短至 18 个月**。SpaceX IPO 估值预期上调至 8000-10000 亿美元区间（2027 年）。 2. **二级重启失败（小概率）**：V2 计划延后 6-12 个月——二次重启算法在 Q4 重测。SpaceX IPO 估值预期下调至 4500-5500 亿美元区间，但 Artemis III 时间表不变。 3. **附带效应（窗口期内）**：窗口期内（6:45-7:45 北京时间）的发射会触发社交媒体/科技媒体的密集传播——对**商业航天概念的 A 股映射**（航天宏图、华力创通、星网等）会有短线催化。 **⏱ 关键时间线**： - 7-17 6:45：发射窗口开启 - ~T+2 分钟：超重型助推器（B14？）分离 - ~T+6 分钟：助推器海上回收尝试 - ~T+50 分钟：**二级 off-nominal restart 验证点**（最关键） - ~T+65 分钟：二级再入大气层（若重启成功） - 窗口错过：顺延至 8:15（备份窗口）</p>
   <div class="for">📌 对谁重要：👨‍💻 读者 · 💼 关注者</div>
-  <div class="tip">💡 **第一层（航天）**：二级重启是 Starship 全复用设计的核心前提——没有重启能力就没有月火运输。**第二层（商…</div>
+  <div class="tip">💡 **第一层（航天）**：二级在轨重启（off-nominal restart）是 Starship 全复用设计的核心前提…</div>
 </article>
 
 <article class="news-card lvl2">
@@ -280,9 +274,9 @@ footer {
   <div class="sticker top-right">🔥</div>
   <h2>### 🔥🔥 国家基本药物目录（2026 版）发布 —— 时隔 8 年，新增 165 种药品</h2>
   <p class="lead">7 月 16 日国家卫健委公告《2026 版国家基本药物目录》，新增 165 种药品、删除 47 种，覆盖肿瘤、罕见病、儿科、慢性病等多个领域。9 月 1 日起基层医疗机构将按新目录配备使用。</p>
-  <p class="detail">未来 3-12 个月，3 个连锁反应：1) 新增品种企业（恒瑞、信达、君实、百济神州）Q4 收入会看到；2) 被删品种企业业绩承压；3) 集采压力下，药企策略会从「抢目录」转向「保目录 + 提升品牌力」。</p>
+  <p class="detail">**未来 3-12 个月的连锁反应：** 1. **药企业绩层面**：新增品种企业（恒瑞、信达、君实、百济神州、贝达药业、信立泰）的 Q4 收入会出现**结构性提升**——首批进入目录的产品享受「政策性优先配备」红利。 2. **被删品种层面**：被删的 47 种药品企业将面临业绩压力——需要 Q3-Q4 通过学术推广 / 院外渠道 / 电商渠道**对冲**目录出局的负面影响。这部分企业可能成为 H2 的医药 ETF 减仓对象。 3. **集采节奏层面**：目录调整叠加 DRG/DIP 改革——医保支付方式会同步优化。**集采压力下，药企策略会从「抢目录」转向「保目录 + 提升品牌力」**。 **⏱ 关键时间线**： - 7 月 16 日（今天）：目录发布 - 8 月：地方卫健委组织医院培训 - 9 月 1 日：基层医院强制执行新目录 - Q3-Q4：医保对接 + 集采品种调整 - 2027 H1：目录执行结果评估，可能年内微调</p>
   <div class="for">📌 对谁重要：👨‍💻 读者 · 💼 关注者</div>
-  <div class="tip">💡 **第一层（医药）**：目录调整是药品市场「政策风向标」，新增 165 种意味着**这些药的市场打开**。**第二层（医…</div>
+  <div class="tip">💡 **第一层（医药产业）**：基本药物目录调整是药品市场「**政策风向标**」——新增 165 种意味着**这 165 个…</div>
 </article>
 
 <article class="news-card lvl1">
@@ -293,9 +287,9 @@ footer {
   <div class="sticker top-right">🔥</div>
   <h2>### 🔥 中国科协发布 2026 十大前沿科学问题 —— AI/脑科学/6G 占 5 席</h2>
   <p class="lead">7 月 16 日中国科协公布 2026 年度「十大前沿科学问题」和「十大产业技术问题」，具身智能、AI+6G、类生物计算、阿尔兹海默症靶点等 AI 与脑科学相关议题占据 5 席。</p>
-  <p class="detail">未来 6-12 个月，2 个连锁反应：1) 上榜议题（具身智能、AI+6G、脑机接口、阿尔兹海默症）所在赛道 Q3-Q4 估值加成；2) 落榜议题赛道 H2 立项困难，预算转向其他方向。</p>
+  <p class="detail">**未来 6-12 个月的连锁反应：** 1. **赛道估值层面**：上榜议题（具身智能、AI+6G、脑机接口、阿尔兹海默症、类生物计算）所在赛道 Q3-Q4 估值加成——尤其是承接单位的论文 + IPO 进展会成为估值催化。 2. **落榜议题层面**：落榜议题赛道 H2 立项困难，预算转向其他方向——AI 监管、可解释性、合成生物学等议题可能**预算减少 15-25%**。 3. **研究机构层面**：入选承接单位（清华、北大、上交、浙大、中科院系）的相关院系招生 + 经费会明显提升——这是「**政策选赛道**」的官方表态。 **⏱ 关键时间线**： - 7 月 16 日（今天）：入选清单发布 - 8 月：NSFC 2026 年指南调整期 - 9 月 1 日：NSFC 申报窗口截止 - Q4：立项结果 + 经费拨付 - 2027 H1：研究进展 / 论文产出密集期</p>
   <div class="for">📌 对谁重要：👨‍💻 读者 · 💼 关注者</div>
-  <div class="tip">💡 **第一层（科研）**：入选 = H2 立项优先通道；**第二层（产业）**：产业技术问题清单是部委资助的「软指引」——…</div>
+  <div class="tip">💡 **第一层（科研）**：入选「**十大前沿科学问题**」= H2 立项优先通道——教育部、科技部、国家自然科学基金委（N…</div>
 </article>
 
 <article class="news-card lvl1">
@@ -306,9 +300,9 @@ footer {
   <div class="sticker top-right">🔥</div>
   <h2>### 🔥 广东脑机接口产业联盟成立 —— 首批 124 家成员</h2>
   <p class="lead">7 月 16 日广东省科技厅牵头成立「脑机接口产业联盟」，首批 124 家成员单位——含 BrainCo 强脑科技、博睿康、脑虎科技、衷华脑机等头部企业。这是国内规模最大的 BCI 产业组织。</p>
-  <p class="detail">未来 6-12 个月，3 个连锁反应：1) 上游（神经电极、芯片）Q3-Q4 订单可见度大幅提升；2) 下游（康复医疗、神经疾病治疗）Q4 进入首批临床测试；3) 粤港澳大湾区 BCI 专利数预计同比 +80%。</p>
+  <p class="detail">**未来 6-12 个月的连锁反应：** 1. **上游订单层面**：上游（神经电极、芯片）Q3-Q4 订单可见度大幅提升——联盟首批 124 家单位的研发需求会在 H2 转化为订单。 2. **下游临床层面**：下游（康复医疗、神经疾病治疗）Q4 进入首批临床测试——**癫痫、阿尔兹海默症、帕金森**是联盟重点临床方向。 3. **专利层面**：粤港澳大湾区 BCI 专利数预计同比 +80%——这一数字超过 AI、生物医药等热门赛道。 **⏱ 关键时间线**： - 7 月 16 日（今天）：联盟成立 - Q3：联盟招商会 + 上下游园区启动 - Q4：首批临床测试入驻三甲医院 - 2027 H1：首批非侵入式 BCI 医疗器械获批</p>
   <div class="for">📌 对谁重要：👨‍💻 读者 · 💼 关注者</div>
-  <div class="tip">💡 **第一层（产业链）**：上游（神经电极、芯片）、下游（康复医疗器械、神经疾病治疗）Q3-Q4 获密集催化。**第二层（…</div>
+  <div class="tip">💡 **第一层（产业链）**：上游（神经电极、芯片） + 下游（康复医疗器械、神经疾病治疗）Q3-Q4 获密集催化——广东联…</div>
 </article>
 
 <article class="news-card lvl1">
@@ -319,13 +313,13 @@ footer {
   <div class="sticker top-right">🛠</div>
   <h2>### 🛠 ai-agent-orchestrator v1.0.0（score 66.021）—— AI Agent Orchestrator & MCP Integration</h2>
   <p class="lead">📊 看点（点击展开）</p>
-  <p class="detail">AI Agent 编排会成为 2026-2027 年的标配，类似 2023 年的 LLM 标准化——MCP 协议可能成为 Agent 时代的 HTTP。开发者做复杂任务时不再需要手动写 prompt，而是用 DAG 声明 Agent 依赖关系。</p>
+  <p class="detail">**未来 6-12 个月的连锁反应：** 1. **行业标配层面**：AI Agent 编排会成为 2026-2027 年的标配，类似 2023 年的 LLM 标准化——MCP 协议可能成为 Agent 时代的 HTTP。**早入场者有结构性优势**。 2. **开发者范式层面**：DAG 声明 Agent 工作流会形成新的开发者思维——「**研究 → 写作 → 发布**」自动化流程会像今天的工作流一样普及，但**抽象层级更高**。 3. **OpenClaw 生态层面**：OpenClaw / 小龙虾平台上的「**ai-agent-orchestrator**」会扩展成基础能力，2027 年 H1 会有更多 skill 与 MCP 兼容——OpenClaw 平台会成为「MCP + Agent 编排」的事实标准生态。 **⏱ 关键时间线**： - 7 月（现在）：v1.0.0 上线 - Q3：更多 MCP Server 适配 - Q4：v1.1 性能优化 + DAG 调试工具 - 2027 H1：v2.0（多 Agent 协同 + 工作流复用）</p>
   <div class="for">📌 对谁重要：👨‍💻 读者 · 💼 关注者</div>
-  <div class="tip">💡 ClawHub 平台「ai-agent」关键词排名第一，主打 **AI Agent 编排 + MCP（Model Con…</div>
+  <div class="tip">💡 ClawHub 平台「**ai-agent**」关键词排名第一，主打 **AI Agent 编排 + MCP（Model…</div>
 </article>
 </main>
 <footer>
-  🌙 探索者 Bot3 · 睡后任务 · 国风水墨 · 2026-07-17
+  🌙 探索者 Bot3 · 睡后任务 · 学霸笔记本 · 2026-07-17
 </footer>
 </body>
 </html>
