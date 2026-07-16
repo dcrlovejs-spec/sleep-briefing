@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>🌌 深夜银河风 · 2026-07-16</title>
+<title>🪩 Y2K 千禧风 · 2026-07-16</title>
 <style>
 /* ===== 公共装饰类（所有主题共用）===== */
 .tape {
@@ -55,34 +55,26 @@
 }
 
 :root {
-  --bg: #0B0F2C;
-  --card: #1A1F4A;
-  --ink: #E8E8FF;
-  --muted: #9999CC;
-  --star: #FFFFFF;
-  --purple: #6B5BD9;
+  --bg: linear-gradient(135deg, #B19CD9 0%, #FF6B9D 50%, #5BD9E0 100%);
+  --bg-solid: #E8B5FF;
+  --card: #FFFFFF;
+  --ink: #2D0040;
+  --muted: #6B4A8E;
+  --pink: #FF6BB5;
   --cyan: #5BD9E0;
-  --gold: #FFD700;
-  --pink: #FF8FAB;
-  --grid: rgba(255, 255, 255, 0.05);
+  --purple: #B19CD9;
+  --yellow: #FFE99B;
+  --grid: rgba(177, 156, 217, 0.4);
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body {
-  font-family: 'Quicksand', 'PingFang SC', system-ui, sans-serif;
-  background-color: var(--bg);
+  font-family: 'Arial Black', 'PingFang SC', sans-serif;
+  background-color: var(--bg-solid);
   background-image:
-    radial-gradient(2px 2px at 20% 30%, var(--star), transparent),
-    radial-gradient(1px 1px at 40% 70%, var(--star), transparent),
-    radial-gradient(2px 2px at 60% 20%, var(--star), transparent),
-    radial-gradient(1px 1px at 80% 60%, var(--star), transparent),
-    radial-gradient(1.5px 1.5px at 10% 80%, var(--star), transparent),
-    radial-gradient(1px 1px at 90% 40%, var(--star), transparent),
-    radial-gradient(2px 2px at 30% 50%, var(--star), transparent),
-    radial-gradient(1px 1px at 70% 90%, var(--star), transparent),
-    radial-gradient(1.5px 1.5px at 50% 10%, var(--star), transparent),
-    linear-gradient(135deg, #0B0F2C 0%, #1A1F4A 50%, #2D1B4E 100%);
+    repeating-conic-gradient(from 0deg at 50% 50%, transparent 0deg 30deg, rgba(177,156,217,0.1) 30deg 60deg),
+    linear-gradient(135deg, #B19CD9 0%, #FF6B9D 50%, #5BD9E0 100%);
   background-attachment: fixed;
-  color: var(--ink); line-height: 1.7;
+  color: var(--ink); line-height: 1.6;
   padding: 30px 16px 80px; min-height: 100vh;
 }
 
@@ -90,38 +82,43 @@ header.hero {
   max-width: 880px; margin: 0 auto 40px;
   background-color: var(--card);
   background-image:
-    radial-gradient(1.5px 1.5px at 30% 40%, var(--star), transparent),
-    radial-gradient(1px 1px at 70% 60%, var(--star), transparent),
-    radial-gradient(1px 1px at 50% 80%, var(--star), transparent);
-  background-size: 80px 80px;
-  border-radius: 24px; padding: 40px 32px;
-  box-shadow: 0 0 40px rgba(107, 91, 217, 0.4);
+    repeating-linear-gradient(45deg, var(--grid) 0px, var(--grid) 4px, transparent 4px, transparent 8px),
+    repeating-linear-gradient(-45deg, var(--grid) 0px, var(--grid) 4px, transparent 4px, transparent 8px);
+  border: 4px solid var(--ink);
+  border-radius: 0; padding: 40px 32px;
+  box-shadow: 8px 8px 0 var(--pink);
   text-align: center; position: relative;
-  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 .hero h1 {
-  font-size: 34px; color: var(--star);
-  font-weight: 700; margin-bottom: 8px;
-  text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
-  letter-spacing: 0.05em;
+  font-size: 38px; color: var(--ink);
+  font-weight: 900; margin-bottom: 8px;
+  text-transform: uppercase;
+  -webkit-text-stroke: 2px var(--pink);
+  text-shadow: 3px 3px 0 var(--cyan);
+  letter-spacing: 0.02em;
 }
 .hero .date {
-  color: var(--muted); font-size: 14px;
-  letter-spacing: 0.3em; margin: 8px 0 20px;
+  background: var(--ink); color: var(--yellow);
+  display: inline-block; padding: 6px 20px;
+  border-radius: 0; font-weight: 900;
+  font-size: 14px; letter-spacing: 0.3em;
+  margin: 8px 0 20px;
+  text-transform: uppercase;
 }
 .hero img {
-  width: 220px; height: 220px; border-radius: 50%;
+  width: 220px; height: 220px; border-radius: 0;
   object-fit: cover; margin: 16px auto;
-  border: 4px solid var(--gold);
-  box-shadow: 0 0 30px rgba(255, 215, 0, 0.6);
-  display: block;
+  border: 4px solid var(--ink);
+  box-shadow: 6px 6px 0 var(--cyan);
+  display: block; transform: rotate(-3deg);
 }
 .hero .pulse {
-  background: linear-gradient(135deg, var(--purple), var(--cyan));
-  border-radius: 16px; padding: 18px 24px;
-  margin-top: 24px; font-size: 15px;
-  text-align: left;
-  box-shadow: 0 0 20px rgba(91, 217, 224, 0.3);
+  background: var(--yellow);
+  border: 3px solid var(--ink);
+  border-radius: 0; padding: 16px 20px;
+  margin-top: 24px; font-size: 14px;
+  text-align: left; font-weight: 700;
+  box-shadow: 4px 4px 0 var(--pink);
 }
 
 main {
@@ -130,72 +127,76 @@ main {
 
 .news-card {
   background-color: var(--card);
-  background-image:
-    radial-gradient(1px 1px at 20% 30%, var(--star), transparent),
-    radial-gradient(1px 1px at 60% 70%, var(--star), transparent),
-    radial-gradient(1px 1px at 80% 20%, var(--star), transparent);
-  background-size: 120px 120px;
-  border-radius: 20px; padding: 28px;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+  border: 3px solid var(--ink);
+  border-radius: 0; padding: 24px;
+  box-shadow: 5px 5px 0 var(--cyan);
   position: relative;
-  border: 1px solid rgba(107, 91, 217, 0.3);
-  transition: all 0.3s;
+  transition: all 0.2s;
 }
 .news-card:hover {
-  border-color: var(--gold);
-  box-shadow: 0 0 24px rgba(255, 215, 0, 0.3);
+  transform: translate(-2px, -2px);
+  box-shadow: 7px 7px 0 var(--pink);
 }
 
 .news-card .lvl {
   display: inline-block;
-  background: linear-gradient(135deg, var(--gold), var(--pink));
-  color: var(--bg); padding: 5px 14px;
-  border-radius: 14px; font-size: 13px; font-weight: 700;
+  background: var(--pink); color: var(--ink);
+  padding: 4px 14px; border: 2px solid var(--ink);
+  border-radius: 0; font-size: 12px; font-weight: 900;
+  text-transform: uppercase; letter-spacing: 0.1em;
 }
-.news-card.lvl2 .lvl { background: linear-gradient(135deg, var(--purple), var(--cyan)); color: var(--star); }
-.news-card.lvl1 .lvl { background: rgba(255,255,255,0.15); color: var(--star); }
+.news-card.lvl2 .lvl { background: var(--cyan); }
+.news-card.lvl1 .lvl { background: var(--yellow); }
 
 .news-card .cat {
   display: inline-block;
-  background: rgba(255, 215, 0, 0.2);
-  color: var(--gold); padding: 3px 12px;
-  border-radius: 12px; font-size: 11px;
-  margin-left: 6px; font-weight: 600;
-  border: 1px solid rgba(255, 215, 0, 0.3);
+  background: var(--ink); color: var(--yellow);
+  padding: 3px 10px; border-radius: 0;
+  font-size: 11px; margin-left: 6px;
+  font-weight: 900; text-transform: uppercase;
 }
 
 .news-card h2 {
-  font-size: 22px; margin: 12px 0 6px;
-  color: var(--star); font-weight: 700;
+  font-size: 24px; margin: 12px 0 6px;
+  color: var(--ink); font-weight: 900;
+  text-transform: uppercase;
 }
 .news-card .lead {
-  font-size: 15px; color: var(--cyan);
-  font-weight: 500; margin-bottom: 10px;
+  font-size: 16px; color: var(--pink);
+  font-weight: 700; margin-bottom: 12px;
+  -webkit-text-stroke: 0.5px var(--ink);
 }
 .news-card .detail {
-  font-size: 14px; color: var(--muted);
-  margin-bottom: 14px; line-height: 1.8;
+  font-size: 14px; color: var(--ink);
+  margin-bottom: 14px; line-height: 1.7;
+  font-weight: 500;
 }
 .news-card .for {
-  font-size: 13px; color: var(--star);
-  background: rgba(107, 91, 217, 0.2);
-  padding: 8px 14px; border-radius: 12px;
-  margin-bottom: 8px;
-  border: 1px solid rgba(107, 91, 217, 0.4);
+  font-size: 12px; color: var(--ink);
+  background: var(--cyan);
+  padding: 6px 14px; border: 2px solid var(--ink);
+  border-radius: 0; margin-bottom: 8px;
+  display: inline-block; font-weight: 700;
+  text-transform: uppercase;
 }
 .news-card .tip {
-  font-size: 13px; color: var(--star);
+  font-size: 13px; color: var(--ink);
   padding: 10px 14px;
-  background: rgba(255, 215, 0, 0.1);
-  border-left: 3px solid var(--gold);
-  border-radius: 4px 12px 12px 4px;
-  margin-top: 10px;
+  background: var(--yellow);
+  border: 2px solid var(--ink);
+  border-radius: 0; margin-top: 10px;
+  font-weight: 700;
 }
 
 footer {
   max-width: 880px; margin: 40px auto 0;
-  text-align: center; color: var(--muted); font-size: 13px;
-  letter-spacing: 0.2em;
+  text-align: center; color: var(--ink);
+  font-size: 12px; font-weight: 900;
+  text-transform: uppercase; letter-spacing: 0.3em;
+  background: var(--yellow);
+  padding: 12px;
+  border: 3px solid var(--ink);
+  box-shadow: 4px 4px 0 var(--cyan);
 }
 </style>
 </head>
@@ -203,9 +204,9 @@ footer {
 <header class="hero">
   <div class="tape tape-pink tape-tl"></div>
   <div class="tape tape-mint tape-tr"></div>
-  <h1>🌌 深夜银河风</h1>
+  <h1>🪩 Y2K 千禧风</h1>
   <div class="date">2026-07-16 · 周三 · 科技手帐</div>
-  <img src="demo-assets-v2/e-galaxy.png" alt="深夜银河">
+  <img src="demo-assets-v2/h-y2k.png" alt="Y2K 千禧">
   <div class="pulse">今日科技脉搏 🩸 · ### 🔥🔥🔥 长鑫科技发行价 8.66 元/股，市值 57 / ### 🔥🔥🔥 网信办一次性放行 7 款手机端侧 AI 大模 / ### 🔥🔥🔥 享界 G9 拿下北京 120km/h L3 </div>
 </header>
 <div class="audio-player-wrap" style="max-width:680px;margin:24px auto;padding:18px 22px;background:rgba(255,255,255,0.85);border-radius:14px;box-shadow:0 4px 14px rgba(0,0,0,0.08);border:1.5px dashed rgba(0,0,0,0.12);">
@@ -323,7 +324,7 @@ footer {
 </article>
 </main>
 <footer>
-  🌙 探索者 Bot3 · 睡后任务 · 深夜银河 · 2026-07-16
+  🌙 探索者 Bot3 · 睡后任务 · Y2K 千禧 · 2026-07-16
 </footer>
 </body>
 </html>
