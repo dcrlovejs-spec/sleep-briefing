@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>⚪ 北欧极简风 · 2026-07-16</title>
+<title>🍑 K-pop 马卡龙 · 2026-07-16</title>
 <style>
 /* ===== 公共装饰类（所有主题共用）===== */
 .tape {
@@ -55,120 +55,130 @@
 }
 
 :root {
-  --bg: #FAFAF8;
+  --bg: #FFF5F7;
   --card: #FFFFFF;
-  --ink: #1A1A1A;
-  --muted: #666666;
-  --sage: #6B8E4E;
-  --sage-light: #E8EFE3;
-  --line: #E5E5E0;
-  --grid: rgba(0, 0, 0, 0.04);
+  --ink: #2D2A4A;
+  --muted: #8B85A8;
+  --peach: #FFB7C5; --mint: #9FE0BB;
+  --yellow: #FFE99B; --lavender: #C9B8F0;
+  --pink: #FF6B9D;
+  --grid: rgba(255, 183, 197, 0.25);
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body {
-  font-family: 'Inter', 'Helvetica Neue', 'PingFang SC', system-ui, sans-serif;
+  font-family: -apple-system, 'PingFang SC', sans-serif;
   background-color: var(--bg);
+  background-image:
+    radial-gradient(circle at 10% 10%, var(--peach) 0%, transparent 15%),
+    radial-gradient(circle at 90% 20%, var(--yellow) 0%, transparent 18%),
+    radial-gradient(circle at 50% 80%, var(--mint) 0%, transparent 20%),
+    radial-gradient(circle at 80% 90%, var(--lavender) 0%, transparent 15%);
+  background-attachment: fixed;
   color: var(--ink); line-height: 1.7;
-  font-weight: 400; letter-spacing: 0.01em;
   padding: 30px 16px 80px; min-height: 100vh;
 }
 
 header.hero {
   max-width: 880px; margin: 0 auto 40px;
   background-color: var(--card);
-  border-radius: 2px; padding: 48px 32px;
-  text-align: center; position: relative;
-  border: 1px solid var(--line);
+  background-image:
+    radial-gradient(circle, var(--grid) 1.5px, transparent 1.5px);
+  background-size: 22px 22px;
+  border-radius: 32px;
+  padding: 40px 32px;
+  box-shadow: 0 8px 28px rgba(255, 107, 157, 0.22);
+  text-align: center; border: 3px solid var(--peach);
+  position: relative;
 }
 .hero h1 {
-  font-size: 30px; color: var(--ink);
-  font-weight: 300; margin-bottom: 8px;
-  letter-spacing: 0.1em;
+  font-size: 36px;
+  background: linear-gradient(135deg, var(--pink), var(--lavender));
+  -webkit-background-clip: text; background-clip: text;
+  color: transparent; font-weight: 800;
+  margin-bottom: 8px; letter-spacing: -0.02em;
 }
 .hero .date {
-  color: var(--muted); font-size: 13px;
-  letter-spacing: 0.3em; margin: 8px 0 20px;
-  font-weight: 300;
+  background: var(--yellow); display: inline-block;
+  padding: 4px 16px; border-radius: 20px;
+  font-weight: 700; font-size: 13px;
+  color: var(--ink); margin: 8px 0 20px;
 }
 .hero img {
-  width: 200px; height: 200px; border-radius: 2px;
+  width: 200px; height: 200px; border-radius: 28px;
   object-fit: cover; margin: 16px auto;
-  border: 1px solid var(--line);
-  display: block;
+  box-shadow: 0 6px 18px rgba(159, 224, 187, 0.5);
+  display: block; transform: rotate(-2deg);
+  border: 6px solid var(--card);
 }
 .hero .pulse {
-  background: var(--sage-light);
-  border-radius: 2px; padding: 18px 24px;
-  margin-top: 28px; font-size: 14px;
-  text-align: left; color: var(--ink);
-  font-weight: 300;
+  background: linear-gradient(135deg, var(--peach), var(--yellow));
+  border-radius: 20px; padding: 18px 24px;
+  margin-top: 24px; font-size: 15px;
+  font-weight: 600; text-align: left;
+  box-shadow: 0 4px 12px rgba(255, 183, 197, 0.4);
 }
 
 main {
-  max-width: 880px; margin: 0 auto; display: grid; gap: 24px;
+  max-width: 880px; margin: 0 auto; display: grid; gap: 28px;
 }
 
 .news-card {
   background-color: var(--card);
-  border-radius: 2px; padding: 32px 28px;
-  position: relative;
-  border: 1px solid var(--line);
-  transition: border-color 0.3s;
+  background-image: radial-gradient(circle, var(--grid) 1px, transparent 1px);
+  background-size: 18px 18px;
+  border-radius: 24px; padding: 28px;
+  box-shadow: 0 4px 12px rgba(255, 107, 157, 0.15);
+  position: relative; transition: all 0.3s;
+  border: 2px solid transparent;
 }
-.news-card:hover { border-color: var(--sage); }
+.news-card:hover {
+  transform: translateY(-4px) scale(1.01);
+  border-color: var(--peach);
+}
 
 .news-card .lvl {
-  display: inline-block;
-  color: var(--sage); font-size: 11px;
-  font-weight: 600; letter-spacing: 0.2em;
-  text-transform: uppercase;
-  padding-bottom: 4px;
-  border-bottom: 1.5px solid var(--sage);
-  margin-bottom: 12px;
+  display: inline-block; background: var(--pink);
+  color: white; padding: 5px 14px; border-radius: 16px;
+  font-size: 13px; font-weight: 700;
 }
-.news-card.lvl2 .lvl { color: var(--muted); border-bottom-color: var(--line); }
-.news-card.lvl1 .lvl { color: var(--muted); border-bottom-color: var(--line); }
-
+.news-card.lvl2 .lvl { background: var(--mint); color: var(--ink); }
+.news-card.lvl1 .lvl { background: var(--lavender); color: var(--ink); }
 .news-card .cat {
-  display: inline-block;
-  color: var(--muted); font-size: 11px;
-  margin-left: 12px; letter-spacing: 0.1em;
+  display: inline-block; background: var(--yellow);
+  color: var(--ink); padding: 4px 12px; border-radius: 14px;
+  font-size: 11px; margin-left: 6px; font-weight: 600;
 }
-
 .news-card h2 {
-  font-size: 22px; margin: 12px 0 8px;
-  color: var(--ink); font-weight: 400;
-  letter-spacing: -0.01em;
+  font-size: 22px; margin: 12px 0 6px;
+  color: var(--ink); font-weight: 800;
 }
 .news-card .lead {
-  font-size: 14px; color: var(--muted);
-  font-weight: 400; margin-bottom: 12px;
+  font-size: 16px; color: var(--pink);
+  font-weight: 600; margin-bottom: 12px;
 }
 .news-card .detail {
-  font-size: 14px; color: var(--ink);
-  margin-bottom: 16px; line-height: 1.8;
-  font-weight: 300;
+  font-size: 14px; color: var(--muted);
+  margin-bottom: 14px; line-height: 1.8;
 }
 .news-card .for {
-  font-size: 12px; color: var(--muted);
-  padding: 8px 0;
-  border-top: 1px solid var(--line);
-  margin-bottom: 8px;
-  letter-spacing: 0.05em;
+  display: flex; flex-wrap: wrap; gap: 6px;
+  margin-bottom: 10px;
+}
+.news-card .for span {
+  background: var(--mint); color: var(--ink);
+  padding: 4px 10px; border-radius: 12px;
+  font-size: 12px; font-weight: 600;
 }
 .news-card .tip {
-  font-size: 12px; color: var(--sage);
-  padding: 8px 0;
-  border-top: 1px solid var(--line);
-  margin-top: 8px;
-  font-weight: 500;
+  font-size: 13px; color: var(--ink);
+  padding: 10px 14px;
+  background: linear-gradient(135deg, var(--peach), var(--yellow));
+  border-radius: 14px; margin-top: 10px; font-weight: 500;
 }
 
 footer {
   max-width: 880px; margin: 40px auto 0;
-  text-align: center; color: var(--muted);
-  font-size: 11px; letter-spacing: 0.3em;
-  text-transform: uppercase;
+  text-align: center; color: var(--muted); font-size: 13px;
 }
 </style>
 </head>
@@ -176,9 +186,9 @@ footer {
 <header class="hero">
   <div class="tape tape-pink tape-tl"></div>
   <div class="tape tape-mint tape-tr"></div>
-  <h1>⚪ 北欧极简风</h1>
+  <h1>🍑 K-pop 马卡龙</h1>
   <div class="date">2026-07-16 · 周三 · 科技手帐</div>
-  <img src="demo-assets-v2/g-nordic.png" alt="北欧极简">
+  <img src="demo-assets-v2/b-macaron.png" alt="韩系马卡龙">
   <div class="pulse">今日科技脉搏 🩸 · ### 🔥🔥🔥 长鑫科技发行价 8.66 元/股，市值 57 / ### 🔥🔥🔥 网信办一次性放行 7 款手机端侧 AI 大模 / ### 🔥🔥🔥 享界 G9 拿下北京 120km/h L3 </div>
 </header>
 <main>
@@ -221,9 +231,74 @@ footer {
   <div class="for">📌 对谁重要：👨‍💻 读者 · 💼 关注者</div>
   <div class="tip">💡 L3 是「智能驾驶」和「自动驾驶」的分水岭——L2 及以下责任在驾驶员，L3 起责任在车厂。这意味着车厂必须把系统可靠性…</div>
 </article>
+
+<article class="news-card lvl2">
+  <div>
+    <span class="lvl">🔥🔥 重要</span>
+    <span class="cat">科技动态</span>
+  </div>
+  <div class="sticker top-right">🔥</div>
+  <h2>### 🔥🔥 SpaceX 星舰第 13 次试飞 —— 北京时间 7 月 17 日 6:45</h2>
+  <p class="lead">📊 看点</p>
+  <p class="detail">未来 3 个月:若二级在轨重启成功,V2 密集发射将在 Q3 启动,SpaceX IPO 估值预期继续上调;若失败,V2 计划延后 6-12 个月。窗口期北京时间 7-17 6:45 开启,错过则顺延至 8:15。</p>
+  <div class="for">📌 对谁重要：👨‍💻 读者 · 💼 关注者</div>
+  <div class="tip">💡 这是星舰 V3 第 13 次试飞,首次测试二级在轨重启(off-nominal restart)—— 这是登月/登火星的…</div>
+</article>
+
+<article class="news-card lvl2">
+  <div>
+    <span class="lvl">🔥🔥 重要</span>
+    <span class="cat">科技动态</span>
+  </div>
+  <div class="sticker top-right">🔥</div>
+  <h2>### 🔥🔥 国家基本药物目录（2026 版）发布 —— 时隔 8 年，新增 165 种</h2>
+  <p class="lead">📊 看点</p>
+  <p class="detail">2026Q3-Q4 医保谈判 + 基药目录协同将重塑医院用药结构:国产创新药企业获重大利好,科创医药 ETF 已有 7-10 涨 2.8% 信号;儿科药企(健民、康希诺、华润三九儿科线)获增量市场;9-1 实施前医院药剂科将密集调整用药。</p>
+  <div class="for">📌 对谁重要：👨‍💻 读者 · 💼 关注者</div>
+  <div class="tip">💡 时隔 8 年的基药目录大调整(2018 → 2026),新增 165 种(化药 68 + 中成药 48 + 儿科 31)…</div>
+</article>
+
+<article class="news-card lvl1">
+  <div>
+    <span class="lvl">🔥 速览</span>
+    <span class="cat">科技动态</span>
+  </div>
+  <div class="sticker top-right">🔥</div>
+  <h2>### 🔥 中国科协发布 2026 十大前沿科学问题 —— AI/脑科学/6G 占 5 席</h2>
+  <p class="lead">📊 看点</p>
+  <p class="detail">国家自然科学基金 2027 申请指南会向这 5 个方向倾斜;国家科技重大专项下一轮申报窗口(Q4)将优先支持入选单位(中科院、清华、北大、上海 AI Lab);具身智能、AI+6G 创业者获政策红利。</p>
+  <div class="for">📌 对谁重要：👨‍💻 读者 · 💼 关注者</div>
+  <div class="tip">💡 中国科协连续 28 年的「前沿科学问题清单」是国家科研经费风向标。今年 10 个问题中,AI/脑科学/6G 占 5 席—…</div>
+</article>
+
+<article class="news-card lvl1">
+  <div>
+    <span class="lvl">🔥 速览</span>
+    <span class="cat">科技动态</span>
+  </div>
+  <div class="sticker top-right">🔥</div>
+  <h2>### 🔥 广东脑机接口产业联盟成立 —— 首批 124 家成员</h2>
+  <p class="lead">📊 看点</p>
+  <p class="detail">3-12 个月内湾区将密集落地脑机接口试点项目(脑控机械臂、脑控轮椅),首批 3-5 家三甲医院开设「脑机接口病房」;脑机接口上游(电极、芯片)和下游(康复医疗器械)成 Q3-Q4 投资热点;「湾区脑谷」建设进入实操阶段。</p>
+  <div class="for">📌 对谁重要：👨‍💻 读者 · 💼 关注者</div>
+  <div class="tip">💡 广东 124 家成员覆盖「基础理论-器件-系统-临床-转化」全产业链,是**国内规模最大的脑机接口产业联盟**。结合广东…</div>
+</article>
+
+<article class="news-card lvl1">
+  <div>
+    <span class="lvl">🔥 速览</span>
+    <span class="cat">科技动态</span>
+  </div>
+  <div class="sticker top-right">📰</div>
+  <h2>### ai-agent-orchestrator v1.0.0（score 66.021）— AI Agent Orchestrator & MCP Integration</h2>
+  <p class="lead">📊 看点</p>
+  <p class="detail">AI Agent 编排会成为 2026-2027 年的标配,类似 2023 年的 LLM 标准化;MCP 协议可能成为 Agent 时代的「HTTP」;开发者做复杂任务时不再需要手动串 prompt,而是用 DAG 声明 Agent 依赖关系。</p>
+  <div class="for">📌 对谁重要：👨‍💻 读者 · 💼 关注者</div>
+  <div class="tip">💡 ClawHub 平台「ai-agent」关键词排名 Top 1,主打 **AI Agent 编排 + MCP(Model…</div>
+</article>
 </main>
 <footer>
-  🌙 探索者 Bot3 · 睡后任务 · 北欧极简 · 2026-07-16
+  🌙 探索者 Bot3 · 睡后任务 · 韩系马卡龙 · 2026-07-16
 </footer>
 </body>
 </html>
