@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>🌌 深夜银河风 · 2026-07-17</title>
+<title>📚 学霸笔记本 · 2026-07-17</title>
 <style>
 /* ===== 公共装饰类（所有主题共用）===== */
 .tape {
@@ -21,7 +21,9 @@
 .tape-caramel { --tape: #D4B896; }
 .tape-red { --tape: #E8A0A0; }
 .tape-sage { --tape: #B5C9A3; }
-.tape-gold { --tape: #D4AF37; }/* 手绘小图标（CSS 模拟）*/
+.tape-gold { --tape: #D4AF37; }
+
+/* 手绘小图标（CSS 模拟）*/
 .doodle {
   display: inline-block;
   font-style: normal;
@@ -179,74 +181,71 @@
 .confidence-badge strong {
   font-size: 14px;
   margin-left: 4px;
-}:root {
-  --bg: #0B0F2C;
-  --card: #1A1F4A;
-  --ink: #E8E8FF;
-  --muted: #9999CC;
-  --star: #FFFFFF;
-  --purple: #6B5BD9;
-  --cyan: #5BD9E0;
-  --gold: #FFD700;
-  --pink: #FF8FAB;
-  --grid: rgba(255, 255, 255, 0.05);
+}
+
+
+:root {
+  --paper: #FFFFFF;
+  --paper-line: #D4E4F7;
+  --margin-red: #E8A0A0;
+  --ink: #1A1A3A;
+  --ink-light: #5A5A7A;
+  --yellow: #FFE99B;
+  --blue: #A8C5E8;
+  --green: #B5E0B5;
+  --pink: #FFB7C5;
+  --grid: rgba(168, 197, 232, 0.3);
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body {
-  font-family: 'Quicksand', 'PingFang SC', system-ui, sans-serif;
-  background-color: var(--bg);
+  font-family: 'Caveat', 'Comic Sans MS', 'PingFang SC', cursive;
+  background-color: #F5F0E1;
   background-image:
-    radial-gradient(2px 2px at 20% 30%, var(--star), transparent),
-    radial-gradient(1px 1px at 40% 70%, var(--star), transparent),
-    radial-gradient(2px 2px at 60% 20%, var(--star), transparent),
-    radial-gradient(1px 1px at 80% 60%, var(--star), transparent),
-    radial-gradient(1.5px 1.5px at 10% 80%, var(--star), transparent),
-    radial-gradient(1px 1px at 90% 40%, var(--star), transparent),
-    radial-gradient(2px 2px at 30% 50%, var(--star), transparent),
-    radial-gradient(1px 1px at 70% 90%, var(--star), transparent),
-    radial-gradient(1.5px 1.5px at 50% 10%, var(--star), transparent),
-    linear-gradient(135deg, #0B0F2C 0%, #1A1F4A 50%, #2D1B4E 100%);
-  background-attachment: fixed;
+    radial-gradient(circle at 50% 50%, var(--yellow) 0%, transparent 15%);
   color: var(--ink); line-height: 1.7;
   padding: 30px 16px 80px; min-height: 100vh;
 }
 
 header.hero {
   max-width: 880px; margin: 0 auto 40px;
-  background-color: var(--card);
+  background-color: var(--paper);
   background-image:
-    radial-gradient(1.5px 1.5px at 30% 40%, var(--star), transparent),
-    radial-gradient(1px 1px at 70% 60%, var(--star), transparent),
-    radial-gradient(1px 1px at 50% 80%, var(--star), transparent);
-  background-size: 80px 80px;
-  border-radius: 24px; padding: 40px 32px;
-  box-shadow: 0 0 40px rgba(107, 91, 217, 0.4);
+    linear-gradient(var(--paper-line) 1px, transparent 1px);
+  background-size: 100% 28px;
+  border-radius: 4px; padding: 40px 32px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
   text-align: center; position: relative;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-left: 3px solid var(--margin-red);
 }
 .hero h1 {
-  font-size: 34px; color: var(--star);
+  font-size: 36px; color: var(--ink);
+  font-family: 'Caveat', cursive, system-ui;
   font-weight: 700; margin-bottom: 8px;
-  text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
-  letter-spacing: 0.05em;
+  text-decoration: underline;
+  text-decoration-color: var(--yellow);
+  text-decoration-thickness: 6px;
+  text-underline-offset: 4px;
 }
 .hero .date {
-  color: var(--muted); font-size: 14px;
-  letter-spacing: 0.3em; margin: 8px 0 20px;
+  color: var(--ink-light); font-size: 16px;
+  font-family: 'Caveat', cursive;
+  letter-spacing: 0.05em; margin: 8px 0 20px;
 }
 .hero img {
-  width: 220px; height: 220px; border-radius: 50%;
+  width: 220px; height: 220px; border-radius: 4px;
   object-fit: cover; margin: 16px auto;
-  border: 4px solid var(--gold);
-  box-shadow: 0 0 30px rgba(255, 215, 0, 0.6);
-  display: block;
+  border: 4px solid var(--paper);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  display: block; transform: rotate(-2deg);
 }
 .hero .pulse {
-  background: linear-gradient(135deg, var(--purple), var(--cyan));
-  border-radius: 16px; padding: 18px 24px;
-  margin-top: 24px; font-size: 15px;
+  background: var(--yellow);
+  border-radius: 4px; padding: 16px 20px;
+  margin-top: 24px; font-size: 16px;
   text-align: left;
-  box-shadow: 0 0 20px rgba(91, 217, 224, 0.3);
+  font-family: 'Caveat', cursive, system-ui;
+  box-shadow: 3px 3px 0 var(--ink);
+  position: relative;
 }
 
 main {
@@ -254,73 +253,75 @@ main {
 }
 
 .news-card {
-  background-color: var(--card);
+  background-color: var(--paper);
   background-image:
-    radial-gradient(1px 1px at 20% 30%, var(--star), transparent),
-    radial-gradient(1px 1px at 60% 70%, var(--star), transparent),
-    radial-gradient(1px 1px at 80% 20%, var(--star), transparent);
-  background-size: 120px 120px;
-  border-radius: 20px; padding: 28px;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+    linear-gradient(var(--paper-line) 1px, transparent 1px);
+  background-size: 100% 26px;
+  border-radius: 4px; padding: 28px 28px 28px 36px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
   position: relative;
-  border: 1px solid rgba(107, 91, 217, 0.3);
-  transition: all 0.3s;
+  border-left: 3px solid var(--margin-red);
+  transition: transform 0.2s;
 }
-.news-card:hover {
-  border-color: var(--gold);
-  box-shadow: 0 0 24px rgba(255, 215, 0, 0.3);
-}
+.news-card:hover { transform: rotate(-0.3deg); }
 
 .news-card .lvl {
   display: inline-block;
-  background: linear-gradient(135deg, var(--gold), var(--pink));
-  color: var(--bg); padding: 5px 14px;
-  border-radius: 14px; font-size: 13px; font-weight: 700;
+  background: var(--yellow); color: var(--ink);
+  padding: 4px 14px; border-radius: 4px;
+  font-size: 14px; font-weight: 700;
+  font-family: 'Caveat', cursive, system-ui;
+  box-shadow: 2px 2px 0 var(--ink);
+  margin-bottom: 10px;
 }
-.news-card.lvl2 .lvl { background: linear-gradient(135deg, var(--purple), var(--cyan)); color: var(--star); }
-.news-card.lvl1 .lvl { background: rgba(255,255,255,0.15); color: var(--star); }
+.news-card.lvl2 .lvl { background: var(--blue); }
+.news-card.lvl1 .lvl { background: var(--green); }
 
 .news-card .cat {
   display: inline-block;
-  background: rgba(255, 215, 0, 0.2);
-  color: var(--gold); padding: 3px 12px;
-  border-radius: 12px; font-size: 11px;
+  background: var(--pink); color: var(--ink);
+  padding: 2px 10px; font-size: 12px;
   margin-left: 6px; font-weight: 600;
-  border: 1px solid rgba(255, 215, 0, 0.3);
+  font-family: 'Caveat', cursive, system-ui;
+  border-radius: 12px;
 }
 
 .news-card h2 {
-  font-size: 22px; margin: 12px 0 6px;
-  color: var(--star); font-weight: 700;
+  font-size: 26px; margin: 10px 0 6px;
+  color: var(--ink); font-family: 'Caveat', cursive, system-ui;
+  font-weight: 700;
 }
 .news-card .lead {
-  font-size: 15px; color: var(--cyan);
+  font-size: 17px; color: var(--ink);
   font-weight: 500; margin-bottom: 10px;
+  font-family: 'Caveat', cursive, system-ui;
 }
 .news-card .detail {
-  font-size: 14px; color: var(--muted);
-  margin-bottom: 14px; line-height: 1.8;
+  font-size: 15px; color: var(--ink-light);
+  margin-bottom: 12px; line-height: 1.8;
+  font-family: 'Caveat', cursive, system-ui;
 }
 .news-card .for {
-  font-size: 13px; color: var(--star);
-  background: rgba(107, 91, 217, 0.2);
-  padding: 8px 14px; border-radius: 12px;
-  margin-bottom: 8px;
-  border: 1px solid rgba(107, 91, 217, 0.4);
+  font-size: 14px; color: var(--ink);
+  background: var(--green);
+  padding: 6px 14px; border-radius: 4px;
+  margin-bottom: 8px; display: inline-block;
+  font-family: 'Caveat', cursive, system-ui;
+  box-shadow: 2px 2px 0 var(--ink);
 }
 .news-card .tip {
-  font-size: 13px; color: var(--star);
-  padding: 10px 14px;
-  background: rgba(255, 215, 0, 0.1);
-  border-left: 3px solid var(--gold);
-  border-radius: 4px 12px 12px 4px;
-  margin-top: 10px;
+  font-size: 14px; color: var(--ink);
+  padding: 8px 14px;
+  background: rgba(255, 233, 155, 0.5);
+  border: 1.5px dashed var(--ink);
+  border-radius: 4px; margin-top: 10px;
+  font-family: 'Caveat', cursive, system-ui;
 }
 
 footer {
   max-width: 880px; margin: 40px auto 0;
-  text-align: center; color: var(--muted); font-size: 13px;
-  letter-spacing: 0.2em;
+  text-align: center; color: var(--ink-light);
+  font-size: 14px; font-family: 'Caveat', cursive, system-ui;
 }
 </style>
 </head>
@@ -328,9 +329,9 @@ footer {
 <header class="hero">
   <div class="tape tape-pink tape-tl"></div>
   <div class="tape tape-mint tape-tr"></div>
-  <h1>🌌 深夜银河风</h1>
+  <h1>📚 学霸笔记本</h1>
   <div class="date">2026-07-17 · 周三 · 科技手帐</div>
-  <img src="demo-assets-v2/e-galaxy.png" alt="深夜银河">
+  <img src="demo-assets-v2/d-study.png" alt="学霸笔记本">
   <div class="pulse">今日科技脉搏 🩸 · WAIC 2026 在沪启幕，习近平主旨演讲定调"智能伙伴" / SpaceX 星舰第 13 飞 7 月 17 日 6:45  / 华为乾崑发布 2026 上半年安全出行报告：累计里程 123</div>
 </header>
 <div class="audio-player-wrap" style="max-width:680px;margin:24px auto;padding:18px 22px;background:rgba(255,255,255,0.85);border-radius:14px;box-shadow:0 4px 14px rgba(0,0,0,0.08);border:1.5px dashed rgba(0,0,0,0.12);">
@@ -348,7 +349,8 @@ footer {
     <span class="lvl">🔥🔥🔥 必读</span>
     <span class="cat">科技动态</span>
   </div>
-<h2>WAIC 2026 在沪启幕，习近平主旨演讲定调"智能伙伴"</h2>
+
+  <h2>WAIC 2026 在沪启幕，习近平主旨演讲定调"智能伙伴"</h2>
   <p class="lead">📚 1 分钟背景</p>
   <div class="view-section"><h3>📊 看点</h3><ul class="view-list">
   <li>主题首次升级为"智能伙伴 共创未来"，明确人机共生叙事</li>
@@ -379,7 +381,8 @@ footer {
     <span class="lvl">🔥🔥🔥 必读</span>
     <span class="cat">科技动态</span>
   </div>
-<h2>SpaceX 星舰第 13 飞 7 月 17 日 6:45 升空，IPO 后首次硬考验</h2>
+
+  <h2>SpaceX 星舰第 13 飞 7 月 17 日 6:45 升空，IPO 后首次硬考验</h2>
   <p class="lead">📚 1 分钟背景</p>
   <div class="view-section"><h3>📊 看点</h3><ul class="view-list">
   <li>IPO 后首次试飞，2 万亿美元估值能否稳住，V3 表现是关键</li>
@@ -410,7 +413,8 @@ footer {
     <span class="lvl">🔥🔥 重要</span>
     <span class="cat">科技动态</span>
   </div>
-<h2>华为乾崑发布 2026 上半年安全出行报告：累计里程 123.5 亿公里，97.5% 活跃</h2>
+
+  <h2>华为乾崑发布 2026 上半年安全出行报告：累计里程 123.5 亿公里，97.5% 活跃</h2>
   
   <div class="view-section"><h3>📊 看点</h3><ul class="view-list">
   <li>半年 123.5 亿公里，规模处于行业第一梯队</li>
@@ -441,7 +445,8 @@ footer {
     <span class="lvl">🔥🔥 重要</span>
     <span class="cat">科技动态</span>
   </div>
-<h2>特斯拉确认在德州开发"轮椅用户专用"无人驾驶车</h2>
+
+  <h2>特斯拉确认在德州开发"轮椅用户专用"无人驾驶车</h2>
   
   <div class="view-section"><h3>📊 看点</h3><ul class="view-list">
   <li>残障出行市场长期被忽视，无障碍接送是高频刚需</li>
@@ -472,7 +477,8 @@ footer {
     <span class="lvl">🔥🔥 重要</span>
     <span class="cat">科技动态</span>
   </div>
-<h2>三星 SDS 整合量子计算 + AI 仿真光刻，2026 H2 启动技术验证追赶台积电</h2>
+
+  <h2>三星 SDS 整合量子计算 + AI 仿真光刻，2026 H2 启动技术验证追赶台积电</h2>
   
   <div class="view-section"><h3>📊 看点</h3><ul class="view-list">
   <li>把量子计算引入半导体制造是头部代工厂的"工程级实验"</li>
@@ -503,7 +509,8 @@ footer {
     <span class="lvl">🔥 速览</span>
     <span class="cat">科技动态</span>
   </div>
-<h2>努比亚官宣 NaviX Ultra "全球首款 AI 智能体手机"</h2>
+
+  <h2>努比亚官宣 NaviX Ultra "全球首款 AI 智能体手机"</h2>
   
   <div class="view-section"><h3>📊 看点</h3><ul class="view-list">
   <li>"AI 智能体手机"是 2026 年的新品类，不再以参数 / 屏幕为主战场</li>
@@ -534,7 +541,8 @@ footer {
     <span class="lvl">🔥 速览</span>
     <span class="cat">科技动态</span>
   </div>
-<h2>特宝生物 ACT201 注射液 ASO 乙肝新药获 NMPA 临床试验批准</h2>
+
+  <h2>特宝生物 ACT201 注射液 ASO 乙肝新药获 NMPA 临床试验批准</h2>
   
   <div class="view-section"><h3>📊 看点</h3><ul class="view-list">
   <li>ASO 是核酸药物主流管线之一，国内管线开始加速</li>
@@ -565,7 +573,8 @@ footer {
     <span class="lvl">🔥 速览</span>
     <span class="cat">科技动态</span>
   </div>
-<h2>🔒 网络安全第 20 周：供应链攻击 + AI 漏洞生成加速</h2>
+
+  <h2>🔒 网络安全第 20 周：供应链攻击 + AI 漏洞生成加速</h2>
   
   <div class="view-section"><h3>📊 看点</h3><ul class="view-list">
   <li>单周同时打掉医药、制造业、教育、汽车四条主链——攻击资源调度已工业化</li>
@@ -592,7 +601,7 @@ footer {
 </article>
 </main>
 <footer>
-  🌙 探索者 Bot3 · 睡后任务 · 深夜银河 · 2026-07-17
+  🌙 探索者 Bot3 · 睡后任务 · 学霸笔记本 · 2026-07-17
 </footer>
 </body>
 </html>
