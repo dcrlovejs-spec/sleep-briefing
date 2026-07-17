@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>🌌 深夜银河风 · 2026-07-17</title>
+<title>⚪ 北欧极简风 · 2026-07-17</title>
 <style>
 /* ===== 公共装饰类（所有主题共用）===== */
 .tape {
@@ -28,6 +28,10 @@
   font-size: 28px;
   filter: drop-shadow(0 2px 3px rgba(0,0,0,0.1));
   z-index: 5;
+
+  opacity: 0.5;
+  max-width: 60px;
+  max-height: 60px;
 }
 .sticker-small { font-size: 18px; }
 
@@ -193,73 +197,53 @@
 
 
 :root {
-  --bg: #0B0F2C;
-  --card: #1A1F4A;
-  --ink: #E8E8FF;
-  --muted: #9999CC;
-  --star: #FFFFFF;
-  --purple: #6B5BD9;
-  --cyan: #5BD9E0;
-  --gold: #FFD700;
-  --pink: #FF8FAB;
-  --grid: rgba(255, 255, 255, 0.05);
+  --bg: #FAFAF8;
+  --card: #FFFFFF;
+  --ink: #1A1A1A;
+  --muted: #666666;
+  --sage: #6B8E4E;
+  --sage-light: #E8EFE3;
+  --line: #E5E5E0;
+  --grid: rgba(0, 0, 0, 0.04);
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body {
-  font-family: 'Quicksand', 'PingFang SC', system-ui, sans-serif;
+  font-family: 'Inter', 'Helvetica Neue', 'PingFang SC', system-ui, sans-serif;
   background-color: var(--bg);
-  background-image:
-    radial-gradient(2px 2px at 20% 30%, var(--star), transparent),
-    radial-gradient(1px 1px at 40% 70%, var(--star), transparent),
-    radial-gradient(2px 2px at 60% 20%, var(--star), transparent),
-    radial-gradient(1px 1px at 80% 60%, var(--star), transparent),
-    radial-gradient(1.5px 1.5px at 10% 80%, var(--star), transparent),
-    radial-gradient(1px 1px at 90% 40%, var(--star), transparent),
-    radial-gradient(2px 2px at 30% 50%, var(--star), transparent),
-    radial-gradient(1px 1px at 70% 90%, var(--star), transparent),
-    radial-gradient(1.5px 1.5px at 50% 10%, var(--star), transparent),
-    linear-gradient(135deg, #0B0F2C 0%, #1A1F4A 50%, #2D1B4E 100%);
-  background-attachment: fixed;
   color: var(--ink); line-height: 1.7;
+  font-weight: 400; letter-spacing: 0.01em;
   padding: 30px 16px 80px; min-height: 100vh;
 }
 
 header.hero {
   max-width: 880px; margin: 0 auto 40px;
   background-color: var(--card);
-  background-image:
-    radial-gradient(1.5px 1.5px at 30% 40%, var(--star), transparent),
-    radial-gradient(1px 1px at 70% 60%, var(--star), transparent),
-    radial-gradient(1px 1px at 50% 80%, var(--star), transparent);
-  background-size: 80px 80px;
-  border-radius: 24px; padding: 40px 32px;
-  box-shadow: 0 0 40px rgba(107, 91, 217, 0.4);
+  border-radius: 2px; padding: 48px 32px;
   text-align: center; position: relative;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid var(--line);
 }
 .hero h1 {
-  font-size: 34px; color: var(--star);
-  font-weight: 700; margin-bottom: 8px;
-  text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
-  letter-spacing: 0.05em;
+  font-size: 30px; color: var(--ink);
+  font-weight: 300; margin-bottom: 8px;
+  letter-spacing: 0.1em;
 }
 .hero .date {
-  color: var(--muted); font-size: 14px;
+  color: var(--muted); font-size: 13px;
   letter-spacing: 0.3em; margin: 8px 0 20px;
+  font-weight: 300;
 }
 .hero img {
-  width: 220px; height: 220px; border-radius: 50%;
+  width: 200px; height: 200px; border-radius: 2px;
   object-fit: cover; margin: 16px auto;
-  border: 4px solid var(--gold);
-  box-shadow: 0 0 30px rgba(255, 215, 0, 0.6);
+  border: 1px solid var(--line);
   display: block;
 }
 .hero .pulse {
-  background: linear-gradient(135deg, var(--purple), var(--cyan));
-  border-radius: 16px; padding: 18px 24px;
-  margin-top: 24px; font-size: 15px;
-  text-align: left;
-  box-shadow: 0 0 20px rgba(91, 217, 224, 0.3);
+  background: var(--sage-light);
+  border-radius: 2px; padding: 18px 24px;
+  margin-top: 28px; font-size: 14px;
+  text-align: left; color: var(--ink);
+  font-weight: 300;
 }
 
 main {
@@ -268,72 +252,65 @@ main {
 
 .news-card {
   background-color: var(--card);
-  background-image:
-    radial-gradient(1px 1px at 20% 30%, var(--star), transparent),
-    radial-gradient(1px 1px at 60% 70%, var(--star), transparent),
-    radial-gradient(1px 1px at 80% 20%, var(--star), transparent);
-  background-size: 120px 120px;
-  border-radius: 20px; padding: 28px;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+  border-radius: 2px; padding: 32px 28px;
   position: relative;
-  border: 1px solid rgba(107, 91, 217, 0.3);
-  transition: all 0.3s;
+  border: 1px solid var(--line);
+  transition: border-color 0.3s;
 }
-.news-card:hover {
-  border-color: var(--gold);
-  box-shadow: 0 0 24px rgba(255, 215, 0, 0.3);
-}
+.news-card:hover { border-color: var(--sage); }
 
 .news-card .lvl {
   display: inline-block;
-  background: linear-gradient(135deg, var(--gold), var(--pink));
-  color: var(--bg); padding: 5px 14px;
-  border-radius: 14px; font-size: 13px; font-weight: 700;
+  color: var(--sage); font-size: 11px;
+  font-weight: 600; letter-spacing: 0.2em;
+  text-transform: uppercase;
+  padding-bottom: 4px;
+  border-bottom: 1.5px solid var(--sage);
+  margin-bottom: 12px;
 }
-.news-card.lvl2 .lvl { background: linear-gradient(135deg, var(--purple), var(--cyan)); color: var(--star); }
-.news-card.lvl1 .lvl { background: rgba(255,255,255,0.15); color: var(--star); }
+.news-card.lvl2 .lvl { color: var(--muted); border-bottom-color: var(--line); }
+.news-card.lvl1 .lvl { color: var(--muted); border-bottom-color: var(--line); }
 
 .news-card .cat {
   display: inline-block;
-  background: rgba(255, 215, 0, 0.2);
-  color: var(--gold); padding: 3px 12px;
-  border-radius: 12px; font-size: 11px;
-  margin-left: 6px; font-weight: 600;
-  border: 1px solid rgba(255, 215, 0, 0.3);
+  color: var(--muted); font-size: 11px;
+  margin-left: 12px; letter-spacing: 0.1em;
 }
 
 .news-card h2 {
-  font-size: 22px; margin: 12px 0 6px;
-  color: var(--star); font-weight: 700;
+  font-size: 22px; margin: 12px 0 8px;
+  color: var(--ink); font-weight: 400;
+  letter-spacing: -0.01em;
 }
 .news-card .lead {
-  font-size: 15px; color: var(--cyan);
-  font-weight: 500; margin-bottom: 10px;
+  font-size: 14px; color: var(--muted);
+  font-weight: 400; margin-bottom: 12px;
 }
 .news-card .detail {
-  font-size: 14px; color: var(--muted);
-  margin-bottom: 14px; line-height: 1.8;
+  font-size: 14px; color: var(--ink);
+  margin-bottom: 16px; line-height: 1.8;
+  font-weight: 300;
 }
 .news-card .for {
-  font-size: 13px; color: var(--star);
-  background: rgba(107, 91, 217, 0.2);
-  padding: 8px 14px; border-radius: 12px;
+  font-size: 12px; color: var(--muted);
+  padding: 8px 0;
+  border-top: 1px solid var(--line);
   margin-bottom: 8px;
-  border: 1px solid rgba(107, 91, 217, 0.4);
+  letter-spacing: 0.05em;
 }
 .news-card .tip {
-  font-size: 13px; color: var(--star);
-  padding: 10px 14px;
-  background: rgba(255, 215, 0, 0.1);
-  border-left: 3px solid var(--gold);
-  border-radius: 4px 12px 12px 4px;
-  margin-top: 10px;
+  font-size: 12px; color: var(--sage);
+  padding: 8px 0;
+  border-top: 1px solid var(--line);
+  margin-top: 8px;
+  font-weight: 500;
 }
 
 footer {
   max-width: 880px; margin: 40px auto 0;
-  text-align: center; color: var(--muted); font-size: 13px;
-  letter-spacing: 0.2em;
+  text-align: center; color: var(--muted);
+  font-size: 11px; letter-spacing: 0.3em;
+  text-transform: uppercase;
 }
 </style>
 </head>
@@ -341,9 +318,9 @@ footer {
 <header class="hero">
   <div class="tape tape-pink tape-tl"></div>
   <div class="tape tape-mint tape-tr"></div>
-  <h1>🌌 深夜银河风</h1>
+  <h1>⚪ 北欧极简风</h1>
   <div class="date">2026-07-17 · 周三 · 科技手帐</div>
-  <img src="demo-assets-v2/e-galaxy.png" alt="深夜银河">
+  <img src="demo-assets-v2/g-nordic.png" alt="北欧极简">
   <div class="pulse">今日科技脉搏 🩸 · WAIC 2026 在沪启幕，习近平主旨演讲定调"智能伙伴" / SpaceX 星舰第 13 飞 7 月 17 日 6:45  / 华为乾崑发布 2026 上半年安全出行报告：累计里程 123</div>
 </header>
 <div class="audio-player-wrap" style="max-width:680px;margin:24px auto;padding:18px 22px;background:rgba(255,255,255,0.85);border-radius:14px;box-shadow:0 4px 14px rgba(0,0,0,0.08);border:1.5px dashed rgba(0,0,0,0.12);">
@@ -613,7 +590,7 @@ footer {
 </article>
 </main>
 <footer>
-  🌙 探索者 Bot3 · 睡后任务 · 深夜银河 · 2026-07-17
+  🌙 探索者 Bot3 · 睡后任务 · 北欧极简 · 2026-07-17
 </footer>
 </body>
 </html>
