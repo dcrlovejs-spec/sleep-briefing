@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>📚 学霸笔记本 · 2026-07-17</title>
+<title>📓 复古便签本 · 2026-07-18</title>
 <style>
 /* ===== 公共装饰类（所有主题共用）===== */
 .tape {
@@ -185,143 +185,142 @@
 
 
 :root {
-  --paper: #FFFFFF;
-  --paper-line: #D4E4F7;
-  --margin-red: #E8A0A0;
-  --ink: #1A1A3A;
-  --ink-light: #5A5A7A;
-  --yellow: #FFE99B;
-  --blue: #A8C5E8;
-  --green: #B5E0B5;
-  --pink: #FFB7C5;
-  --grid: rgba(168, 197, 232, 0.3);
+  --paper: #F0E4D0;
+  --paper-card: #E8D8BC;
+  --kraft: #C9A87C;
+  --ink: #3E2C1C;
+  --ink-soft: #5C4033;
+  --ink-light: #8B6F47;
+  --stamp-red: #B33A3A;
+  --grid: rgba(139, 111, 71, 0.12);
+  --paper-shadow: rgba(94, 80, 60, 0.2);
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body {
-  font-family: 'Caveat', 'Comic Sans MS', 'PingFang SC', cursive;
-  background-color: #F5F0E1;
+  font-family: 'Georgia', 'KaiTi', 'STKaiti', serif;
+  background-color: var(--paper);
   background-image:
-    radial-gradient(circle at 50% 50%, var(--yellow) 0%, transparent 15%);
-  color: var(--ink); line-height: 1.7;
+    repeating-linear-gradient(45deg, transparent 0px, transparent 2px, var(--grid) 2px, var(--grid) 4px);
+  color: var(--ink); line-height: 1.8;
   padding: 30px 16px 80px; min-height: 100vh;
 }
 
 header.hero {
   max-width: 880px; margin: 0 auto 40px;
-  background-color: var(--paper);
+  background-color: var(--paper-card);
   background-image:
-    linear-gradient(var(--paper-line) 1px, transparent 1px);
-  background-size: 100% 28px;
+    radial-gradient(circle at 20% 30%, rgba(94, 80, 60, 0.12) 0%, transparent 25%),
+    radial-gradient(circle at 80% 70%, rgba(179, 58, 58, 0.08) 0%, transparent 30%);
   border-radius: 4px; padding: 40px 32px;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  box-shadow: 0 4px 14px rgba(94, 80, 60, 0.25);
   text-align: center; position: relative;
-  border-left: 3px solid var(--margin-red);
+  border: 2px solid var(--ink-soft);
 }
 .hero h1 {
-  font-size: 36px; color: var(--ink);
-  font-family: 'Caveat', cursive, system-ui;
-  font-weight: 700; margin-bottom: 8px;
-  text-decoration: underline;
-  text-decoration-color: var(--yellow);
-  text-decoration-thickness: 6px;
-  text-underline-offset: 4px;
+  font-size: 34px; color: var(--ink);
+  font-family: 'STKaiti', serif;
+  font-weight: 700; margin: 20px 0 8px; letter-spacing: 0.05em;
 }
 .hero .date {
-  color: var(--ink-light); font-size: 16px;
-  font-family: 'Caveat', cursive;
-  letter-spacing: 0.05em; margin: 8px 0 20px;
+  color: var(--ink-light); font-size: 14px;
+  letter-spacing: 0.3em; font-style: italic;
+  border-top: 1px dashed var(--ink-light);
+  border-bottom: 1px dashed var(--ink-light);
+  display: inline-block; padding: 4px 20px;
+  margin: 8px 0 20px;
 }
 .hero img {
   width: 220px; height: 220px; border-radius: 4px;
   object-fit: cover; margin: 16px auto;
-  border: 4px solid var(--paper);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-  display: block; transform: rotate(-2deg);
+  border: 10px solid var(--paper);
+  box-shadow: 0 6px 18px rgba(94, 80, 60, 0.3);
+  display: block; filter: sepia(0.25);
+  transform: rotate(-1.5deg);
 }
 .hero .pulse {
-  background: var(--yellow);
-  border-radius: 4px; padding: 16px 20px;
-  margin-top: 24px; font-size: 16px;
-  text-align: left;
-  font-family: 'Caveat', cursive, system-ui;
-  box-shadow: 3px 3px 0 var(--ink);
+  background: rgba(255, 248, 220, 0.7);
+  border: 1.5px dashed var(--ink-light);
+  padding: 16px 20px; margin-top: 24px;
+  font-size: 15px; text-align: left;
+  font-family: 'STKaiti', serif;
   position: relative;
+}
+.hero .pulse::before {
+  content: '✦ 今日手帐 ✦'; position: absolute;
+  top: -10px; left: 50%; transform: translateX(-50%);
+  background: var(--paper-card); padding: 0 12px;
+  color: var(--stamp-red); font-size: 12px;
+  letter-spacing: 0.3em;
 }
 
 main {
-  max-width: 880px; margin: 0 auto; display: grid; gap: 24px;
+  max-width: 880px; margin: 0 auto; display: grid; gap: 32px;
 }
 
 .news-card {
   background-color: var(--paper);
   background-image:
-    linear-gradient(var(--paper-line) 1px, transparent 1px);
-  background-size: 100% 26px;
-  border-radius: 4px; padding: 28px 28px 28px 36px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    radial-gradient(circle, var(--grid) 1px, transparent 1px);
+  background-size: 16px 16px;
+  border-radius: 4px; padding: 28px;
+  box-shadow: 0 1px 3px rgba(94, 80, 60, 0.15);
   position: relative;
-  border-left: 3px solid var(--margin-red);
+  border: 1px solid var(--kraft);
   transition: transform 0.2s;
 }
-.news-card:hover { transform: rotate(-0.3deg); }
+.news-card:hover { transform: rotate(-0.5deg); }
+.news-card.lvl3 { border-left: 6px solid var(--stamp-red); }
+.news-card.lvl2 { border-left: 6px solid var(--kraft); }
+.news-card.lvl1 { border-left: 6px solid var(--ink-light); }
 
 .news-card .lvl {
-  display: inline-block;
-  background: var(--yellow); color: var(--ink);
-  padding: 4px 14px; border-radius: 4px;
-  font-size: 14px; font-weight: 700;
-  font-family: 'Caveat', cursive, system-ui;
-  box-shadow: 2px 2px 0 var(--ink);
-  margin-bottom: 10px;
+  display: inline-block; color: var(--stamp-red);
+  font-family: 'STKaiti', serif; font-size: 14px;
+  font-weight: 700; letter-spacing: 0.2em;
+  border-bottom: 2px solid var(--stamp-red);
+  padding-bottom: 2px; margin-bottom: 10px;
 }
-.news-card.lvl2 .lvl { background: var(--blue); }
-.news-card.lvl1 .lvl { background: var(--green); }
+.news-card.lvl2 .lvl { color: var(--ink-light); border-bottom-color: var(--ink-light); }
+.news-card.lvl1 .lvl { color: var(--kraft); border-bottom-color: var(--kraft); }
 
 .news-card .cat {
-  display: inline-block;
-  background: var(--pink); color: var(--ink);
-  padding: 2px 10px; font-size: 12px;
-  margin-left: 6px; font-weight: 600;
-  font-family: 'Caveat', cursive, system-ui;
-  border-radius: 12px;
+  display: inline-block; background: var(--kraft);
+  color: var(--ink); padding: 2px 10px;
+  font-size: 11px; margin-left: 10px;
+  border: 1px solid var(--ink-light);
+  font-family: 'STKaiti', serif;
 }
-
 .news-card h2 {
-  font-size: 26px; margin: 10px 0 6px;
-  color: var(--ink); font-family: 'Caveat', cursive, system-ui;
-  font-weight: 700;
+  font-size: 22px; margin: 10px 0 6px;
+  color: var(--ink); font-family: 'STKaiti', serif; font-weight: 700;
 }
 .news-card .lead {
-  font-size: 17px; color: var(--ink);
-  font-weight: 500; margin-bottom: 10px;
-  font-family: 'Caveat', cursive, system-ui;
+  font-size: 15px; color: var(--ink-soft);
+  font-weight: 500; font-style: italic; margin-bottom: 10px;
 }
 .news-card .detail {
-  font-size: 15px; color: var(--ink-light);
-  margin-bottom: 12px; line-height: 1.8;
-  font-family: 'Caveat', cursive, system-ui;
+  font-size: 14px; color: var(--ink-soft);
+  margin-bottom: 12px; line-height: 1.9;
 }
 .news-card .for {
-  font-size: 14px; color: var(--ink);
-  background: var(--green);
-  padding: 6px 14px; border-radius: 4px;
-  margin-bottom: 8px; display: inline-block;
-  font-family: 'Caveat', cursive, system-ui;
-  box-shadow: 2px 2px 0 var(--ink);
+  font-size: 13px; color: var(--ink);
+  background: rgba(212, 184, 150, 0.5);
+  padding: 8px 14px; border: 1px dashed var(--ink-light);
+  margin-bottom: 8px; font-family: 'STKaiti', serif;
 }
 .news-card .tip {
-  font-size: 14px; color: var(--ink);
+  font-size: 13px; color: var(--ink);
   padding: 8px 14px;
-  background: rgba(255, 233, 155, 0.5);
-  border: 1.5px dashed var(--ink);
-  border-radius: 4px; margin-top: 10px;
-  font-family: 'Caveat', cursive, system-ui;
+  border-left: 3px solid var(--stamp-red);
+  background: rgba(255, 248, 220, 0.6);
+  margin-top: 8px; font-family: 'STKaiti', serif;
 }
 
 footer {
   max-width: 880px; margin: 40px auto 0;
   text-align: center; color: var(--ink-light);
-  font-size: 14px; font-family: 'Caveat', cursive, system-ui;
+  font-size: 13px; font-style: italic;
+  border-top: 1px dashed var(--ink-light); padding-top: 20px;
 }
 </style>
 </head>
@@ -329,15 +328,15 @@ footer {
 <header class="hero">
   <div class="tape tape-pink tape-tl"></div>
   <div class="tape tape-mint tape-tr"></div>
-  <h1>📚 学霸笔记本</h1>
-  <div class="date">2026-07-17 · 周三 · 科技手帐</div>
-  <img src="demo-assets-v2/d-study.png" alt="学霸笔记本">
-  <div class="pulse">今日科技脉搏 🩸 · WAIC 2026 在沪启幕，习近平主旨演讲定调"智能伙伴" / SpaceX 星舰第 13 飞 7 月 17 日 6:45  / 华为乾崑发布 2026 上半年安全出行报告：累计里程 123</div>
+  <h1>📓 复古便签本</h1>
+  <div class="date">2026-07-18 · 周三 · 科技手帐</div>
+  <img src="demo-assets-v2/c-vintage.png" alt="复古剪贴簿">
+  <div class="pulse">今日科技脉搏 🩸 · SpaceX 星舰 V3 第 13 飞紧急中止，4 台猛禽未 / WAIC 2026 第二天：华为昇腾 950 超节点 + 阶 / TCL 中环 119.6 亿投建深圳半导体大硅片项目，填补华</div>
 </header>
 <div class="audio-player-wrap" style="max-width:680px;margin:24px auto;padding:18px 22px;background:rgba(255,255,255,0.85);border-radius:14px;box-shadow:0 4px 14px rgba(0,0,0,0.08);border:1.5px dashed rgba(0,0,0,0.12);">
   <h3 style="margin:0 0 10px 0;font-size:18px;color:#333;">🎙️ 今日语音播报（完整 8 条 + 全部内容）</h3>
   <audio controls preload="metadata" style="width:100%;max-width:600px;">
-    <source src="https://dcrlovejs-spec.github.io/sleep-briefing/podcast.mp3?t=2026-07-17" type="audio/mpeg">
+    <source src="https://dcrlovejs-spec.github.io/sleep-briefing/podcast.mp3?t=2026-07-18" type="audio/mpeg">
     你的浏览器不支持 audio 标签，请下载 mp3 后用本地播放器收听。
   </audio>
   <p style="margin:8px 0 0 0;font-size:13px;color:#888;">小提示：可下载离线收听；由 edge_tts · 晓晓主播；ffmpeg 重编码</p>
@@ -350,108 +349,111 @@ footer {
     <span class="cat">科技动态</span>
   </div>
 
-  <h2>WAIC 2026 在沪启幕，习近平主旨演讲定调"智能伙伴"</h2>
+  <h2>SpaceX 星舰 V3 第 13 飞紧急中止，4 台猛禽未点火，万亿市值蒸发</h2>
   <p class="lead">📚 1 分钟背景</p>
   <div class="view-section"><h3>📊 看点</h3><ul class="view-list">
-  <li>主题首次升级为"智能伙伴 共创未来"，明确人机共生叙事</li>
-  <li>国家主席习近平出席开幕式并发表主旨讲话，把 AI 治理推到全球议程中心</li>
-  <li>"三地四馆"办展模式涵盖底层算力到终端应用，产业链全栈展示</li>
-  <li>"Hi WAIC"APP 上线，是首个 AI 生态开放平台</li>
+  <li>V3 第二次试射失败，6 月 IPO 后第一次硬考验不过关</li>
+  <li>4 台猛禽未点火 → 自动中止机制成功运行，**保住硬件 = 保住后续试飞能力**</li>
+  <li>火箭保持在发射台，未发生爆炸 / 解体等"硬件级损失"</li>
+  <li>原本任务：搭载 20 颗 Starlink V3 卫星首次功能完整体入轨（首批星链 V3 部署）</li>
+  <li>SpaceX 股价 7/17 大跌、7/18 延续跌势，市值较高点蒸发约 1 万亿美元</li>
+  <li>解读分歧：技术派认为"中止 = 系统安全机制有效"；资本市场视为"估值压力测试不及格"</li>
 </ul></div>
   
   <div class="why-section">
   <h3>💡 为什么关注</h3>
-  <p>WAIC 2026 的真正看点不只是"又开了一个 AI 大会"，而是国家级话语体系的升级：习近平主旨演讲、中国 AI 治理立场、300+ 款全球首发产品——三件事叠加，等于把 2026 下半年的 AI 主赛道、监管赛道、产业链话语权一次性卡位。从产业生态看，全栈展示意味着**中国 AI 产业链已具备垂直整合能力**——从芯片、模型到终端，参展企业可在展会现场完成上下游对接，加速技术-产品-市场的转化。 从资本角度看，300+ 全球首发本身就是下半年 AI 概念股的"弹药库"，每个首发都可能是下一轮融资 / 估值锚定的起点。</p>
+  <p>这次中止对 SpaceX 来说是一次**"体面失败"**——4 台发动机未点火是机械 / 软件问题，不是设计缺陷；自动中止机制在最后一秒触发并保住了火箭，硬件可以快速修复。但对资本市场来说，**2 万亿美元估值的"故事效应"被显著削弱**：6 月 IPO 时投资人买的是"V3 兑现 + 高频次发射"的故事，故事兑现的连续性被打断，意味着 1-2 个月内估值修复动力减弱。 对中国商业航天而言，这是**窗口期拉长**的明确信号：蓝箭航天、星际荣耀、星河动力在中型可重复火箭 + 商业发射服务上的追赶节奏，可以利用 SpaceX 的失分窗口加速商业合同落地与资本市场对接。</p>
 </div>
   <div class="future-section">
   <h3>🔮 未来影响</h3>
-  <p>短期（1-3 个月）：WAIC 发布的 AI 治理框架、300+ 首发产品的清单将被视为下半年行业合规与产品路线图的两个权威基准。中期（6-12 个月）：国家级 AI 治理共识叠加欧盟 AI Act、各国 AI 安全协议，全球 AI 合规成本将显著上升，缺乏治理对接能力的小厂面临淘汰；具备合规与全栈能力的厂商将拿到更多政府/央国企订单。</p>
+  <p>短期（1-4 周）：SpaceX 股价承压；国内商业航天概念股（航天电子、航天动力、星际荣耀等）可能获得正向映射。中期（3-6 个月）：若 Starlink V3 卫星部署再次推迟，"天基互联网 + 太空数据中心" 叙事可能从 "SpaceX 一家独大" 转向 "SpaceX + 中国国家队 + 亚马逊 Kuiper" 三足鼎立。长期：星舰 V3 完全可重复 + 高频次发射仍是下半年的"火箭级基础设施"，技术一旦稳定，全球低轨通信、月球货运、火星任务都将受其节奏影响。</p>
 </div>
-  <div class="for">📌 对谁重要：👨‍💻 开发者：WAIC 主论坛与开源生态分会发布的模型、Agent、SDK 现场体验非常适合快速摸底下半年技术路线 💼 投资人：300+ 全球首发清单是下半年的"掘金地图"，尤其关注国产推理芯片、行业垂类 Agent、AI for Science 🛒 普通用户：未来 6-12 个月会看到一波"AI 智能体手机/家电/汽车"集中上市，AI 不再是聊天框而是真正接管你的设备</div>
+  <div class="for">📌 对谁重要：👨‍💻 开发者：火箭姿控 / 发动机健康监测 / 故障诊断领域人才被 SpaceX 失分再次凸显稀缺 💼 投资人：盯住 SpaceX 股价 + 国内商业航天 ETF 映射；马斯克 X 平台发声是第一信号源 🛒 普通用户：未来 1-2 年 Starlink 直连手机 / 卫星互联网进入消费市场的进度可能延迟 1-2 个季度</div>
+  <div class="tips-section"><h3>▸ 实用建议</h3><ul class="tips-list">
+  <li>关注 SpaceX 官方 X 账号直播，第一手判断复飞节奏</li>
+  <li>关注 7 月 18 日国内航天板块异动，可能因 SpaceX 失分短期受益</li>
+  <li>商业航天创业者：把握窗口期，主动对接国内卫星互联网 + 商业发射订单</li>
+</ul></div>
+  <div class="sources-section"><h3>📚 来源</h3><p>腾讯财经 · IT 之家 · 路透社 · SpaceX 官方 · 凤凰财经</p><p class="confidence-badge A">置信度：<strong>A · 高</strong></p></div>
+</article>
+
+<article class="news-card lvl2">
+  <div class="card-head">
+    <span class="lvl">🔥🔥 重要</span>
+    <span class="cat">科技动态</span>
+  </div>
+
+  <h2>WAIC 2026 第二天：华为昇腾 950 超节点 + 阶跃 Agent OS + 普渡"一脑多形"</h2>
+  <p class="lead">📚 1 分钟背景</p>
+  <div class="view-section"><h3>📊 看点</h3><ul class="view-list">
+  <li>华为昇腾 950 超节点：1024 张智算卡 + 3 微秒时延 = 算力底座真机亮相</li>
+  <li>阶步 Agent OS：从"模型调用"升级到"操作系统级 Agent 调度"</li>
+  <li>普渡"一脑多形"Physical Agent：服务机器人架构升级，单一智能体驱动多形态硬件</li>
+  <li>魔法原子 × 速卖通：出海路径从"产品出口"升级到"品牌 + 平台 + AI 能力"打包出海</li>
+  <li>气象专会发布"妈祖"AI 预警方案，被联合国点名推动全民早期预警倡议</li>
+</ul></div>
+  
+  <div class="why-section">
+  <h3>💡 为什么关注</h3>
+  <p>WAIC 第二天释放的不是"又一场 AI 发布会"，而是**"算力底座 + 操作系统 + 机器人本体 + 数据资产 + 出海渠道"的五位一体展示**——这是中国 AI 产业链第一次以"全栈真机演示"形态集体亮相。昇腾 950 真机证明**国产算力底座可以承载大模型训练推理**；Agent OS 证明**AI 调度从"调用 API"升级到"操作系统级"**；普渡"一脑多形" 证明**具身智能本体已具备多形态量产能力**——三件事叠加，意味着 2026 下半年"国产 AI 全栈"叙事第一次具备工程级证据。 从投资视角看，AI 产业链的估值锚开始从"算力卡数 / 模型参数"升级到"全栈工程能力"——单一环节的领先会被全栈厂商稀释。</p>
+</div>
+  <div class="future-section">
+  <h3>🔮 未来影响</h3>
+  <p>短期：WAIC 现场发布的"全栈清单" 将被视为下半年国产 AI 概念股的"弹药库"。中期：随着国产芯片 + 模型 + 终端形成工程闭环，AI 产业的国产化率将显著提升，海外 GPU 与 API 的依赖度持续下降。长期：当"AI 主权"从概念变成产业链事实，全球 AI 监管框架的博弈点将从"模型对齐"延伸到"算力主权"与"数据主权"。</p>
+</div>
+  <div class="for">📌 对谁重要：👨‍💻 开发者：Agent OS、国产 GPU 编程模型、具身智能数据平台是下半年的技术热点 💼 投资人：AI 全栈产业链（芯片 / 模型 / OS / 终端 / 数据）值得整体布局 🛒 普通用户：未来 6-12 个月会看到一波"AI 智能体终端"集中上市，从手机到家电到汽车都会接入</div>
   <div class="tips-section"><h3>▸ 实用建议</h3><ul class="tips-list">
   <li>关注 WAIC 官方公众号的"首发产品名单"，锁定 2-3 个你最感兴趣的品类</li>
-  <li>治理合规层面：公司若有对外业务，提前评估"AI 治理高级别会议"释放的合规要求对自家产品的影响</li>
-  <li>想试新模型：WAIC 现场及会后一周会有大量 demo 体验通道，建议优先试用垂类 Agent</li>
+  <li>关注华为昇腾开放计划与阶步 Agent OS 文档，国产 AI 工程栈入门成本在下降</li>
+  <li>关注"妈祖" AI 预警方案的落地节奏，气象 + AI 是确定性赛道</li>
 </ul></div>
-  <div class="sources-section"><h3>📚 来源</h3><p>腾讯新闻 · 搜狐智能新生活 · 上海市经信委 WAIC 官方预热 · CCTV 视频报道</p><p class="confidence-badge A">置信度：<strong>A · 高</strong></p></div>
+  <div class="sources-section"><h3>📚 来源</h3><p>腾讯新闻 · 新华社 · 央视《新闻 1+1》 · 中国经营报 · IT 之家</p><p class="confidence-badge A">置信度：<strong>A · 高</strong></p></div>
 </article>
 
-<article class="news-card lvl3">
+<article class="news-card lvl2">
   <div class="card-head">
-    <span class="lvl">🔥🔥🔥 必读</span>
+    <span class="lvl">🔥🔥 重要</span>
     <span class="cat">科技动态</span>
   </div>
 
-  <h2>SpaceX 星舰第 13 飞 7 月 17 日 6:45 升空，IPO 后首次硬考验</h2>
+  <h2>TCL 中环 119.6 亿投建深圳半导体大硅片项目，填补华南产能缺口</h2>
   <p class="lead">📚 1 分钟背景</p>
   <div class="view-section"><h3>📊 看点</h3><ul class="view-list">
-  <li>IPO 后首次试飞，2 万亿美元估值能否稳住，V3 表现是关键</li>
-  <li>Starlink V3 卫星首次真正功能完整体入轨，验证太空数据中心 + 宽带融合</li>
-  <li>V3 比 V2 推力更大、有效载荷更高，是登月登火计划的"核心装备"</li>
-  <li>全程约 1 小时，绕地球大半圈，飞船计划在澳大利亚西北海域受控溅落</li>
+  <li>119.6 亿元单笔投资，是 2026 年华南半导体材料领域最大单笔投资</li>
+  <li>12 英寸 + 70 万片/月：产能规模对标国际头部厂商</li>
+  <li>填补华南空白：长三角 + 环渤海 + 成渝 + 华南"四足"全国布局基本成型</li>
+  <li>60 个月实施周期：意味着 2026-2031 年的长期供给规划</li>
 </ul></div>
   
   <div class="why-section">
   <h3>💡 为什么关注</h3>
-  <p>这次飞行是 SpaceX 商业叙事的"期中考试"：**2 万亿美元估值需要 V3 兑现承诺**。6 月 IPO 后，星舰每一次试飞都直接反映在股价和投资人信心上。本次任务特别之处在于搭载功能完好的 Starlink V3 卫星——这意味着 Starlink 太空数据中心 + 全球宽带网络从"PPT 阶段"进入"组网部署阶段"，是商业航天 + 互联网基础设施融合的关键里程碑。 对国内产业而言，星舰 V3 验证的是**重型可重复火箭 + 大规模卫星组网**这套体系，对中国商业航天（蓝箭航天、星际荣耀、星河动力等）既是压力也是参照系。</p>
+  <p>119.6 亿元单笔投资 + 70 万片/月产能，**对标的是国际头部厂商的产能级别**。这件事的意义不只是"一家公司扩产"，而是**国产 12 英寸大硅片的产能突破临界点**——当一家公司的单项目产能接近国际头部水平时，"国产替代"故事从"小批量验证"升级到"批量供货能力"。 对粤港澳大湾区而言，这是补齐半导体产业链的关键一环：深圳 + 广州 + 东莞的集成电路设计、制造、封测链条终于有了**本地化的大硅片供应能力**，降低了物流与协同成本。</p>
 </div>
   <div class="future-section">
   <h3>🔮 未来影响</h3>
-  <p>短期：本次试飞若成功，SpaceX 估值有望从 IPO 价格进一步走高，并直接利好全球商业航天板块；国内航天概念股（钧达股份、金风科技等）也将受到映射。中期：若 Starlink V3 卫星组网速度明显加快，全球"天基互联网"格局将从"概念阶段"进入"实际替代阶段"，对地面通信运营商、跨国物联网形成结构性能冲击。长期：星舰 V3 完全可重复 + 高频次发射，将使"近地轨道 + 月球 + 火星"的运输成本下降一个数量级。</p>
+  <p>短期：催化半导体材料板块情绪，沪硅产业、立昂微等同行可能受连带利好。中期：随着国产大硅片产能释放，下游晶圆厂（华虹、中芯、长江存储、长鑫存储）的材料采购成本下降、对海外供应商的议价能力上升。长期：当国产大硅片产能 + 良率真正达到国际水平，"卡脖子"清单上的关键材料项将逐步解除，半导体产业链国产化率从"设计 + 封测" 扩展到"材料 + 设备"。</p>
 </div>
-  <div class="for">📌 对谁重要：👨‍💻 开发者：星舰成功会拉动 SpaceX 自身和上下游（Starlink、星链终端、太空云计算）的工程师需求 💼 投资人：盯住 SpaceX 股价 + 国内商业航天 ETF；星舰 V3 是下半年最大的"事件驱动" 🛒 普通用户：未来 1-2 年，Starlink 直连手机 / 卫星互联网可能进入常规消费市场，差旅、远海、应急场景的网络覆盖会显著改善</div>
+  <div class="for">📌 对谁重要：👨‍💻 开发者：半导体材料工程、晶体生长工艺、设备工程师岗位需求增长 💼 投资人：半导体材料、设备、晶圆厂三段产业链值得整体布局 🛒 普通用户：未来 1-2 年的高端芯片成本 / 良率会因此波动，间接影响消费电子价位</div>
   <div class="tips-section"><h3>▸ 实用建议</h3><ul class="tips-list">
-  <li>关注 SpaceX 官方 X 账号直播，第一手判断试飞结果</li>
-  <li>关注 7 月 17 日 06:45 前后的国内航天板块异动</li>
-  <li>Starlink 终端预订：若你常去偏远地区，可以开始研究 Starlink Roam 等消费级套餐</li>
+  <li>关注 TCL 中环后续季报，看深圳项目的工程进度与良率指标</li>
+  <li>关注沪硅产业、立昂微等同行是否跟进扩产</li>
+  <li>半导体从业者：跨学科补"材料工程 + AI" 基础，可关注 Materials Project 等开源数据库</li>
 </ul></div>
-  <div class="sources-section"><h3>📚 来源</h3><p>腾讯新闻 · 凤凰财经 · SpaceX 官方 · 路透社</p><p class="confidence-badge A">置信度：<strong>A · 高</strong></p></div>
+  <div class="sources-section"><h3>📚 来源</h3><p>观点网 · TCL 中环公告 · 半导体行业观察 · 财联社</p><p class="confidence-badge A">置信度：<strong>A · 高</strong></p></div>
 </article>
 
-<article class="news-card lvl2">
+<article class="news-card lvl1">
   <div class="card-head">
-    <span class="lvl">🔥🔥 重要</span>
+    <span class="lvl">🔥 速览</span>
     <span class="cat">科技动态</span>
   </div>
 
-  <h2>华为乾崑发布 2026 上半年安全出行报告：累计里程 123.5 亿公里，97.5% 活跃</h2>
+  <h2>特斯拉得州开发轮椅用户专用无人驾驶车，FSD 政策对接先行</h2>
   
   <div class="view-section"><h3>📊 看点</h3><ul class="view-list">
-  <li>半年 123.5 亿公里，规模处于行业第一梯队</li>
-  <li>97.5% 用户活跃度，说明 ADS 系统粘性极强，是"用了就回不去"</li>
-  <li>报告本身即"事实标准"——为整个行业提供数据基线</li>
-  <li>与百度 Apollo、特斯拉 FSD 形成三足鼎立的对比坐标系</li>
-</ul></div>
-  
-  <div class="why-section">
-  <h3>💡 为什么关注</h3>
-  <p>123.5 亿公里 + 97.5% 活跃度这两个数字合在一起，意味着华为乾崑已经不只是"高阶辅助驾驶方案"，而是**中国 ADAS 行业最大的真实道路数据采集器**——每辆车每天贡献的真实路况数据，反过来迭代模型、迭代地图、迭代预测。这是数据飞轮的关键拐点。</p>
-</div>
-  <div class="future-section">
-  <h3>🔮 未来影响</h3>
-  <p>短期：高活跃度直接转化为"鸿蒙智行"系列车型的销售背书。中期：报告将成为央视 / 行业 / 监管引用的事实标准，会进一步加速其他厂商在体验、口碑、续航、智驾能力上的内卷。长期：当数据飞轮真正形成，华为乾崑有可能成为"中国版 FSD"——即"数据 + 算力 + 模型 + 整车集成"四位一体的护城河。</p>
-</div>
-  <div class="for">📌 对谁重要：👨‍💻 开发者：智慧出行、辅助驾驶量产工程岗位需求持续增长 💼 投资人：报告本身即销售背书，间接利好鸿蒙智行（问界、智界、享界）相关产业链 🛒 普通用户：97.5% 活跃意味着"绝大多数车主已经在高频使用"，可大胆启用</div>
-  <div class="tips-section"><h3>▸ 实用建议</h3><ul class="tips-list">
-  <li>鸿蒙智行车系用户：可在车机端启用"智驾里程推送"，直观看到自己贡献了多少亿公里数据</li>
-  <li>准备购车的用户：报告里的"用户活跃度"是比参数更可靠的参考项</li>
-  <li>同行工程师：可对照报告中的"零事故/低事故"目标反推自家方案的安全策略</li>
-</ul></div>
-  <div class="sources-section"><h3>📚 来源</h3><p>华为乾崑官方 · IT 之家 · 搜狐汽车</p><p class="confidence-badge A">置信度：<strong>A · 高</strong></p></div>
-</article>
-
-<article class="news-card lvl2">
-  <div class="card-head">
-    <span class="lvl">🔥🔥 重要</span>
-    <span class="cat">科技动态</span>
-  </div>
-
-  <h2>特斯拉确认在德州开发"轮椅用户专用"无人驾驶车</h2>
-  
-  <div class="view-section"><h3>📊 看点</h3><ul class="view-list">
-  <li>残障出行市场长期被忽视，无障碍接送是高频刚需</li>
+  <li>残障出行 + 无人驾驶首次被绑定成商业场景</li>
   <li>Cybercab 之后的延伸形态：从"通用 Robotaxi"到"专用场景车型"</li>
-  <li>听证会场合官宣，说明政策对接已先行（无人驾驶立法节奏）</li>
+  <li>听证会场合官宣：政策对接已先行（无人驾驶立法节奏）</li>
   <li>与特斯拉 FSD / Robotaxi 主线形成"通用 + 专用"双轨</li>
 </ul></div>
   
@@ -472,136 +474,76 @@ footer {
   <div class="sources-section"><h3>📚 来源</h3><p>腾讯科技 · 路透社 · The Verge · 美国 ADA 法案</p><p class="confidence-badge A">置信度：<strong>A · 高</strong></p></div>
 </article>
 
-<article class="news-card lvl2">
-  <div class="card-head">
-    <span class="lvl">🔥🔥 重要</span>
-    <span class="cat">科技动态</span>
-  </div>
-
-  <h2>三星 SDS 整合量子计算 + AI 仿真光刻，2026 H2 启动技术验证追赶台积电</h2>
-  
-  <div class="view-section"><h3>📊 看点</h3><ul class="view-list">
-  <li>把量子计算引入半导体制造是头部代工厂的"工程级实验"</li>
-  <li>直接对标台积电：3nm / 1.4nm 制程的良率与代工价格</li>
-  <li>Samsung SDS 主导，意味着 AI + 量子跨学科团队进入主力战</li>
-  <li>一旦成功，将重塑光刻仿真软件的竞争格局</li>
-</ul></div>
-  
-  <div class="why-section">
-  <h3>💡 为什么关注</h3>
-  <p>三星这次的关键在于**把"量子计算 + AI"从实验室搬进产线仿真**——之前业界对量子计算的期待多是"远期颠覆"，三星现在把它应用到光刻仿真的"近端痛点"上。如果验证可行，意味着先进制程的良率提升和成本下降路径被打通，**1.4nm / 0.3nm 这种工艺级别从"试投"走向"稳投"的可能性大幅提高**。</p>
-</div>
-  <div class="future-section">
-  <h3>🔮 未来影响</h3>
-  <p>短期：引发半导体设备 / EDA 软件厂商对"AI + 量子仿真"路线的重新评估。中期：若三星光刻仿真跑通，台积电和英特尔必将跟进，量子计算硬件供应商（IBM、Google、IonQ、本源量子等）的客户列表将新增"代工厂"这一关键客户群。长期：当量子 + AI 真能稳定参与先进制程仿真，半导体产业从"经验工艺"走向"算法工艺"，对工程师技能结构产生根本影响。</p>
-</div>
-  <div class="for">📌 对谁重要：👨‍💻 开发者：光刻 / 蚀刻仿真、AI for EDA、量子算法交叉领域的人才极度稀缺 💼 投资人：关注 EDA 厂商（如 Cadence、新思、华大九天）的量子仿真合作 🛒 普通用户：未来 1-2 年的高端芯片成本 / 良率会因此波动，间接影响消费电子价位</div>
-  <div class="tips-section"><h3>▸ 实用建议</h3><ul class="tips-list">
-  <li>关注 imec（比利时微电子研究中心）后续的路线图更新与公开 benchmark</li>
-  <li>半导体从业者：跨学科补"AI + 量子"基础入门成本不高，可从 Qiskit / PennyLane 起步</li>
-  <li>关注三星电子 7-8 月是否官宣验证进展</li>
-</ul></div>
-  <div class="sources-section"><h3>📚 来源</h3><p>IT 之家 · sedaily 韩媒 · imec 2026 制程路线图 · 快科技</p><p class="confidence-badge A">置信度：<strong>A · 高</strong></p></div>
-</article>
-
 <article class="news-card lvl1">
   <div class="card-head">
     <span class="lvl">🔥 速览</span>
     <span class="cat">科技动态</span>
   </div>
 
-  <h2>努比亚官宣 NaviX Ultra "全球首款 AI 智能体手机"</h2>
+  <h2>网络安全周爆雷：CitrixBleed 新漏洞公开 PoC + SharePoint RCE + Adobe ColdFusion 10/10</h2>
   
   <div class="view-section"><h3>📊 看点</h3><ul class="view-list">
-  <li>"AI 智能体手机"是 2026 年的新品类，不再以参数 / 屏幕为主战场</li>
-  <li>中低端品牌抢先发布，意味着"AI 智能体"将是下半年标配</li>
-  <li>价格尚未公开，但努比亚策略一向主打高性价比</li>
-  <li>与三星 Galaxy AI / 苹果 Apple Intelligence / OPPO / vivo 形成混战</li>
+  <li>CitrixBleed PoC 公开后 24 小时内即被攻击者利用，窗口期几乎为零</li>
+  <li>SharePoint RCE 已被"在野利用"，意味着补丁发布时已经有人受害</li>
+  <li>Adobe ColdFusion 一次性修 7 个 10/10 漏洞，是 2026 年最严重的 Adobe 补丁事件之一</li>
+  <li>Microsoft Teams 新增 AI Bot 阻断控件：AI 自身成为新的攻击载体</li>
+  <li>Anthropic Claude 模型解除限制：因网络安全告警被政府恢复使用</li>
 </ul></div>
   
   <div class="why-section">
   <h3>💡 为什么关注</h3>
-  <p>"AI 智能体手机" 不只是概念噱头，而是手机厂商意识到**调用 AI 能力的接口正在从"聊天框"迁移到"系统底层"**：UI 操作、跨应用任务、电话接听、日程管理都开始 AI 代为执行。努比亚抢先打出"AI 智能体"旗号，目的是在 9-12 月的旗舰大战到来前抢占定义权。</p>
+  <p>本周三条线索指向同一个趋势：**漏洞从"披露到利用"的窗口期被压缩到 24 小时以内，传统月度补丁节奏失效**。CitrixBleed PoC 公开 + 立即利用、SharePoint RCE 在野利用、Adobe 一次性 7 个 10/10——意味着企业安全运营（SOC）必须从"月度漏洞管理"转向"实时威胁响应"。 同时，**AI 自身进入攻击载体列表**：Microsoft Teams 必须新增"阻断未授权 AI Bot" 控件、Anthropic Claude 因网络安全告警曾被限制后又解除——AI 既是防御工具也是攻击入口，"AI for Security" 与 "Security for AI" 成为同一议题的两面。</p>
 </div>
   <div class="future-section">
   <h3>🔮 未来影响</h3>
-  <p>短期：年底之前会有 3-5 家国内手机厂商跟进"AI 智能体"产品定位。中期：操作系统级 AI Agent（如 Apple Intelligence、小艺、超级助理、YOYO）的渗透率会成为厂商竞争指标。长期：手机作为"个人助理终端"的属性会越强，聊天 App、搜索引擎、办公 App 的入口地位被部分替代。</p>
+  <p>未来 6-12 个月，企业从"采购更多安全产品"转向"重构身份 / 信任架构"——持续身份验证、设备态势、AI 行为检测会变成默认组件。MFA 已经不算强信号，passkey / 设备绑定 / 行为模式分析将成为新标配。同时 AI 红队（AI Red Team）、AI 漏洞挖掘工具将被大型企业纳入安全运营体系。</p>
 </div>
-  <div class="for">📌 对谁重要：👨‍💻 开发者：手机 AI Agent 框架（鸿蒙意图框架、苹果 Foundation Model、ColorOS Agent）已成技术热点 💼 投资人：智能体手机的真实留存率、销售数据是"AI 终端"故事的试金石 🛒 普通用户：换机周期可考虑——AI Agent 体验刚起步，建议"看 1-2 家对比体验"再下单</div>
-  <div class="tips-section"><h3>▸ 实用建议</h3><ul class="tips-list">
-  <li>关注 WAIC 2026 努比亚展台的真实演示（看是否真的能"任务级"代为执行）</li>
-  <li>现有用户：先在自己手机里开启系统级 AI（如小米超级小爱、vivo 蓝心）体验，再用 NaviX Ultra 对比</li>
-  <li>不要把"AI 智能体"当成换机首要指标——续航 / 屏幕 / 系统仍是基础</li>
-</ul></div>
-  <div class="sources-section"><h3>📚 来源</h3><p>腾讯数码 · 中关村在线 · 努比亚官方</p><p class="confidence-badge A">置信度：<strong>A · 高</strong></p></div>
-</article>
-
-<article class="news-card lvl1">
-  <div class="card-head">
-    <span class="lvl">🔥 速览</span>
-    <span class="cat">科技动态</span>
-  </div>
-
-  <h2>特宝生物 ACT201 注射液 ASO 乙肝新药获 NMPA 临床试验批准</h2>
-  
-  <div class="view-section"><h3>📊 看点</h3><ul class="view-list">
-  <li>ASO 是核酸药物主流管线之一，国内管线开始加速</li>
-  <li>乙肝患者基数大（中国约 8000 万慢性乙肝感染者），具备重磅药潜质</li>
-  <li>与 siRNA / mRNA / 寡核苷酸类形成国内"广谱核酸药"集群</li>
-  <li>特宝生物是福建省首家科创板上市的生物医药企业</li>
-</ul></div>
-  
-  <div class="why-section">
-  <h3>💡 为什么关注</h3>
-  <p>乙肝治疗领域长期以核苷（酸）类口服药为主（如恩替卡韦、替诺福韦），需要长期甚至终生用药，难以根除。ASO 类药物思路是**从 RNA 层面直接沉默病毒复制关键基因**，具备功能性治愈的潜力——这意味着乙肝有望从"终身控制"转向"有停药可能"。</p>
-</div>
-  <div class="future-section">
-  <h3>🔮 未来影响</h3>
-  <p>短期：催化国内 ASO / 核酸药物产业链（核酸合成、修饰、递送系统）进入加速期。中期：临床结果若能在 II 期看到功能性治愈迹象，将引发跨国药企并购 / 合作潮。长期：乙肝功能性治愈意味着全球每年可减少数十万例肝硬化、肝癌死亡。</p>
-</div>
-  <div class="for">📌 对谁重要：👨‍💻 开发者：bio-informatics、递送系统、寡核苷酸合成工艺岗位需求增长 💼 投资人：核酸药产业链上下游（化学合成、CRO、临床服务）标的可能迎来戴维斯双击 🛒 普通用户：乙肝患者家庭可关注未来 II/III 期数据，意味着"治愈可能性"开始有了科学路线图</div>
-  <div class="tips-section"><h3>▸ 实用建议</h3><ul class="tips-list">
-  <li>乙肝患者：不要因此停用现有抗病毒药，但可在下次就诊时与医生讨论"功能性治愈"研究进展</li>
-  <li>关注 2026-2027 年 ASO 乙肝赛道的高质量 II 期数据</li>
-  <li>求职 / 转行：生物学背景可关注核酸药 CDMO / CRO 岗位</li>
-</ul></div>
-  <div class="sources-section"><h3>📚 来源</h3><p>国家药监局 · 特宝生物公告 · 医药观澜</p><p class="confidence-badge C">置信度：<strong>C · 低</strong></p></div>
-</article>
-
-<article class="news-card lvl1">
-  <div class="card-head">
-    <span class="lvl">🔥 速览</span>
-    <span class="cat">科技动态</span>
-  </div>
-
-  <h2>🔒 网络安全第 20 周：供应链攻击 + AI 漏洞生成加速</h2>
-  
-  <div class="view-section"><h3>📊 看点</h3><ul class="view-list">
-  <li>单周同时打掉医药、制造业、教育、汽车四条主链——攻击资源调度已工业化</li>
-  <li>AI 进入漏洞挖掘、攻击样本生成环节</li>
-  <li>老牌 MFA 被绕过已成常态，企业需要"持续身份验证"取代"一次性 MFA"</li>
-  <li>汽车行业数据资产被精准利用，灰色产业链条以"暗链 + AI"组合运转</li>
-</ul></div>
-  
-  <div class="why-section">
-  <h3>💡 为什么关注</h3>
-  <p>这份报告把 2026 上半年网络安全态势总结得极其到位——AI 已经从"防御武器"变成了"攻击武器"，而且攻击方开始**把多个弱关联突破合并成单次多链攻击**：供应链 → 身份 → MFA → 数据变卖 → 二次钓鱼。这是一个明显的范式拐点：传统的"边界防御、单点 MFA、单点日志审计"模型已经失效。</p>
-</div>
-  <div class="future-section">
-  <h3>🔮 未来影响</h3>
-  <p>未来 6-12 个月，企业从"采购更多安全产品"转向"重构身份 / 信任架构"——持续身份验证、设备态势、AI 行为检测会变成默认组件。MFA 已经不算强信号，passkey / 设备绑定 / 行为模式分析将成为新标配。</p>
-</div>
-  <div class="for">📌 对谁重要：👨‍💻 开发者：身份安全、行为分析、AI for SecOps 岗位需求剧增 💼 投资人：身份安全、AI for Cybersecurity、隐私计算是下半年确定性赛道 🛒 普通用户：警惕"扫码登录" + 短信验证码钓鱼组合，转向 passkey / 密钥登录</div>
+  <div class="for">📌 对谁重要：👨‍💻 开发者：身份安全、行为分析、AI for SecOps、AI Red Team 岗位需求剧增 💼 投资人：身份安全、AI for Cybersecurity、隐私计算是下半年确定性赛道 🛒 普通用户：警惕"扫码登录" + 短信验证码钓鱼组合，转向 passkey / 密钥登录</div>
   <div class="tips-section"><h3>▸ 实用建议</h3><ul class="tips-list">
   <li>个人用户：把重要账号（银行 / 邮箱 / 密码管理器）切换到 passkey 或硬件密钥</li>
   <li>开发者：使用 IBAC / RBAC / 零信任 等身份治理框架替代传统 MFA</li>
-  <li>企业：关注 SASE / SSE / 持续身份验证等方案</li>
+  <li>企业：关注 SASE / SSE / 持续身份验证等方案；建立"披露-利用 24h 窗口" 的应急响应流程</li>
+  <li>关注 Adobe / Microsoft / Citrix 的紧急补丁状态</li>
 </ul></div>
-  <div class="sources-section"><h3>📚 来源</h3><p>腾讯云开发者 · CSDN 安全频道 · 瑞星动态 · 国家工业信息安全发展研究中心</p><p class="confidence-badge C">置信度：<strong>C · 低</strong></p></div>
+  <div class="sources-section"><h3>📚 来源</h3><p>SecurityWeek · The Record from Recorded Future News · Krebs · Microsoft Security Response Center</p><p class="confidence-badge C">置信度：<strong>C · 低</strong></p></div>
+</article>
+
+<article class="news-card lvl1">
+  <div class="card-head">
+    <span class="lvl">🔥 速览</span>
+    <span class="cat">科技动态</span>
+  </div>
+
+  <h2>🛠 ClawHub Top 1：从 13000+ skill 池里看"必装"清单</h2>
+  <p class="lead">📚 1 分钟背景</p>
+  <div class="view-section"><h3>📊 看点</h3><ul class="view-list">
+  <li>总注册 13729+，5,494+ 优质技能，32 个主类别，热榜：编程代理 1222 / Web 开发 938 / DevOps 408</li>
+  <li>安装命令：`npm i -g clawh` + `clawhub install <skill>`，已与 npm 打通</li>
+  <li>安全机制：每个 skill 都有 VirusTotal 扫描标签（绿色 = Benign）</li>
+  <li>7 月 5 日 OpenClaw 2026.5.2 Beta 还加了"ClawHub / npm 插件切换"功能，来源更透明</li>
+  <li>推荐顺序分四层：生存 / 效率 / 安全 / 进阶</li>
+  <li>重点推荐覆盖：日历、微信通知、表格自动化、浏览器自动化、AI for Research</li>
+</ul></div>
+  
+  <div class="why-section">
+  <h3>💡 为什么关注</h3>
+  <p>从 13000+ skill 池里精选 10 个必装，最大的实用价值是**反选**——避免被 skill 海洋淹没。warm3snow 的分四层（生存 / 效率 / 安全 / 进阶）其实就是一条从"让 OpenClaw 能用"到"让它真强"的最小集曲线。</p>
+</div>
+  <div class="future-section">
+  <h3>🔮 未来影响</h3>
+  <p>短期：ClawHub 的"必装清单"类内容会越来越多，本质是**技能市场走向成熟、内容生产者主动精选**的标志。中期：随着 v2026.5.2 把 ClawHub / npm 切换打通，skill 与 npm 包的界限会进一步模糊。长期：skill 市场可能演化成"私人技能分店"——类似苹果 "Apple Intelligence Skill Store"。</p>
+</div>
+  <div class="for">📌 对谁重要：👨‍💻 开发者：装 10 个里至少 3 个是你生产效率杠杆点 💼 投资人：ClawHub + 生态相关的上下游（语义搜索、安全扫描、技能管理）值得关注 🛒 普通用户：装一套能让 OpenClaw 替代 80% 日常数字化工作的最小集</div>
+  <div class="tips-section"><h3>▸ 实用建议</h3><ul class="tips-list">
+  <li>先装三层："生存层"（最少配置）→"效率层"（明显节省时间）→"安全层"（防止数据外泄）</li>
+  <li>不必一次装完，按需迭代</li>
+  <li>每次安装后立刻 `clawhub update --all` 保持技能最新</li>
+</ul></div>
+  <div class="sources-section"><h3>📚 来源</h3><p>博客园 warm3snow · CSDN ClawHub 详解 · 慕课网调研报告 · OpenClaw 2026.5.2 更新解读</p><p class="confidence-badge C">置信度：<strong>C · 低</strong></p></div>
 </article>
 </main>
 <footer>
-  🌙 探索者 Bot3 · 睡后任务 · 学霸笔记本 · 2026-07-17
+  🌙 探索者 Bot3 · 睡后任务 · 复古剪贴簿 · 2026-07-18
 </footer>
 </body>
 </html>
