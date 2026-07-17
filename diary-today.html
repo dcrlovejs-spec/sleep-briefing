@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>🐼 国风水墨风 · 2026-07-17</title>
+<title>🩰 日系治愈风 · 2026-07-17</title>
 <style>
 /* ===== 公共装饰类（所有主题共用）===== */
 .tape {
@@ -161,149 +161,143 @@
 }
 
 :root {
-  --bg: #F5EFE0;
-  --paper: #FAF5E8;
-  --card: #FFFFFF;
-  --ink: #1A1A1A;
-  --ink-soft: #3A3A3A;
-  --ink-light: #6B6B6B;
-  --stamp-red: #B33A3A;
-  --gold: #D4AF37;
-  --jade: #6B8E4E;
-  --grid: rgba(212, 175, 55, 0.1);
+  --bg: #FFF8F2;
+  --paper: #FFFFFF;
+  --ink: #5A4A3F;
+  --ink-light: #8A7968;
+  --pink: #FFD7E5;
+  --pink-deep: #F5A8C5;
+  --mint: #C7E5E5;
+  --grid: rgba(199, 229, 229, 0.4);
+  --paper-shadow: rgba(180, 140, 110, 0.1);
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body {
-  font-family: 'STKaiti', 'KaiTi', 'PingFang SC', serif;
+  font-family: 'Hiragino Maru Gothic ProN', 'Yuanti SC', 'PingFang SC', system-ui, sans-serif;
   background-color: var(--bg);
   background-image:
-    radial-gradient(circle at 10% 10%, rgba(212, 175, 55, 0.05) 0%, transparent 25%),
-    radial-gradient(circle at 90% 90%, rgba(179, 58, 58, 0.05) 0%, transparent 25%);
-  color: var(--ink); line-height: 1.9;
-  padding: 30px 16px 80px; min-height: 100vh;
+    radial-gradient(circle at 15% 10%, var(--pink) 0%, transparent 8%),
+    radial-gradient(circle at 85% 30%, var(--mint) 0%, transparent 10%);
+  color: var(--ink);
+  line-height: 1.8;
+  padding: 30px 16px 80px;
+  min-height: 100vh;
 }
 
 header.hero {
-  max-width: 880px; margin: 0 auto 40px;
+  max-width: 880px;
+  margin: 0 auto 40px;
   background-color: var(--paper);
   background-image:
     linear-gradient(var(--grid) 1px, transparent 1px),
     linear-gradient(90deg, var(--grid) 1px, transparent 1px);
-  background-size: 32px 32px;
-  border-radius: 4px; padding: 40px 32px;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
-  text-align: center; position: relative;
-  border: 1px solid var(--gold);
+  background-size: 20px 20px;
+  border-radius: 24px;
+  padding: 40px 32px;
+  box-shadow: 0 6px 20px rgba(180, 140, 110, 0.15);
+  text-align: center;
+  position: relative;
 }
+header.hero .tape { background: var(--pink-deep); opacity: 0.5; }
 .hero h1 {
-  font-size: 38px; color: var(--ink);
-  font-family: 'STKaiti', serif;
-  font-weight: 700; margin-bottom: 8px;
-  letter-spacing: 0.2em;
-  text-shadow: 2px 2px 0 rgba(212, 175, 55, 0.3);
+  font-size: 32px; color: var(--ink); font-weight: 700;
+  margin-bottom: 8px; letter-spacing: 0.05em;
 }
 .hero .date {
-  color: var(--stamp-red); font-size: 14px;
-  letter-spacing: 0.4em; margin: 8px 0 20px;
-  font-family: 'STKaiti', serif;
+  color: var(--ink-light); font-size: 14px;
+  letter-spacing: 0.2em; margin: 8px 0 20px;
 }
 .hero img {
-  width: 220px; height: 220px; border-radius: 4px;
+  width: 220px; height: 220px; border-radius: 50%;
   object-fit: cover; margin: 16px auto;
-  border: 6px solid var(--paper);
-  box-shadow: 0 0 0 1px var(--gold), 0 4px 12px rgba(0,0,0,0.15);
-  display: block;
+  border: 8px solid var(--paper);
+  box-shadow: 0 8px 24px rgba(180, 140, 110, 0.25);
+  display: block; transform: rotate(-3deg);
 }
 .hero .pulse {
-  background: rgba(212, 175, 55, 0.1);
-  border: 1.5px solid var(--gold);
-  border-radius: 4px; padding: 16px 20px;
-  margin-top: 24px; font-size: 15px;
-  text-align: left; font-family: 'STKaiti', serif;
+  background: rgba(251, 200, 213, 0.3);
+  border: 1.5px dashed var(--pink-deep);
+  border-radius: 16px;
+  padding: 16px 20px;
+  margin-top: 24px;
+  font-size: 15px;
+  text-align: left;
   position: relative;
 }
 .hero .pulse::before {
-  content: '印'; position: absolute;
-  top: -10px; right: 20px;
-  background: var(--stamp-red); color: var(--paper);
-  padding: 4px 10px; border-radius: 4px;
-  font-size: 14px; font-weight: 700;
-  box-shadow: 1px 1px 0 rgba(0,0,0,0.2);
+  content: '🌸'; position: absolute; top: -12px; left: 20px;
+  background: var(--paper); padding: 0 6px; font-size: 18px;
 }
 
 main {
-  max-width: 880px; margin: 0 auto; display: grid; gap: 28px;
+  max-width: 880px; margin: 0 auto; display: grid; gap: 32px;
 }
 
 .news-card {
   background-color: var(--paper);
   background-image:
-    radial-gradient(circle, var(--grid) 1px, transparent 1px);
-  background-size: 24px 24px;
-  border-radius: 4px; padding: 28px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 18px 18px;
+  border-radius: 20px;
+  padding: 28px;
+  box-shadow: 0 2px 8px rgba(180, 140, 110, 0.08);
   position: relative;
-  border: 1px solid var(--gold);
   transition: transform 0.3s;
 }
-.news-card:hover { transform: translateY(-2px); }
+.news-card:hover { transform: translateY(-3px) rotate(-0.5deg); }
+.news-card .sticker.top-right { top: 14px; right: 18px; max-width: 50px; opacity: 0.7; }
+.news-card .sticker.top-right { transform: scale(0.6); transform-origin: top right; }
 
 .news-card .lvl {
   display: inline-block;
-  background: var(--stamp-red); color: var(--paper);
-  padding: 4px 14px; border-radius: 4px;
+  background: var(--pink-deep); color: white;
+  padding: 4px 14px; border-radius: 14px;
   font-size: 12px; font-weight: 700;
-  font-family: 'STKaiti', serif;
-  letter-spacing: 0.2em;
+  margin-bottom: 10px;
 }
-.news-card.lvl2 .lvl { background: var(--gold); color: var(--ink); }
-.news-card.lvl1 .lvl { background: var(--jade); color: var(--paper); }
+.news-card.lvl2 .lvl { background: var(--mint); color: var(--ink); }
+.news-card.lvl1 .lvl { background: var(--pink); color: var(--ink); }
 
 .news-card .cat {
   display: inline-block;
-  background: var(--ink); color: var(--paper);
-  padding: 3px 10px; font-size: 11px;
-  margin-left: 6px; font-family: 'STKaiti', serif;
-  letter-spacing: 0.1em;
+  background: rgba(168, 208, 224, 0.5);
+  color: var(--ink);
+  padding: 3px 10px; border-radius: 10px;
+  font-size: 11px; margin-left: 6px; font-weight: 500;
 }
 
 .news-card h2 {
-  font-size: 24px; margin: 10px 0 6px;
-  color: var(--ink); font-family: 'STKaiti', serif;
-  font-weight: 700; letter-spacing: 0.05em;
+  font-size: 21px; margin: 10px 0 6px;
+  color: var(--ink); font-weight: 700;
 }
 .news-card .lead {
-  font-size: 15px; color: var(--stamp-red);
-  font-weight: 500; margin-bottom: 10px;
-  font-family: 'STKaiti', serif;
+  font-size: 15px; color: var(--pink-deep);
+  font-weight: 600; margin-bottom: 10px;
 }
 .news-card .detail {
-  font-size: 14px; color: var(--ink-soft);
-  margin-bottom: 12px; line-height: 1.9;
-  font-family: 'STKaiti', serif;
+  font-size: 14px; color: var(--ink-light);
+  margin-bottom: 12px; line-height: 1.8;
 }
 .news-card .for {
   font-size: 13px; color: var(--ink);
-  background: rgba(107, 142, 78, 0.15);
-  border-left: 3px solid var(--jade);
-  padding: 8px 14px; margin-bottom: 8px;
-  font-family: 'STKaiti', serif;
+  background: rgba(199, 229, 229, 0.3);
+  border: 1.5px dashed var(--mint);
+  padding: 8px 14px; border-radius: 12px;
+  margin-bottom: 8px; display: inline-block;
 }
 .news-card .tip {
   font-size: 13px; color: var(--ink);
   padding: 8px 14px;
-  background: rgba(212, 175, 55, 0.15);
-  border-left: 3px solid var(--gold);
-  margin-top: 8px; font-family: 'STKaiti', serif;
+  border-left: 4px solid var(--pink-deep);
+  background: rgba(255, 215, 229, 0.3);
+  border-radius: 4px 12px 12px 4px;
+  margin-top: 10px;
 }
 
 footer {
   max-width: 880px; margin: 40px auto 0;
-  text-align: center; color: var(--ink-light);
-  font-size: 13px; font-family: 'STKaiti', serif;
-  letter-spacing: 0.3em;
-  border-top: 1px solid var(--gold);
-  padding-top: 20px;
+  text-align: center; color: var(--ink-light); font-size: 13px;
 }
 </style>
 </head>
@@ -311,9 +305,9 @@ footer {
 <header class="hero">
   <div class="tape tape-pink tape-tl"></div>
   <div class="tape tape-mint tape-tr"></div>
-  <h1>🐼 国风水墨风</h1>
+  <h1>🩰 日系治愈风</h1>
   <div class="date">2026-07-17 · 周三 · 科技手帐</div>
-  <img src="demo-assets-v2/i-chinese.png" alt="国风水墨">
+  <img src="demo-assets-v2/a-japanese.png" alt="日系治愈">
   <div class="pulse">今日科技脉搏 🩸 · WAIC 2026 在沪启幕，习近平主旨演讲定调"智能伙伴" / SpaceX 星舰第 13 飞 7 月 17 日 6:45  / 华为乾崑发布 2026 上半年安全出行报告：累计里程 123</div>
 </header>
 <div class="audio-player-wrap" style="max-width:680px;margin:24px auto;padding:18px 22px;background:rgba(255,255,255,0.85);border-radius:14px;box-shadow:0 4px 14px rgba(0,0,0,0.08);border:1.5px dashed rgba(0,0,0,0.12);">
@@ -349,7 +343,7 @@ footer {
   <h3>🔮 未来影响</h3>
   <p>短期（1-3 个月）：WAIC 发布的 AI 治理框架、300+ 首发产品的清单将被视为下半年行业合规与产品路线图的两个权威基准。中期（6-12 个月）：国家级 AI 治理共识叠加欧盟 AI Act、各国 AI 安全协议，全球 AI 合规成本将显著上升，缺乏治理对接能力的小厂面临淘汰；具备合规与全栈能力的厂商将拿到更多政府/央国企订单。</p>
 </div>
-  <div class="for">📌 对谁重要：👨‍💻开发者 · 💼投资人 · 🛒普通用户</div>
+  <div class="for">📌 对谁重要：👨‍💻 开发者：WAIC 主论坛与开源生态分会发布的模型、Agent、SDK 现场体验非常适合快速摸底下半年技术路线 💼 投资人：300+ 全球首发清单是下半年的"掘金地图"，尤其关注国产推理芯片、行业垂类 Agent、AI for Science 🛒 普通用户：未来 6-12 个月会看到一波"AI 智能体手机/家电/汽车"集中上市，AI 不再是聊天框而是真正接管你的设备</div>
   <div class="tips-section"><h3>▸ 实用建议</h3><ul class="tips-list">
   <li>关注 WAIC 官方公众号的"首发产品名单"，锁定 2-3 个你最感兴趣的品类</li>
   <li>治理合规层面：公司若有对外业务，提前评估"AI 治理高级别会议"释放的合规要求对自家产品的影响</li>
@@ -381,7 +375,7 @@ footer {
   <h3>🔮 未来影响</h3>
   <p>短期：本次试飞若成功，SpaceX 估值有望从 IPO 价格进一步走高，并直接利好全球商业航天板块；国内航天概念股（钧达股份、金风科技等）也将受到映射。中期：若 Starlink V3 卫星组网速度明显加快，全球"天基互联网"格局将从"概念阶段"进入"实际替代阶段"，对地面通信运营商、跨国物联网形成结构性能冲击。长期：星舰 V3 完全可重复 + 高频次发射，将使"近地轨道 + 月球 + 火星"的运输成本下降一个数量级。</p>
 </div>
-  <div class="for">📌 对谁重要：👨‍💻开发者 · 💼投资人 · 🛒普通用户</div>
+  <div class="for">📌 对谁重要：👨‍💻 开发者：星舰成功会拉动 SpaceX 自身和上下游（Starlink、星链终端、太空云计算）的工程师需求 💼 投资人：盯住 SpaceX 股价 + 国内商业航天 ETF；星舰 V3 是下半年最大的"事件驱动" 🛒 普通用户：未来 1-2 年，Starlink 直连手机 / 卫星互联网可能进入常规消费市场，差旅、远海、应急场景的网络覆盖会显著改善</div>
   <div class="tips-section"><h3>▸ 实用建议</h3><ul class="tips-list">
   <li>关注 SpaceX 官方 X 账号直播，第一手判断试飞结果</li>
   <li>关注 7 月 17 日 06:45 前后的国内航天板块异动</li>
@@ -413,7 +407,7 @@ footer {
   <h3>🔮 未来影响</h3>
   <p>短期：高活跃度直接转化为"鸿蒙智行"系列车型的销售背书。中期：报告将成为央视 / 行业 / 监管引用的事实标准，会进一步加速其他厂商在体验、口碑、续航、智驾能力上的内卷。长期：当数据飞轮真正形成，华为乾崑有可能成为"中国版 FSD"——即"数据 + 算力 + 模型 + 整车集成"四位一体的护城河。</p>
 </div>
-  <div class="for">📌 对谁重要：👨‍💻开发者 · 💼投资人 · 🛒普通用户</div>
+  <div class="for">📌 对谁重要：👨‍💻 开发者：智慧出行、辅助驾驶量产工程岗位需求持续增长 💼 投资人：报告本身即销售背书，间接利好鸿蒙智行（问界、智界、享界）相关产业链 🛒 普通用户：97.5% 活跃意味着"绝大多数车主已经在高频使用"，可大胆启用</div>
   <div class="tips-section"><h3>▸ 实用建议</h3><ul class="tips-list">
   <li>鸿蒙智行车系用户：可在车机端启用"智驾里程推送"，直观看到自己贡献了多少亿公里数据</li>
   <li>准备购车的用户：报告里的"用户活跃度"是比参数更可靠的参考项</li>
@@ -445,7 +439,7 @@ footer {
   <h3>🔮 未来影响</h3>
   <p>短期：可能拉升德州本地 Robotaxi 测试牌照 / 政府订单。中期：欧盟、美国其他州可能在 1-2 年内跟进推出"残障无人驾驶出行专项"，形成赛道级政策机会。长期：当残疾人 + 老年人 + 儿童构成完整覆盖，"Robotaxi 不只是出行工具，更是社会基础设施" 的叙事将被坐实。</p>
 </div>
-  <div class="for">📌 对谁重要：👨‍💻开发者 · 💼投资人 · 🛒普通用户</div>
+  <div class="for">📌 对谁重要：👨‍💻 开发者：残障出行 + 无人驾驶交叉领域人才稀缺，相关项目值得提前卡位 💼 投资人：关注配套改装、轮椅固定机构、康复出行保险等周边产业 🛒 普通用户：自家若涉及接送父母 / 家人出行，可主动询问本地 Robotaxi 服务进度</div>
   <div class="tips-section"><h3>▸ 实用建议</h3><ul class="tips-list">
   <li>残障人士家庭：可关注 Tesla / 百度 / 滴滴的专项出行试点城市</li>
   <li>关注 SAE J3069 / 美国残障设施法案（ADA）的实施细则</li>
@@ -477,7 +471,7 @@ footer {
   <h3>🔮 未来影响</h3>
   <p>短期：引发半导体设备 / EDA 软件厂商对"AI + 量子仿真"路线的重新评估。中期：若三星光刻仿真跑通，台积电和英特尔必将跟进，量子计算硬件供应商（IBM、Google、IonQ、本源量子等）的客户列表将新增"代工厂"这一关键客户群。长期：当量子 + AI 真能稳定参与先进制程仿真，半导体产业从"经验工艺"走向"算法工艺"，对工程师技能结构产生根本影响。</p>
 </div>
-  <div class="for">📌 对谁重要：👨‍💻开发者 · 💼投资人 · 🛒普通用户</div>
+  <div class="for">📌 对谁重要：👨‍💻 开发者：光刻 / 蚀刻仿真、AI for EDA、量子算法交叉领域的人才极度稀缺 💼 投资人：关注 EDA 厂商（如 Cadence、新思、华大九天）的量子仿真合作 🛒 普通用户：未来 1-2 年的高端芯片成本 / 良率会因此波动，间接影响消费电子价位</div>
   <div class="tips-section"><h3>▸ 实用建议</h3><ul class="tips-list">
   <li>关注 imec（比利时微电子研究中心）后续的路线图更新与公开 benchmark</li>
   <li>半导体从业者：跨学科补"AI + 量子"基础入门成本不高，可从 Qiskit / PennyLane 起步</li>
@@ -509,7 +503,7 @@ footer {
   <h3>🔮 未来影响</h3>
   <p>短期：年底之前会有 3-5 家国内手机厂商跟进"AI 智能体"产品定位。中期：操作系统级 AI Agent（如 Apple Intelligence、小艺、超级助理、YOYO）的渗透率会成为厂商竞争指标。长期：手机作为"个人助理终端"的属性会越强，聊天 App、搜索引擎、办公 App 的入口地位被部分替代。</p>
 </div>
-  <div class="for">📌 对谁重要：👨‍💻开发者 · 💼投资人 · 🛒普通用户</div>
+  <div class="for">📌 对谁重要：👨‍💻 开发者：手机 AI Agent 框架（鸿蒙意图框架、苹果 Foundation Model、ColorOS Agent）已成技术热点 💼 投资人：智能体手机的真实留存率、销售数据是"AI 终端"故事的试金石 🛒 普通用户：换机周期可考虑——AI Agent 体验刚起步，建议"看 1-2 家对比体验"再下单</div>
   <div class="tips-section"><h3>▸ 实用建议</h3><ul class="tips-list">
   <li>关注 WAIC 2026 努比亚展台的真实演示（看是否真的能"任务级"代为执行）</li>
   <li>现有用户：先在自己手机里开启系统级 AI（如小米超级小爱、vivo 蓝心）体验，再用 NaviX Ultra 对比</li>
@@ -541,7 +535,7 @@ footer {
   <h3>🔮 未来影响</h3>
   <p>短期：催化国内 ASO / 核酸药物产业链（核酸合成、修饰、递送系统）进入加速期。中期：临床结果若能在 II 期看到功能性治愈迹象，将引发跨国药企并购 / 合作潮。长期：乙肝功能性治愈意味着全球每年可减少数十万例肝硬化、肝癌死亡。</p>
 </div>
-  <div class="for">📌 对谁重要：👨‍💻开发者 · 💼投资人 · 🛒普通用户</div>
+  <div class="for">📌 对谁重要：👨‍💻 开发者：bio-informatics、递送系统、寡核苷酸合成工艺岗位需求增长 💼 投资人：核酸药产业链上下游（化学合成、CRO、临床服务）标的可能迎来戴维斯双击 🛒 普通用户：乙肝患者家庭可关注未来 II/III 期数据，意味着"治愈可能性"开始有了科学路线图</div>
   <div class="tips-section"><h3>▸ 实用建议</h3><ul class="tips-list">
   <li>乙肝患者：不要因此停用现有抗病毒药，但可在下次就诊时与医生讨论"功能性治愈"研究进展</li>
   <li>关注 2026-2027 年 ASO 乙肝赛道的高质量 II 期数据</li>
@@ -573,7 +567,7 @@ footer {
   <h3>🔮 未来影响</h3>
   <p>未来 6-12 个月，企业从"采购更多安全产品"转向"重构身份 / 信任架构"——持续身份验证、设备态势、AI 行为检测会变成默认组件。MFA 已经不算强信号，passkey / 设备绑定 / 行为模式分析将成为新标配。</p>
 </div>
-  <div class="for">📌 对谁重要：👨‍💻开发者 · 💼投资人 · 🛒普通用户</div>
+  <div class="for">📌 对谁重要：👨‍💻 开发者：身份安全、行为分析、AI for SecOps 岗位需求剧增 💼 投资人：身份安全、AI for Cybersecurity、隐私计算是下半年确定性赛道 🛒 普通用户：警惕"扫码登录" + 短信验证码钓鱼组合，转向 passkey / 密钥登录</div>
   <div class="tips-section"><h3>▸ 实用建议</h3><ul class="tips-list">
   <li>个人用户：把重要账号（银行 / 邮箱 / 密码管理器）切换到 passkey 或硬件密钥</li>
   <li>开发者：使用 IBAC / RBAC / 零信任 等身份治理框架替代传统 MFA</li>
@@ -583,7 +577,7 @@ footer {
 </article>
 </main>
 <footer>
-  🌙 探索者 Bot3 · 睡后任务 · 国风水墨 · 2026-07-17
+  🌙 探索者 Bot3 · 睡后任务 · 日系治愈 · 2026-07-17
 </footer>
 </body>
 </html>
