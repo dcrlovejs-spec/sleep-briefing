@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>🐼 国风水墨风 · 2026-07-17</title>
+<title>🌌 深夜银河风 · 2026-07-17</title>
 <style>
 /* ===== 公共装饰类（所有主题共用）===== */
 .tape {
@@ -159,151 +159,181 @@
   text-decoration: none;
   border-bottom: 1px dotted var(--ink-light);
 }
+.confidence-badge {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.confidence-badge.A {
+  background: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+.confidence-badge.B {
+  background: #fff3cd;
+  color: #856404;
+  border: 1px solid #ffeeba;
+}
+
+.confidence-badge.C {
+  background: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+
+.confidence-badge strong {
+  font-size: 14px;
+  margin-left: 4px;
+}
+
 
 :root {
-  --bg: #F5EFE0;
-  --paper: #FAF5E8;
-  --card: #FFFFFF;
-  --ink: #1A1A1A;
-  --ink-soft: #3A3A3A;
-  --ink-light: #6B6B6B;
-  --stamp-red: #B33A3A;
-  --gold: #D4AF37;
-  --jade: #6B8E4E;
-  --grid: rgba(212, 175, 55, 0.1);
+  --bg: #0B0F2C;
+  --card: #1A1F4A;
+  --ink: #E8E8FF;
+  --muted: #9999CC;
+  --star: #FFFFFF;
+  --purple: #6B5BD9;
+  --cyan: #5BD9E0;
+  --gold: #FFD700;
+  --pink: #FF8FAB;
+  --grid: rgba(255, 255, 255, 0.05);
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body {
-  font-family: 'STKaiti', 'KaiTi', 'PingFang SC', serif;
+  font-family: 'Quicksand', 'PingFang SC', system-ui, sans-serif;
   background-color: var(--bg);
   background-image:
-    radial-gradient(circle at 10% 10%, rgba(212, 175, 55, 0.05) 0%, transparent 25%),
-    radial-gradient(circle at 90% 90%, rgba(179, 58, 58, 0.05) 0%, transparent 25%);
-  color: var(--ink); line-height: 1.9;
+    radial-gradient(2px 2px at 20% 30%, var(--star), transparent),
+    radial-gradient(1px 1px at 40% 70%, var(--star), transparent),
+    radial-gradient(2px 2px at 60% 20%, var(--star), transparent),
+    radial-gradient(1px 1px at 80% 60%, var(--star), transparent),
+    radial-gradient(1.5px 1.5px at 10% 80%, var(--star), transparent),
+    radial-gradient(1px 1px at 90% 40%, var(--star), transparent),
+    radial-gradient(2px 2px at 30% 50%, var(--star), transparent),
+    radial-gradient(1px 1px at 70% 90%, var(--star), transparent),
+    radial-gradient(1.5px 1.5px at 50% 10%, var(--star), transparent),
+    linear-gradient(135deg, #0B0F2C 0%, #1A1F4A 50%, #2D1B4E 100%);
+  background-attachment: fixed;
+  color: var(--ink); line-height: 1.7;
   padding: 30px 16px 80px; min-height: 100vh;
 }
 
 header.hero {
   max-width: 880px; margin: 0 auto 40px;
-  background-color: var(--paper);
+  background-color: var(--card);
   background-image:
-    linear-gradient(var(--grid) 1px, transparent 1px),
-    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
-  background-size: 32px 32px;
-  border-radius: 4px; padding: 40px 32px;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+    radial-gradient(1.5px 1.5px at 30% 40%, var(--star), transparent),
+    radial-gradient(1px 1px at 70% 60%, var(--star), transparent),
+    radial-gradient(1px 1px at 50% 80%, var(--star), transparent);
+  background-size: 80px 80px;
+  border-radius: 24px; padding: 40px 32px;
+  box-shadow: 0 0 40px rgba(107, 91, 217, 0.4);
   text-align: center; position: relative;
-  border: 1px solid var(--gold);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 .hero h1 {
-  font-size: 38px; color: var(--ink);
-  font-family: 'STKaiti', serif;
+  font-size: 34px; color: var(--star);
   font-weight: 700; margin-bottom: 8px;
-  letter-spacing: 0.2em;
-  text-shadow: 2px 2px 0 rgba(212, 175, 55, 0.3);
+  text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+  letter-spacing: 0.05em;
 }
 .hero .date {
-  color: var(--stamp-red); font-size: 14px;
-  letter-spacing: 0.4em; margin: 8px 0 20px;
-  font-family: 'STKaiti', serif;
+  color: var(--muted); font-size: 14px;
+  letter-spacing: 0.3em; margin: 8px 0 20px;
 }
 .hero img {
-  width: 220px; height: 220px; border-radius: 4px;
+  width: 220px; height: 220px; border-radius: 50%;
   object-fit: cover; margin: 16px auto;
-  border: 6px solid var(--paper);
-  box-shadow: 0 0 0 1px var(--gold), 0 4px 12px rgba(0,0,0,0.15);
+  border: 4px solid var(--gold);
+  box-shadow: 0 0 30px rgba(255, 215, 0, 0.6);
   display: block;
 }
 .hero .pulse {
-  background: rgba(212, 175, 55, 0.1);
-  border: 1.5px solid var(--gold);
-  border-radius: 4px; padding: 16px 20px;
+  background: linear-gradient(135deg, var(--purple), var(--cyan));
+  border-radius: 16px; padding: 18px 24px;
   margin-top: 24px; font-size: 15px;
-  text-align: left; font-family: 'STKaiti', serif;
-  position: relative;
-}
-.hero .pulse::before {
-  content: '印'; position: absolute;
-  top: -10px; right: 20px;
-  background: var(--stamp-red); color: var(--paper);
-  padding: 4px 10px; border-radius: 4px;
-  font-size: 14px; font-weight: 700;
-  box-shadow: 1px 1px 0 rgba(0,0,0,0.2);
+  text-align: left;
+  box-shadow: 0 0 20px rgba(91, 217, 224, 0.3);
 }
 
 main {
-  max-width: 880px; margin: 0 auto; display: grid; gap: 28px;
+  max-width: 880px; margin: 0 auto; display: grid; gap: 24px;
 }
 
 .news-card {
-  background-color: var(--paper);
+  background-color: var(--card);
   background-image:
-    radial-gradient(circle, var(--grid) 1px, transparent 1px);
-  background-size: 24px 24px;
-  border-radius: 4px; padding: 28px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    radial-gradient(1px 1px at 20% 30%, var(--star), transparent),
+    radial-gradient(1px 1px at 60% 70%, var(--star), transparent),
+    radial-gradient(1px 1px at 80% 20%, var(--star), transparent);
+  background-size: 120px 120px;
+  border-radius: 20px; padding: 28px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.3);
   position: relative;
-  border: 1px solid var(--gold);
-  transition: transform 0.3s;
+  border: 1px solid rgba(107, 91, 217, 0.3);
+  transition: all 0.3s;
 }
-.news-card:hover { transform: translateY(-2px); }
+.news-card:hover {
+  border-color: var(--gold);
+  box-shadow: 0 0 24px rgba(255, 215, 0, 0.3);
+}
 
 .news-card .lvl {
   display: inline-block;
-  background: var(--stamp-red); color: var(--paper);
-  padding: 4px 14px; border-radius: 4px;
-  font-size: 12px; font-weight: 700;
-  font-family: 'STKaiti', serif;
-  letter-spacing: 0.2em;
+  background: linear-gradient(135deg, var(--gold), var(--pink));
+  color: var(--bg); padding: 5px 14px;
+  border-radius: 14px; font-size: 13px; font-weight: 700;
 }
-.news-card.lvl2 .lvl { background: var(--gold); color: var(--ink); }
-.news-card.lvl1 .lvl { background: var(--jade); color: var(--paper); }
+.news-card.lvl2 .lvl { background: linear-gradient(135deg, var(--purple), var(--cyan)); color: var(--star); }
+.news-card.lvl1 .lvl { background: rgba(255,255,255,0.15); color: var(--star); }
 
 .news-card .cat {
   display: inline-block;
-  background: var(--ink); color: var(--paper);
-  padding: 3px 10px; font-size: 11px;
-  margin-left: 6px; font-family: 'STKaiti', serif;
-  letter-spacing: 0.1em;
+  background: rgba(255, 215, 0, 0.2);
+  color: var(--gold); padding: 3px 12px;
+  border-radius: 12px; font-size: 11px;
+  margin-left: 6px; font-weight: 600;
+  border: 1px solid rgba(255, 215, 0, 0.3);
 }
 
 .news-card h2 {
-  font-size: 24px; margin: 10px 0 6px;
-  color: var(--ink); font-family: 'STKaiti', serif;
-  font-weight: 700; letter-spacing: 0.05em;
+  font-size: 22px; margin: 12px 0 6px;
+  color: var(--star); font-weight: 700;
 }
 .news-card .lead {
-  font-size: 15px; color: var(--stamp-red);
+  font-size: 15px; color: var(--cyan);
   font-weight: 500; margin-bottom: 10px;
-  font-family: 'STKaiti', serif;
 }
 .news-card .detail {
-  font-size: 14px; color: var(--ink-soft);
-  margin-bottom: 12px; line-height: 1.9;
-  font-family: 'STKaiti', serif;
+  font-size: 14px; color: var(--muted);
+  margin-bottom: 14px; line-height: 1.8;
 }
 .news-card .for {
-  font-size: 13px; color: var(--ink);
-  background: rgba(107, 142, 78, 0.15);
-  border-left: 3px solid var(--jade);
-  padding: 8px 14px; margin-bottom: 8px;
-  font-family: 'STKaiti', serif;
+  font-size: 13px; color: var(--star);
+  background: rgba(107, 91, 217, 0.2);
+  padding: 8px 14px; border-radius: 12px;
+  margin-bottom: 8px;
+  border: 1px solid rgba(107, 91, 217, 0.4);
 }
 .news-card .tip {
-  font-size: 13px; color: var(--ink);
-  padding: 8px 14px;
-  background: rgba(212, 175, 55, 0.15);
+  font-size: 13px; color: var(--star);
+  padding: 10px 14px;
+  background: rgba(255, 215, 0, 0.1);
   border-left: 3px solid var(--gold);
-  margin-top: 8px; font-family: 'STKaiti', serif;
+  border-radius: 4px 12px 12px 4px;
+  margin-top: 10px;
 }
 
 footer {
   max-width: 880px; margin: 40px auto 0;
-  text-align: center; color: var(--ink-light);
-  font-size: 13px; font-family: 'STKaiti', serif;
-  letter-spacing: 0.3em;
-  border-top: 1px solid var(--gold);
-  padding-top: 20px;
+  text-align: center; color: var(--muted); font-size: 13px;
+  letter-spacing: 0.2em;
 }
 </style>
 </head>
@@ -311,9 +341,9 @@ footer {
 <header class="hero">
   <div class="tape tape-pink tape-tl"></div>
   <div class="tape tape-mint tape-tr"></div>
-  <h1>🐼 国风水墨风</h1>
+  <h1>🌌 深夜银河风</h1>
   <div class="date">2026-07-17 · 周三 · 科技手帐</div>
-  <img src="demo-assets-v2/i-chinese.png" alt="国风水墨">
+  <img src="demo-assets-v2/e-galaxy.png" alt="深夜银河">
   <div class="pulse">今日科技脉搏 🩸 · WAIC 2026 在沪启幕，习近平主旨演讲定调"智能伙伴" / SpaceX 星舰第 13 飞 7 月 17 日 6:45  / 华为乾崑发布 2026 上半年安全出行报告：累计里程 123</div>
 </header>
 <div class="audio-player-wrap" style="max-width:680px;margin:24px auto;padding:18px 22px;background:rgba(255,255,255,0.85);border-radius:14px;box-shadow:0 4px 14px rgba(0,0,0,0.08);border:1.5px dashed rgba(0,0,0,0.12);">
@@ -355,7 +385,7 @@ footer {
   <li>治理合规层面：公司若有对外业务，提前评估"AI 治理高级别会议"释放的合规要求对自家产品的影响</li>
   <li>想试新模型：WAIC 现场及会后一周会有大量 demo 体验通道，建议优先试用垂类 Agent</li>
 </ul></div>
-  <div class="sources-section"><h3>📚 来源</h3><p>腾讯新闻 · 搜狐智能新生活 · 上海市经信委 WAIC 官方预热 · CCTV 视频报道</p></div>
+  <div class="sources-section"><h3>📚 来源</h3><p>腾讯新闻 · 搜狐智能新生活 · 上海市经信委 WAIC 官方预热 · CCTV 视频报道</p><p class="confidence-badge A">置信度：<strong>A · 高</strong></p></div>
 </article>
 
 <article class="news-card lvl3">
@@ -387,7 +417,7 @@ footer {
   <li>关注 7 月 17 日 06:45 前后的国内航天板块异动</li>
   <li>Starlink 终端预订：若你常去偏远地区，可以开始研究 Starlink Roam 等消费级套餐</li>
 </ul></div>
-  <div class="sources-section"><h3>📚 来源</h3><p>腾讯新闻 · 凤凰财经 · SpaceX 官方 · 路透社</p></div>
+  <div class="sources-section"><h3>📚 来源</h3><p>腾讯新闻 · 凤凰财经 · SpaceX 官方 · 路透社</p><p class="confidence-badge A">置信度：<strong>A · 高</strong></p></div>
 </article>
 
 <article class="news-card lvl2">
@@ -419,7 +449,7 @@ footer {
   <li>准备购车的用户：报告里的"用户活跃度"是比参数更可靠的参考项</li>
   <li>同行工程师：可对照报告中的"零事故/低事故"目标反推自家方案的安全策略</li>
 </ul></div>
-  <div class="sources-section"><h3>📚 来源</h3><p>华为乾崑官方 · IT 之家 · 搜狐汽车</p></div>
+  <div class="sources-section"><h3>📚 来源</h3><p>华为乾崑官方 · IT 之家 · 搜狐汽车</p><p class="confidence-badge A">置信度：<strong>A · 高</strong></p></div>
 </article>
 
 <article class="news-card lvl2">
@@ -451,7 +481,7 @@ footer {
   <li>关注 SAE J3069 / 美国残障设施法案（ADA）的实施细则</li>
   <li>辅助具行业从业者：主动对接无人驾驶 + 出行平台提供商</li>
 </ul></div>
-  <div class="sources-section"><h3>📚 来源</h3><p>腾讯科技 · 路透社 · The Verge · 美国 ADA 法案</p></div>
+  <div class="sources-section"><h3>📚 来源</h3><p>腾讯科技 · 路透社 · The Verge · 美国 ADA 法案</p><p class="confidence-badge A">置信度：<strong>A · 高</strong></p></div>
 </article>
 
 <article class="news-card lvl2">
@@ -483,7 +513,7 @@ footer {
   <li>半导体从业者：跨学科补"AI + 量子"基础入门成本不高，可从 Qiskit / PennyLane 起步</li>
   <li>关注三星电子 7-8 月是否官宣验证进展</li>
 </ul></div>
-  <div class="sources-section"><h3>📚 来源</h3><p>IT 之家 · sedaily 韩媒 · imec 2026 制程路线图 · 快科技</p></div>
+  <div class="sources-section"><h3>📚 来源</h3><p>IT 之家 · sedaily 韩媒 · imec 2026 制程路线图 · 快科技</p><p class="confidence-badge A">置信度：<strong>A · 高</strong></p></div>
 </article>
 
 <article class="news-card lvl1">
@@ -515,7 +545,7 @@ footer {
   <li>现有用户：先在自己手机里开启系统级 AI（如小米超级小爱、vivo 蓝心）体验，再用 NaviX Ultra 对比</li>
   <li>不要把"AI 智能体"当成换机首要指标——续航 / 屏幕 / 系统仍是基础</li>
 </ul></div>
-  <div class="sources-section"><h3>📚 来源</h3><p>腾讯数码 · 中关村在线 · 努比亚官方</p></div>
+  <div class="sources-section"><h3>📚 来源</h3><p>腾讯数码 · 中关村在线 · 努比亚官方</p><p class="confidence-badge A">置信度：<strong>A · 高</strong></p></div>
 </article>
 
 <article class="news-card lvl1">
@@ -547,7 +577,7 @@ footer {
   <li>关注 2026-2027 年 ASO 乙肝赛道的高质量 II 期数据</li>
   <li>求职 / 转行：生物学背景可关注核酸药 CDMO / CRO 岗位</li>
 </ul></div>
-  <div class="sources-section"><h3>📚 来源</h3><p>国家药监局 · 特宝生物公告 · 医药观澜</p></div>
+  <div class="sources-section"><h3>📚 来源</h3><p>国家药监局 · 特宝生物公告 · 医药观澜</p><p class="confidence-badge C">置信度：<strong>C · 低</strong></p></div>
 </article>
 
 <article class="news-card lvl1">
@@ -579,11 +609,11 @@ footer {
   <li>开发者：使用 IBAC / RBAC / 零信任 等身份治理框架替代传统 MFA</li>
   <li>企业：关注 SASE / SSE / 持续身份验证等方案</li>
 </ul></div>
-  <div class="sources-section"><h3>📚 来源</h3><p>腾讯云开发者 · CSDN 安全频道 · 瑞星动态 · 国家工业信息安全发展研究中心</p></div>
+  <div class="sources-section"><h3>📚 来源</h3><p>腾讯云开发者 · CSDN 安全频道 · 瑞星动态 · 国家工业信息安全发展研究中心</p><p class="confidence-badge C">置信度：<strong>C · 低</strong></p></div>
 </article>
 </main>
 <footer>
-  🌙 探索者 Bot3 · 睡后任务 · 国风水墨 · 2026-07-17
+  🌙 探索者 Bot3 · 睡后任务 · 深夜银河 · 2026-07-17
 </footer>
 </body>
 </html>
