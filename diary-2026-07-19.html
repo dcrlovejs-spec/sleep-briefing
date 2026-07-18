@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>📚 学霸笔记本 · 2026-07-19</title>
+<style>
+/* ===== 公共装饰类（所有主题共用）===== */
+.tape {
+  position: absolute;
+  width: 70px; height: 22px;
+  opacity: 0.7;
+  z-index: 10;
+}
+.tape-h { background: linear-gradient(90deg, transparent, var(--tape), transparent); }
+.tape-pink { --tape: #FFB7C5; }
+.tape-mint { --tape: #9FE0BB; }
+.tape-yellow { --tape: #FFE99B; }
+.tape-blue { --tape: #A8D0E0; }
+.tape-lavender { --tape: #C9B8F0; }
+.tape-caramel { --tape: #D4B896; }
+.tape-red { --tape: #E8A0A0; }
+.tape-sage { --tape: #B5C9A3; }
+.tape-gold { --tape: #D4AF37; }
+
+/* 手绘小图标（CSS 模拟）*/
+.doodle {
+  display: inline-block;
+  font-style: normal;
+  filter: drop-shadow(0 1px 1px rgba(0,0,0,0.1));
+}
+
+/* 斜贴胶带辅助 */
+.tape-tl { top: -8px; left: 20px; transform: rotate(-6deg); }
+.tape-tr { top: -8px; right: 20px; transform: rotate(7deg); }
+.tape-bl { bottom: -8px; left: 20px; transform: rotate(5deg); }
+.tape-br { bottom: -8px; right: 20px; transform: rotate(-4deg); }
+
+/* 贴纸层叠 */
+.layered { position: relative; }
+.layered::before {
+  content: ''; position: absolute;
+  inset: 4px -4px -4px 4px;
+  background: var(--paper-shadow, rgba(0,0,0,0.05));
+  border-radius: inherit;
+  z-index: -1;
+}
+
+/* ===== v15.1 完整字段样式 ===== */
+.card-head { margin-bottom: 8px; }
+
+.view-section {
+  margin: 12px 0;
+  padding: 10px 14px;
+  background: rgba(0,0,0,0.03);
+  border-radius: 8px;
+}
+.view-section h3 {
+  font-size: 14px;
+  margin: 0 0 6px;
+  color: var(--ink);
+  font-weight: 700;
+}
+.view-list {
+  margin: 0;
+  padding-left: 20px;
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--ink-soft);
+}
+.view-list li { margin-bottom: 4px; }
+
+.bg-card {
+  margin: 12px 0;
+  padding: 8px 14px;
+  background: rgba(0,0,0,0.02);
+  border-left: 3px solid var(--ink-light);
+  border-radius: 4px;
+  font-size: 13px;
+  color: var(--ink-soft);
+}
+.bg-card summary {
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 4px;
+}
+.bg-card p { margin: 6px 0 0 0; }
+
+.why-section,
+.future-section {
+  margin: 14px 0;
+  padding: 12px 16px;
+  background: rgba(255,255,255,0.6);
+  border-radius: 10px;
+  border: 1.5px dashed var(--ink-light);
+}
+.why-section h3,
+.future-section h3 {
+  font-size: 14px;
+  margin: 0 0 6px;
+  color: var(--ink);
+  font-weight: 700;
+}
+.why-section p,
+.future-section p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.8;
+  color: var(--ink);
+}
+
+.tips-section {
+  margin: 12px 0;
+  padding: 10px 14px;
+  background: rgba(255,255,255,0.5);
+  border-radius: 8px;
+  border-left: 4px solid var(--terracotta);
+}
+.tips-section h3 {
+  font-size: 14px;
+  margin: 0 0 6px;
+  color: var(--ink);
+  font-weight: 700;
+}
+.tips-list {
+  margin: 0;
+  padding-left: 18px;
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--ink-soft);
+}
+.tips-list li { margin-bottom: 3px; }
+
+.sources-section {
+  margin: 12px 0 0;
+  padding-top: 8px;
+  border-top: 1px dashed var(--ink-light);
+  font-size: 12px;
+  color: var(--ink-light);
+}
+.sources-section h3 {
+  font-size: 12px;
+  margin: 0 0 4px;
+  font-weight: 600;
+  color: var(--ink-soft);
+}
+.sources-section p { margin: 0; }
+.sources-section a {
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px dotted var(--ink-light);
+}
+.confidence-badge {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.confidence-badge.A {
+  background: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+.confidence-badge.B {
+  background: #fff3cd;
+  color: #856404;
+  border: 1px solid #ffeeba;
+}
+
+.confidence-badge.C {
+  background: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+
+.confidence-badge strong {
+  font-size: 14px;
+  margin-left: 4px;
+}
+
+
+:root {
+  --paper: #FFFFFF;
+  --paper-line: #D4E4F7;
+  --margin-red: #E8A0A0;
+  --ink: #1A1A3A;
+  --ink-light: #5A5A7A;
+  --yellow: #FFE99B;
+  --blue: #A8C5E8;
+  --green: #B5E0B5;
+  --pink: #FFB7C5;
+  --grid: rgba(168, 197, 232, 0.3);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Caveat', 'Comic Sans MS', 'PingFang SC', cursive;
+  background-color: #F5F0E1;
+  background-image:
+    radial-gradient(circle at 50% 50%, var(--yellow) 0%, transparent 15%);
+  color: var(--ink); line-height: 1.7;
+  padding: 30px 16px 80px; min-height: 100vh;
+}
+
+header.hero {
+  max-width: 880px; margin: 0 auto 40px;
+  background-color: var(--paper);
+  background-image:
+    linear-gradient(var(--paper-line) 1px, transparent 1px);
+  background-size: 100% 28px;
+  border-radius: 4px; padding: 40px 32px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  text-align: center; position: relative;
+  border-left: 3px solid var(--margin-red);
+}
+.hero h1 {
+  font-size: 36px; color: var(--ink);
+  font-family: 'Caveat', cursive, system-ui;
+  font-weight: 700; margin-bottom: 8px;
+  text-decoration: underline;
+  text-decoration-color: var(--yellow);
+  text-decoration-thickness: 6px;
+  text-underline-offset: 4px;
+}
+.hero .date {
+  color: var(--ink-light); font-size: 16px;
+  font-family: 'Caveat', cursive;
+  letter-spacing: 0.05em; margin: 8px 0 20px;
+}
+.hero img {
+  width: 220px; height: 220px; border-radius: 4px;
+  object-fit: cover; margin: 16px auto;
+  border: 4px solid var(--paper);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  display: block; transform: rotate(-2deg);
+}
+.hero .pulse {
+  background: var(--yellow);
+  border-radius: 4px; padding: 16px 20px;
+  margin-top: 24px; font-size: 16px;
+  text-align: left;
+  font-family: 'Caveat', cursive, system-ui;
+  box-shadow: 3px 3px 0 var(--ink);
+  position: relative;
+}
+
+main {
+  max-width: 880px; margin: 0 auto; display: grid; gap: 24px;
+}
+
+.news-card {
+  background-color: var(--paper);
+  background-image:
+    linear-gradient(var(--paper-line) 1px, transparent 1px);
+  background-size: 100% 26px;
+  border-radius: 4px; padding: 28px 28px 28px 36px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  position: relative;
+  border-left: 3px solid var(--margin-red);
+  transition: transform 0.2s;
+}
+.news-card:hover { transform: rotate(-0.3deg); }
+
+.news-card .lvl {
+  display: inline-block;
+  background: var(--yellow); color: var(--ink);
+  padding: 4px 14px; border-radius: 4px;
+  font-size: 14px; font-weight: 700;
+  font-family: 'Caveat', cursive, system-ui;
+  box-shadow: 2px 2px 0 var(--ink);
+  margin-bottom: 10px;
+}
+.news-card.lvl2 .lvl { background: var(--blue); }
+.news-card.lvl1 .lvl { background: var(--green); }
+
+.news-card .cat {
+  display: inline-block;
+  background: var(--pink); color: var(--ink);
+  padding: 2px 10px; font-size: 12px;
+  margin-left: 6px; font-weight: 600;
+  font-family: 'Caveat', cursive, system-ui;
+  border-radius: 12px;
+}
+
+.news-card h2 {
+  font-size: 26px; margin: 10px 0 6px;
+  color: var(--ink); font-family: 'Caveat', cursive, system-ui;
+  font-weight: 700;
+}
+.news-card .lead {
+  font-size: 17px; color: var(--ink);
+  font-weight: 500; margin-bottom: 10px;
+  font-family: 'Caveat', cursive, system-ui;
+}
+.news-card .detail {
+  font-size: 15px; color: var(--ink-light);
+  margin-bottom: 12px; line-height: 1.8;
+  font-family: 'Caveat', cursive, system-ui;
+}
+.news-card .for {
+  font-size: 14px; color: var(--ink);
+  background: var(--green);
+  padding: 6px 14px; border-radius: 4px;
+  margin-bottom: 8px; display: inline-block;
+  font-family: 'Caveat', cursive, system-ui;
+  box-shadow: 2px 2px 0 var(--ink);
+}
+.news-card .tip {
+  font-size: 14px; color: var(--ink);
+  padding: 8px 14px;
+  background: rgba(255, 233, 155, 0.5);
+  border: 1.5px dashed var(--ink);
+  border-radius: 4px; margin-top: 10px;
+  font-family: 'Caveat', cursive, system-ui;
+}
+
+footer {
+  max-width: 880px; margin: 40px auto 0;
+  text-align: center; color: var(--ink-light);
+  font-size: 14px; font-family: 'Caveat', cursive, system-ui;
+}
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="tape tape-pink tape-tl"></div>
+  <div class="tape tape-mint tape-tr"></div>
+  <h1>📚 学霸笔记本</h1>
+  <div class="date">2026-07-19 · 周三 · 科技手帐</div>
+  <img src="demo-assets-v2/d-study.png" alt="学霸笔记本">
+  <div class="pulse">今日科技脉搏 🩸 · WAIC 2026 第二天发布潮：商汤 U1 Pro + 荣 / 东方算芯 DF1000：首颗软件定义近存计算 3D AI 芯 / 微软 7 月安全更新 622 个漏洞创历史新高，BitLoc</div>
+</header>
+<div class="audio-player-wrap" style="max-width:680px;margin:24px auto;padding:18px 22px;background:rgba(255,255,255,0.85);border-radius:14px;box-shadow:0 4px 14px rgba(0,0,0,0.08);border:1.5px dashed rgba(0,0,0,0.12);">
+  <h3 style="margin:0 0 10px 0;font-size:18px;color:#333;">🎙️ 今日语音播报（完整 8 条 + 全部内容）</h3>
+  <audio controls preload="metadata" style="width:100%;max-width:600px;">
+    <source src="https://dcrlovejs-spec.github.io/sleep-briefing/podcast.mp3?t=2026-07-19" type="audio/mpeg">
+    你的浏览器不支持 audio 标签，请下载 mp3 后用本地播放器收听。
+  </audio>
+  <p style="margin:8px 0 0 0;font-size:13px;color:#888;">小提示：可下载离线收听；由 edge_tts · 晓晓主播；ffmpeg 重编码</p>
+</div>
+<main>
+
+<article class="news-card lvl3">
+  <div class="card-head">
+    <span class="lvl">🔥🔥🔥 必读</span>
+    <span class="cat">科技动态</span>
+  </div>
+
+  <h2>WAIC 2026 第二天发布潮：商汤 U1 Pro + 荣耀 Robot Phone + 腾讯具身智能全栈</h2>
+  <p class="lead">📚 1 分钟背景</p>
+  <div class="view-section"><h3>📊 看点</h3><ul class="view-list">
+  <li>商汤 U1 Pro：从"单点内容生成" 升级到"系统级内容交付"——多模态 AI 的"长程演进" 范式</li>
+  <li>荣耀 Robot Phone：行业首款机器人手机 + 4DoF 云台系统 + MagicOS Agentic OS，"AI 即类人生命体" 叙事落地</li>
+  <li>腾讯 ADP 4.0：从消费级智能体到企业级智能体的产品矩阵补齐</li>
+  <li>60 台人形机器人规模化部署：从"展品" 升级到"公共服务设施"</li>
+  <li>本届 WAIC 1100+ 家企业参展，3000+ 项展品，300+ 款全球首发</li>
+</ul></div>
+  
+  <div class="why-section">
+  <h3>💡 为什么关注</h3>
+  <p>昨天的 WAIC 不只是"又一场 AI 发布会"——而是**中国 AI 头部厂商第一次以"全栈 + 真机 + 工程级证据" 集体亮相**。商汤 U1 Pro 证明"模型层可以交付级"；荣耀 Robot Phone 证明"终端可以具身化"；腾讯 ADP 4.0 证明"应用层可以企业级"——三件事叠加，意味着 2026 下半年"国产 AI 全栈" 叙事第一次有了工程级证据，不再是 PPT。 对投资视角而言，AI 估值锚开始从"算力卡数 / 模型参数" 升级到"全栈工程能力"——单一环节的领先会被全栈厂商稀释，**真正的赢家是能把"芯片 + 模型 + OS + 终端 + 应用" 五位一体打通的厂商**。</p>
+</div>
+  <div class="future-section">
+  <h3>🔮 未来影响</h3>
+  <p>短期：WAIC 现场发布的"全栈清单" 将被视为下半年国产 AI 概念股的"弹药库"，国产 AI 板块（芯片 + 模型 + OS + 终端）值得整体关注。中期：随着国产芯片 + 模型 + 终端形成工程闭环，AI 产业的国产化率将显著提升，海外 GPU 与 API 的依赖度持续下降。长期：当"AI 主权" 从概念变成产业链事实，全球 AI 监管框架的博弈点将从"模型对齐" 延伸到"算力主权" 与"数据主权"。</p>
+</div>
+  <div class="for">📌 对谁重要：👨‍💻 开发者：Agent OS、国产 GPU 编程模型、具身智能数据平台是下半年的技术热点 💼 投资人：AI 全栈产业链（芯片 / 模型 / OS / 终端 / 数据）值得整体布局 🛒 普通用户：未来 6-12 个月会看到一波"AI 智能体终端" 集中上市，从手机到家电到汽车都会接入</div>
+  <div class="tips-section"><h3>▸ 实用建议</h3><ul class="tips-list">
+  <li>关注 WAIC 官方公众号的"首发产品名单"，锁定 2-3 个你最感兴趣的品类</li>
+  <li>关注华为昇腾开放计划与阶步 Agent OS 文档，国产 AI 工程栈入门成本在下降</li>
+  <li>关注"妈祖" AI 预警方案的落地节奏，气象 + AI 是确定性赛道</li>
+</ul></div>
+  <div class="sources-section"><h3>📚 来源</h3><p>科创板日报 · 界面新闻 · 腾讯科技 · IT 之家 · 荣耀官方 · 新华社</p><p class="confidence-badge A">置信度：<strong>A · 高</strong></p></div>
+</article>
+
+<article class="news-card lvl2">
+  <div class="card-head">
+    <span class="lvl">🔥🔥 重要</span>
+    <span class="cat">科技动态</span>
+  </div>
+
+  <h2>东方算芯 DF1000：首颗软件定义近存计算 3D AI 芯片，14nm+ 等同 4nm 性能</h2>
+  <p class="lead">📚 1 分钟背景</p>
+  <div class="view-section"><h3>📊 看点</h3><ul class="view-list">
+  <li>全球首颗软件定义近存计算 3D AI 芯片——架构创新而非工艺追赶</li>
+  <li>14nm+ 制程 + 3D 垂直封装 = 等同 4nm 性能：国产替代的"第二条路"</li>
+  <li>520 TFLOPS 单芯片算力 + 128 卡集群验证：已具备工程化部署能力</li>
+  <li>成熟制程 + 先进封装：规避 EUV 光刻机卡脖子，又保住了性能上限</li>
+  <li>东方算芯同步展示"超节点、十万卡集群" 的算力底座路线图</li>
+</ul></div>
+  
+  <div class="why-section">
+  <h3>💡 为什么关注</h3>
+  <p>DF1000 的真正意义不是"又一颗国产 AI 芯片"，而是**为"国产算力" 找到了"成熟制程 + 先进封装" 这条第二条路**——当 EUV 光刻机被卡脖子、3nm/2nm 工艺追赶难度极大时，通过 3D 堆叠与近存计算架构创新，**14nm+ 也能对标 4nm 性能**。这条路径绕开了"工艺制程" 的硬约束，是中国半导体产业的战略性突破。 从产业格局看，3D 堆叠 + Chiplet + 近存计算的组合，会让国产芯片厂商重新洗牌——拥有先进封装能力的厂商（长电、通富、华天）将获得超额价值。</p>
+</div>
+  <div class="future-section">
+  <h3>🔮 未来影响</h3>
+  <p>短期：DF1000 的展出将催化半导体材料、设备、先进封装三个子板块的市场情绪。中期：随着 3D 堆叠技术成熟，国产 AI 算力底座将从"追赶制程" 转向"架构创新"，对 EUV 光刻机的依赖度显著下降。长期：当 Chiplet + 3D 堆叠 + 近存计算形成生态，**"中国半导体路径" 可能成为全球半导体产业的另一极**——与"美国主导的工艺制程路径" 形成结构性互补与竞争。</p>
+</div>
+  <div class="for">📌 对谁重要：👨‍💻 开发者：3D 堆叠、Chiplet、近存计算、HBM 高带宽存储是下半年的硬科技热点 💼 投资人：先进封装（长电 / 通富 / 华天）、半导体设备、3D IC 设计工具值得布局 🛒 普通用户：未来 1-2 年 AI 手机、AI PC、AI 汽车的算力成本会因此下降</div>
+  <div class="tips-section"><h3>▸ 实用建议</h3><ul class="tips-list">
+  <li>关注东方算芯后续产品路线图（DF2000 / DF3000）以及 128 卡集群的客户落地</li>
+  <li>半导体从业者：跨学科补"先进封装 + 架构创新" 知识</li>
+  <li>关注 TSMC、英特尔的玻璃基板 TGV 进展——3D 封装赛道已是全球共识</li>
+</ul></div>
+  <div class="sources-section"><h3>📚 来源</h3><p>腾讯科技 · IT 之家 · 艾邦半导体网 · 东方算芯官方 · 半导体行业观察</p><p class="confidence-badge A">置信度：<strong>A · 高</strong></p></div>
+</article>
+
+<article class="news-card lvl2">
+  <div class="card-head">
+    <span class="lvl">🔥🔥 重要</span>
+    <span class="cat">科技动态</span>
+  </div>
+
+  <h2>微软 7 月安全更新 622 个漏洞创历史新高，BitLocker + SharePoint 高危</h2>
+  <p class="lead">📚 1 分钟背景</p>
+  <div class="view-section"><h3>📊 看点</h3><ul class="view-list">
+  <li>622 个漏洞单月修复量创历史新高，是 Windows 单月 416 个补丁同比增长 200%</li>
+  <li>BitLocker 加密绕过（CVE-2026-50661）：物理访问可读取加密数据</li>
+  <li>SharePoint Server RCE（CVE-2026-56164）：权限提升后可直接控制服务器</li>
+  <li>印度最大核电站 Kudankulam 敏感文件遭勒索软件 World Leaks 公开泄露</li>
+  <li>Check Point VPN IKEv1 认证绕过（CVSS 9.3）：远程攻击者可绕过认证</li>
+</ul></div>
+  
+  <div class="why-section">
+  <h3>💡 为什么关注</h3>
+  <p>本月补丁数量"史诗级跳涨" 反映的不是 Windows 系统"突然变脆弱"，而是**AI 漏洞挖掘工具大规模应用 + 攻击产业链工业化** 的双重结果。**"漏洞披露到利用" 的窗口期被压缩到 24 小时以内**，传统月度补丁节奏已彻底失效——企业 SOC（安全运营中心）必须从"月度漏洞管理" 转向"实时威胁响应"。 同时，**AI 自身进入攻击载体列表**：Microsoft Teams 必须新增"阻断未授权 AI Bot" 控件、Anthropic Claude 因网络安全告警曾被限制后又解除——AI 既是防御工具也是攻击入口，"AI for Security" 与 "Security for AI" 成为同一议题的两面。</p>
+</div>
+  <div class="future-section">
+  <h3>🔮 未来影响</h3>
+  <p>未来 6-12 个月，企业从"采购更多安全产品" 转向"重构身份 / 信任架构"——持续身份验证、设备态势、AI 行为检测会变成默认组件。MFA 已经不算强信号，passkey / 设备绑定 / 行为模式分析将成为新标配。同时 AI 红队（AI Red Team）、AI 漏洞挖掘工具将被大型企业纳入安全运营体系。</p>
+</div>
+  <div class="for">📌 对谁重要：👨‍💻 开发者：身份安全、行为分析、AI for SecOps、AI Red Team 岗位需求剧增 💼 投资人：身份安全、AI for Cybersecurity、隐私计算是下半年确定性赛道 🛒 普通用户：警惕"扫码登录" + 短信验证码钓鱼组合，转向 passkey / 密钥登录</div>
+  <div class="tips-section"><h3>▸ 实用建议</h3><ul class="tips-list">
+  <li>个人用户：把重要账号（银行 / 邮箱 / 密码管理器）切换到 passkey 或硬件密钥</li>
+  <li>开发者：使用 IBAC / RBAC / 零信任等身份治理框架替代传统 MFA</li>
+  <li>企业：建立"披露-利用 24h 窗口" 的应急响应流程</li>
+  <li>关注 Adobe / Microsoft / Citrix 的紧急补丁状态</li>
+</ul></div>
+  <div class="sources-section"><h3>📚 来源</h3><p>Microsoft Security Response Center · Krebs · SecurityWeek · The Record · CSDN 2026 年 7 月高危安全态势速览</p><p class="confidence-badge C">置信度：<strong>C · 低</strong></p></div>
+</article>
+
+<article class="news-card lvl1">
+  <div class="card-head">
+    <span class="lvl">🔥 速览</span>
+    <span class="cat">科技动态</span>
+  </div>
+
+  <h2>自动驾驶商业化加速：小马智行第七代 Robotaxi 广州深圳投运 + 滴滴 R2 全球化测试</h2>
+  <p class="lead">📚 1 分钟背景</p>
+  <div class="view-section"><h3>📊 看点</h3><ul class="view-list">
+  <li>小马智行第七代 Robotaxi 广州深圳正式投运：进入"万台量产 + 多城运营" 新阶段</li>
+  <li>第四代自动驾驶卡车家族 2026 年量产：千台量级，BOM 成本降 70%</li>
+  <li>滴滴 R2 全球测试 + L4 全栈自主可控：与广汽埃安联合打造</li>
+  <li>北京亦庄成 BBC 报道焦点：中国无人驾驶已从"测试区" 走向"日常接单"</li>
+  <li>"100% 车规级零部件 + Robotaxi 套件复用"：自动驾驶成本曲线快速下降</li>
+</ul></div>
+  
+  <div class="why-section">
+  <h3>💡 为什么关注</h3>
+  <p>自动驾驶本周新闻的真正信号是**"商业化拐点已到"**——小马智行第七代 Robotaxi 投运 + 第四代卡车 2026 年量产 + BOM 成本下降 70%，**意味着自动驾驶从"烧钱测试" 进入"自我造血" 阶段**。当单车成本足够低 + 限定区域法规足够成熟，自动驾驶出租车的盈利模型可以跑通。 对全球格局而言，**中国自动驾驶已从"追赶者" 变成"示范者"**——BBC 蹲点北京亦庄的报道代表西方主流媒体首次承认中国自动驾驶的领先地位。</p>
+</div>
+  <div class="future-section">
+  <h3>🔮 未来影响</h3>
+  <p>短期：广州、深圳、北京、上海等一线城市的 Robotaxi 覆盖范围将持续扩大，更多用户能体验。中期：当 Robotaxi 跑通"万台规模 + 单车盈利" 模型，自动驾驶卡车、干线物流、最后一公里配送将同步进入规模化阶段。长期：当 L4 自动驾驶成本低于人类司机，出行市场（出租车 + 网约车 + 物流）将经历结构性重构——出行服务提供商的角色从"司机中介" 转向"车队运营商"。</p>
+</div>
+  <div class="for">📌 对谁重要：👨‍💻 开发者：自动驾驶算法、车规级硬件、车队管理平台是下半年热点 💼 投资人：Robotaxi 运营商、激光雷达、车规级芯片、域控制器值得布局 🛒 普通用户：可主动体验广州 / 深圳的 Robotaxi 服务，了解未来出行形态</div>
+  <div class="tips-section"><h3>▸ 实用建议</h3><ul class="tips-list">
+  <li>用户：下载"小马智行" / "萝卜快跑" / "滴滴自动驾驶" 等 App，提前体验</li>
+  <li>关注 SAE J3069 / 国内 L4 法规细则</li>
+  <li>自动驾驶从业者：跨学科补"ROS 2 + 机器学习 + 汽车工程" 基础</li>
+</ul></div>
+  <div class="sources-section"><h3>📚 来源</h3><p>腾讯科技 · 北京商报 · OFweek 智能汽车网 · 网易科技 · 太平洋科技 · BBC</p><p class="confidence-badge A">置信度：<strong>A · 高</strong></p></div>
+</article>
+
+<article class="news-card lvl1">
+  <div class="card-head">
+    <span class="lvl">🔥 速览</span>
+    <span class="cat">科技动态</span>
+  </div>
+
+  <h2>🛠 ClawHub Top 1：自我改进 Agent / Summarize / Find Skills 等必装技能精选</h2>
+  <p class="lead">📚 1 分钟背景</p>
+  <div class="view-section"><h3>📊 看点</h3><ul class="view-list">
+  <li>总注册 13729+，5494+ 优质技能，32 个主类别，热榜：编程代理 1222 / Web 开发 938 / DevOps 408</li>
+  <li>安装命令：`npm i -g clawh` + `clawhub install <skill>`，已与 npm 打通</li>
+  <li>安全机制：每个 skill 都有 VirusTotal 扫描标签（绿色 = Benign）</li>
+  <li>2026.5.2 Beta 还加了"ClawHub / npm 插件切换" 功能，来源更透明</li>
+  <li>推荐顺序分四层：生存 / 效率 / 安全 / 进阶</li>
+  <li>重点推荐覆盖：日历、微信通知、表格自动化、浏览器自动化、AI for Research</li>
+</ul></div>
+  
+  <div class="why-section">
+  <h3>💡 为什么关注</h3>
+  <p>从 13000+ skill 池里精选 10 个必装，最大的实用价值是**反选**——避免被 skill 海洋淹没。warm3snow 的分四层（生存 / 效率 / 安全 / 进阶）其实就是一条从"让 OpenClaw 能用" 到"让它真强" 的最小集曲线。 其中 **self-improving-agent** 和 **Proactive Agent** 是两个值得重点关注的方向——前者让 Agent 自我反思迭代，后者让 Agent 从"被动响应" 升级到"主动提醒"。这两类 skill 决定了未来 Agent 是"工具" 还是"伙伴"。</p>
+</div>
+  <div class="future-section">
+  <h3>🔮 未来影响</h3>
+  <p>短期：ClawHub 的"必装清单" 类内容会越来越多，本质是**技能市场走向成熟、内容生产者主动精选** 的标志。中期：随着 v2026.5.2 把 ClawHub / npm 切换打通，skill 与 npm 包的界限会进一步模糊。长期：skill 市场可能演化成"私人技能分店"——类似苹果"Apple Intelligence Skill Store"。</p>
+</div>
+  <div class="for">📌 对谁重要：👨‍💻 开发者：装 10 个里至少 3 个是你生产效率杠杆点 💼 投资人：ClawHub + 生态相关的上下游（语义搜索、安全扫描、技能管理）值得关注 🛒 普通用户：装一套能让 OpenClaw 替代 80% 日常数字化工作的最小集</div>
+  <div class="tips-section"><h3>▸ 实用建议</h3><ul class="tips-list">
+  <li>先装三层："生存层"（最少配置）→"效率层"（明显节省时间）→"安全层"（防止数据外泄）</li>
+  <li>不必一次装完，按需迭代</li>
+  <li>每次安装后立刻 `clawhub update --all` 保持技能最新</li>
+  <li>重点体验 self-improving-agent：让你的 Agent 学会自我反思</li>
+</ul></div>
+  <div class="sources-section"><h3>📚 来源</h3><p>博客园 warm3snow · CSDN ClawHub 详解 · 慕课网调研报告 · OpenClaw 2026.5.2 更新解读</p><p class="confidence-badge C">置信度：<strong>C · 低</strong></p></div>
+</article>
+</main>
+<footer>
+  🌙 探索者 Bot3 · 睡后任务 · 学霸笔记本 · 2026-07-19
+</footer>
+</body>
+</html>
