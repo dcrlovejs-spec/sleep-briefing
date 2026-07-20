@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>🌿 森林植物风 · 2026-07-20</title>
+<title>⚪ 北欧极简风 · 2026-07-21</title>
 <style>
 /* ===== 公共装饰类（所有主题共用）===== */
 .tape {
@@ -185,133 +185,120 @@
 
 
 :root {
-  --bg: #F2EBD9;
-  --paper: #FAF5E8;
+  --bg: #FAFAF8;
   --card: #FFFFFF;
-  --ink: #3D4A2F;
-  --ink-soft: #6B7A5C;
-  --ink-light: #8B9978;
-  --moss: #6B8E4E;
-  --sage: #B5C9A3;
-  --terracotta: #C77B5C;
-  --cream: #E8DCC4;
-  --mushroom: #D4A373;
-  --grid: rgba(107, 142, 78, 0.08);
+  --ink: #1A1A1A;
+  --muted: #666666;
+  --sage: #6B8E4E;
+  --sage-light: #E8EFE3;
+  --line: #E5E5E0;
+  --grid: rgba(0, 0, 0, 0.04);
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body {
-  font-family: 'Quicksand', 'PingFang SC', system-ui, sans-serif;
+  font-family: 'Inter', 'Helvetica Neue', 'PingFang SC', system-ui, sans-serif;
   background-color: var(--bg);
-  background-image:
-    radial-gradient(circle at 10% 20%, var(--sage) 0%, transparent 12%),
-    radial-gradient(circle at 90% 70%, var(--cream) 0%, transparent 15%);
-  color: var(--ink); line-height: 1.8;
+  color: var(--ink); line-height: 1.7;
+  font-weight: 400; letter-spacing: 0.01em;
   padding: 30px 16px 80px; min-height: 100vh;
 }
 
 header.hero {
   max-width: 880px; margin: 0 auto 40px;
   background-color: var(--card);
-  background-image:
-    linear-gradient(var(--grid) 1px, transparent 1px),
-    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
-  background-size: 24px 24px;
-  border-radius: 16px; padding: 40px 32px;
-  box-shadow: 0 6px 20px rgba(107, 142, 78, 0.18);
+  border-radius: 2px; padding: 48px 32px;
   text-align: center; position: relative;
-  border: 2px solid var(--sage);
+  border: 1px solid var(--line);
 }
 .hero h1 {
-  font-size: 32px; color: var(--moss);
-  font-weight: 700; margin-bottom: 8px;
-  letter-spacing: 0.02em;
+  font-size: 30px; color: var(--ink);
+  font-weight: 300; margin-bottom: 8px;
+  letter-spacing: 0.1em;
 }
 .hero .date {
-  color: var(--ink-light); font-size: 14px;
-  letter-spacing: 0.2em; margin: 8px 0 20px;
-  font-style: italic;
+  color: var(--muted); font-size: 13px;
+  letter-spacing: 0.3em; margin: 8px 0 20px;
+  font-weight: 300;
 }
 .hero img {
-  width: 220px; height: 220px; border-radius: 50%;
+  width: 200px; height: 200px; border-radius: 2px;
   object-fit: cover; margin: 16px auto;
-  border: 8px solid var(--cream);
-  box-shadow: 0 8px 24px rgba(107, 142, 78, 0.3);
+  border: 1px solid var(--line);
   display: block;
 }
 .hero .pulse {
-  background: var(--cream);
-  border: 1.5px dashed var(--moss);
-  border-radius: 16px; padding: 16px 20px;
-  margin-top: 24px; font-size: 15px;
-  text-align: left;
+  background: var(--sage-light);
+  border-radius: 2px; padding: 18px 24px;
+  margin-top: 28px; font-size: 14px;
+  text-align: left; color: var(--ink);
+  font-weight: 300;
 }
 
 main {
-  max-width: 880px; margin: 0 auto; display: grid; gap: 28px;
+  max-width: 880px; margin: 0 auto; display: grid; gap: 24px;
 }
 
 .news-card {
   background-color: var(--card);
-  background-image:
-    linear-gradient(var(--grid) 1px, transparent 1px),
-    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
-  background-size: 20px 20px;
-  border-radius: 16px; padding: 28px;
-  box-shadow: 0 2px 8px rgba(107, 142, 78, 0.08);
+  border-radius: 2px; padding: 32px 28px;
   position: relative;
-  border: 1px solid var(--sage);
-  transition: transform 0.3s;
+  border: 1px solid var(--line);
+  transition: border-color 0.3s;
 }
-.news-card:hover { transform: translateY(-2px); }
+.news-card:hover { border-color: var(--sage); }
 
 .news-card .lvl {
   display: inline-block;
-  background: var(--moss); color: var(--card);
-  padding: 5px 14px; border-radius: 14px;
-  font-size: 12px; font-weight: 700;
+  color: var(--sage); font-size: 11px;
+  font-weight: 600; letter-spacing: 0.2em;
+  text-transform: uppercase;
+  padding-bottom: 4px;
+  border-bottom: 1.5px solid var(--sage);
+  margin-bottom: 12px;
 }
-.news-card.lvl2 .lvl { background: var(--sage); color: var(--ink); }
-.news-card.lvl1 .lvl { background: var(--cream); color: var(--ink); border: 1px solid var(--moss); }
+.news-card.lvl2 .lvl { color: var(--muted); border-bottom-color: var(--line); }
+.news-card.lvl1 .lvl { color: var(--muted); border-bottom-color: var(--line); }
 
 .news-card .cat {
   display: inline-block;
-  background: var(--terracotta); color: var(--card);
-  padding: 3px 10px; border-radius: 10px;
-  font-size: 11px; margin-left: 6px; font-weight: 600;
+  color: var(--muted); font-size: 11px;
+  margin-left: 12px; letter-spacing: 0.1em;
 }
 
 .news-card h2 {
-  font-size: 21px; margin: 10px 0 6px;
-  color: var(--ink); font-weight: 700;
+  font-size: 22px; margin: 12px 0 8px;
+  color: var(--ink); font-weight: 400;
+  letter-spacing: -0.01em;
 }
 .news-card .lead {
-  font-size: 15px; color: var(--terracotta);
-  font-weight: 600; margin-bottom: 10px;
+  font-size: 14px; color: var(--muted);
+  font-weight: 400; margin-bottom: 12px;
 }
 .news-card .detail {
-  font-size: 14px; color: var(--ink-soft);
-  margin-bottom: 12px; line-height: 1.8;
+  font-size: 14px; color: var(--ink);
+  margin-bottom: 16px; line-height: 1.8;
+  font-weight: 300;
 }
 .news-card .for {
-  font-size: 13px; color: var(--ink);
-  background: rgba(181, 201, 163, 0.4);
-  border: 1.5px dashed var(--moss);
-  padding: 8px 14px; border-radius: 12px;
-  margin-bottom: 8px; display: inline-block;
+  font-size: 12px; color: var(--muted);
+  padding: 8px 0;
+  border-top: 1px solid var(--line);
+  margin-bottom: 8px;
+  letter-spacing: 0.05em;
 }
 .news-card .tip {
-  font-size: 13px; color: var(--ink);
-  padding: 8px 14px;
-  border-left: 4px solid var(--terracotta);
-  background: rgba(231, 220, 196, 0.4);
-  border-radius: 4px 12px 12px 4px;
-  margin-top: 10px;
+  font-size: 12px; color: var(--sage);
+  padding: 8px 0;
+  border-top: 1px solid var(--line);
+  margin-top: 8px;
+  font-weight: 500;
 }
 
 footer {
   max-width: 880px; margin: 40px auto 0;
-  text-align: center; color: var(--ink-light); font-size: 13px;
-  font-style: italic;
+  text-align: center; color: var(--muted);
+  font-size: 11px; letter-spacing: 0.3em;
+  text-transform: uppercase;
 }
 </style>
 </head>
@@ -319,15 +306,15 @@ footer {
 <header class="hero">
   <div class="tape tape-pink tape-tl"></div>
   <div class="tape tape-mint tape-tr"></div>
-  <h1>🌿 森林植物风</h1>
-  <div class="date">2026-07-20 · 周三 · 科技手帐</div>
-  <img src="demo-assets-v2/f-forest.png" alt="森林植物">
-  <div class="pulse">今日科技脉搏 🩸 · DeepSeek 启动 IPO 筹备，梁文锋登顶全球 AI  / 手机 AI 的 "DeepSeek 时刻"：Bonsai 2 / 中国脑科学登《科学》：狨猴大脑皮层双极梯度轴首次系统揭示</div>
+  <h1>⚪ 北欧极简风</h1>
+  <div class="date">2026-07-21 · 周三 · 科技手帐</div>
+  <img src="demo-assets-v2/g-nordic.png" alt="北欧极简">
+  <div class="pulse">今日科技脉搏 🩸 · 小米 18 系列核心规格集中曝光:全系 2nm 旗舰 + 双 / AMD 发布首款机架级 AI 系统 Helios 挑战 Nv / 2026 上半年 31 款国产创新药获批上市,4 类"全球首</div>
 </header>
 <div class="audio-player-wrap" style="max-width:680px;margin:24px auto;padding:18px 22px;background:rgba(255,255,255,0.85);border-radius:14px;box-shadow:0 4px 14px rgba(0,0,0,0.08);border:1.5px dashed rgba(0,0,0,0.12);">
   <h3 style="margin:0 0 10px 0;font-size:18px;color:#333;">🎙️ 今日语音播报（完整 8 条 + 全部内容）</h3>
   <audio controls preload="metadata" style="width:100%;max-width:600px;">
-    <source src="https://dcrlovejs-spec.github.io/sleep-briefing/podcast.mp3?t=2026-07-20" type="audio/mpeg">
+    <source src="https://dcrlovejs-spec.github.io/sleep-briefing/podcast.mp3?t=2026-07-21" type="audio/mpeg">
     你的浏览器不支持 audio 标签，请下载 mp3 后用本地播放器收听。
   </audio>
   <p style="margin:8px 0 0 0;font-size:13px;color:#888;">小提示：可下载离线收听；由 edge_tts · 晓晓主播；ffmpeg 重编码</p>
@@ -340,94 +327,31 @@ footer {
     <span class="cat">科技动态</span>
   </div>
 
-  <h2>DeepSeek 启动 IPO 筹备，梁文锋登顶全球 AI 大模型首富</h2>
-  <p class="lead">彭博社援引知情人士消息，DeepSeek 已正式启动 IPO 筹备，最快有望 2026 年内提交上市申请，目标 2027 年完成内地挂牌上市。伴随 IPO 进程推进，梁文锋个人财富登顶全球 AI 大模型领域首富。</p>
+  <h2>小米 18 系列核心规格集中曝光:全系 2nm 旗舰 + 双 2 亿像素 + 7000mAh,9 月发布</h2>
+  <p class="lead">📚 1 分钟背景</p>
   <div class="view-section"><h3>📊 看点</h3><ul class="view-list">
-  <li>**触发**：彭博社援引知情人士爆料，DeepSeek 启动 IPO 筹备</li>
-  <li>**节奏**：最快 2026 年内交表，2027 年内地挂牌 (创业板 / 科创板未披露)</li>
-  <li>**附带事件**：梁文锋登顶全球 AI 大模型首富 — 中国 AI 创始人首次登顶该位</li>
-  <li>**估值推测**：参考 OpenAI 8500 亿 / Anthropic 8000 亿估值，DeepSeek 至少 5000 亿起</li>
+  <li>**全系 2nm 旗舰芯**——小米首次实现"全系跨档位" 标配旗舰 SoC</li>
+  <li>**2K 直屏 + 双 2 亿像素**——屏幕与影像"全系不缩水",对标 iPhone 18 战略</li>
+  <li>**7000mAh + 百瓦双快充**——续航焦虑一次性解决</li>
+  <li>**首发仅 Pro/Pro Max**——"高利润机型先发" 复制 iPhone 节奏,冲击高端</li>
+  <li>**提前登陆印度**——国产旗舰出海节奏加速</li>
 </ul></div>
   
   <div class="why-section">
   <h3>💡 为什么关注</h3>
-  <p>DeepSeek 启动 IPO 是个三层信号。**第一层（商业）**：验证了"中国 AI 公司可以在不靠 BAT 输血的情况下自循环商业化"。**第二层（估值）**：中国大模型第一次有公司跻身 5000 亿俱乐部，与 OpenAI / Anthropic 同台。**第三层（人才）**：梁文锋登顶 AI 领域全球首富，意味着顶级 AI 人才「留中国」开始具备真实经济引力 — 这是中美 AI 人才战的关键反转信号，也是过去 5 年"中国 AI 人才外流"叙事的拐点。</p>
+  <p>小米 18 系列核心规格集中曝光,**意味着 2026 下半年国产高端手机市场的产品力竞争进入"硬件一致性" 新阶段**: 1. **国产旗舰首次实现"全系同一旗舰芯"**——标准版不再是"Pro 缩水版",消费者不再为"高端体验" 多花预算 2. **2nm 制程 + 双 2 亿像素 + 7000mAh = 影像 + 性能 + 续航三位一体**——手机产品力的"木桶效应" 终结 3. **"先 Pro 后标准" 战略复制 iPhone**——国产厂商学习"高端优先" 节奏,集中资源冲击高利润段 4. **提前登陆印度市场**——国产旗舰出海节奏从"延迟" 转为"抢先",抢占印度高端市场 对投资视角而言,**2nm 旗舰芯 + 双 2 亿像素 + 大电池 = 2026 下半年手机供应链的三条主线**:芯片(高通/台积电)、CMOS(豪威/三星)、电池(宁德/比亚迪),产业链上下游都有结构性机会。</p>
 </div>
   <div class="future-section">
   <h3>🔮 未来影响</h3>
-  <p>未来 3-12 个月，DeepSeek IPO 估值定价将成为整个中国 AI 大模型行业的「锚」。**看好侧**：会带动智谱、月之暗面、百川等 6 家独角兽集中冲击 IPO；**风险侧**：估值若过高，可能透支整个行业一二级市场；**对 BAT**：阿里通义、腾讯混元、百度文心将不得不加速自身商业化以证明「巨头仍能跑赢独角兽」。</p>
+  <p>短期:9 月发布的小米 18 系列将直接冲击 iPhone 18 的高端定价策略,可能引发国产其他厂商(华为/OPPO/vivo/荣耀)跟进"全系旗舰化" 策略。中期:2nm 芯片产能成为关键瓶颈,**台积电 2nm 产能分配将在下半年成为手机厂商的"军备竞赛"**。长期:当"全系 2nm + 全系双 2 亿" 成为旗舰标配,**手机硬件差异化将向"AI 能力 + 操作系统 + 生态闭环" 转移**——硬件军备竞赛的天花板正在接近。</p>
 </div>
-  <div class="for">📌 对谁重要：👨‍💻 开发者：开源生态预期 — DeepSeek R2 / V4 可能在 IPO 前抢发布 💼 投资人：参考估值 — OpenAI / Anthropic 泡沫水平检测 🛒 普通用户：暂无直接影响，但 12 月后可能看到"国产 AI 移动 App 红包补贴潮"</div>
+  <div class="for">📌 对谁重要：👨‍💻 开发者：关注 HarmonyOS / MIUI / OriginOS 在"AI Agent" 层的差异化布局 💼 投资人:2nm 芯片代工、CMOS、电池、屏幕供应链是确定性主线 🛒 普通用户:2026 Q4 是换机好时机——"全系 2nm + 全系 2 亿像素" 让标准版也值得入手</div>
   <div class="tips-section"><h3>▸ 实用建议</h3><ul class="tips-list">
-  <li>关注 DeepSeek 港股 / A 股 IPO 公告（订阅上交所 / 深交所公告）</li>
-  <li>若 IPO 估值高于 5000 亿人民币，可视为「泡沫信号」 — 谨慎加仓中国 AI ETF</li>
-  <li>R2 模型可能在 9 月前发布，建议先小规模试用 API，不要早期绑定</li>
+  <li>关注 9 月发布会的官方定价——"Pro 优先" 策略下标准版定价可能更激进</li>
+  <li>关注高通 8 Elite Gen6 在能效上的实际表现——2nm 的"账面优势" 需实测验证</li>
+  <li>印度市场首发的反馈将决定国产旗舰在海外市场的下一步节奏</li>
 </ul></div>
-  <div class="sources-section"><h3>📚 来源</h3><p><a href="https://so.html5.qq.com/page/real/search_news?docid=70000021_5996a56e72514652" target="_blank">彭博社转引 - 腾讯网</a></p><p class="confidence-badge B">置信度：<strong>B · 中</strong></p></div>
-</article>
-
-<article class="news-card lvl3">
-  <div class="card-head">
-    <span class="lvl">🔥🔥🔥 必读</span>
-    <span class="cat">科技动态</span>
-  </div>
-
-  <h2>手机 AI 的 "DeepSeek 时刻"：Bonsai 27B 模型在 12GB iPhone 原生跑通 90% 智能</h2>
-  <p class="lead">PrismML 推出 Bonsai 27B，基于 Qwen 3.6 27B 微调，**在 12GB 内存的 iPhone 上原生运行，保留 90% 智能**。</p>
-  <div class="view-section"><h3>📊 看点</h3><ul class="view-list">
-  <li>**核心**：12GB iPhone 原生运行 27B 参数模型，保留 90% 智能</li>
-  <li>**关键技术**：基于 Qwen 3.6 27B 微调（阿里通义 × PrismML 合作）</li>
-  <li>**意义**：手机端进入「27B 普惠时代」 — 4GB / 8GB 时代的升级路径确认</li>
-  <li>**隐含影响**：A18 Pro / Snapdragon 8 Gen 4 之后的手机 AI 算力被彻底榨干</li>
-</ul></div>
-  
-  <div class="why-section">
-  <h3>💡 为什么关注</h3>
-  <p>"手机上跑大模型" 这一波从 2024 年 Apple Intelligence 起步，主流仍是云端调度。Bonsai 27B 的意义在于：**27B 参数 / 12GB 内存 / 90% 智能保留** — 三个数字跨过实用门槛。这意味着 (1) 国产开源大模型 + 国产芯片 + 国产手机的"全自研端侧 AI 栈"已经闭环；(2) AI 应用层不再必须依赖云端，开源模型可以替代 ChatGPT 70% 场景；(3) iOS App Store 上会出现首批"完全离线"的中文 AI 助手 App。**这是 AI 行业的「DeepSeek 时刻」在端侧重演** — 上一次是 R1 让开源追平闭源，这一次是 Bonsai 让端侧追平云端。</p>
-</div>
-  <div class="future-section">
-  <h3>🔮 未来影响</h3>
-  <p>未来 3-6 个月，Bonsai 27B 类端侧模型会引发三个连锁反应：(1) Apple Intelligence 国内版必须加速，否则与开源方案差距明显；(2) Android 阵营（华为 / 小米 / OPPO / 荣耀）会集成 Bonsai / Qwen 类模型进 OS 层；(3) 字节豆包 / 腾讯元宝 / 阿里通义等 APP 必须重新架构，否则会被端侧 App 颠覆。</p>
-</div>
-  <div class="for">📌 对谁重要：👨‍💻 开发者：可以本地部署 27B LLM，数据不出手机 💼 投资人：关注端侧 AI 芯片（Cerebras / Groq / 壁仞） — 真正受益方是芯片 🛒 普通用户：3-6 个月内可期待「离线 AI 助手」类 App</div>
-  <div class="tips-section"><h3>▸ 实用建议</h3><ul class="tips-list">
-  <li>关注 PrismML GitHub release — 预计 8 月开源</li>
-  <li>iPhone 15 Pro / 16 Pro 用户先升级 iOS 19 beta，有助迁移</li>
-  <li>用 Bonsai 做个人助理时，12GB iPhone 同时跑其他 App 会挤占</li>
-</ul></div>
-  <div class="sources-section"><h3>📚 来源</h3><p><a href="https://so.html5.qq.com/page/real/search_news?docid=70000021_5316a56c30870452" target="_blank">IT之家 / 腾讯网</a></p><p class="confidence-badge C">置信度：<strong>C · 低</strong></p></div>
-</article>
-
-<article class="news-card lvl3">
-  <div class="card-head">
-    <span class="lvl">🔥🔥🔥 必读</span>
-    <span class="cat">科技动态</span>
-  </div>
-
-  <h2>中国脑科学登《科学》：狨猴大脑皮层双极梯度轴首次系统揭示</h2>
-  <p class="lead">中科院脑科学与智能技术卓越创新中心刘赐融 / 孙怡迪联合团队在《科学》发表论文，首次系统揭示大脑皮层双极梯度轴 (Pr-Al 轴)，整合多项技术对狨猴大脑构建首个多模态分子图谱。</p>
-  <div class="view-section"><h3>📊 看点</h3><ul class="view-list">
-  <li>**核心**：狨猴大脑皮层首个多模态分子图谱 + Pr-Al 双极梯度轴</li>
-  <li>**团队**：中科院脑科学中心 + 华大研究院 + 多机构合作</li>
-  <li>**意义**：大脑皮层并非"分区拼接地图"，而是"双极梯度动态生成系统" — 重塑神经解剖学认知</li>
-  <li>**关联**：呼应中国"全脑介观神经联接图谱"国家重大项目 (2018-2028)</li>
-</ul></div>
-  
-  <div class="why-section">
-  <h3>💡 为什么关注</h3>
-  <p>这是中国神经科学 5 年内**首次**在《Science》正刊发表大脑皮层结构基础论文，意味着中国脑科学跻身全球第一梯队。长期看，它可能重塑三个方向：**(1) AI 模型** — 现行 Transformer 的"层-层连接"设计可能需要借鉴"双极梯度"作为归纳偏置；**(2) 神经疾病** — Pr-Al 轴异常可能成为自闭症 / 阿尔茨海默症的新诊断维度；**(3) 脑机接口** — 渐变式电极排布可能替代离散式，突破当前 BCI 信号稳定性的瓶颈。</p>
-</div>
-  <div class="future-section">
-  <h3>🔮 未来影响</h3>
-  <p>未来 6-12 个月，**重点跟进**：(1) 论文团队将公布 100GB+ 狨猴多模态图谱数据集 — 免费开放；(2) 国家科技部"脑科学与类脑研究"重大项目 (中国脑计划) 后续阶段可能向"梯度连接组学"倾斜；(3) Neuralink / Synchron 等 BCI 公司可能转向"双锚点电极设计"。**风险**：动物模型到人类大脑的迁移仍需 3-5 年验证。</p>
-</div>
-  <div class="for">📌 对谁重要：👨‍💻 开发者 / AI 研究者：双极梯度可能是下一代 Transformer 结构灵感 💼 投资人：脑机接口（脑虎 / 博睿康）/ 神经退行性疾病药物（绿叶 / 恒瑞）长期利好 🛒 普通用户：5 年内影响 — 自闭症早期诊断 / 阿尔茨海默症预警可能落地</div>
-  <div class="tips-section"><h3>▸ 实用建议</h3><ul class="tips-list">
-  <li>关注 arXiv 后续预印本 — 研究团队承诺开放数据</li>
-  <li>若做 AI 架构研究，"双极梯度"是一个值得借鉴的归纳偏置</li>
-  <li>神经疾病家庭 — 关注 5 年内临床转化进展</li>
-</ul></div>
-  <div class="sources-section"><h3>📚 来源</h3><p><a href="https://cloud.tencent.com/developer/article/2669345" target="_blank">腾讯云开发者 (转引《科学》)</a></p><p class="confidence-badge C">置信度：<strong>C · 低</strong></p></div>
+  <div class="sources-section"><h3>📚 来源</h3><p>数码闲聊站(@微博) · CNMO 科技 · 腾讯科技 · 雷科技 · 新浪科技</p><p class="confidence-badge C">置信度：<strong>C · 低</strong></p></div>
 </article>
 
 <article class="news-card lvl2">
@@ -436,30 +360,31 @@ footer {
     <span class="cat">科技动态</span>
   </div>
 
-  <h2>SpaceX 星舰 V3 第 13 次试飞后天 (07-16) 发射，首搭星链 V3</h2>
-  <p class="lead">SpaceX 官方宣布，星舰系统第 13 次综合飞行测试 (IFT-13) 最早 7 月 16 日 (周四) 准备发射，发射窗口美国中部时间下午 5:45，持续 90 分钟。本次任务首搭猛禽 3 发动机 + 星链 V3 卫星。</p>
+  <h2>AMD 发布首款机架级 AI 系统 Helios 挑战 Nvidia,微软成为最新买家</h2>
+  <p class="lead">📚 1 分钟背景</p>
   <div class="view-section"><h3>📊 看点</h3><ul class="view-list">
-  <li>**时间窗口**：7 月 16 日下午 5:45 CDT 起 90 分钟</li>
-  <li>**核心硬件**：猛禽 3 (Raptor 3) — 推力接近 Raptor 2 两倍，重量轻 1.1 吨，成本 1/4</li>
-  <li>**载荷**：星链 V3 — 通信能力比 V2 mini 提升 10 倍</li>
-  <li>**复用节奏**：距 IFT-12 (5/22) 仅 7 周 — SpaceX 极速迭代</li>
+  <li>**首款机架级 AI 系统**——AMD 从"芯片供应商" 升级到"整机柜供应商"</li>
+  <li>**对标 Nvidia Grace Blackwell + Vera Rubin**——AI 算力竞争从"GPU" 升级到"整机柜"</li>
+  <li>**微软成为最新客户**——云巨头首次公开背书非 Nvidia 机架方案</li>
+  <li>**AMD 复苏 10 年的集大成之作**——从 CPU 到 GPU 到机架,全栈 AI 算力布局成型</li>
+  <li>**AI 算力定价权博弈进入新阶段**——整机柜级竞争将撼动 Nvidia 的高毛利</li>
 </ul></div>
   
   <div class="why-section">
   <h3>💡 为什么关注</h3>
-  <p>本次试飞是 SpaceX **V3 时代的首次完整集成测试** — 若成功，意味着 SpaceX 已经把"年发射百万吨入轨"的梦想从 PPT 拉到工程现实。星链 V3 卫星的能力将直接推动 Starlink 套餐价格进一步下行 (从当前 $80/月 → $30/月预期)，冲击传统卫星互联网 (Viasat / HughesNet) + 偏远地区 5G 回程。中国可复用火箭 (朱雀三号 / 双曲线三号 / 天龙三号) 必须加速追赶。</p>
+  <p>AMD Helios 发布 + 微软背书,**意味着 AI 算力市场从"Nvidia 一家独大" 走向"双寡头竞争"**: 1. **AI 算力定价权博弈启动**——Nvidia 的整机柜方案长期享有"溢价定价",AMD Helios 的出现将打破这一格局 2. **云厂商供应链"多元化" 进入执行阶段**——微软下注 AMD,意味着云巨头开始系统性降低对 Nvidia 的依赖 3. **AMD 从"CPU + GPU" 升级到"全栈 AI 算力"**——其在 AI 时代的卡位从"追赶者" 转为"挑战者" 对投资视角而言,**AMD 整机柜方案 + 微软背书 = AI 算力供应链"双寡头" 趋势确立**,AMD 股价、AMD 供应链(台积电、SK 海力士)将获益;同时,**Nvidia 的高毛利定价模式可能面临系统性压力**——AI 算力价格下行通道开启。</p>
 </div>
   <div class="future-section">
   <h3>🔮 未来影响</h3>
-  <p>(1) 若 7/16 成功，SpaceX 可能在 Q4 把 V3 转入商业运营，2026 年总入轨质量有望突破 5000 吨；(2) Starlink IPO 传闻 (估值 1 万亿) 将进一步升温；(3) 中国可复用火箭 (中科宇航 / 蓝箭航天 / 星际荣耀) 概念将在 Q3 受关注。</p>
+  <p>短期:AMD 股价将在 Helios 量产交付时获得重估;AMD 供应链(台积电先进制程、HBM 内存、液冷)需求上升。中期:当微软、谷歌、AWS、Meta 等云巨头系统性采购 AMD 整机柜方案,**AI 算力"双供应商" 模式将成为行业标配**——云厂商的 AI 推理成本将下降 20-30%。长期:当 AI 算力市场从"Nvidia 一家独大" 走向"双寡头 + 国产替代",**全球 AI 算力的"地缘分散" 将加速**——美国对华 AI 芯片管制将更难维持。</p>
 </div>
-  <div class="for">📌 对谁重要：👨‍💻 开发者 / 太空工程师：星链 V3 SDK 可能年底开放 — 关注 SpaceX 招聘 💼 投资人：Starlink IPO 节点 + 中国商业航天 (中科宇航 / 蓝箭航天) 🛒 普通用户：海外党未来 6 个月可能用上 $30/月 卫星互联网</div>
+  <div class="for">📌 对谁重要：👨‍💻 AI 开发者：关注 AMD ROCm 软件生态——是否能成为 CUDA 的"工程化替代" 💼 投资人:AMD、AMD 供应链、台积电、HBM 内存是结构性主线 🛒 普通用户:未来 12-24 个月,AI 应用的"算力成本" 将系统性下降——AI 服务价格更亲民</div>
   <div class="tips-section"><h3>▸ 实用建议</h3><ul class="tips-list">
-  <li>07-16 06:45 北京时间看 SpaceX 官方直播</li>
-  <li>不要单押 Starlink IPO — 估值已透支，需等 Q4 验证</li>
-  <li>中国可复用火箭概念股 (中科宇航 / 蓝箭航天 / 星际荣耀) 关注 IPO 进度</li>
+  <li>关注 AMD Helios 在微软 Azure 上的实际部署时间——决定"双寡头" 节奏</li>
+  <li>投资者:AMD 是 AI 算力"非 Nvidia 替代" 的最确定标的</li>
+  <li>关注 HBM 内存(海力士/三星/美光)在双供应商模式下的需求增长</li>
 </ul></div>
-  <div class="sources-section"><h3>📚 来源</h3><p><a href="https://so.html5.qq.com/page/real/search_news?docid=70000021_5836a548ddf57752" target="_blank">腾讯网 IFT-13 公告</a> · <a href="https://so.html5.qq.com/page/real/search_news?docid=70000021_9836a52eb0b53452" target="_blank">IFT-12 复盘</a></p><p class="confidence-badge C">置信度：<strong>C · 低</strong></p></div>
+  <div class="sources-section"><h3>📚 来源</h3><p>环球市场播报 · The Information · 路透社科技 · Bloomberg Tech · AMD 投资者关系</p><p class="confidence-badge A">置信度：<strong>A · 高</strong></p></div>
 </article>
 
 <article class="news-card lvl2">
@@ -468,30 +393,31 @@ footer {
     <span class="cat">科技动态</span>
   </div>
 
-  <h2>千问高考志愿填报 Agent：免费为全国考生提供志愿咨询</h2>
-  <p class="lead">阿里千问团队发布"高考志愿填报 Agent"，为全国考生免费提供志愿填报咨询，覆盖 2900+ 所院校、1800+ 个专业大类。</p>
+  <h2>2026 上半年 31 款国产创新药获批上市,4 类"全球首个" 创新成果集中落地</h2>
+  <p class="lead">📚 1 分钟背景</p>
   <div class="view-section"><h3>📊 看点</h3><ul class="view-list">
-  <li>**覆盖**：2900+ 院校 / 1800+ 专业大类 / 一分一段历史数据 10 年</li>
-  <li>**形式**：对话框式 Agent，可结合分数 + 兴趣 + 城市偏好做志愿排序</li>
-  <li>**免费策略**：阿里内部判断"K12 Agent 是高频入口场景" — 抢入口 > 抢付费</li>
-  <li>**隐含**：与字节豆包 / 腾讯元宝 / 百度文心的高考 Agent 对攻战</li>
+  <li>**31 款国产创新药获批**——占总数 80%+,国产替代完成"量" 的积累</li>
+  <li>**4 类"全球首个" 创新成果**——从"me-too" 走向"first-in-class"</li>
+  <li>**1000 亿美元出海授权**——中国创新药对外授权规模超 2025 全年</li>
+  <li>**CAR-T + 双抗 + 脑机接口**——前沿生物医药三条赛道同步突破</li>
+  <li>**抗丁肝、狂犬病、CAR-T、脑机接口**——"高难度赛道" 全面突破</li>
 </ul></div>
   
   <div class="why-section">
   <h3>💡 为什么关注</h3>
-  <p>高考志愿 Agent 是 **"消费级 AI Agent" 第一个真正破圈的场景** — 家长 + 学生用户基数 1300 万 / 年。免费策略意味着阿里希望借此抢一个高频入口，把"千问 App" 从"工具 App" 推到"国民 App" 维度。如果该 Agent 在 7-8 月用户裂变成功，会进一步强化阿里在 AI Agent 时代的"国民 App"地位，与字节豆包、腾讯元宝、百度文心形成新一代 AI 应用层四国杀。</p>
+  <p>31 款获批 + 4 类"全球首个" + 1000 亿美元出海授权,**意味着中国创新药从"仿制" 到"首创" 的产业升级已完成关键拐点**: 1. **"me-too" 时代结束**——国内创新药企业开始系统性进入"first-in-class" 赛道,资本市场对创新药的估值锚正在重构 2. **出海授权规模超 1000 亿美元**——中国创新药不再只是"国内市场",而是全球医药研发的"重要供给方" 3. **CAR-T + 双抗 + 脑机接口 = 三条前沿赛道同步突破**——中国生物医药的"前沿布局" 不再是单点突破 4. **抗丁肝、狂犬病等"被忽视疾病" 的突破**——中国创新药正在解决全球医药市场的"未被满足需求" 对投资视角而言,**中国创新药从"国产替代" 升级到"全球首创"**——CXO(药明康德/康龙化成)、创新药企(百济神州/信达生物/恒瑞医药)、脑机接口(强脑科技/博睿康)将获益。</p>
 </div>
   <div class="future-section">
   <h3>🔮 未来影响</h3>
-  <p>(1) 字节豆包 / 腾讯元宝 / 百度文心大概率会在 24h 内跟进"高考 Agent"对攻；(2) 传统志愿填报机构 (升学规划师) 行业面临 50%+ 替代率；(3) "AI Agent + 高频场景" 会成为下半年 AI 应用层共识 — 下一个爆款可能是"AI 看病 Agent" / "AI 律师 Agent" / "AI 装修 Agent"。</p>
+  <p>短期:下半年将有更多"first-in-class" 创新药进入临床三期或获批。中期:当 1000 亿美元出海授权成为常态,**中国创新药企将系统性进入"全球医药 TOP 20"**——百济、信达、恒瑞等有望跻身全球医药巨头行列。长期:当"中国首创" 成为全球医药市场的重要供给,**全球医药研发格局将进入"中美欧三极"**——这对全球患者(尤其是发展中国家患者)的药物可及性将是结构性利好。</p>
 </div>
-  <div class="for">📌 对谁重要：👨‍💻 开发者：高考 Agent 是 Agent 范式 (tool-use + 多轮对话 + 长期记忆) 的好教材 💼 投资人：阿里千问用户数据 → 关注 AI Agent ETF 🛒 普通用户：高三家庭直接受益，1 分钱成本省下万元</div>
+  <div class="for">📌 对谁重要：👨‍💻 医药研发者：关注"first-in-class" 赛道的临床机会 💼 投资人:创新药企、CXO、脑机接口医疗器械是确定性主线 🛒 普通用户:未来 1-3 年,可能有"全球首个" 创新药进入医保,治疗费用大幅下降</div>
   <div class="tips-section"><h3>▸ 实用建议</h3><ul class="tips-list">
-  <li>家里有高三学生 — 立即试千问 Agent，结合孩子兴趣 + 城市偏好交叉验证</li>
-  <li>关注未来 24h — 字节豆包 / 腾讯元宝 / 百度文心的高考 Agent 跟进</li>
-  <li>志愿决策仍需结合老师 / 家庭意见 — Agent 给出 Top 10，最终要家长 + 学生拍板</li>
+  <li>关注下半年获批的"全球首个" 创新药清单——投资/就业/看病都用得上</li>
+  <li>关注 1000 亿美元出海授权的具体项目——决定中国创新药的全球地位</li>
+  <li>投资者:关注 CXO 与创新药企的"出海收入占比" ——这是长期估值的关键</li>
 </ul></div>
-  <div class="sources-section"><h3>📚 来源</h3><p><a href="http://www.weste.net/" target="_blank">威易网焦点汇总</a></p><p class="confidence-badge C">置信度：<strong>C · 低</strong></p></div>
+  <div class="sources-section"><h3>📚 来源</h3><p>21 世纪经济报道 · 医药观澜 · Nature News · 中国医药创新促进会 · STAT News</p><p class="confidence-badge C">置信度：<strong>C · 低</strong></p></div>
 </article>
 
 <article class="news-card lvl2">
@@ -500,30 +426,31 @@ footer {
     <span class="cat">科技动态</span>
   </div>
 
-  <h2>BCS 2026 北京网络安全大会开幕 + 7 月高危漏洞警报 (Check Point VPN 9.3)</h2>
-  <p class="lead">2026 北京网络安全大会 (BCS) 开幕 + 多家厂商披露 7 月高危漏洞态势：Linux 内核 H1 2308 条 CVE 居榜首 / Google 1752 条 / Check Point VPN IKEv1 CVE-2026-50751 (CVSS 9.3)。</p>
+  <h2>享道出行启动上汽 Robotaxi 量产定制车项目,新车 2027 年亮相</h2>
+  <p class="lead">📚 1 分钟背景</p>
   <div class="view-section"><h3>📊 看点</h3><ul class="view-list">
-  <li>**CVE 半年榜**：(1) Linux 2308 条 (2) Google 1752 条 (3) Microsoft 1300+</li>
-  <li>**7 月高危警报**：Check Point VPN IKEv1 认证绕过 (CVE-2026-50751, CVSS 9.3, 已在野利用)</li>
-  <li>**关键数据**：新加坡国立大学 + 南洋理工 + 港科广联合研究 — AI 漏洞复现率达 84.5%</li>
-  <li>**AI 攻防**：李冰 / 任贤良 / 赵志国 / 韩雪 / 邬贺铨 / 周鸿祎齐聚 ISC.AI 2026 共议智能体安全治理</li>
+  <li>**"传统车企 + 出行平台" 联合造车**——首次系统化路径,享道主导产品定义</li>
+  <li>**2027 年亮相**:时间表激进,1 年半内交付定制车</li>
+  <li>**上海首款前装量产定制车**——从"改装" 升级到"前装"</li>
+  <li>**全国唯一"亿级车企" 打造**——上汽年产销 400 万辆级别的供应链支撑</li>
+  <li>**Cybercab / Waymo / 特斯拉 Robotaxi 全球赛道**——中国选手加速跟进</li>
 </ul></div>
   
   <div class="why-section">
   <h3>💡 为什么关注</h3>
-  <p>三件事合起来看，是**"AI 攻防战进入白热化"** 的拐点：(1) Check Point 9.3 已经在野利用 — 全球 VPN 普遍需要立即打补丁；(2) AI 84.5% 复现率 — 攻方 AI 化让防守越来越被动；(3) BCS + ISC.AI 政府领导密集出席 — 国家级 AI 安全治理入场。这是国内安全行业的"AI 优先"信号。</p>
+  <p>享道 Robotaxi 项目对 Robotaxi 产业的意义是**"整车适配" 进入工程化阶段**: 1. **Robotaxi 行业的 "Made for Robotaxi" 整车供应开始成型**——以前没有专门的 Robotaxi 整车,只能改装 2. **上汽的零部件、研发、生产体系将为 Robotaxi 行业输出"基础设施"**——激光雷达、域控、线控底盘的成本将下降 3. **2027 年的时间表意味着这场竞赛会比想象更快见分晓**——百度、特斯拉、Waymo 的窗口都在收窄 4. **"亿级车企" 打造的 Robotaxi = 工程化能力 + 成本控制双优势**——享道的成本曲线将比互联网派 Robotaxi 更陡峭</p>
 </div>
   <div class="future-section">
   <h3>🔮 未来影响</h3>
-  <p>未来 3-6 个月：(1) Check Point / Fortinet / Palo Alto 等 VPN 厂商必须紧急发补丁，预期未来 1 周内集中修复潮；(2) 国内安全厂商 (奇安信 / 360 / 深信服) 会加速发布"AI 威胁检测"产品；(3) AI Agent 安全治理国家标准可能加速出台。</p>
+  <p>短期:享道 Robotaxi 项目将带动上汽供应链(智己、宁德时代、地平线、禾赛)的关注度。中期:随着 Robotaxi 专用整车量产,**单车硬件成本预计下降 30-50%**——Robotaxi 的票价将快速接近传统出租车水平。长期:当 Robotaxi 形成"中国制造 + 中国软件 + 中国运营" 的全栈闭环,**中国 Robotaxi 有望出海**(东南亚、中东、欧洲市场)。</p>
 </div>
-  <div class="for">📌 对谁重要：👨‍💻 开发者 / SRE：Check Point VPN 立即打补丁，关注 CVE-2026-50751 详情 💼 投资人：网络安全 + AI 安全概念 (奇安信 / 360 / 深信服) 🛒 普通用户：VPN 用户 — 关注厂商公告，弱口令密码立即改</div>
+  <div class="for">📌 对谁重要：👨‍💻 自动驾驶工程师：感知、规划、仿真、远程接管是下半年的技术热点 💼 投资人:激光雷达、域控、Robotaxi 整车、智能座舱是高确定性赛道 🛒 普通用户:未来 1-2 年,Robotaxi 在一二线城市将更普及——记得试一下</div>
   <div class="tips-section"><h3>▸ 实用建议</h3><ul class="tips-list">
-  <li>Check Point VPN 用户 — 立即登录厂商公告页，下载补丁并重启服务</li>
-  <li>使用 SaaS 类 VPN 的公司 — 与 IT 确认是否影响</li>
-  <li>网络安全从业者 — 关注 ISC.AI 2026 与 BCS 2026 完整 session 录像</li>
+  <li>关注享道 Robotaxi 项目后续披露的"试运营城市" 与"技术合作伙伴"</li>
+  <li>投资者:关注激光雷达(禾赛 / 速腾)、域控(华为 MDC / 地平线 J6)赛道</li>
+  <li>普通用户:上海 / 北京 / 深圳 / 广州已开放 Robotaxi 试乘——可提前体验</li>
 </ul></div>
-  <div class="sources-section"><h3>📚 来源</h3><p><a href="https://blog.csdn.net/weimeilayer/article/details/162697912" target="_blank">CSDN 7 月高危速览</a> · <a href="https://so.html5.qq.com/page/real/search_news?docid=70000021_8226a48682f87052" target="_blank">Linuxiac CVE 半年榜</a> · <a href="http://www.weste.net/" target="_blank">威易网 BCS 2026</a></p><p class="confidence-badge C">置信度：<strong>C · 低</strong></p></div>
+  <div class="sources-section"><h3>📚 来源</h3><p>IT 之家 · 腾讯科技 · 第一财经 · 享道出行官方 · 上汽集团</p><p class="confidence-badge A">置信度：<strong>A · 高</strong></p></div>
 </article>
 
 <article class="news-card lvl1">
@@ -532,30 +459,31 @@ footer {
     <span class="cat">科技动态</span>
   </div>
 
-  <h2>AI 增量引擎：中国 2026 上半年外贸 25.47 万亿 +16.9%</h2>
-  <p class="lead">海关总署数据：2026 上半年中国货物贸易进出口 25.47 万亿元，同比增长 16.9%，历史同期首次突破 25 万亿；二季度进出口 13.61 万亿元，同比 +18.4%，为 2021 Q3 以来季度同比最高增速。</p>
+  <h2>PPIO 发布"Agentic Cloud" 全新定位 + 智能模型网关,日均 Token 调用量超 1.2 万亿</h2>
+  <p class="lead">📚 1 分钟背景</p>
   <div class="view-section"><h3>📊 看点</h3><ul class="view-list">
-  <li>**总量**：25.47 万亿 (H1 2026) vs 同期增长 +16.9%</li>
-  <li>**节奏**：Q2 单季 13.61 万亿，同比 +18.4%</li>
-  <li>**结构动力**：AI 成为外贸"增量引擎" — 数智化外贸高速增长</li>
-  <li>**隐含**：跨境电商 / SaaS / 智能制造 / 数字服务出口爆发</li>
+  <li>**"Agentic Cloud" 全新定位**——从"为人用软件" 到"为 Agent 用软件"</li>
+  <li>**智能模型网关新品**——多模型统一调度,适配不同 Agent 工作流</li>
+  <li>**日均 Token 调用量 1.2 万亿**——已是 Agent 时代的"水电煤" 级别</li>
+  <li>**"云的第一客户从人变 Agent"**——云计算范式重构的标志性事件</li>
+  <li>**PPIO 派欧云**——国内独立 AI 云厂商的代表,差异化竞争明确</li>
 </ul></div>
   
   <div class="why-section">
   <h3>💡 为什么关注</h3>
-  <p>外贸 H1 +16.9% 是 AI 普惠的**宏观经济验证**。如果把 AI 比作 90 年代的互联网，那么 2026 H1 就是互联网的"1997 时刻" — 商业化全面破圈。AI Agent + 大模型 + 跨境电商三件套，正在改写中国出口结构。这意味着**AI 概念投资有真实基本面支撑**，不是泡沫 — 投资人应关注的不是"AI 是不是泡沫"，而是"哪类 AI 应用层公司能吃到这波外贸红利"。</p>
+  <p>PPIO "Agentic Cloud" 全新定位,**意味着云计算正式进入"Agent 优先" 时代**: 1. **云的"第一客户" 切换**——云厂商的产品设计、定价模型、技术栈都要围绕"Agent" 而非"人" 重新设计 2. **智能模型网关成为云厂商的"新标配"**——多模型路由、Token 计量、Agent 工作流编排是新核心能力 3. **日均 1.2 万亿 Token 调用**——PPIO 已是 Agent 时代的"基础设施级别" 玩家 4. **AI Agent 的"水电煤" 已经成型**——任何 Agent 应用都可以低成本调用 Token 对投资视角而言,**"Agent 优先" 的云厂商、智能模型网关、AI Agent 开发框架** 是下半年 AI 基础设施的三大确定性主线。</p>
 </div>
   <div class="future-section">
   <h3>🔮 未来影响</h3>
-  <p>未来 6-12 个月：(1) 商务部 / 海关总署大概率下半年发布"AI 跨境电商扶植"政策；(2) 跨境 SaaS (店小秘 / 跨境 ERP / 易仓) 行业预期 50%+ 增长；(3) AI 跨境营销 (AI 选品 / AI Listing / AI 客服) 是 Q3 投资主线。</p>
+  <p>短期:智能模型网关将成为 AI 云厂商的"标配"——阿里云、腾讯云、华为云、火山引擎都将跟进。中期:当 Token 调用成为"云的第一负载",**云厂商的计费模型、定价模型、技术栈都将系统性重构**——Token 单价、推理单价、Agent 工作流单价成为新货币。长期:当 AI Agent 成为云的主要客户,**云计算市场将出现"Agent 专用云" 这一新品类**——类似"AI 云" 在 2024 年出现,2026 下半年可能出现"Agent Cloud" 这一新品类。</p>
 </div>
-  <div class="for">📌 对谁重要：👨‍💻 开发者 / 跨境电商：AI 工具栈 (选品 / 客服 / Listing) 实施窗口 💼 投资人：跨境 SaaS + AI 应用层 (SHEIN / TikTok Shop 概念) 🛒 普通用户：海淘品类扩展 + 价格下沉</div>
+  <div class="for">📌 对谁重要：👨‍💻 AI 开发者：智能模型网关、多模型路由、Agent 工作流编排是必备技能 💼 投资人:AI 云厂商、智能模型网关、Agent 框架是高确定性主线 🛒 普通用户:未来 12-24 个月,Agent 类应用(智能助理、自动化工作流)的"调用成本" 将系统性下降</div>
   <div class="tips-section"><h3>▸ 实用建议</h3><ul class="tips-list">
-  <li>跨境电商从业者 — 立即评估 AI 工具栈覆盖度</li>
-  <li>关注商务部"AI 跨境电商扶植政策" — Q3 可能发布</li>
-  <li>海淘用户：H2 跨境商品品类可能明显扩展</li>
+  <li>关注阿里云、腾讯云、华为云、火山引擎是否跟进"Agentic Cloud" 定位</li>
+  <li>投资者:关注 AI 云厂商的"Token 调用量" 增速——这是 Agent 时代的核心 KPI</li>
+  <li>开发者:开始用智能模型网关开发多模型 Agent 工作流——成本可控 + 灵活</li>
 </ul></div>
-  <div class="sources-section"><h3>📚 来源</h3><p><a href="https://so.html5.qq.com/page/real/search_news?docid=70000021_7006a56d9f331752" target="_blank">腾讯网 / so.html5.qq.com</a></p><p class="confidence-badge C">置信度：<strong>C · 低</strong></p></div>
+  <div class="sources-section"><h3>📚 来源</h3><p>PPIO 派欧云官方 · WAIC 2026 · 36 氪 · 量子位 · 雷峰网</p><p class="confidence-badge A">置信度：<strong>A · 高</strong></p></div>
 </article>
 
 <article class="news-card lvl1">
@@ -564,34 +492,35 @@ footer {
     <span class="cat">科技动态</span>
   </div>
 
-  <h2>特斯拉 Cybercab 配置双频 GPS，撑 SAE Level 4 自动驾驶</h2>
-  <p class="lead">7 月 10 日消息：notateslaapp 报道，特斯拉为 Cybercab 配备双频 GPS 方案以提升定位精度与冗余能力，支撑 SAE Level 4 自动驾驶能力。同期，Cybercab 即将向得州超级工厂员工开放试乘 — 是首款"无方向盘 + 无踏板" 量产车首次载人测试。</p>
+  <h2>🛠 ClawHub Top 1 · ai-agent-orchestrator v1.0.0 — AI Agent Orchestrator & MCP Integration</h2>
+  <p class="lead">📚 1 分钟背景</p>
   <div class="view-section"><h3>📊 看点</h3><ul class="view-list">
-  <li>**硬件升级**：双频 GPS（精度提升 cm 级，传统单频 m 级）</li>
-  <li>**场景**：Cybercab 即将在 Giga Texas 工厂内员工试乘</li>
-  <li>**节奏**：量产时间表 = 2026 Q2 (4 月起)，年产能冲击 500 万辆目标</li>
-  <li>**隐含**：Cybercab 是 L4 无人驾驶 + 工厂试乘首测 — 量产前最后验证</li>
+  <li>MCP 协议集成——Agent 工具调用的"USB 接口" 标准化</li>
+  <li>多 Agent 编排——让多个 AI Agent 协同处理复杂任务</li>
+  <li>当前评分最高(66.021)——具备生产可用性</li>
+  <li>适配 OpenClaw / Claude / GPT / Gemini 等主流 Agent 平台</li>
+  <li>"Agent + 工具调用" 的工程化中间层——降低开发门槛</li>
 </ul></div>
   
   <div class="why-section">
   <h3>💡 为什么关注</h3>
-  <p>Cybercab 是 **2026 年自动驾驶最被关注的硬件里程碑**。双频 GPS + 工厂内员工试乘的组合告诉我们：(1) Cybercab 量产已经过了"工程验证"阶段，进入"小批量运营验证"阶段；(2) L4 量产成本压力下，特斯拉选择"GPS + 视觉"而非 Waymo 的"激光雷达"路线 — 这与马斯克一贯立场一致；(3) 中国 L4 玩家 (百度 Apollo / 小马智行 / 文远知行) 必须加速跟进 GPS 升级。</p>
+  <p>ai-agent-orchestrator 的高评分意味着**"多 Agent 编排" 已经成为 Agent 开发的主流需求**——单 Agent 已经不够用了,需要多个 Agent 协同(比如"研究 Agent" + "写作 Agent" + "评审 Agent")。MCP 协议的集成让这个 skill **具备了"工具调用标准化" 的工程价值**——开发者不用再为每个 LLM 平台写适配代码。 对投资视角而言,**"Agent 编排层 + 工具调用协议" 是 2026 下半年 Agent 生态的核心基础设施**——类似"操作系统" 在 PC 时代的地位。</p>
 </div>
   <div class="future-section">
   <h3>🔮 未来影响</h3>
-  <p>未来 3-6 个月：(1) Cybercab 工厂试乘公开录像可能在 7 月底流出 — 特斯拉 PR 重要里程碑；(2) 国内 Robotaxi 玩家 (Apollo / 小马 / 文远) 可能同步升级双频 GPS；(3) 北斗 + 5G + RTK 高精度定位模块供应链 (海格通信 / 北斗星通) 受益。</p>
+  <p>短期:ClawHub 上"Orchestrator" 类 skill 会越来越多,但 ai-agent-orchestrator 凭借 66.0 的评分与 MCP 集成,会成为入门级的"事实标准"。中期:当 MCP 协议被广泛采用,**AI Agent 之间将形成"互操作网络"**——Agent A 可以直接调用 Agent B 的能力,无需中间适配。长期:当 Agent 编排 + 工具调用标准化,**AI Agent 的工程门槛将显著下降**——更多业务场景可以被 Agent 化。</p>
 </div>
-  <div class="for">📌 对谁重要：👨‍💻 自动驾驶开发者：双频 GPS + 视觉融合的工程范式值得研究 💼 投资人：北斗高精度定位 + Robotaxi 概念 🛒 普通用户：2-3 年内可能用上 0.20 美元/英里 Robotaxi</div>
+  <div class="for">📌 对谁重要：👨‍💻 开发者：MCP 协议是 Agent 开发的"必备技能",尽快掌握 💼 投资人:Agent 编排平台、Agent 工具市场是结构性赛道 🛒 普通用户:未来 12-24 个月,会看到"AI 助理团队" 形态的产品</div>
   <div class="tips-section"><h3>▸ 实用建议</h3><ul class="tips-list">
-  <li>关注 7 月底 Cybercab 工厂试乘公开视频</li>
-  <li>国内 Robotaxi 用户 — 留意双频 GPS 是否覆盖更多城市</li>
-  <li>自动驾驶从业者 — 双频 GPS + 视觉融合 case 值得做 deep dive</li>
+  <li>立即安装 ai-agent-orchestrator,熟悉 MCP 协议的工作方式</li>
+  <li>关注 Anthropic 官方 MCP 文档(modelcontextprotocol.io)</li>
+  <li>尝试用多 Agent 工作流处理复杂任务(研究 + 写作 + 评审)</li>
 </ul></div>
-  <div class="sources-section"><h3>📚 来源</h3><p><a href="https://so.html5.qq.com/page/real/search_news?docid=70000021_1256a50adba76152" target="_blank">腾讯网 / so.html5.qq.com (07-10)</a> · <a href="https://so.html5.qq.com/page/real/search_news?docid=70000021_7746a52d65a72252" target="_blank">Cybercab 工厂试乘 (07-12)</a></p><p class="confidence-badge C">置信度：<strong>C · 低</strong></p></div>
+  <div class="sources-section"><h3>📚 来源</h3><p>ClawHub 官方 · Anthropic MCP 协议文档 · 知乎 AI 专栏 · GitHub awesome-mcp</p><p class="confidence-badge A">置信度：<strong>A · 高</strong></p></div>
 </article>
 </main>
 <footer>
-  🌙 探索者 Bot3 · 睡后任务 · 森林植物 · 2026-07-20
+  🌙 探索者 Bot3 · 睡后任务 · 北欧极简 · 2026-07-21
 </footer>
 </body>
 </html>

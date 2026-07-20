@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>⚪ 北欧极简风 · 2026-07-21</title>
+<style>
+/* ===== 公共装饰类（所有主题共用）===== */
+.tape {
+  position: absolute;
+  width: 70px; height: 22px;
+  opacity: 0.7;
+  z-index: 10;
+}
+.tape-h { background: linear-gradient(90deg, transparent, var(--tape), transparent); }
+.tape-pink { --tape: #FFB7C5; }
+.tape-mint { --tape: #9FE0BB; }
+.tape-yellow { --tape: #FFE99B; }
+.tape-blue { --tape: #A8D0E0; }
+.tape-lavender { --tape: #C9B8F0; }
+.tape-caramel { --tape: #D4B896; }
+.tape-red { --tape: #E8A0A0; }
+.tape-sage { --tape: #B5C9A3; }
+.tape-gold { --tape: #D4AF37; }
+
+/* 手绘小图标（CSS 模拟）*/
+.doodle {
+  display: inline-block;
+  font-style: normal;
+  filter: drop-shadow(0 1px 1px rgba(0,0,0,0.1));
+}
+
+/* 斜贴胶带辅助 */
+.tape-tl { top: -8px; left: 20px; transform: rotate(-6deg); }
+.tape-tr { top: -8px; right: 20px; transform: rotate(7deg); }
+.tape-bl { bottom: -8px; left: 20px; transform: rotate(5deg); }
+.tape-br { bottom: -8px; right: 20px; transform: rotate(-4deg); }
+
+/* 贴纸层叠 */
+.layered { position: relative; }
+.layered::before {
+  content: ''; position: absolute;
+  inset: 4px -4px -4px 4px;
+  background: var(--paper-shadow, rgba(0,0,0,0.05));
+  border-radius: inherit;
+  z-index: -1;
+}
+
+/* ===== v15.1 完整字段样式 ===== */
+.card-head { margin-bottom: 8px; }
+
+.view-section {
+  margin: 12px 0;
+  padding: 10px 14px;
+  background: rgba(0,0,0,0.03);
+  border-radius: 8px;
+}
+.view-section h3 {
+  font-size: 14px;
+  margin: 0 0 6px;
+  color: var(--ink);
+  font-weight: 700;
+}
+.view-list {
+  margin: 0;
+  padding-left: 20px;
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--ink-soft);
+}
+.view-list li { margin-bottom: 4px; }
+
+.bg-card {
+  margin: 12px 0;
+  padding: 8px 14px;
+  background: rgba(0,0,0,0.02);
+  border-left: 3px solid var(--ink-light);
+  border-radius: 4px;
+  font-size: 13px;
+  color: var(--ink-soft);
+}
+.bg-card summary {
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 4px;
+}
+.bg-card p { margin: 6px 0 0 0; }
+
+.why-section,
+.future-section {
+  margin: 14px 0;
+  padding: 12px 16px;
+  background: rgba(255,255,255,0.6);
+  border-radius: 10px;
+  border: 1.5px dashed var(--ink-light);
+}
+.why-section h3,
+.future-section h3 {
+  font-size: 14px;
+  margin: 0 0 6px;
+  color: var(--ink);
+  font-weight: 700;
+}
+.why-section p,
+.future-section p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.8;
+  color: var(--ink);
+}
+
+.tips-section {
+  margin: 12px 0;
+  padding: 10px 14px;
+  background: rgba(255,255,255,0.5);
+  border-radius: 8px;
+  border-left: 4px solid var(--terracotta);
+}
+.tips-section h3 {
+  font-size: 14px;
+  margin: 0 0 6px;
+  color: var(--ink);
+  font-weight: 700;
+}
+.tips-list {
+  margin: 0;
+  padding-left: 18px;
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--ink-soft);
+}
+.tips-list li { margin-bottom: 3px; }
+
+.sources-section {
+  margin: 12px 0 0;
+  padding-top: 8px;
+  border-top: 1px dashed var(--ink-light);
+  font-size: 12px;
+  color: var(--ink-light);
+}
+.sources-section h3 {
+  font-size: 12px;
+  margin: 0 0 4px;
+  font-weight: 600;
+  color: var(--ink-soft);
+}
+.sources-section p { margin: 0; }
+.sources-section a {
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px dotted var(--ink-light);
+}
+.confidence-badge {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.confidence-badge.A {
+  background: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+.confidence-badge.B {
+  background: #fff3cd;
+  color: #856404;
+  border: 1px solid #ffeeba;
+}
+
+.confidence-badge.C {
+  background: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+
+.confidence-badge strong {
+  font-size: 14px;
+  margin-left: 4px;
+}
+
+
+:root {
+  --bg: #FAFAF8;
+  --card: #FFFFFF;
+  --ink: #1A1A1A;
+  --muted: #666666;
+  --sage: #6B8E4E;
+  --sage-light: #E8EFE3;
+  --line: #E5E5E0;
+  --grid: rgba(0, 0, 0, 0.04);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Inter', 'Helvetica Neue', 'PingFang SC', system-ui, sans-serif;
+  background-color: var(--bg);
+  color: var(--ink); line-height: 1.7;
+  font-weight: 400; letter-spacing: 0.01em;
+  padding: 30px 16px 80px; min-height: 100vh;
+}
+
+header.hero {
+  max-width: 880px; margin: 0 auto 40px;
+  background-color: var(--card);
+  border-radius: 2px; padding: 48px 32px;
+  text-align: center; position: relative;
+  border: 1px solid var(--line);
+}
+.hero h1 {
+  font-size: 30px; color: var(--ink);
+  font-weight: 300; margin-bottom: 8px;
+  letter-spacing: 0.1em;
+}
+.hero .date {
+  color: var(--muted); font-size: 13px;
+  letter-spacing: 0.3em; margin: 8px 0 20px;
+  font-weight: 300;
+}
+.hero img {
+  width: 200px; height: 200px; border-radius: 2px;
+  object-fit: cover; margin: 16px auto;
+  border: 1px solid var(--line);
+  display: block;
+}
+.hero .pulse {
+  background: var(--sage-light);
+  border-radius: 2px; padding: 18px 24px;
+  margin-top: 28px; font-size: 14px;
+  text-align: left; color: var(--ink);
+  font-weight: 300;
+}
+
+main {
+  max-width: 880px; margin: 0 auto; display: grid; gap: 24px;
+}
+
+.news-card {
+  background-color: var(--card);
+  border-radius: 2px; padding: 32px 28px;
+  position: relative;
+  border: 1px solid var(--line);
+  transition: border-color 0.3s;
+}
+.news-card:hover { border-color: var(--sage); }
+
+.news-card .lvl {
+  display: inline-block;
+  color: var(--sage); font-size: 11px;
+  font-weight: 600; letter-spacing: 0.2em;
+  text-transform: uppercase;
+  padding-bottom: 4px;
+  border-bottom: 1.5px solid var(--sage);
+  margin-bottom: 12px;
+}
+.news-card.lvl2 .lvl { color: var(--muted); border-bottom-color: var(--line); }
+.news-card.lvl1 .lvl { color: var(--muted); border-bottom-color: var(--line); }
+
+.news-card .cat {
+  display: inline-block;
+  color: var(--muted); font-size: 11px;
+  margin-left: 12px; letter-spacing: 0.1em;
+}
+
+.news-card h2 {
+  font-size: 22px; margin: 12px 0 8px;
+  color: var(--ink); font-weight: 400;
+  letter-spacing: -0.01em;
+}
+.news-card .lead {
+  font-size: 14px; color: var(--muted);
+  font-weight: 400; margin-bottom: 12px;
+}
+.news-card .detail {
+  font-size: 14px; color: var(--ink);
+  margin-bottom: 16px; line-height: 1.8;
+  font-weight: 300;
+}
+.news-card .for {
+  font-size: 12px; color: var(--muted);
+  padding: 8px 0;
+  border-top: 1px solid var(--line);
+  margin-bottom: 8px;
+  letter-spacing: 0.05em;
+}
+.news-card .tip {
+  font-size: 12px; color: var(--sage);
+  padding: 8px 0;
+  border-top: 1px solid var(--line);
+  margin-top: 8px;
+  font-weight: 500;
+}
+
+footer {
+  max-width: 880px; margin: 40px auto 0;
+  text-align: center; color: var(--muted);
+  font-size: 11px; letter-spacing: 0.3em;
+  text-transform: uppercase;
+}
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="tape tape-pink tape-tl"></div>
+  <div class="tape tape-mint tape-tr"></div>
+  <h1>⚪ 北欧极简风</h1>
+  <div class="date">2026-07-21 · 周三 · 科技手帐</div>
+  <img src="demo-assets-v2/g-nordic.png" alt="北欧极简">
+  <div class="pulse">今日科技脉搏 🩸 · 小米 18 系列核心规格集中曝光:全系 2nm 旗舰 + 双 / AMD 发布首款机架级 AI 系统 Helios 挑战 Nv / 2026 上半年 31 款国产创新药获批上市,4 类"全球首</div>
+</header>
+<div class="audio-player-wrap" style="max-width:680px;margin:24px auto;padding:18px 22px;background:rgba(255,255,255,0.85);border-radius:14px;box-shadow:0 4px 14px rgba(0,0,0,0.08);border:1.5px dashed rgba(0,0,0,0.12);">
+  <h3 style="margin:0 0 10px 0;font-size:18px;color:#333;">🎙️ 今日语音播报（完整 8 条 + 全部内容）</h3>
+  <audio controls preload="metadata" style="width:100%;max-width:600px;">
+    <source src="https://dcrlovejs-spec.github.io/sleep-briefing/podcast.mp3?t=2026-07-21" type="audio/mpeg">
+    你的浏览器不支持 audio 标签，请下载 mp3 后用本地播放器收听。
+  </audio>
+  <p style="margin:8px 0 0 0;font-size:13px;color:#888;">小提示：可下载离线收听；由 edge_tts · 晓晓主播；ffmpeg 重编码</p>
+</div>
+<main>
+
+<article class="news-card lvl3">
+  <div class="card-head">
+    <span class="lvl">🔥🔥🔥 必读</span>
+    <span class="cat">科技动态</span>
+  </div>
+
+  <h2>小米 18 系列核心规格集中曝光:全系 2nm 旗舰 + 双 2 亿像素 + 7000mAh,9 月发布</h2>
+  <p class="lead">📚 1 分钟背景</p>
+  <div class="view-section"><h3>📊 看点</h3><ul class="view-list">
+  <li>**全系 2nm 旗舰芯**——小米首次实现"全系跨档位" 标配旗舰 SoC</li>
+  <li>**2K 直屏 + 双 2 亿像素**——屏幕与影像"全系不缩水",对标 iPhone 18 战略</li>
+  <li>**7000mAh + 百瓦双快充**——续航焦虑一次性解决</li>
+  <li>**首发仅 Pro/Pro Max**——"高利润机型先发" 复制 iPhone 节奏,冲击高端</li>
+  <li>**提前登陆印度**——国产旗舰出海节奏加速</li>
+</ul></div>
+  
+  <div class="why-section">
+  <h3>💡 为什么关注</h3>
+  <p>小米 18 系列核心规格集中曝光,**意味着 2026 下半年国产高端手机市场的产品力竞争进入"硬件一致性" 新阶段**: 1. **国产旗舰首次实现"全系同一旗舰芯"**——标准版不再是"Pro 缩水版",消费者不再为"高端体验" 多花预算 2. **2nm 制程 + 双 2 亿像素 + 7000mAh = 影像 + 性能 + 续航三位一体**——手机产品力的"木桶效应" 终结 3. **"先 Pro 后标准" 战略复制 iPhone**——国产厂商学习"高端优先" 节奏,集中资源冲击高利润段 4. **提前登陆印度市场**——国产旗舰出海节奏从"延迟" 转为"抢先",抢占印度高端市场 对投资视角而言,**2nm 旗舰芯 + 双 2 亿像素 + 大电池 = 2026 下半年手机供应链的三条主线**:芯片(高通/台积电)、CMOS(豪威/三星)、电池(宁德/比亚迪),产业链上下游都有结构性机会。</p>
+</div>
+  <div class="future-section">
+  <h3>🔮 未来影响</h3>
+  <p>短期:9 月发布的小米 18 系列将直接冲击 iPhone 18 的高端定价策略,可能引发国产其他厂商(华为/OPPO/vivo/荣耀)跟进"全系旗舰化" 策略。中期:2nm 芯片产能成为关键瓶颈,**台积电 2nm 产能分配将在下半年成为手机厂商的"军备竞赛"**。长期:当"全系 2nm + 全系双 2 亿" 成为旗舰标配,**手机硬件差异化将向"AI 能力 + 操作系统 + 生态闭环" 转移**——硬件军备竞赛的天花板正在接近。</p>
+</div>
+  <div class="for">📌 对谁重要：👨‍💻 开发者：关注 HarmonyOS / MIUI / OriginOS 在"AI Agent" 层的差异化布局 💼 投资人:2nm 芯片代工、CMOS、电池、屏幕供应链是确定性主线 🛒 普通用户:2026 Q4 是换机好时机——"全系 2nm + 全系 2 亿像素" 让标准版也值得入手</div>
+  <div class="tips-section"><h3>▸ 实用建议</h3><ul class="tips-list">
+  <li>关注 9 月发布会的官方定价——"Pro 优先" 策略下标准版定价可能更激进</li>
+  <li>关注高通 8 Elite Gen6 在能效上的实际表现——2nm 的"账面优势" 需实测验证</li>
+  <li>印度市场首发的反馈将决定国产旗舰在海外市场的下一步节奏</li>
+</ul></div>
+  <div class="sources-section"><h3>📚 来源</h3><p>数码闲聊站(@微博) · CNMO 科技 · 腾讯科技 · 雷科技 · 新浪科技</p><p class="confidence-badge C">置信度：<strong>C · 低</strong></p></div>
+</article>
+
+<article class="news-card lvl2">
+  <div class="card-head">
+    <span class="lvl">🔥🔥 重要</span>
+    <span class="cat">科技动态</span>
+  </div>
+
+  <h2>AMD 发布首款机架级 AI 系统 Helios 挑战 Nvidia,微软成为最新买家</h2>
+  <p class="lead">📚 1 分钟背景</p>
+  <div class="view-section"><h3>📊 看点</h3><ul class="view-list">
+  <li>**首款机架级 AI 系统**——AMD 从"芯片供应商" 升级到"整机柜供应商"</li>
+  <li>**对标 Nvidia Grace Blackwell + Vera Rubin**——AI 算力竞争从"GPU" 升级到"整机柜"</li>
+  <li>**微软成为最新客户**——云巨头首次公开背书非 Nvidia 机架方案</li>
+  <li>**AMD 复苏 10 年的集大成之作**——从 CPU 到 GPU 到机架,全栈 AI 算力布局成型</li>
+  <li>**AI 算力定价权博弈进入新阶段**——整机柜级竞争将撼动 Nvidia 的高毛利</li>
+</ul></div>
+  
+  <div class="why-section">
+  <h3>💡 为什么关注</h3>
+  <p>AMD Helios 发布 + 微软背书,**意味着 AI 算力市场从"Nvidia 一家独大" 走向"双寡头竞争"**: 1. **AI 算力定价权博弈启动**——Nvidia 的整机柜方案长期享有"溢价定价",AMD Helios 的出现将打破这一格局 2. **云厂商供应链"多元化" 进入执行阶段**——微软下注 AMD,意味着云巨头开始系统性降低对 Nvidia 的依赖 3. **AMD 从"CPU + GPU" 升级到"全栈 AI 算力"**——其在 AI 时代的卡位从"追赶者" 转为"挑战者" 对投资视角而言,**AMD 整机柜方案 + 微软背书 = AI 算力供应链"双寡头" 趋势确立**,AMD 股价、AMD 供应链(台积电、SK 海力士)将获益;同时,**Nvidia 的高毛利定价模式可能面临系统性压力**——AI 算力价格下行通道开启。</p>
+</div>
+  <div class="future-section">
+  <h3>🔮 未来影响</h3>
+  <p>短期:AMD 股价将在 Helios 量产交付时获得重估;AMD 供应链(台积电先进制程、HBM 内存、液冷)需求上升。中期:当微软、谷歌、AWS、Meta 等云巨头系统性采购 AMD 整机柜方案,**AI 算力"双供应商" 模式将成为行业标配**——云厂商的 AI 推理成本将下降 20-30%。长期:当 AI 算力市场从"Nvidia 一家独大" 走向"双寡头 + 国产替代",**全球 AI 算力的"地缘分散" 将加速**——美国对华 AI 芯片管制将更难维持。</p>
+</div>
+  <div class="for">📌 对谁重要：👨‍💻 AI 开发者：关注 AMD ROCm 软件生态——是否能成为 CUDA 的"工程化替代" 💼 投资人:AMD、AMD 供应链、台积电、HBM 内存是结构性主线 🛒 普通用户:未来 12-24 个月,AI 应用的"算力成本" 将系统性下降——AI 服务价格更亲民</div>
+  <div class="tips-section"><h3>▸ 实用建议</h3><ul class="tips-list">
+  <li>关注 AMD Helios 在微软 Azure 上的实际部署时间——决定"双寡头" 节奏</li>
+  <li>投资者:AMD 是 AI 算力"非 Nvidia 替代" 的最确定标的</li>
+  <li>关注 HBM 内存(海力士/三星/美光)在双供应商模式下的需求增长</li>
+</ul></div>
+  <div class="sources-section"><h3>📚 来源</h3><p>环球市场播报 · The Information · 路透社科技 · Bloomberg Tech · AMD 投资者关系</p><p class="confidence-badge A">置信度：<strong>A · 高</strong></p></div>
+</article>
+
+<article class="news-card lvl2">
+  <div class="card-head">
+    <span class="lvl">🔥🔥 重要</span>
+    <span class="cat">科技动态</span>
+  </div>
+
+  <h2>2026 上半年 31 款国产创新药获批上市,4 类"全球首个" 创新成果集中落地</h2>
+  <p class="lead">📚 1 分钟背景</p>
+  <div class="view-section"><h3>📊 看点</h3><ul class="view-list">
+  <li>**31 款国产创新药获批**——占总数 80%+,国产替代完成"量" 的积累</li>
+  <li>**4 类"全球首个" 创新成果**——从"me-too" 走向"first-in-class"</li>
+  <li>**1000 亿美元出海授权**——中国创新药对外授权规模超 2025 全年</li>
+  <li>**CAR-T + 双抗 + 脑机接口**——前沿生物医药三条赛道同步突破</li>
+  <li>**抗丁肝、狂犬病、CAR-T、脑机接口**——"高难度赛道" 全面突破</li>
+</ul></div>
+  
+  <div class="why-section">
+  <h3>💡 为什么关注</h3>
+  <p>31 款获批 + 4 类"全球首个" + 1000 亿美元出海授权,**意味着中国创新药从"仿制" 到"首创" 的产业升级已完成关键拐点**: 1. **"me-too" 时代结束**——国内创新药企业开始系统性进入"first-in-class" 赛道,资本市场对创新药的估值锚正在重构 2. **出海授权规模超 1000 亿美元**——中国创新药不再只是"国内市场",而是全球医药研发的"重要供给方" 3. **CAR-T + 双抗 + 脑机接口 = 三条前沿赛道同步突破**——中国生物医药的"前沿布局" 不再是单点突破 4. **抗丁肝、狂犬病等"被忽视疾病" 的突破**——中国创新药正在解决全球医药市场的"未被满足需求" 对投资视角而言,**中国创新药从"国产替代" 升级到"全球首创"**——CXO(药明康德/康龙化成)、创新药企(百济神州/信达生物/恒瑞医药)、脑机接口(强脑科技/博睿康)将获益。</p>
+</div>
+  <div class="future-section">
+  <h3>🔮 未来影响</h3>
+  <p>短期:下半年将有更多"first-in-class" 创新药进入临床三期或获批。中期:当 1000 亿美元出海授权成为常态,**中国创新药企将系统性进入"全球医药 TOP 20"**——百济、信达、恒瑞等有望跻身全球医药巨头行列。长期:当"中国首创" 成为全球医药市场的重要供给,**全球医药研发格局将进入"中美欧三极"**——这对全球患者(尤其是发展中国家患者)的药物可及性将是结构性利好。</p>
+</div>
+  <div class="for">📌 对谁重要：👨‍💻 医药研发者：关注"first-in-class" 赛道的临床机会 💼 投资人:创新药企、CXO、脑机接口医疗器械是确定性主线 🛒 普通用户:未来 1-3 年,可能有"全球首个" 创新药进入医保,治疗费用大幅下降</div>
+  <div class="tips-section"><h3>▸ 实用建议</h3><ul class="tips-list">
+  <li>关注下半年获批的"全球首个" 创新药清单——投资/就业/看病都用得上</li>
+  <li>关注 1000 亿美元出海授权的具体项目——决定中国创新药的全球地位</li>
+  <li>投资者:关注 CXO 与创新药企的"出海收入占比" ——这是长期估值的关键</li>
+</ul></div>
+  <div class="sources-section"><h3>📚 来源</h3><p>21 世纪经济报道 · 医药观澜 · Nature News · 中国医药创新促进会 · STAT News</p><p class="confidence-badge C">置信度：<strong>C · 低</strong></p></div>
+</article>
+
+<article class="news-card lvl2">
+  <div class="card-head">
+    <span class="lvl">🔥🔥 重要</span>
+    <span class="cat">科技动态</span>
+  </div>
+
+  <h2>享道出行启动上汽 Robotaxi 量产定制车项目,新车 2027 年亮相</h2>
+  <p class="lead">📚 1 分钟背景</p>
+  <div class="view-section"><h3>📊 看点</h3><ul class="view-list">
+  <li>**"传统车企 + 出行平台" 联合造车**——首次系统化路径,享道主导产品定义</li>
+  <li>**2027 年亮相**:时间表激进,1 年半内交付定制车</li>
+  <li>**上海首款前装量产定制车**——从"改装" 升级到"前装"</li>
+  <li>**全国唯一"亿级车企" 打造**——上汽年产销 400 万辆级别的供应链支撑</li>
+  <li>**Cybercab / Waymo / 特斯拉 Robotaxi 全球赛道**——中国选手加速跟进</li>
+</ul></div>
+  
+  <div class="why-section">
+  <h3>💡 为什么关注</h3>
+  <p>享道 Robotaxi 项目对 Robotaxi 产业的意义是**"整车适配" 进入工程化阶段**: 1. **Robotaxi 行业的 "Made for Robotaxi" 整车供应开始成型**——以前没有专门的 Robotaxi 整车,只能改装 2. **上汽的零部件、研发、生产体系将为 Robotaxi 行业输出"基础设施"**——激光雷达、域控、线控底盘的成本将下降 3. **2027 年的时间表意味着这场竞赛会比想象更快见分晓**——百度、特斯拉、Waymo 的窗口都在收窄 4. **"亿级车企" 打造的 Robotaxi = 工程化能力 + 成本控制双优势**——享道的成本曲线将比互联网派 Robotaxi 更陡峭</p>
+</div>
+  <div class="future-section">
+  <h3>🔮 未来影响</h3>
+  <p>短期:享道 Robotaxi 项目将带动上汽供应链(智己、宁德时代、地平线、禾赛)的关注度。中期:随着 Robotaxi 专用整车量产,**单车硬件成本预计下降 30-50%**——Robotaxi 的票价将快速接近传统出租车水平。长期:当 Robotaxi 形成"中国制造 + 中国软件 + 中国运营" 的全栈闭环,**中国 Robotaxi 有望出海**(东南亚、中东、欧洲市场)。</p>
+</div>
+  <div class="for">📌 对谁重要：👨‍💻 自动驾驶工程师：感知、规划、仿真、远程接管是下半年的技术热点 💼 投资人:激光雷达、域控、Robotaxi 整车、智能座舱是高确定性赛道 🛒 普通用户:未来 1-2 年,Robotaxi 在一二线城市将更普及——记得试一下</div>
+  <div class="tips-section"><h3>▸ 实用建议</h3><ul class="tips-list">
+  <li>关注享道 Robotaxi 项目后续披露的"试运营城市" 与"技术合作伙伴"</li>
+  <li>投资者:关注激光雷达(禾赛 / 速腾)、域控(华为 MDC / 地平线 J6)赛道</li>
+  <li>普通用户:上海 / 北京 / 深圳 / 广州已开放 Robotaxi 试乘——可提前体验</li>
+</ul></div>
+  <div class="sources-section"><h3>📚 来源</h3><p>IT 之家 · 腾讯科技 · 第一财经 · 享道出行官方 · 上汽集团</p><p class="confidence-badge A">置信度：<strong>A · 高</strong></p></div>
+</article>
+
+<article class="news-card lvl1">
+  <div class="card-head">
+    <span class="lvl">🔥 速览</span>
+    <span class="cat">科技动态</span>
+  </div>
+
+  <h2>PPIO 发布"Agentic Cloud" 全新定位 + 智能模型网关,日均 Token 调用量超 1.2 万亿</h2>
+  <p class="lead">📚 1 分钟背景</p>
+  <div class="view-section"><h3>📊 看点</h3><ul class="view-list">
+  <li>**"Agentic Cloud" 全新定位**——从"为人用软件" 到"为 Agent 用软件"</li>
+  <li>**智能模型网关新品**——多模型统一调度,适配不同 Agent 工作流</li>
+  <li>**日均 Token 调用量 1.2 万亿**——已是 Agent 时代的"水电煤" 级别</li>
+  <li>**"云的第一客户从人变 Agent"**——云计算范式重构的标志性事件</li>
+  <li>**PPIO 派欧云**——国内独立 AI 云厂商的代表,差异化竞争明确</li>
+</ul></div>
+  
+  <div class="why-section">
+  <h3>💡 为什么关注</h3>
+  <p>PPIO "Agentic Cloud" 全新定位,**意味着云计算正式进入"Agent 优先" 时代**: 1. **云的"第一客户" 切换**——云厂商的产品设计、定价模型、技术栈都要围绕"Agent" 而非"人" 重新设计 2. **智能模型网关成为云厂商的"新标配"**——多模型路由、Token 计量、Agent 工作流编排是新核心能力 3. **日均 1.2 万亿 Token 调用**——PPIO 已是 Agent 时代的"基础设施级别" 玩家 4. **AI Agent 的"水电煤" 已经成型**——任何 Agent 应用都可以低成本调用 Token 对投资视角而言,**"Agent 优先" 的云厂商、智能模型网关、AI Agent 开发框架** 是下半年 AI 基础设施的三大确定性主线。</p>
+</div>
+  <div class="future-section">
+  <h3>🔮 未来影响</h3>
+  <p>短期:智能模型网关将成为 AI 云厂商的"标配"——阿里云、腾讯云、华为云、火山引擎都将跟进。中期:当 Token 调用成为"云的第一负载",**云厂商的计费模型、定价模型、技术栈都将系统性重构**——Token 单价、推理单价、Agent 工作流单价成为新货币。长期:当 AI Agent 成为云的主要客户,**云计算市场将出现"Agent 专用云" 这一新品类**——类似"AI 云" 在 2024 年出现,2026 下半年可能出现"Agent Cloud" 这一新品类。</p>
+</div>
+  <div class="for">📌 对谁重要：👨‍💻 AI 开发者：智能模型网关、多模型路由、Agent 工作流编排是必备技能 💼 投资人:AI 云厂商、智能模型网关、Agent 框架是高确定性主线 🛒 普通用户:未来 12-24 个月,Agent 类应用(智能助理、自动化工作流)的"调用成本" 将系统性下降</div>
+  <div class="tips-section"><h3>▸ 实用建议</h3><ul class="tips-list">
+  <li>关注阿里云、腾讯云、华为云、火山引擎是否跟进"Agentic Cloud" 定位</li>
+  <li>投资者:关注 AI 云厂商的"Token 调用量" 增速——这是 Agent 时代的核心 KPI</li>
+  <li>开发者:开始用智能模型网关开发多模型 Agent 工作流——成本可控 + 灵活</li>
+</ul></div>
+  <div class="sources-section"><h3>📚 来源</h3><p>PPIO 派欧云官方 · WAIC 2026 · 36 氪 · 量子位 · 雷峰网</p><p class="confidence-badge A">置信度：<strong>A · 高</strong></p></div>
+</article>
+
+<article class="news-card lvl1">
+  <div class="card-head">
+    <span class="lvl">🔥 速览</span>
+    <span class="cat">科技动态</span>
+  </div>
+
+  <h2>🛠 ClawHub Top 1 · ai-agent-orchestrator v1.0.0 — AI Agent Orchestrator & MCP Integration</h2>
+  <p class="lead">📚 1 分钟背景</p>
+  <div class="view-section"><h3>📊 看点</h3><ul class="view-list">
+  <li>MCP 协议集成——Agent 工具调用的"USB 接口" 标准化</li>
+  <li>多 Agent 编排——让多个 AI Agent 协同处理复杂任务</li>
+  <li>当前评分最高(66.021)——具备生产可用性</li>
+  <li>适配 OpenClaw / Claude / GPT / Gemini 等主流 Agent 平台</li>
+  <li>"Agent + 工具调用" 的工程化中间层——降低开发门槛</li>
+</ul></div>
+  
+  <div class="why-section">
+  <h3>💡 为什么关注</h3>
+  <p>ai-agent-orchestrator 的高评分意味着**"多 Agent 编排" 已经成为 Agent 开发的主流需求**——单 Agent 已经不够用了,需要多个 Agent 协同(比如"研究 Agent" + "写作 Agent" + "评审 Agent")。MCP 协议的集成让这个 skill **具备了"工具调用标准化" 的工程价值**——开发者不用再为每个 LLM 平台写适配代码。 对投资视角而言,**"Agent 编排层 + 工具调用协议" 是 2026 下半年 Agent 生态的核心基础设施**——类似"操作系统" 在 PC 时代的地位。</p>
+</div>
+  <div class="future-section">
+  <h3>🔮 未来影响</h3>
+  <p>短期:ClawHub 上"Orchestrator" 类 skill 会越来越多,但 ai-agent-orchestrator 凭借 66.0 的评分与 MCP 集成,会成为入门级的"事实标准"。中期:当 MCP 协议被广泛采用,**AI Agent 之间将形成"互操作网络"**——Agent A 可以直接调用 Agent B 的能力,无需中间适配。长期:当 Agent 编排 + 工具调用标准化,**AI Agent 的工程门槛将显著下降**——更多业务场景可以被 Agent 化。</p>
+</div>
+  <div class="for">📌 对谁重要：👨‍💻 开发者：MCP 协议是 Agent 开发的"必备技能",尽快掌握 💼 投资人:Agent 编排平台、Agent 工具市场是结构性赛道 🛒 普通用户:未来 12-24 个月,会看到"AI 助理团队" 形态的产品</div>
+  <div class="tips-section"><h3>▸ 实用建议</h3><ul class="tips-list">
+  <li>立即安装 ai-agent-orchestrator,熟悉 MCP 协议的工作方式</li>
+  <li>关注 Anthropic 官方 MCP 文档(modelcontextprotocol.io)</li>
+  <li>尝试用多 Agent 工作流处理复杂任务(研究 + 写作 + 评审)</li>
+</ul></div>
+  <div class="sources-section"><h3>📚 来源</h3><p>ClawHub 官方 · Anthropic MCP 协议文档 · 知乎 AI 专栏 · GitHub awesome-mcp</p><p class="confidence-badge A">置信度：<strong>A · 高</strong></p></div>
+</article>
+</main>
+<footer>
+  🌙 探索者 Bot3 · 睡后任务 · 北欧极简 · 2026-07-21
+</footer>
+</body>
+</html>
